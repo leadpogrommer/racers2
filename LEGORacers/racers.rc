@@ -1,3 +1,0 @@
-#include "racers_resource.h"
-
-ICON_RACERS ICON "resources/racers.ico"

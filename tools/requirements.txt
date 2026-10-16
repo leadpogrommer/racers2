@@ -1,1 +1,2 @@
-reccmp @ git+https://github.com/isledecomp/reccmp
+# Pinned so annotation parsing, PDB handling and reports stay reproducible.
+reccmp @ git+https://github.com/isledecomp/reccmp@c3edb121b8dfc92e8679ea3aace743fd6b5ef287

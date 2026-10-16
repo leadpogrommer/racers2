@@ -1,0 +1,172 @@
+{
+  "filename": "LEGO Racers 2.exe",
+  "size": 1400832,
+  "sha256": "6ed248b0ee8e52669ca93f0a2d7eb4c4c2c7ed477550a5f488bfe029270d854d",
+  "md5": "341bfcf7b1164e71f0f27a13aca5babe",
+  "machine": "0x014c",
+  "timestamp_utc": "2001-08-13T10:18:04+00:00",
+  "image_base": "0x00400000",
+  "entry_point": "0x0051a33b",
+  "linker_version": "6.0",
+  "sections": [
+    {
+      "name": ".text",
+      "virtual_size": 1235464,
+      "rva": 4096,
+      "raw_size": 1236992,
+      "raw_offset": 4096
+    },
+    {
+      "name": ".rdata",
+      "virtual_size": 54962,
+      "rva": 1241088,
+      "raw_size": 57344,
+      "raw_offset": 1241088
+    },
+    {
+      "name": ".data",
+      "virtual_size": 1862552,
+      "rva": 1298432,
+      "raw_size": 94208,
+      "raw_offset": 1298432
+    },
+    {
+      "name": ".rsrc",
+      "virtual_size": 7360,
+      "rva": 3162112,
+      "raw_size": 8192,
+      "raw_offset": 1392640
+    }
+  ],
+  "imports": [
+    "KERNEL32.dll",
+    "SHFOLDER.dll",
+    "USER32.dll",
+    "ADVAPI32.dll",
+    "ole32.dll",
+    "GDI32.dll",
+    "WINMM.dll",
+    "d3d8.dll",
+    "DINPUT8.dll",
+    "DSOUND.dll"
+  ],
+  "rich": {
+    "offset": "0x110",
+    "xor_key": "0xfd9cd74f",
+    "checksum_valid": true,
+    "records": [
+      {
+        "comp_id": "0x00131f56",
+        "product_id": 19,
+        "product": "Linker512",
+        "build": 8022,
+        "count": 4
+      },
+      {
+        "comp_id": "0x00000000",
+        "product_id": 0,
+        "product": "Unknown",
+        "build": 0,
+        "count": 3
+      },
+      {
+        "comp_id": "0x000c1c7b",
+        "product_id": 12,
+        "product": "AliasObj60",
+        "build": 7291,
+        "count": 6
+      },
+      {
+        "comp_id": "0x000b1f6f",
+        "product_id": 11,
+        "product": "Utc12_CPP",
+        "build": 8047,
+        "count": 6
+      },
+      {
+        "comp_id": "0x000e1c83",
+        "product_id": 14,
+        "product": "Masm613",
+        "build": 7299,
+        "count": 39
+      },
+      {
+        "comp_id": "0x000a1f6f",
+        "product_id": 10,
+        "product": "Utc12_C",
+        "build": 8047,
+        "count": 128
+      },
+      {
+        "comp_id": "0x003022ef",
+        "product_id": 48,
+        "product": "Utc12_2_C",
+        "build": 8943,
+        "count": 2
+      },
+      {
+        "comp_id": "0x000a2306",
+        "product_id": 10,
+        "product": "Utc12_C",
+        "build": 8966,
+        "count": 20
+      },
+      {
+        "comp_id": "0x000b1fe8",
+        "product_id": 11,
+        "product": "Utc12_CPP",
+        "build": 8168,
+        "count": 7
+      },
+      {
+        "comp_id": "0x001c227e",
+        "product_id": 28,
+        "product": "Utc13_C",
+        "build": 8830,
+        "count": 4
+      },
+      {
+        "comp_id": "0x00252233",
+        "product_id": 37,
+        "product": "Linker620",
+        "build": 8755,
+        "count": 10
+      },
+      {
+        "comp_id": "0x001d227e",
+        "product_id": 29,
+        "product": "Utc13_CPP",
+        "build": 8830,
+        "count": 57
+      },
+      {
+        "comp_id": "0x00132359",
+        "product_id": 19,
+        "product": "Linker512",
+        "build": 9049,
+        "count": 15
+      },
+      {
+        "comp_id": "0x00010000",
+        "product_id": 1,
+        "product": "Import0",
+        "build": 0,
+        "count": 199
+      },
+      {
+        "comp_id": "0x000b2306",
+        "product_id": 11,
+        "product": "Utc12_CPP",
+        "build": 8966,
+        "count": 281
+      },
+      {
+        "comp_id": "0x000606c7",
+        "product_id": 6,
+        "product": "Cvtres500",
+        "build": 1735,
+        "count": 1
+      }
+    ]
+  }
+}

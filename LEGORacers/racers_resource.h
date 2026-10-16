@@ -1,1 +1,0 @@
-#define ICON_RACERS 101

@@ -1,0 +1,14 @@
+LEGO Racers 2/src/token.cpp
+LEGO Racers 2/src/bootstrap.cpp
+util/decomp.cpp
+LEGO Racers 2/src/lr2string.cpp
+LEGO Racers 2/src/mathhelpers.cpp
+LEGO Racers 2/src/tokenstrings.cpp
+LEGO Racers 2/src/winfileutil.cpp
+LEGO Racers 2/src/vector3.cpp
+LEGO Racers 2/src/winfile.cpp
+LEGO Racers 2/src/filemanager.cpp
+LEGO Racers 2/src/matrix3.cpp
+LEGO Racers 2/src/startup.cpp
+LEGO Racers 2/src/commandline.cpp
+LEGO Racers 2/src/windowutil.cpp

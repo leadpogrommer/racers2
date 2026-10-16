@@ -1,6 +1,0 @@
-; GolDP.def : Declares the module parameters for GolDP.dll.
-
-EXPORTS
-
-GolEntry
-GolExit
