@@ -70,7 +70,7 @@ def _sdk_paths(sdk_root):
     return include_dir.resolve(), library_dir
 
 
-def configure(mode, output_dir, toolchain, sdk_root=None, wine_include=None, wine_lib=None):
+def configure(mode, output_dir, toolchain, sdk_root=None, wine_include=None, wine_lib=None, d3dx8_library=None):
     toolchain = Path(toolchain).expanduser().resolve()
     vc_include = toolchain / "VC98" / "Include"
     vc_lib = toolchain / "VC98" / "Lib"
@@ -110,6 +110,19 @@ def configure(mode, output_dir, toolchain, sdk_root=None, wine_include=None, win
     else:
         raise ValueError(f"unsupported DirectX mode: {mode}")
 
+    # D3DX8 is a separate static SDK library. Wine's D3D8 import archive does
+    # not provide it. Keep this external input explicit in both build routes.
+    if d3dx8_library is None and mode == "sdk":
+        d3dx8_library = _find_case_insensitive(library_dir, "d3dx8.lib")
+    if d3dx8_library is not None:
+        d3dx8_library = Path(d3dx8_library).expanduser().resolve()
+        if not d3dx8_library.is_file():
+            raise ValueError(f"D3DX8 static library not found: {d3dx8_library}")
+        directory = str(d3dx8_library.parent)
+        if directory not in config["library_dirs"]:
+            config["library_dirs"].insert(0, directory)
+        config["libraries"].append(d3dx8_library.name)
+
     config_path = output_dir / "directx8-config.json"
     output_dir.mkdir(parents=True, exist_ok=True)
     config_path.write_text(json.dumps(config, indent=2) + "\n", encoding="utf-8")
@@ -124,10 +137,12 @@ def main():
     parser.add_argument("--sdk-root", type=Path, help="DirectX SDK root; defaults to DXSDK_DIR or DXSDK_ROOT")
     parser.add_argument("--wine-include", type=Path, help="Wine Windows header directory")
     parser.add_argument("--wine-lib", type=Path, help="Wine PE/i386 import archive directory")
+    parser.add_argument("--d3dx8-library", type=Path, help="Genuine DirectX 8 SDK retail static d3dx8.lib")
     args = parser.parse_args()
     try:
         path, config = configure(
-            args.mode, args.output_dir, args.toolchain, args.sdk_root, args.wine_include, args.wine_lib
+            args.mode, args.output_dir, args.toolchain, args.sdk_root, args.wine_include, args.wine_lib,
+            args.d3dx8_library
         )
     except (OSError, ValueError) as error:
         parser.exit(1, f"DirectX configuration failed: {error}\n")

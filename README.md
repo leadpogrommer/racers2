@@ -14,8 +14,8 @@ Verified reconstructions include character predicates, line classification,
 fixed string buffers, file operations, window geometry, command-line parsing,
 startup helpers, bitmap scanning, terrain lookup, spline helpers, and
 foundational renderer/input operations.
-The current checkpoint has **204 exact function matches**, **seven reviewed
-near matches**, and 173 unfinished implementations across 384 measured
+The current checkpoint has **226 exact function matches**, **eight reviewed
+near matches**, and 212 unfinished implementations across 446 measured
 functions. See
 [current progress](docs/progress.md) for the measured function list and
 remaining work. The application singleton and its two complete 38-slot
@@ -25,8 +25,9 @@ axis/effect dependencies are reconstructed, pending startup integration.
 Renderer source now covers transforms, viewports, lighting selection, buffer
 pools and uploads, TGA loading, resource lookup, and the full display-initializer
 body. The initializer remains under review at 22.87% raw similarity; the
-renderer owner, complete dispatch tables, texture upload and draw-plan closure
-still prevent startup integration.
+reserved renderer storage is now present. Texture upload, animation resources
+and draw-plan builders also have source. The actual renderer constructor, full
+dispatch wiring, remaining loading callbacks and startup integration remain open.
 Earlier runtime checks exercised config,
 archive metadata, and selected asset reads. The executable still has a
 temporary entry point and does not reach a window, rendered menu, or gameplay.
@@ -90,13 +91,17 @@ Renderer sources need a local DirectX 8 configuration before the first build.
 For Linux with Wine, generate it once and pass it to the builder:
 
 ```sh
-python tools/directx8.py --mode wine --output-dir build-dx8-config
+python tools/directx8.py --mode wine --output-dir build-dx8-config \
+  --d3dx8-library /path/to/DirectX8/Lib/d3dx8.lib
 python tools/build.py --directx8-config build-dx8-config/directx8-config.json
 python tools/compare.py
 python tools/compare.py --address 0x0045de00
 ```
 
-For a local genuine SDK, use `--mode sdk --sdk-root <path>` instead. CMake
+Texture conversion needs the genuine retail static D3DX8 library; see the
+[verified SDK artifact](docs/work-d3dx8.md). For a local genuine SDK, use
+`--mode sdk --sdk-root <path>` instead (it finds D3DX8 in the SDK library
+directory). CMake
 reads the same JSON path from `LR2_DIRECTX8_CONFIG`; see
 [DirectX setup](docs/work-directx8.md).
 

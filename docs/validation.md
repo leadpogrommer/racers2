@@ -40,11 +40,11 @@ python tools/compare.py
 ## Continued decompilation
 
 The latest renderer checkpoint was verified on 2026-10-17 in both the Python
-builder and CMake/NMake: **204 exact functions, seven reviewed near matches,
-and 173 STUB rows**. All 384 measured raw scores and annotation statuses agree.
-Both outputs pass data comparison for 68 annotated globals, application wiring
+builder and CMake/NMake: **226 exact functions, eight reviewed near matches,
+and 212 STUB rows**. All 446 measured raw scores and annotation statuses agree.
+Both outputs pass data comparison for 76 annotated globals, application wiring
 for 76 pointers, input wiring for 80 pointers, and all 307 input-format entries.
-The 14 tooling tests pass; the additional regression covers ANSI/non-UTF-8
+The 16 tooling tests pass; regressions cover optional D3DX8 configuration and ANSI/non-UTF-8
 archive member names in VC6 link maps, preserving the ASCII symbol/address
 columns used by the static verifiers. No game behavior tests were added.
 
@@ -180,10 +180,22 @@ least 95%) uses FUNCTION instead of STUB. The normal guard verifies those
 implemented claims without replacing their real scores. Exact and reviewed
 near matches are reported separately. The optional `--require-exact` mode
 continues to reject every sub-100% raw match, including effective-only matches.
-The normal guard passes all 211 implemented functions. Strict exact mode
-rejects the seven reviewed near matches, preserving their raw scores. These
+The normal guard passes all 234 implemented functions. Strict exact mode
+rejects the eight reviewed near matches, preserving their raw scores. These
 include the bitmap storage cleanup at 95.24%, stage-priority masking at 96.97%,
 and high-resolution texture policy at 98.11%, alongside the four previously
-reviewed functions. The 14 tooling tests cover the near-match boundary,
+reviewed functions. The 16 tooling tests cover the near-match boundary,
 strict mode, invalid scores, missing functions, library identification and
 legacy link-map decoding.
+
+
+## Renderer resource checkpoint
+
+Both builders also verify all 20 texture, animation and abstract callback
+pointers with `tools/check_renderer_resource_dispatch.py`. The genuine static
+D3DX8 surface-copy routines were identified by COFF relocation-masked byte
+comparison and linked from the pinned external SDK; see [evidence](work-d3dx8.md).
+The 76 checked globals include the reserved renderer storage and selector,
+three timing globals, and texture transform matrices. The renderer is still
+unconstructed and the temporary entry point is unchanged. No game or asset
+probe was run for this batch.

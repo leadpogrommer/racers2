@@ -127,3 +127,22 @@ display or create the Xvfb display socket. `vulkaninfo` found no working
 Vulkan driver; Wine's default D3D8 path through wined3d uses OpenGL, so this is
 not by itself a blocker. Before a game run, use an X display reachable by Wine
 and confirm its OpenGL path; software rendering under Xvfb remains unverified.
+
+## Verified retail D3DX8 surface conversion
+
+Texture compression/upload also requires the DirectX 8.0 SDK's retail static
+`d3dx8.lib`. Configure this separate local input explicitly when using Wine:
+
+```sh
+python tools/directx8.py --mode wine --output-dir build-dx8-config \
+  --d3dx8-library /path/to/DirectX8/Lib/d3dx8.lib
+```
+
+SDK mode automatically selects `d3dx8.lib` if present in its chosen library
+directory; `--d3dx8-library` can override that location. Both builders consume
+the same generated library list. The Wine D3D8 import archive supplies the
+Direct3D interface, while the verified Microsoft static library supplies D3DX8
+surface conversion. `util/d3dx8.h` declares just the two verified APIs with
+actual DirectX interface types. See [exact library evidence](work-d3dx8.md)
+for the pinned artifact and relocation-masked retail matches. SDK artifacts
+remain external, ignored build inputs.

@@ -60,16 +60,17 @@ interface, selects an adapter/mode, creates a device, and configures further
 rendering subsystems. The static renderer owner and adapter/mode layout are
 documented in [renderer adapter research](work-renderer-adapters.md). The full
 initializer now has compiled source, still under review at 22.87%
-raw similarity. The constructor, renderer owner and complete dispatch table
-remain open, and no validated display-startup path is connected. Texture-format
+raw similarity. The renderer storage and selector are now reserved at the evidenced layout.
+The constructor and complete dispatch table remain open, and no validated display-startup path is connected. Texture-format
 enumeration and
 selection, pixel-format descriptions, material colors, clear/present operations,
 depth/blend state controls and ordered cache insertion now have recovered
 source. The texture-state dispatcher, resource factory, buffer factories, transforms,
 viewports and stream setup now have source bodies. Owner integration still
-requires the remaining record constructors and callbacks, default texture
-creation/upload (`0x004d9f20`/`0x004da540`), and draw-plan resolution
-(`0x004e24f0` and its large profile builders).
+requires record construction and full main-table wiring. Default texture
+creation/upload, resource initialization, animation callbacks and draw-plan
+resolution now have compiled source. Texture-loading helpers and scene/frame
+callbacks remain in recovery; these paths have not been run.
 The [initialization dependency audit](work-renderer-initialization.md) lists
 those concrete prerequisites; no incomplete renderer singleton is instantiated.
 DirectInput now has a complete

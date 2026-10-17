@@ -1,5 +1,19 @@
 #include "renderer.h"
 
+// FUNCTION: LEGORACERS2 0x004aeb30
+LegoBool32 DisplayRenderer::SupportsCubeTextures()
+{
+	return (m_selectedAdapter->m_caps.TextureCaps >> 11) & 1;
+}
+
+// STUB: LEGORACERS2 0x004aec70
+LegoBool32 DisplayRenderer::SupportsSharedMemoryMultitexturing()
+{
+	const D3DCAPS8& caps = m_selectedAdapter->m_caps;
+	return (caps.DevCaps & 0x4000) == 0 && caps.MaxTextureBlendStages >= 2 && caps.MaxSimultaneousTextures >= 2 ? TRUE
+																												: FALSE;
+}
+
 // FUNCTION: LEGORACERS2 0x004db900
 void DisplayRenderer::SetTextureIndexMap(LegoU32 p_index, LegoU32 p_value)
 {

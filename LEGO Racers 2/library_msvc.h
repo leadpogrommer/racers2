@@ -212,6 +212,12 @@
 // LIBRARY: LEGORACERS2 0x00524f80
 // __strnicmp
 
+// LIBRARY: LEGORACERS2 0x005250c0
+// _D3DXLoadSurfaceFromMemory@40
+
+// LIBRARY: LEGORACERS2 0x005252f6
+// _D3DXLoadSurfaceFromSurface@32
+
 // LIBRARY: LEGORACERS2 0x0052ded6
 // __strupr
 

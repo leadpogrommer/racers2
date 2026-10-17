@@ -35,6 +35,8 @@ struct RendererTextureCoordinate {
 
 class RendererVertexBuffer {
 public:
+	RendererVertexBuffer();
+	void SetBufferPolicy(LegoU32 p_enabled);
 	void CopyFromVertexData(RendererVertexDataView* p_source, LegoS32 p_start);
 	void CopyVerticesFrom(RendererVertexBuffer* p_source, LegoS32 p_start);
 	void CopyToVertexData(RendererVertexDataView* p_target);
@@ -119,6 +121,8 @@ DECOMP_SIZE_ASSERT(RendererIndexStorage, 0x14);
 
 class RendererIndexBuffer {
 public:
+	RendererIndexBuffer();
+	void SetBufferPolicy(LegoU32 p_enabled);
 	void Release();
 	LegoBool32 Lock(LegoS32 p_start, LegoS32 p_count, LegoU32 p_mode);
 	void Unlock(LegoU32 p_commit, LegoU32 p_mode);

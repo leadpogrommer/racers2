@@ -6,10 +6,10 @@ Reviewed semantically identical near matches (initially at least 95% raw) are
 implemented functions, counted separately from exact matches.
 
 Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-17.
-The match guard verified **204 exact functions and seven reviewed near
-matches**. Another 173 reconstructions remain `STUB`; both builders agree on
-all 384 measured raw scores and annotation statuses. Data comparison verifies
-68 annotated globals with zero issues. Unlinked inventory entries and folded
+The match guard verified **226 exact functions and eight reviewed near
+matches**. Another 212 reconstructions remain `STUB`; both builders agree on
+all 446 measured raw scores and annotation statuses. Data comparison verifies
+76 annotated globals with zero issues. Unlinked inventory entries and folded
 aliases may also appear in the CLI denominator without another measured row.
 
 This is the reconstructed subset, not whole-game coverage. The automatic
@@ -131,7 +131,10 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004a5dc0` | `RoundUpToPowerOfTwo` | 100.00% | Verified exact |
 | `0x004a5df0` | `CountTrailingZeroBits` | 100.00% | Verified exact |
 | `0x004a5e10` | `BuildSineTable` | 100.00% | Verified exact |
-| `0x004a7cc0` | `ReleaseRendererDrawPacket` | 66.67% | Work in progress |
+| `0x004a5e90` | `InitializeSimulationFrameRate` | 53.33% | Work in progress |
+| `0x004a5ec0` | `InitializeSimulationStepSeconds` | 100.00% | Verified exact |
+| `0x004a5ef0` | `InitializeSimulationStepMilliseconds` | 100.00% | Verified exact |
+| `0x004a7cc0` | `?ReleaseRendererDrawPacket@@YIXPAURendererDrawPacket@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\applicationdispatch.h5580732@@PAX@Z` | 66.67% | Work in progress |
 | `0x004ab2a0` | `ReportFatalError` | 85.25% | Work in progress |
 | `0x004ab3b0` | `PrintDiagnostic` | 79.41% | Work in progress |
 | `0x004ab590` | `RendererVertexBuffer::GetDeviceBuffer` | 100.00% | Verified exact |
@@ -166,16 +169,26 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004ab900` | `RendererIndexBuffer::Unlock` | 64.90% | Work in progress |
 | `0x004ab9c0` | `RendererIndexBuffer::SetFlag4` | 100.00% | Verified exact |
 | `0x004abdb0` | `RendererLookupTableState::RendererLookupTableState` | 100.00% | Verified exact |
+| `0x004abe50` | `RendererTextureRecord::RendererTextureRecord` | 90.00% | Work in progress |
 | `0x004abe80` | `RendererTextureRecord::GetFlag0x90` | 100.00% | Verified exact |
 | `0x004abe90` | `RendererZeroPair::RendererZeroPair` | 100.00% | Verified exact |
 | `0x004abea0` | `RendererArrayMarker::RendererArrayMarker` | 100.00% | Verified exact |
 | `0x004abeb0` | `RendererSubrecordGroup::RendererSubrecordGroup` | 100.00% | Verified exact |
+| `0x004abef0` | `DisplayRenderer::GetSelectedLightDirection` | 100.00% | Verified exact |
+| `0x004ac030` | `DisplayRenderer::HasPreferredDepthFormat` | 100.00% | Verified exact |
 | `0x004ac040` | `DisplayRenderer::GetTextureRecord` | 100.00% | Verified exact |
+| `0x004ac060` | `DisplayRenderer::GetStageBlend` | 100.00% | Verified exact |
+| `0x004ac070` | `DisplayRenderer::SetStageBlend` | 100.00% | Verified exact |
+| `0x004ac0a0` | `DisplayRenderer::GetMaximumTextureDimension` | 24.00% | Work in progress |
+| `0x004ac0d0` | `DisplayRenderer::GetQuadVertexBuffer` | 100.00% | Verified exact |
+| `0x004ac0f0` | `DisplayRenderer::SetClockwiseCulling` | 100.00% | Verified exact |
+| `0x004ac100` | `DisplayRenderer::SetUnknownDrawPolicy` | 100.00% | Verified exact |
 | `0x004ac110` | `DisplayRenderer::GetTextureQuality` | 100.00% | Verified exact |
 | `0x004ac120` | `DisplayRenderer::UsesHardwareVertexProcessing` | 100.00% | Verified exact |
 | `0x004ac130` | `DisplayRenderer::Initialize` | 22.87% | Work in progress |
 | `0x004acd00` | `DisplayRenderer::ConfigureNvidiaWorkaround` | 12.61% | Work in progress |
 | `0x004acfb0` | `DisplayRenderer::CreateVertexBuffers` | 95.33% | Reviewed near match |
+| `0x004ad060` | `DisplayRenderer::Shutdown` | 87.41% | Work in progress |
 | `0x004ad130` | `GetChannelMaskBitCount` | 14.56% | Work in progress |
 | `0x004ad2c0` | `DisplayRenderer::EnumerateSupportedAdapters` | 33.33% | Work in progress |
 | `0x004ad540` | `GetDisplayFormatBitDepth` | 29.17% | Work in progress |
@@ -190,10 +203,16 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004ae3d0` | `DisplayRenderer::UpdateViewport` | 100.00% | Verified exact |
 | `0x004ae430` | `DisplayRenderer::SelectViewport` | 100.00% | Verified exact |
 | `0x004ae480` | `DisplayRenderer::SetProjectionFromViewport` | 20.51% | Work in progress |
+| `0x004ae5a0` | `DisplayRenderer::ReleaseViewport` | 100.00% | Verified exact |
 | `0x004ae5c0` | `DisplayRenderer::SetMaterialColor` | 17.48% | Work in progress |
 | `0x004ae660` | `PixelFormatDescription::Initialize` | 69.44% | Work in progress |
 | `0x004ae9d0` | `GetChannelMaskLoss` | 11.96% | Work in progress |
+| `0x004aeb30` | `DisplayRenderer::SupportsCubeTextures` | 100.00% | Verified exact |
+| `0x004aeb50` | `DisplayRenderer::GetDotProductStageFlag` | 38.10% | Work in progress |
+| `0x004aeb70` | `DisplayRenderer::SupportsExtendedTextureStages` | 81.82% | Work in progress |
 | `0x004aebb0` | `DisplayRenderer::SelectDepthStencilFormat` | 60.38% | Work in progress |
+| `0x004aec60` | `DisplayRenderer::GetDeviceMemoryMegabytes` | 100.00% | Verified exact |
+| `0x004aec70` | `DisplayRenderer::SupportsSharedMemoryMultitexturing` | 82.76% | Work in progress |
 | `0x004aed00` | `CheckDirectInputResult` | 100.00% | Verified exact |
 | `0x004aed30` | `InputDeviceService::Initialize` | 84.53% | Work in progress |
 | `0x004aefe0` | `InputThreeArgumentNoOp` | 100.00% | Verified exact |
@@ -231,19 +250,32 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004bd770` | `RendererLookupTableState::Insert` | 60.00% | Work in progress |
 | `0x004bd7c0` | `RendererLookupTableState::InsertOrdered` | 100.00% | Verified exact |
 | `0x004bd830` | `RendererLookupTableState::InsertLinear` | 76.36% | Work in progress |
+| `0x004be0a0` | `DisplayRenderer::InitializeResources` | 50.16% | Work in progress |
+| `0x004be2f0` | `RendererResourceCacheEntry::RendererResourceCacheEntry` | 27.27% | Work in progress |
+| `0x004be320` | `RendererAuxiliaryResourceRecord::InitializeHeader` | 100.00% | Verified exact |
 | `0x004bf150` | `DisplayRenderer::SelectLights` | 25.63% | Work in progress |
+| `0x004bf920` | `LoadMipSidecar` | 47.11% | Work in progress |
+| `0x004bfa60` | `EnsureMipSidecar` | 42.22% | Work in progress |
 | `0x004bfb50` | `DisplayRenderer::FindOrCreateTextureRecord` | 23.90% | Work in progress |
 | `0x004bfce0` | `RendererTextureRecord::SetResourcePath` | 80.46% | Work in progress |
+| `0x004bfd70` | `RendererTextureRecord::Load` | 29.51% | Work in progress |
 | `0x004bffb0` | `GetTexturePathHash` | 100.00% | Verified exact |
 | `0x004bffd0` | `RendererTextureRecord::MatchesResource` | 100.00% | Verified exact |
+| `0x004c0050` | `ReleaseRendererTextureResource` | 11.76% | Work in progress |
+| `0x004c0070` | `RendererResourceCacheEntry::SetPath` | 96.88% | Reviewed near match |
+| `0x004c00c0` | `RendererResourceCacheEntry::LoadAnimation` | 31.83% | Work in progress |
+| `0x004c03c0` | `RendererResourceCacheEntry::AdvanceFrame` | 20.69% | Work in progress |
+| `0x004c0450` | `RendererResourceCacheEntry::ReleaseAnimationReferences` | 100.00% | Verified exact |
 | `0x004c0510` | `RendererAuxiliaryResourceRecord::InitializeFrom` | 48.15% | Work in progress |
 | `0x004c05e0` | `RendererAuxiliaryResourceRecord::Matches` | 47.93% | Work in progress |
 | `0x004c0670` | `RendererAuxiliaryResourceRecord::SetCallback` | 61.54% | Work in progress |
 | `0x004c0770` | `DisplayRenderer::AcquireAuxiliaryResource` | 35.54% | Work in progress |
 | `0x004c09a0` | `DisplayRenderer::FindOrAllocateTextureResource` | 44.59% | Work in progress |
 | `0x004c0a60` | `DisplayRenderer::AddTextureReference` | 89.66% | Work in progress |
+| `0x004c0ae0` | `DisplayRenderer::FindTextureReferenceById` | 44.44% | Work in progress |
 | `0x004c0b30` | `DisplayRenderer::FindTextureReference` | 51.16% | Work in progress |
 | `0x004c0b70` | `DisplayRenderer::CreateTextureResource` | 13.55% | Work in progress |
+| `0x004c0ee0` | `DisplayRenderer::ReleaseTextureResourceReference` | 74.69% | Work in progress |
 | `0x004c11e0` | `RendererAuxiliaryResourceRecord::InitializeMaterial` | 19.77% | Work in progress |
 | `0x004c32b0` | `FUN_004c32b0` | 100.00% | Verified exact |
 | `0x004c33b0` | `FUN_004c33b0` | 100.00% | Verified exact |
@@ -269,7 +301,19 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004d1d90` | `SplinePath::FUN_004d1d90` | 48.32% | Work in progress |
 | `0x004d8800` | `DisplayRenderer::AddSupportedTextureFormat` | 50.00% | Work in progress |
 | `0x004d8840` | `DisplayRenderer::InitializeTextureFormats` | 100.00% | Verified exact |
+| `0x004d8c90` | `DisplayRenderer::CopyBitmapMipToLockedSurface` | 4.29% | Work in progress |
+| `0x004d9030` | `DisplayRenderer::GetTextureMipLevelCount` | 100.00% | Verified exact |
+| `0x004d9050` | `DisplayRenderer::CreatePrimaryTexture` | 7.10% | Work in progress |
+| `0x004d9160` | `DisplayRenderer::CreateSecondaryTexture` | 35.85% | Work in progress |
+| `0x004d9970` | `DisplayRenderer::SetTextureRecordDimensions` | 31.13% | Work in progress |
+| `0x004d9ae0` | `DisplayRenderer::AdjustTextureDimensions` | 60.61% | Work in progress |
+| `0x004d9f20` | `DisplayRenderer::CreateTextureRecord` | 79.01% | Work in progress |
+| `0x004da020` | `RendererTextureRecord::UpdateGpuTexture` | 14.60% | Work in progress |
+| `0x004da1e0` | `DisplayRenderer::ReleaseTextureRecord` | 56.25% | Work in progress |
 | `0x004da240` | `DisplayRenderer::SelectTextureFormat` | 40.00% | Work in progress |
+| `0x004da490` | `RendererTextureRecord::LockPrimarySurface` | 57.89% | Work in progress |
+| `0x004da500` | `RendererTextureRecord::UnlockPrimarySurface` | 80.85% | Work in progress |
+| `0x004da540` | `RendererTextureRecord::UploadBitmapImage` | 34.86% | Work in progress |
 | `0x004db900` | `DisplayRenderer::SetTextureIndexMap` | 100.00% | Verified exact |
 | `0x004dc4c0` | `DisplayRenderer::ShouldUseHighResolutionTextures` | 98.11% | Reviewed near match |
 | `0x004dc590` | `DisplayRenderer::SetTextureFiltering` | 45.95% | Work in progress |
@@ -277,6 +321,7 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004dc9b0` | `DisplayRenderer::ClearBuffers` | 35.91% | Work in progress |
 | `0x004dccc0` | `DisplayRenderer::SetAlphaBlendMode` | 8.94% | Work in progress |
 | `0x004ddad0` | `MultiplyMatrix4` | 100.00% | Verified exact |
+| `0x004ddeb0` | `MultiplyTextureMatrixInPlace` | 48.35% | Work in progress |
 | `0x004ddf30` | `DisplayRenderer::SetWorldTransform(class Quaternion const *, class Vector3 const *)` | 36.46% | Work in progress |
 | `0x004de080` | `DisplayRenderer::SetWorldTransform(class Matrix3 const *, class Vector3 const *)` | 13.33% | Work in progress |
 | `0x004de110` | `ApplyDefaultWorldTransform` | 70.83% | Work in progress |
@@ -292,20 +337,37 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004df250` | `DisplayRenderer::ClearBlendModeOverride` | 100.00% | Verified exact |
 | `0x004df760` | `FlushSpecularVertexStream` | 100.00% | Verified exact |
 | `0x004dfb20` | `DisplayRenderer::Present` | 100.00% | Verified exact |
+| `0x004dfb60` | `DisplayRenderer::ApplyTextureTransform` | 24.90% | Work in progress |
+| `0x004dfd10` | `DisplayRenderer::UpdateTextureStageFlags` | 100.00% | Verified exact |
+| `0x004dff90` | `DisplayRenderer::GetStageFactorColor` | 100.00% | Verified exact |
+| `0x004dffa0` | `DisplayRenderer::GetInverseStageFactorColor` | 100.00% | Verified exact |
 | `0x004e0560` | `DisplayRenderer::ApplyTextureOperation` | 31.77% | Work in progress |
 | `0x004e0d40` | `DisplayRenderer::SetVertexStream` | 56.72% | Work in progress |
+| `0x004e1950` | `PassThroughStageValidationResult` | 100.00% | Verified exact |
 | `0x004e1960` | `RendererTextureStageManager::Initialize` | 92.36% | Work in progress |
 | `0x004e1c30` | `RendererTextureStageManager::MaskWithoutHighestPriorityStage` | 96.97% | Reviewed near match |
 | `0x004e1dd0` | `RendererTextureStageManager::AreTextureOperationsSupported` | 37.74% | Work in progress |
+| `0x004e1e20` | `RendererTextureStageManager::ApplyStagePlanSubrecord` | 34.62% | Work in progress |
 | `0x004e1e60` | `DisplayRenderer::BindMappedTexture` | 46.81% | Work in progress |
 | `0x004e1f20` | `DisplayRenderer::ShouldUseTextureResourceIndex` | 20.69% | Work in progress |
 | `0x004e1f50` | `DisplayRenderer::IsTextureResourceKindAccepted` | 32.26% | Work in progress |
 | `0x004e1f80` | `DisplayRenderer::IsTextureResourceKindSpecial` | 26.67% | Work in progress |
 | `0x004e1fa0` | `DisplayRenderer::RestoreTextureStageDefaults` | 34.00% | Work in progress |
+| `0x004e2490` | `ResetTextureStageCoordinateIndices` | 92.86% | Work in progress |
 | `0x004e24c0` | `RendererTextureStageManager::FindSubrecordGroup` | 75.00% | Work in progress |
+| `0x004e24f0` | `ResolveRendererTextureStagePlan` | 39.53% | Work in progress |
 | `0x004e2730` | `CopyTextureStageDefaultSlot` | 100.00% | Verified exact |
 | `0x004e2750` | `RemoveStageFromOperationPlan` | 25.88% | Work in progress |
 | `0x004e27c0` | `RendererTextureStageManager::CreateSubrecordGroup` | 25.64% | Work in progress |
+| `0x004e2850` | `RendererTextureStageManager::BuildDefaultStagePlan` | 9.05% | Work in progress |
+| `0x004e4e80` | `InitializeTextureStageRecord` | 100.00% | Verified exact |
+| `0x004e4ea0` | `SetTextureStageProfileValue` | 100.00% | Verified exact |
+| `0x004e4fd0` | `RendererTextureStageManager::BuildProfileStagePlan` | 9.56% | Work in progress |
+| `0x004e5e70` | `InitializeAndLinkTextureStageRecord` | 15.38% | Work in progress |
+| `0x004e5ea0` | `LinkTextureStageRecord` | 100.00% | Verified exact |
+| `0x004e5eb0` | `AddTextureStageSubrecords` | 42.86% | Work in progress |
+| `0x004e5f30` | `ApplyTextureStagePlanForManager` | 94.55% | Work in progress |
+| `0x004e5f90` | `ApplyRendererTextureStagePlan` | 42.29% | Work in progress |
 | `0x004e6360` | `RendererTextureStageManager::CopySubrecordGroupCacheEntry` | 100.00% | Verified exact |
 | `0x004e6380` | `DisplayRenderer::SupportsDotProduct3` | 22.22% | Work in progress |
 | `0x004e7b10` | `InitializeRendererFloatingPoint` | 71.43% | Work in progress |

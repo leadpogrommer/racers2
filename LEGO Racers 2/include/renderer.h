@@ -45,6 +45,20 @@ struct RendererTextureFormat {
 
 DECOMP_SIZE_ASSERT(RendererTextureFormat, 0x28);
 
+struct RendererTextureTransform {
+	LegoU32 m_used;
+	D3DMATRIX m_matrix;
+};
+DECOMP_SIZE_ASSERT(RendererTextureTransform, 0x44);
+
+struct RendererResourceWorkList {
+	void* m_elements;
+	LegoU32 m_stride;
+	LegoU32 m_count;
+	LegoU32 m_capacity;
+};
+DECOMP_SIZE_ASSERT(RendererResourceWorkList, 0x10);
+
 // This is an evidenced prefix of the static renderer object at 0x0058b140.
 // The full object extends beyond this prefix; its complete size is not known.
 class Matrix3;
@@ -54,6 +68,61 @@ class BitmapImage;
 
 class DisplayRenderer {
 public:
+	LegoBool32 BuildMipSidecar(
+		const LegoChar* p_sourcePath,
+		const LegoChar* p_outputSuffix,
+		BitmapImage* p_sourceImage
+	);
+	void PrepareBitmapForTexture(BitmapImage* p_image);
+	void UpdateTransformCache();
+	void EndScene();
+	LegoFloat ScaleProjectionCoordinate(LegoFloat p_scale, LegoFloat p_depth);
+	void TransformProjectedPoint(const Vector3* p_source, Vector3* p_result);
+	void TransformViewportPoint(const Vector3* p_source, Vector3* p_result);
+	LegoBool32 LoadTextureImage(
+		LegoS32 p_id,
+		BitmapImage* p_image,
+		LegoS32 p_resourceType,
+		const LegoChar* p_sourcePath
+	);
+	LegoBool32 LoadCubeTextureFace(
+		LegoS32 p_id,
+		BitmapImage* p_image,
+		const LegoChar* p_sourcePath,
+		LegoS32 p_faceIndex
+	);
+	RendererResourceRef* FindTextureReferenceById(LegoS32 p_id, LegoU32 p_type);
+	void ReleaseTextureResourceReference(LegoS32 p_id, LegoU32 p_type);
+	LegoBool32 InitializeResources();
+	void ReleaseTextureRecord(LegoS32 p_recordIndex);
+	void Shutdown();
+	void ReleaseViewport(LegoU32 p_index);
+	LegoFloat* GetSelectedLightDirection();
+	LegoBool32 HasPreferredDepthFormat();
+	LegoFloat GetStageBlend();
+	void SetStageBlend(LegoFloat p_blend);
+	LegoU32 GetMaximumTextureDimension();
+	RendererVertexBuffer* GetQuadVertexBuffer();
+	void SetClockwiseCulling(LegoBool32 p_enabled);
+	void SetUnknownDrawPolicy(LegoU32 p_value);
+	LegoU32 GetDotProductStageFlag(LegoU32 p_flags);
+	LegoBool32 SupportsExtendedTextureStages();
+	LegoS32 GetDeviceMemoryMegabytes();
+	LegoBool32 CreateTextureRecord(
+		LegoU32 p_createMode,
+		LegoS32 p_recordIndex,
+		LegoU32 p_width,
+		LegoU32 p_height,
+		LegoU32 p_mipLevels,
+		LegoU32* p_compressedOutput,
+		LegoU32 p_flagA
+	);
+	void ApplyTextureTransform(const RendererDefaultSlot* p_slot, LegoU32 p_stage);
+	LegoU32 GetStageFactorColor();
+	LegoU32 GetInverseStageFactorColor();
+	LegoBool32 SupportsCubeTextures();
+	LegoBool32 SupportsSharedMemoryMultitexturing();
+	LegoU32 UpdateTextureStageFlags(RendererDefaultSlot* p_slot, LegoU32 p_mode);
 	void SetTextureIndexMap(LegoU32 p_index, LegoU32 p_value);
 	LegoBool32 ShouldUseHighResolutionTextures();
 	LegoBool32 ShouldUseTextureResourceIndex(LegoU32 p_kind);
@@ -178,11 +247,11 @@ public:
 		LegoU32* p_refreshRate
 	);
 
-	const RendererDispatchView* m_vtable;     // 0x000
-	RendererLookupTableState m_bucketedDraws; // 0x04
-	RendererLookupTableState m_orderedDraws;  // 0x2c
-	RendererLookupTableState m_deferredDraws; // 0x54
-	undefined m_unk0x7c[0x88 - 0x7c];
+	const RendererDispatchView* m_vtable;                  // 0x000
+	RendererLookupTableState m_bucketedDraws;              // 0x04
+	RendererLookupTableState m_orderedDraws;               // 0x2c
+	RendererLookupTableState m_deferredDraws;              // 0x54
+	RendererLookupTableState* m_drawLookupTables[3];       // 0x7c
 	RendererAuxiliaryResourceRecord* m_auxiliaryResources; // 0x88
 	RendererResourceRef* m_resourceReferences;             // 0x8c
 	LegoS32 m_resourceReferenceCount;                      // 0x90
@@ -195,9 +264,18 @@ public:
 	LegoS32 m_resourceLookupCount;                         // 0xac
 	LegoU32 m_resourceLoadMode;                            // 0xb0
 	RendererTextureRecord* m_textureHash[256];             // 0xb4
-	undefined m_unk0x4b4[0x4d8 - 0x4b4];
+	LegoU32 m_unk0x4b4;
+	undefined m_unk0x4b8[0x4c0 - 0x4b8];
+	LegoU32 m_unk0x4c0;
+	RendererResourceWorkList* m_resourceWorkList; // 0x4c4
+	undefined m_unk0x4c8[0x4d0 - 0x4c8];
+	LegoS32 m_unk0x4d0;
+	LegoS32 m_unk0x4d4;
 	LegoS32 m_unk0x4d8;
-	undefined m_unk0x4dc[0x53c - 0x4dc];
+	LegoU32 m_unk0x4dc;
+	LegoS32 m_cachedTextureRecordIds[6]; // 0x4e0
+	LegoU32 m_unk0x4f8;
+	LegoU32 m_textureAddressModes[16]; // 0x4fc
 	D3DMATRIX m_transform0x53c;        // 0x53c
 	D3DMATRIX m_worldTransform;        // 0x57c
 	D3DMATRIX m_viewTransform;         // 0x5bc
@@ -225,13 +303,13 @@ public:
 	D3DPRESENT_PARAMETERS m_presentationParameters; // 0x7b8..0x7eb
 	LegoS32 m_textureQuality;                       // 0x7ec
 	LegoU32 m_deviceBehaviorFlags;                  // 0x7f0, passed to IDirect3D8::CreateDevice
-	undefined m_unk0x7f4[0x7f8 - 0x7f4];
-	LegoU32 m_modeWidth;           // 0x7f8
-	LegoU32 m_modeHeight;          // 0x7fc
-	LegoU32 m_modeRefreshRate;     // 0x800
-	D3DFORMAT m_modeFormat;        // 0x804, raw format rather than derived bit depth
-	LegoU32 m_requestedBitDepth;   // 0x808
-	LegoBool32 m_clockwiseCulling; // 0x80c, chooses D3DCULL_CW rather than CCW
+	LegoU32 m_restoreCursorOnShutdown;              // 0x7f4
+	LegoU32 m_modeWidth;                            // 0x7f8
+	LegoU32 m_modeHeight;                           // 0x7fc
+	LegoU32 m_modeRefreshRate;                      // 0x800
+	D3DFORMAT m_modeFormat;                         // 0x804, raw format rather than derived bit depth
+	LegoU32 m_requestedBitDepth;                    // 0x808
+	LegoBool32 m_clockwiseCulling;                  // 0x80c, chooses D3DCULL_CW rather than CCW
 	LegoU32 m_unk0x810;
 	LegoU32 m_deviceMemory; // 0x814, GetAvailableTextureMem
 	LegoU32 m_unk0x818;
@@ -249,14 +327,16 @@ public:
 	RendererViewportRecord m_viewports[16];                       // 0x24360
 	LegoU32 m_clearRenderTarget;                                  // 0x24520
 	LegoU32 m_currentViewportIndex;                               // 0x24524
-	undefined m_unk0x24528[0x2456c - 0x24528];
+	undefined m_unk0x24528[0x24544 - 0x24528];
+	LegoFloat m_stageAlpha; // 0x24544
+	undefined m_unk0x24548[0x2456c - 0x24548];
 	LegoU32 m_vertexBufferUsage;            // 0x2456c, D3DUSAGE_WRITEONLY or zero
 	LegoBool32 m_foundPreferredDepthFormat; // 0x24570, selected D24S8
 	LegoU32 m_unk0x24574;                   // 0x24574
 	undefined m_unk0x24578[0x24598 - 0x24578];
-	LegoU32 m_ambientColor; // 0x24598, D3DRS_AMBIENT default
-	undefined m_unk0x2459c[4];
-	D3DMATERIAL8 m_material; // 0x245a0
+	LegoU32 m_ambientColor;     // 0x24598, D3DRS_AMBIENT default
+	LegoU32 m_stageFactorColor; // 0x2459c
+	D3DMATERIAL8 m_material;    // 0x245a0
 	undefined m_unk0x245e4[0x25148 - 0x245e4];
 	RendererTextureStageManager m_textureStageManager; // 0x25148
 	RendererDefaultRecord m_textureDefaults;           // 0x28740
@@ -267,24 +347,28 @@ public:
 	LegoU32 m_unk0xc6268;
 	LegoU32 m_fillMode; // 0xc626c
 	LegoU32 m_unk0xc6270;
-	LegoU32 m_colorOverrideEnabled;   // 0xc6274
-	LegoFloat m_colorOverride[4];     // 0xc6278
-	LegoU32 m_useBlendModeOverride;   // 0xc6288
-	LegoU32 m_blendModeOverride;      // 0xc628c
-	RendererLightRecord m_lights[32]; // 0xc6290
-	LegoS32 m_lightCount;             // 0xc7090
-	LegoFloat m_lightDirection[3];    // 0xc7094
-	undefined m_unk0xc70a0[0xc734c - 0xc70a0];
-	LegoU32 m_cachedRenderStates[0xac];           // 0xc734c
-	LegoU32 m_cachedTextureHandles[8];            // 0xc75fc
-	IDirect3DVertexBuffer8* m_cachedStreamBuffer; // 0xc761c
-	LegoU32 m_cachedVertexShader;                 // 0xc7620
-	LegoU32 m_cachedTextureStageStates[256];      // 0xc7624, (stage << 5) | state
+	LegoU32 m_colorOverrideEnabled;                   // 0xc6274
+	LegoFloat m_colorOverride[4];                     // 0xc6278
+	LegoU32 m_useBlendModeOverride;                   // 0xc6288
+	LegoU32 m_blendModeOverride;                      // 0xc628c
+	RendererLightRecord m_lights[32];                 // 0xc6290
+	LegoS32 m_lightCount;                             // 0xc7090
+	LegoFloat m_lightDirection[3];                    // 0xc7094
+	LegoU32 m_textureTransformsEnabled;               // 0xc70a0
+	RendererTextureTransform m_textureTransforms[10]; // 0xc70a4
+	LegoU32 m_cachedRenderStates[0xac];               // 0xc734c
+	LegoU32 m_cachedTextureHandles[8];                // 0xc75fc
+	IDirect3DVertexBuffer8* m_cachedStreamBuffer;     // 0xc761c
+	LegoU32 m_cachedVertexShader;                     // 0xc7620
+	LegoU32 m_cachedTextureStageStates[256];          // 0xc7624, (stage << 5) | state
 	LegoS32 m_unk0xc7a24;
-	undefined m_unk0xc7a28[0xc7ec4 - 0xc7a28];
+	undefined m_unk0xc7a28[4];
+	LegoFloat m_stageBlend; // 0xc7a2c
+	undefined m_unk0xc7a30[0xc7ec4 - 0xc7a30];
 	LegoBool32 m_nvidiaWorkaround; // 0xc7ec4
 	LegoU32 m_unk0xc7ec8;
-	undefined m_unk0xc7ecc[0xc7ed4 - 0xc7ecc];
+	LegoU32 m_unk0xc7ecc;
+	LegoU32 m_bufferStoragePolicy;                     // 0xc7ed0
 	LegoU32 m_createDeviceBuffers;                     // 0xc7ed4
 	LegoS32 m_streamResourceId;                        // 0xc7ed8
 	LegoU32 m_vertexBufferCapacity;                    // 0xc7edc
@@ -300,12 +384,22 @@ public:
 	RendererDefaultRecord m_drawDefaults;              // 0xc7f04
 };
 
+// The storage is reserved without running the still-unfinished renderer
+// constructor. Startup must construct it before invoking renderer methods.
+DisplayRenderer* GetStaticDisplayRenderer();
+extern DisplayRenderer* g_displayRenderer;
+
 // This remains a prefix: the constructor proves storage through +0xc7f2b.
 DECOMP_SIZE_ASSERT(DisplayRenderer, 0xc7f2c);
 DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_bucketedDraws) == 0x04);
 DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_orderedDraws) == 0x2c);
 DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_deferredDraws) == 0x54);
 DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_textureStageManager) == 0x25148);
+DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_textureAddressModes) == 0x4fc);
+DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_stageAlpha) == 0x24544);
+DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_stageFactorColor) == 0x2459c);
+DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_textureTransforms) == 0xc70a4);
+DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_stageBlend) == 0xc7a2c);
 DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_textureDefaults) == 0x28740);
 DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_lights) == 0xc6290);
 DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_lightCount) == 0xc7090);

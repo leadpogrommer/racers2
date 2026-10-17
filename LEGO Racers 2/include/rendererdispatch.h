@@ -9,6 +9,7 @@
 class DisplayRenderer;
 class RendererIndexBuffer;
 struct RendererTextureRecord;
+struct RendererDefaultSlot;
 
 // View of an observed game dispatch slot. This does not construct a table or
 // propose a source class hierarchy. The preceding slots retain their offsets.
@@ -23,14 +24,18 @@ struct RendererDispatchView {
 	typedef RendererTextureRecord*(__fastcall* GetTextureRecord)(DisplayRenderer*, void*, LegoS32);
 	typedef LegoS32(__fastcall* SignedValue)(DisplayRenderer*, void*);
 	typedef void(__fastcall* SetPointer)(DisplayRenderer*, void*, const void*);
-	undefined m_unk0x0[0x1c];
+	typedef LegoU32(__fastcall* UpdateTextureStageFlags)(DisplayRenderer*, void*, RendererDefaultSlot*, LegoU32);
+	Policy m_initialize; // 0x00
+	undefined m_unk0x04[0x1c - 0x04];
 	SetValue m_setMaterialColor; // 0x1c
 	SetPolicy m_clearBuffers;    // 0x20
 	Policy m_present;            // 0x24
 	undefined m_unk0x28[0x34 - 0x28];
 	typedef void(__fastcall* Action)(DisplayRenderer*, void*);
 	Action m_uploadDefaultVertexConstants; // 0x34
-	undefined m_unk0x38[0x8c - 0x38];
+	undefined m_unk0x38[0x7c - 0x38];
+	Policy m_hasPreferredDepthFormat; // 0x7c, target4ac030
+	undefined m_unk0x80[0x8c - 0x80];
 	SetValue m_action0x8c; // 0x8c, target4dee90
 	undefined m_unk0x90[0x94 - 0x90];
 	ThreeValues m_setStencilOperation; // 0x94, target4deff0
@@ -39,14 +44,16 @@ struct RendererDispatchView {
 	AddViewport m_addViewport;       // 0xb0
 	UpdateViewport m_updateViewport; // 0xb4
 	SetValue m_setRenderTarget;      // 0xb8
-	undefined m_unk0xbc[0xc8 - 0xbc];
+	SetValue m_releaseViewport;      // 0xbc
+	undefined m_unk0xc0[0xc8 - 0xc0];
 	SetValue m_action0xc8; // 0xc8
 	undefined m_unk0xcc[0x100 - 0xcc];
 	CreateIndexBuffer m_createIndexBuffer; // 0x100
 	undefined m_unk0x104[0x114 - 0x104];
 	GetTextureRecord m_getTextureRecord; // 0x114
-	undefined m_unk0x118[0x124 - 0x118];
-	SetValue m_action0x124; // 0x124
+	undefined m_unk0x118[0x120 - 0x118];
+	UpdateTextureStageFlags m_updateTextureStageFlags; // 0x120, target4dfd10
+	SetValue m_action0x124;                            // 0x124
 	undefined m_unk0x128[0x140 - 0x128];
 	SetPointer m_drawQuad; // 0x140, caller supplies a quad packet
 	undefined m_unk0x144[0x184 - 0x144];
@@ -58,6 +65,7 @@ struct RendererDispatchView {
 DECOMP_STATIC_ASSERT(offsetof(RendererDispatchView, m_addViewport) == 0xb0);
 DECOMP_STATIC_ASSERT(offsetof(RendererDispatchView, m_createIndexBuffer) == 0x100);
 DECOMP_STATIC_ASSERT(offsetof(RendererDispatchView, m_getTextureRecord) == 0x114);
+DECOMP_STATIC_ASSERT(offsetof(RendererDispatchView, m_updateTextureStageFlags) == 0x120);
 DECOMP_STATIC_ASSERT(offsetof(RendererDispatchView, m_usesHardwareVertexProcessing) == 0x198);
 DECOMP_STATIC_ASSERT(offsetof(RendererDispatchView, m_setDepthState) == 0x98);
 DECOMP_STATIC_ASSERT(offsetof(RendererDispatchView, m_action0xc8) == 0xc8);

@@ -346,3 +346,13 @@ this proven nine-byte extent, with the minimum evidence limit explicitly
 lowered for this small routine; it is not a broad short-function scan.
 The source uses the real linked CRT `_purecall`, and `library_msvc.h` records
 the library mapping. It is excluded from game-function completion claims.
+
+## DirectX 8 static D3DX library
+
+The surface-copy helpers called by texture postprocessing are verified SDK
+library code. `0x005250c0` matches `_D3DXLoadSurfaceFromMemory@40` and
+`0x005252f6` matches `_D3DXLoadSurfaceFromSurface@32` from the DirectX 8.0
+retail `d3dx8.lib`, with all non-relocated body bytes identical. Both now have
+LIBRARY mappings; the game build links the genuine external SDK library.
+See [artifact identity and matching evidence](work-d3dx8.md) and
+[build configuration](work-directx8.md#verified-retail-d3dx8-surface-conversion).

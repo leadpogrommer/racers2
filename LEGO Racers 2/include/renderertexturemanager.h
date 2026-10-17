@@ -9,6 +9,9 @@
 
 #include <stddef.h>
 
+struct RendererStagePlanRequest;
+struct RendererDefaultRecord;
+
 struct RendererTextureStageRoute {
 	LegoU32 m_enabled;
 	LegoU32 m_priority;
@@ -32,6 +35,9 @@ DECOMP_STATIC_ASSERT(offsetof(RendererTextureOperationProfile, m_alphaOperation)
 class RendererTextureStageManager {
 public:
 	void Initialize();
+	LegoU32 BuildProfileStagePlan(RendererStagePlanRequest* p_request, LegoU32 p_unk0x04);
+	LegoU32 BuildDefaultStagePlan(RendererStagePlanRequest* p_request, LegoU32 p_mode);
+	LegoU32 ApplyStagePlanSubrecord(RendererDefaultRecord* p_defaults, LegoS32 p_index);
 	LegoBool32 AreTextureOperationsSupported(LegoU32 p_profileIndex) const;
 	LegoU32 MaskWithoutHighestPriorityStage(LegoU32 p_stageMask) const;
 	RendererSubrecordGroup* FindSubrecordGroup(LegoU32 p_key);

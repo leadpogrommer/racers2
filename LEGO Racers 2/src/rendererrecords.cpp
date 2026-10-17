@@ -148,7 +148,7 @@ RendererResourceCacheEntry* DisplayRenderer::FindOrAllocateTextureResource(const
 	LegoS32 i;
 	for (i = 0; i < 32; i++) {
 		RendererResourceCacheEntry* entry = &m_resourceCache[i];
-		if ((entry->m_flags0x06 & 1) != 0 && strcmp(&entry->m_path0x08, p_path) == 0) {
+		if ((entry->m_flags0x06 & 1) != 0 && strcmp(entry->m_path, p_path) == 0) {
 			return entry;
 		}
 	}

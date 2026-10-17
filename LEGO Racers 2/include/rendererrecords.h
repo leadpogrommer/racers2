@@ -25,10 +25,14 @@ struct RendererTextureRecord {
 	LegoU32 m_flags0x9c;
 
 	RendererTextureRecord();
+	LegoBool32 Load();
 	LegoU32 GetFlag0x90();
 	void SetResourcePath(const LegoChar* p_path, LegoU16 p_type, LegoU8 p_enabled);
 	LegoBool32 MatchesResource(const LegoChar* p_path, LegoU32 p_pathHash, LegoS32 p_resourceType) const;
 	void UploadBitmapImage(BitmapImage* p_image);
+	void UpdateGpuTexture();
+	LegoBool32 LockPrimarySurface(LegoS32* p_pitch, LegoU32 p_ignored, void** p_bits);
+	void UnlockPrimarySurface(LegoU32 p_ignored);
 };
 
 DECOMP_SIZE_ASSERT(RendererTextureRecord, 0xa0);
@@ -57,6 +61,7 @@ DECOMP_STATIC_ASSERT(offsetof(RendererResourceRef, m_referenceCount) == 0x04);
 DECOMP_STATIC_ASSERT(offsetof(RendererResourceRef, m_resourceType) == 0x06);
 
 struct RendererAuxiliaryResourceRecord {
+	RendererAuxiliaryResourceRecord* InitializeHeader();
 	LegoFloat m_color0[4];
 	LegoFloat m_color1[4];
 	LegoFloat m_color2[4];
@@ -108,16 +113,32 @@ DECOMP_STATIC_ASSERT(offsetof(RendererResourceLookupEntry, m_path) == 0x04);
 // the remaining storage is preserved as opaque bytes until its full layout is
 // recovered.
 struct RendererResourceCacheEntry {
+	RendererResourceCacheEntry(LegoU8 p_type);
+	void InitializeRecord();
+	LegoBool32 SetPath(const LegoChar* p_path);
+	LegoBool32 LoadAnimation();
+	void AdvanceFrame();
+	void ReleaseAnimationReferences();
+
 	void* m_vtable;
-	undefined m_unk0x04[0x06 - 0x04];
+	LegoS16 m_resourceId;
 	LegoU16 m_flags0x06;
-	LegoChar m_path0x08;
-	undefined m_unk0x09[0x194 - 0x09];
+	LegoChar m_path[128];
+	LegoS16 m_frameResourceIds[64]; // 0x88
+	LegoS16 m_frameEndTimes[64];    // 0x108
+	LegoU32 m_frameCount;           // 0x188
+	LegoU32 m_elapsedTicks;         // 0x18c
+	LegoU32 m_totalDuration;        // 0x190
 };
 
 DECOMP_SIZE_ASSERT(RendererResourceCacheEntry, 0x194);
 DECOMP_STATIC_ASSERT(offsetof(RendererResourceCacheEntry, m_flags0x06) == 0x06);
-DECOMP_STATIC_ASSERT(offsetof(RendererResourceCacheEntry, m_path0x08) == 0x08);
+DECOMP_STATIC_ASSERT(offsetof(RendererResourceCacheEntry, m_path) == 0x08);
+DECOMP_STATIC_ASSERT(offsetof(RendererResourceCacheEntry, m_frameResourceIds) == 0x88);
+DECOMP_STATIC_ASSERT(offsetof(RendererResourceCacheEntry, m_frameEndTimes) == 0x108);
+DECOMP_STATIC_ASSERT(offsetof(RendererResourceCacheEntry, m_frameCount) == 0x188);
+DECOMP_STATIC_ASSERT(offsetof(RendererResourceCacheEntry, m_elapsedTicks) == 0x18c);
+DECOMP_STATIC_ASSERT(offsetof(RendererResourceCacheEntry, m_totalDuration) == 0x190);
 
 struct RendererDefaultSlot {
 	LegoU32 m_value;
