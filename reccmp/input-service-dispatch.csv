@@ -1,0 +1,6 @@
+slot,original,symbol
+0x00,0x004af000,InvokeInputServicePoll
+0x04,0x004aed30,InvokeInputServiceInitialize
+0x08,0x004af050,InvokeInputServiceShutdown
+0x0c,0x004af170,InvokeInputServiceRefresh
+0x10,0x004af1a0,InvokeInputServiceFind

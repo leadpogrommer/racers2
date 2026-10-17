@@ -47,3 +47,13 @@ LEGO Racers 2/src/inputsetup.cpp
 LEGO Racers 2/src/inputqueries.cpp
 LEGO Racers 2/src/inputlifecycle.cpp
 LEGO Racers 2/src/inputruntime.cpp
+LEGO Racers 2/src/joystickaxis.cpp
+LEGO Racers 2/src/joystickeffect.cpp
+LEGO Racers 2/src/joystickperiodic.cpp
+LEGO Racers 2/src/joystickqueries.cpp
+LEGO Racers 2/src/joystickfeedback.cpp
+LEGO Racers 2/src/joystickdispatch.cpp
+LEGO Racers 2/src/inputjoystick.cpp
+LEGO Racers 2/src/inputservice.cpp
+LEGO Racers 2/src/joystickparams.cpp
+LEGO Racers 2/src/inputformats.cpp

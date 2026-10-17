@@ -58,7 +58,9 @@ object, and also returns `TRUE`. If the initial allocation fails, the callback
 still calls the initializer with a null receiver; that path is not a safe
 successful result.
 
-The callback is not a closed implementation of the input initializer. The
+The subsequent [service recovery](work-input-service.md) implements this
+callback and its joystick dependencies. At the lifecycle checkpoint, these
+were still open: The
 joystick constructor installs a retail vtable at `0x00536e70`; its initialization
 uses DirectInput COM calls, game property setup, and its own record callbacks.
 The initializer at `0x004aed30` also creates keyboard and mouse devices,
@@ -67,8 +69,8 @@ available devices. Its full extent is 678 bytes (`0x004aed30–0x004aefd5`,
 including `ret`). It also depends on the initialized application window/module
 globals, DirectInput8 creation, device-record registration and property
 helpers, keyboard/mouse tables, the external device-selection service at
-`0x00549e80`, and the joystick callback closure above. A runnable closure needs
-all of those dependencies and rebuilt typed tables. No retail vtable address
+`0x00549e80`, and the joystick callback closure above. The recovered service now includes those dependencies and rebuilt typed
+tables, with runtime validation still deferred until the menu milestone. No retail vtable address
 or fabricated success callback is used here. The static service pointer at
 `0x00653080` is not constructed by these lifecycle methods. The callback
 `0x004edb50` spans 121 bytes through its full `ret 8`; constructor

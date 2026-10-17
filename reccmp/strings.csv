@@ -31,6 +31,12 @@ address,type,size
 00549b94,string,27
 00549db4,string,32
 00549dd8,string,35
+00549e84,string,25
+00549ea0,string,32
+00549ec0,string,16
+00549ed0,string,34
+00549ef4,string,40
+00549f1c,string,13
 00549f2c,string,36
 0054a108,string,11
 0054a114,string,27
@@ -39,3 +45,8 @@ address,type,size
 0054a464,string,32
 0054a484,string,31
 0054af38,string,6
+0054b134,string,33
+0054b158,string,28
+0054b174,string,30
+0054b194,string,45
+0054b1c4,string,33

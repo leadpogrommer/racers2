@@ -6,12 +6,13 @@ Reviewed semantically identical near matches (initially at least 95% raw) are
 implemented functions, counted separately from exact matches.
 
 Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-17.
-The match guard verified **117 exact functions and four reviewed near
-matches**; 74 additional reconstructions remain `STUB` because behavior is
-unresolved or below the near-match threshold. Both builds agree on all 195
-measured rows and annotation statuses. Data comparison verifies 47 annotated
-globals with zero issues. The CLI denominator of 197 also includes two
-inventory-only cleanup functions that have no additional measured match rows.
+The match guard verified **150 exact functions and four reviewed near
+matches**; 99 additional reconstructions remain `STUB` because behavior is
+unresolved or below the near-match threshold. Both builds agree on all 253
+measured rows and annotation statuses. Data comparison verifies 64 annotated
+globals with zero issues. The CLI denominator of 256 also includes three
+inventory-only folded/cleanup functions that have no additional measured
+match rows.
 
 This is the reconstructed subset, not whole-game coverage. The automatic
 Ghidra inventory has **4,228 discovered function starts**, including **21 thunks**
@@ -149,6 +150,7 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004ae310` | `DisplayRenderer::SetCachedTextureStageState` | 43.48% | Work in progress |
 | `0x004aebb0` | `DisplayRenderer::SelectDepthStencilFormat` | 60.38% | Work in progress |
 | `0x004aed00` | `CheckDirectInputResult` | 100.00% | Verified exact |
+| `0x004aed30` | `InputDeviceService::Initialize` | 84.53% | Work in progress |
 | `0x004aefe0` | `InputThreeArgumentNoOp` | 100.00% | Verified exact |
 | `0x004aeff0` | `InputZeroAxis` | 100.00% | Verified exact |
 | `0x004af000` | `InputDeviceService::PollDevices` | 83.33% | Work in progress |
@@ -203,7 +205,7 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004d1a20` | `SplinePath::FUN_004d1a20` | 100.00% | Verified exact |
 | `0x004d1a70` | `SplinePath::FUN_004d1a70` | 100.00% | Verified exact |
 | `0x004d1aa0` | `SplinePath::FUN_004d1aa0` | 39.73% | Work in progress |
-| `0x004d1d90` | `SplinePath::FUN_004d1d90` | 47.71% | Work in progress |
+| `0x004d1d90` | `SplinePath::FUN_004d1d90` | 48.32% | Work in progress |
 | `0x004dc590` | `DisplayRenderer::SetTextureFiltering` | 45.95% | Work in progress |
 | `0x004e7b10` | `InitializeRendererFloatingPoint` | 71.43% | Work in progress |
 | `0x004e7b30` | `SaveFloatingPointControl` | 100.00% | Verified exact |
@@ -218,14 +220,77 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004ec500` | `MouseInputDevice::GetAxisValue` | 47.76% | Work in progress |
 | `0x004ec590` | `KeyboardInputDevice::ReadState` | 72.92% | Work in progress |
 | `0x004ec630` | `KeyboardInputDevice::IsKeyPressed` | 100.00% | Verified exact |
+| `0x004ec670` | `JoystickEffect::JoystickEffect(void)` | 100.00% | Verified exact |
+| `0x004ec680` | `JoystickEffect::JoystickEffect(struct IDirectInputDevice8A *, unsigned int, unsigned int)` | 91.09% | Work in progress |
+| `0x004ec820` | `BuildConstantForceDescription` | 3.30% | Work in progress |
+| `0x004eca50` | `BuildSpringDescription` | 5.71% | Work in progress |
+| `0x004ecbe0` | `BuildFrictionDescription` | 5.71% | Work in progress |
+| `0x004ecd70` | `BuildEnvelopedConstantDescription` | 2.63% | Work in progress |
+| `0x004ed030` | `BuildSineDescription` | 9.94% | Work in progress |
+| `0x004ed250` | `BuildEnvelopedSineDescription` | 10.40% | Work in progress |
+| `0x004ed520` | `JoystickEffect::SetConstantForce` | 61.76% | Work in progress |
+| `0x004ed580` | `JoystickEffect::SetSpringCoefficient` | 67.65% | Work in progress |
+| `0x004ed5e0` | `JoystickEffect::SetFrictionCoefficient` | 67.65% | Work in progress |
+| `0x004ed640` | `JoystickEffect::SetEnvelopeConstantForce` | 58.82% | Work in progress |
+| `0x004ed6a0` | `JoystickEffect::SetPeriodicParameters` | 52.78% | Work in progress |
+| `0x004ed700` | `JoystickEffect::SetEnvelopePeriodicParameters` | 77.78% | Work in progress |
+| `0x004ed760` | `JoystickEffect::SetSquareParameters` | 75.00% | Work in progress |
+| `0x004ed7c0` | `JoystickEffect::Stop` | 78.43% | Work in progress |
+| `0x004ed810` | `JoystickEffect::Release` | 100.00% | Verified exact |
+| `0x004ed850` | `JoystickInputDevice::Shutdown` | 100.00% | Verified exact |
+| `0x004ed8c0` | `JoystickInputDevice::JoystickInputDevice` | 60.00% | Work in progress |
+| `0x004ed940` | `JoystickInputDevice::HasForceFeedbackAxes` | 100.00% | Verified exact |
+| `0x004ed950` | `JoystickInputDevice::BindAxes` | 100.00% | Verified exact |
+| `0x004ed9a0` | `JoystickInputDevice::Initialize` | 67.47% | Work in progress |
+| `0x004edb50` | `EnumerateJoystickDevice` | 40.00% | Work in progress |
+| `0x004edbd0` | `EnumerateJoystickAxisObject` | 100.00% | Verified exact |
+| `0x004edbf0` | `JoystickAxis::JoystickAxis` | 100.00% | Verified exact |
+| `0x004edc10` | `JoystickAxis::Bind` | 100.00% | Verified exact |
+| `0x004edc50` | `JoystickAxis::SetRange` | 53.70% | Work in progress |
+| `0x004edcf0` | `JoystickAxis::GetNormalizedValue` | 100.00% | Verified exact |
+| `0x004edd20` | `JoystickInputDevice::CountForceFeedbackAxis` | 100.00% | Verified exact |
+| `0x004edd50` | `JoystickInputDevice::ReadState` | 54.72% | Work in progress |
+| `0x004edec0` | `JoystickInputDevice::StopAllEffects` | 100.00% | Verified exact |
+| `0x004edee0` | `JoystickInputDevice::EnableForceFeedback` | 84.21% | Work in progress |
+| `0x004edf10` | `JoystickInputDevice::GetAxisCount` | 100.00% | Verified exact |
+| `0x004edf20` | `JoystickInputDevice::UpdateAutoRange` | 42.42% | Work in progress |
+| `0x004edfc0` | `JoystickAxis::ExpandRange` | 100.00% | Verified exact |
+| `0x004ee020` | `JoystickInputDevice::IsButtonPressed` | 100.00% | Verified exact |
 | `0x004ee050` | `InputDeviceRecord::GetButtonValue` | 95.24% | Reviewed near match |
+| `0x004ee080` | `JoystickInputDevice::GetAxisValue` | 100.00% | Verified exact |
+| `0x004ee0c0` | `JoystickInputDevice::Acquire` | 100.00% | Verified exact |
+| `0x004ee110` | `JoystickInputDevice::Unacquire` | 100.00% | Verified exact |
+| `0x004ee160` | `JoystickInputDevice::ResetForceFeedback` | 100.00% | Verified exact |
+| `0x004ee190` | `JoystickInputDevice::InitializeEffects` | 72.44% | Work in progress |
+| `0x004ee3d0` | `JoystickInputDevice::SetConstantForce` | 32.00% | Work in progress |
+| `0x004ee430` | `JoystickInputDevice::SetSpring` | 100.00% | Verified exact |
+| `0x004ee450` | `JoystickInputDevice::SetFriction` | 100.00% | Verified exact |
+| `0x004ee470` | `JoystickInputDevice::SetSine` | 100.00% | Verified exact |
+| `0x004ee4a0` | `JoystickInputDevice::SetEnvelopedConstantForce` | 100.00% | Verified exact |
+| `0x004ee4c0` | `JoystickInputDevice::SetSquare` | 100.00% | Verified exact |
+| `0x004ee4f0` | `JoystickInputDevice::SetEnvelopedSine` | 100.00% | Verified exact |
+| `0x004ee520` | `JoystickInputDevice::StopConstantForce` | 100.00% | Verified exact |
+| `0x004ee540` | `JoystickInputDevice::StopEnvelopedSine` | 100.00% | Verified exact |
+| `0x004ee560` | `JoystickInputDevice::StopSpring` | 100.00% | Verified exact |
+| `0x004ee580` | `JoystickInputDevice::StopFriction` | 100.00% | Verified exact |
+| `0x004ee5a0` | `JoystickInputDevice::StopSine` | 100.00% | Verified exact |
+| `0x004ee5c0` | `JoystickInputDevice::StopSquare` | 100.00% | Verified exact |
+| `0x004ee5e0` | `JoystickInputDevice::StopEnvelopedConstantForce` | 100.00% | Verified exact |
+| `0x004ee600` | `JoystickInputDevice::ReleaseEffects` | 100.00% | Verified exact |
+| `0x004ee660` | `JoystickInputDevice::SetAutoCenter` | 100.00% | Verified exact |
 
-The latest recovery adds the application singleton, complete 38-slot dispatch
+The latest input batch adds 58 measured reconstructions (33 exact matches and
+25 below the annotation threshold), the folded null helper, the complete
+service initializer and joystick dispatch table. All 307 input-format entries
+match retail, including its mouse button GUID filters. The temporary bootstrap
+still does not call input initialization; see [service recovery](work-input-service.md).
+
+The recovered subset includes the application singleton, complete 38-slot dispatch
 tables, resource linkage, memory pool, real aligned GlobalAlloc wrapper,
 diagnostics, mode-3 file manager and compressed archive reader, plus renderer
-and DirectInput helpers. Both application tables' 76 callback pointers and
-both mouse/keyboard tables' 50 callback pointers pass binary wiring verification;
-this verifies table contents, not method-body equivalence or C++ vtable matching.
+and DirectInput helpers. Binary wiring verification passes for the 76
+application callback pointers and all 80 device/service pointers. This verifies
+table contents, not method-body equivalence or C++ vtable matching.
 Raw scores remain visible for unfinished bodies. The four reviewed near matches
 are `WinFile::Read` (95.24%), `DisplayRenderer::CreateVertexBuffers` (95.33%),
 `MemoryHeap::UpdateCursor` (95.83%), and `InputDeviceRecord::GetButtonValue`
@@ -241,9 +306,10 @@ rendering gameplay. An isolated real-file probe also reads three archive
 assets, including a 349,562-byte texture spanning three logical blocks and a
 late archive text file. It exercises compressed reads but makes no
 pixel-correctness claim. See [validation](validation.md).
-Two original cleanup extents are inventory-only: 0x004a2550 has no unique
+Three original extents are inventory-only: 0x004a2550 has no unique
 PDB-name mapping, and 0x0049b930 folds with the heap exit callback in the
-rebuilt image. Neither is counted as an extra measured match.
+rebuilt image. The three-byte null-return helper at 0x00473140 also folds
+with the existing zero leaf. These do not add measured match rows.
 
 Display config load/save, managed existence, user-data path construction,
 native-window helpers, renderer state helpers and DirectInput state readers
@@ -268,7 +334,10 @@ Evidence and open dependencies are recorded in the [file facade](work-file-facad
 [resource extraction](work-resources.md), [DirectX 8](work-directx8.md),
 [renderer lifecycle](work-renderer-lifecycle.md),
 [renderer state](work-renderer-state.md), [input devices](work-input-device.md),
-[input dispatch](work-input-runtime.md), [input setup](work-input-setup.md),
+[input dispatch](work-input-runtime.md), [input service](work-input-service.md),
+[joystick axes](work-joystick-axis.md), [joystick effects](work-joystick-effect.md),
+[periodic parameters](work-joystick-periodic.md), [joystick queries](work-joystick-queries.md),
+[input setup](work-input-setup.md),
 [input queries](work-input-queries.md), [input lifecycle](work-input-lifecycle.md),
 and [display startup](work-renderer-device.md) notes.
 The [startup research](work-startup.md) and [application-object research](work-application.md)

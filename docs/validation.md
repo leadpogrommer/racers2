@@ -40,24 +40,28 @@ python tools/compare.py
 ## Continued decompilation
 
 The combined SP5/Wine and CMake/NMake builds were revalidated on 2026-10-17.
-Both passed the match guard for **117 exact functions and four reviewed near
-matches**. All 195 measured raw scores and annotation statuses agree across
-the two builds: 121 implemented reconstructions and 74 unfinished bodies.
-The CLI denominator of 197 also includes the unmatched 10-byte generated
+Both passed the match guard for **150 exact functions and four reviewed near
+matches**. All 253 measured raw scores and annotation statuses agree across
+the two builds: 154 implemented reconstructions and 99 unfinished bodies.
+The CLI denominator of 256 also includes the unmatched 10-byte generated
 cleanup at 0x004a2550, which has no unique name mapping, and the one-byte
 save-config exit callback at 0x0049b930, which folds with the heap callback.
-Neither contributes an extra measured match row.
+The null-return helper at 0x00473140 also folds with the existing zero leaf.
+These three inventory-only functions do not add measured match rows.
 Annotation lint, formatting checks and all 13 tooling tests passed. Those
 tests cover the match guard and library identification. The new input-table
-verifier checks all 50 original targets and rebuilt pointers in each build;
+verifier checks all 80 original targets and rebuilt pointers in each build;
 the existing application verifier still passes all 76 pointers. No game
 behavioral tests were added.
 
-Data comparison verified 47 annotated globals with zero issues in both
+Data comparison verified 64 annotated globals with zero issues in both
 builds. New storage includes the pool lists/arena/guard/probe state, file
 initialization and redirection flags, compressed-block cache, error-dialog result, saved
 config pointers/guard/record, main/view handles, title buffer, accelerators and
-the mouse-axis scale (verified as bits `0x3c808081`).
+the mouse-axis scale (verified as bits `0x3c808081`). The latest input batch
+also verifies the static service and selector, joystick HRESULT/last-device
+pointer, shared force-feedback offsets, and six effect-description workspaces
+and their first-use flags.
 Both builds completed without compiler warnings. The pool and archive reader
 are now in the main build as required startup dependencies, with unresolved
 provenance kept explicit. [Current progress](progress.md) lists the scores.
@@ -122,9 +126,18 @@ The subsequent renderer and DirectInput helper batch was validated by
 compilation, reccmp and static table checks only. The latest input batch adds
 14 measured bodies: seven exact, one reviewed near match and six below the
 annotation threshold. It also emits the mouse and keyboard constructors and
-complete dispatch tables; the full service initializer remains blocked on the
-joystick path. Both builds agree on every score and annotation. No game or
-probe was executed during these batches.
+complete dispatch tables. The subsequent joystick/service batch adds 58
+measured bodies: 33 exact and 25 below the annotation threshold, plus the
+inventory-only folded null helper. The full service initialization source now
+includes joystick axes and effects, with startup integration still pending.
+Both builds agree on every score and annotation. No game or probe was executed
+during these batches.
+The new `tools/check_input_formats.py` verifies the input format headers and
+all 307 object entries in both builds. Linked SDK keyboard and joystick data
+match retail directly; the mouse format preserves retail's null button GUID
+filters, which differ from Wine's current SDK data. The existing application
+checker still verifies 76 callback pointers in each build.
+
 The next runtime execution is reserved for a significant milestone expected
 to reach a rendered menu or gameplay; the historical runtime evidence above is
 unchanged.
@@ -142,7 +155,7 @@ least 95%) uses FUNCTION instead of STUB. The normal guard verifies those
 implemented claims without replacing their real scores. Exact and reviewed
 near matches are reported separately. The optional `--require-exact` mode
 continues to reject every sub-100% raw match, including effective-only matches.
-The normal guard passes all 121 implemented functions. Strict exact mode
+The normal guard passes all 154 implemented functions. Strict exact mode
 continues to reject the four reviewed near matches: two at 95.24%, one at
 95.33% and one at 95.83%. Their source annotations and work notes retain the
 actual scores and equivalence review; no function was promoted solely because the policy

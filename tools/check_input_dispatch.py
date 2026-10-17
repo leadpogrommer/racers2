@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check all mouse/keyboard game-dispatch pointers without executing the game."""
+"""Check input device/service dispatch pointers without executing the game."""
 
 import argparse
 import csv
@@ -27,6 +27,7 @@ def verify(original, rebuilt, link_map, inventory):
     for table, address, symbol in (
         ("mouse", 0x00535928, "g_mouseInputDispatch"),
         ("keyboard", 0x0053598c, "g_keyboardInputDispatch"),
+        ("joystick", 0x00536e70, "g_joystickInputDispatch"),
     ):
         original_entries = read_table(original_data, address, 25)
         rebuilt_entries = read_table(rebuilt_data, symbols[symbol], 25)
@@ -37,6 +38,18 @@ def verify(original, rebuilt, link_map, inventory):
             expected = symbols[callback]
             if rebuilt_entries[index] != expected:
                 failures.append(f"{table}+0x{index * 4:02x}: expected {callback} at 0x{expected:08x}")
+
+    with inventory.with_name("input-service-dispatch.csv").open(encoding="utf-8", newline="") as stream:
+        service_rows = list(csv.DictReader(stream))
+    if [int(row["slot"], 16) for row in service_rows] != list(range(0, 0x14, 4)):
+        raise ValueError("Service inventory must contain exactly five ordered slots")
+    original_entries = read_table(original_data, 0x00535914, 5)
+    rebuilt_entries = read_table(rebuilt_data, symbols["g_inputServiceDispatch"], 5)
+    for index, row in enumerate(service_rows):
+        if original_entries[index] != int(row["original"], 16):
+            failures.append(f"service+0x{index * 4:02x}: retail target disagrees with inventory")
+        if rebuilt_entries[index] != symbols[row["symbol"]]:
+            failures.append(f"service+0x{index * 4:02x}: expected {row['symbol']}")
     if failures:
         raise ValueError("\n".join(failures))
 
@@ -51,7 +64,7 @@ def main():
                ROOT / "reccmp" / "input-dispatch.csv")
     except (KeyError, OSError, ValueError, struct.error) as error:
         parser.exit(1, f"Input dispatch verification failed: {error}\n")
-    print("Verified both input tables: 50/50 original targets and rebuilt callback pointers.")
+    print("Verified three device tables and the service table: 80/80 original targets and rebuilt pointers.")
     print("Callback behavior and instruction accuracy are separate checks.")
 
 

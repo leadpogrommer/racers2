@@ -34,16 +34,17 @@ Its `dwButtons` member is at record offset `+0xa0`.
 `reccmp/input-dispatch.csv` records every original target and rebuilt bridge
 symbol. Run `python tools/check_input_dispatch.py` (or pass
 `--build-dir build-cmake`) to read both PEs and the linker map, verify the
-original SHA-256, and check all 50 original targets and emitted pointers.
-Both builds pass. This checks table wiring separately from instruction
+original SHA-256, and check all 50 targets for these two tables, plus the
+subsequently recovered joystick and service tables. Both builds pass. This
+checks table wiring separately from instruction
 matching; the bridge tables are not claimed as exact compiler-emitted C++
 vtables. The existing application verifier still passes all 76 pointers.
 
-The initializer at `0x004aed30` also enumerates game controllers through
-`0x004edb50`. That callback's joystick constructor, initialization, embedded
-records and dispatch closure are still open. The full service table and
-startup call remain unwired until those dependencies are recovered. The
-temporary bootstrap does not invoke these new constructors or input setup.
+The subsequent [service and joystick recovery](work-input-service.md) closes
+the initializer at `0x004aed30`, its game-controller callback `0x004edb50`,
+embedded records and complete joystick dispatch table. The verifier now checks
+80 pointers across all three device tables and the five-slot service table.
+The temporary bootstrap still does not invoke input setup.
 No game or probe was run for this batch. See [setup](work-input-setup.md),
 [queries](work-input-queries.md), and [lifecycle](work-input-lifecycle.md) for
 the recovered bodies and remaining dependencies.
