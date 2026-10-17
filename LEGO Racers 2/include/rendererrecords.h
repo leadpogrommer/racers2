@@ -29,6 +29,8 @@ struct RendererTextureRecord {
 	LegoU32 GetFlag0x90();
 	void SetResourcePath(const LegoChar* p_path, LegoU16 p_type, LegoU8 p_enabled);
 	LegoBool32 MatchesResource(const LegoChar* p_path, LegoU32 p_pathHash, LegoS32 p_resourceType) const;
+	void DropTopMip();
+	void ReleaseTexture(LegoU32 p_slot);
 	void UploadBitmapImage(BitmapImage* p_image);
 	void UpdateGpuTexture();
 	LegoBool32 LockPrimarySurface(LegoS32* p_pitch, LegoU32 p_ignored, void** p_bits);
@@ -62,6 +64,7 @@ DECOMP_STATIC_ASSERT(offsetof(RendererResourceRef, m_resourceType) == 0x06);
 
 struct RendererAuxiliaryResourceRecord {
 	RendererAuxiliaryResourceRecord* InitializeHeader();
+	void CopyToDeviceMaterial(D3DMATERIAL8* p_material) const;
 	LegoFloat m_color0[4];
 	LegoFloat m_color1[4];
 	LegoFloat m_color2[4];

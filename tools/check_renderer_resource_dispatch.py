@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check the complete texture/animation callback tables without running the game."""
+"""Check the complete renderer resource/buffer callback tables without running the game."""
 
 import argparse
 import csv
@@ -16,6 +16,9 @@ TABLES = {
     "texture": (0x005358E4, 10, "g_rendererTextureRecordDispatchTable"),
     "animation": (0x00536394, 5, "g_rendererResourceCacheDispatch"),
     "abstract": (0x0053570C, 5, "g_rendererResourceCacheAbstractDispatch"),
+    "vertex": (0x00535488, 44, "g_rendererVertexBufferDispatch"),
+    "index": (0x00535538, 7, "g_rendererIndexBufferDispatch"),
+    "animation_resource": (0x005356F0, 7, "g_rendererAnimationResourceDispatch"),
 }
 
 
@@ -28,7 +31,7 @@ def verify(original, rebuilt, link_map, inventory):
     with inventory.open(newline="", encoding="utf-8") as stream:
         rows = list(csv.DictReader(stream))
     if len(rows) != sum(spec[1] for spec in TABLES.values()):
-        raise ValueError("Inventory must contain exactly 20 texture/animation slots")
+        raise ValueError("Inventory must contain every renderer resource/buffer slot")
     failures = []
     for table, (address, count, table_symbol) in TABLES.items():
         slots = [row for row in rows if row["table"] == table]
@@ -55,7 +58,8 @@ def main():
                ROOT / "reccmp" / "renderer-resource-dispatch.csv")
     except (KeyError, OSError, ValueError, struct.error) as error:
         parser.exit(1, f"Renderer resource dispatch verification failed: {error}\n")
-    print("Verified texture, animation and abstract tables: 20/20 retail targets and rebuilt callbacks.")
+    count = sum(spec[1] for spec in TABLES.values())
+    print(f"Verified renderer resource and buffer tables: {count}/{count} retail targets and rebuilt callbacks.")
     print("Callback behavior and instruction accuracy are separate checks.")
 
 

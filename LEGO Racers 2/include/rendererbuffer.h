@@ -25,6 +25,9 @@ public:
 	void InsertOrdered(LegoU32 p_key, LegoU32 p_unk0x0c, LegoU32 p_unk0x08, LegoS32 p_hashKey);
 	void ReleaseStorage();
 	void Clear();
+	void FlushBucketedEntries();
+	void FlushOrderedEntries();
+	void FlushDeferredDrawResources();
 
 	const void* m_vtable;      // 0x00
 	Entry** m_bucketHeads;     // 0x04

@@ -92,7 +92,7 @@ def build(build_dir, toolchain, source_list=None, shfolder_lib=None, directx8_co
         # This changes link retention only; instruction generation is unchanged.
         "/opt:noref,icf", "/debug", "/pdbtype:sept", "/out:" + windows_path(exe),
         "/pdb:" + windows_path(pdb), "/map:" + windows_path(build_dir / "legoracers2.map"),
-        *objects, "kernel32.lib", "user32.lib", "gdi32.lib", "advapi32.lib", windows_path(shfolder_library(toolchain, shfolder_lib)),
+        *objects, "kernel32.lib", "user32.lib", "gdi32.lib", "advapi32.lib", "winmm.lib", windows_path(shfolder_library(toolchain, shfolder_lib)),
         *dx_link_args,
         *resource_args,
     ])

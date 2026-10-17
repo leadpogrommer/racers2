@@ -7,6 +7,7 @@
 #include <stddef.h>
 
 class DisplayRenderer;
+class Vector3;
 class RendererIndexBuffer;
 struct RendererTextureRecord;
 struct RendererDefaultSlot;
@@ -33,7 +34,10 @@ struct RendererDispatchView {
 	undefined m_unk0x28[0x34 - 0x28];
 	typedef void(__fastcall* Action)(DisplayRenderer*, void*);
 	Action m_uploadDefaultVertexConstants; // 0x34
-	undefined m_unk0x38[0x7c - 0x38];
+	undefined m_unk0x38[0x64 - 0x38];
+	typedef LegoFloat(__fastcall* TransformPoint)(DisplayRenderer*, void*, const Vector3*, Vector3*);
+	TransformPoint m_transformViewport; // 0x64, target4ddce0
+	undefined m_unk0x68[0x7c - 0x68];
 	Policy m_hasPreferredDepthFormat; // 0x7c, target4ac030
 	undefined m_unk0x80[0x8c - 0x80];
 	SetValue m_action0x8c; // 0x8c, target4dee90
@@ -62,6 +66,7 @@ struct RendererDispatchView {
 	Policy m_usesHardwareVertexProcessing; // 0x198
 };
 
+DECOMP_STATIC_ASSERT(offsetof(RendererDispatchView, m_transformViewport) == 0x64);
 DECOMP_STATIC_ASSERT(offsetof(RendererDispatchView, m_addViewport) == 0xb0);
 DECOMP_STATIC_ASSERT(offsetof(RendererDispatchView, m_createIndexBuffer) == 0x100);
 DECOMP_STATIC_ASSERT(offsetof(RendererDispatchView, m_getTextureRecord) == 0x114);

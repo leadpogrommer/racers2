@@ -40,9 +40,9 @@ python tools/compare.py
 ## Continued decompilation
 
 The latest renderer checkpoint was verified on 2026-10-17 in both the Python
-builder and CMake/NMake: **226 exact functions, eight reviewed near matches,
-and 212 STUB rows**. All 446 measured raw scores and annotation statuses agree.
-Both outputs pass data comparison for 76 annotated globals, application wiring
+builder and CMake/NMake: **233 exact functions, nine reviewed near matches,
+and 258 STUB rows**. All 500 measured raw scores and annotation statuses agree.
+Both outputs pass data comparison for 82 annotated globals, application wiring
 for 76 pointers, input wiring for 80 pointers, and all 307 input-format entries.
 The 16 tooling tests pass; regressions cover optional D3DX8 configuration and ANSI/non-UTF-8
 archive member names in VC6 link maps, preserving the ASCII symbol/address
@@ -180,8 +180,8 @@ least 95%) uses FUNCTION instead of STUB. The normal guard verifies those
 implemented claims without replacing their real scores. Exact and reviewed
 near matches are reported separately. The optional `--require-exact` mode
 continues to reject every sub-100% raw match, including effective-only matches.
-The normal guard passes all 234 implemented functions. Strict exact mode
-rejects the eight reviewed near matches, preserving their raw scores. These
+The normal guard passes all 242 implemented functions. Strict exact mode
+rejects the nine reviewed near matches, preserving their raw scores. These
 include the bitmap storage cleanup at 95.24%, stage-priority masking at 96.97%,
 and high-resolution texture policy at 98.11%, alongside the four previously
 reviewed functions. The 16 tooling tests cover the near-match boundary,
@@ -199,3 +199,19 @@ The 76 checked globals include the reserved renderer storage and selector,
 three timing globals, and texture transform matrices. The renderer is still
 unconstructed and the temporary entry point is unchanged. No game or asset
 probe was run for this batch.
+
+
+## Renderer submission and loading checkpoint
+
+Both builders agree on 500 measured rows, including 233 exact matches, nine
+reviewed near matches and 258 STUBs. All 82 annotated globals pass data comparison.
+`check_renderer_resource_dispatch.py` now verifies 78 callbacks across texture,
+cache, abstract, vertex/index-buffer and animation-resource tables. Application
+and input dispatch (76 and 80 pointers) and all 307 input-format entries still
+pass. Sixteen tooling tests pass. No game or asset probe was executed.
+
+The complete renderer table and actual singleton construction remain staged
+unlinked work. The temporary entry point still does not start the game. Large
+loading/maintenance functions remain STUB after review found and corrected
+incorrect mip offsets, CRT case conversion and surface-copy contracts; their
+compilation alone is not evidence of correct rendered pixels.

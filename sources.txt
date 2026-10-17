@@ -94,3 +94,12 @@ LEGO Racers 2/src/rendererresourceinitialize.cpp
 LEGO Racers 2/src/renderertexturecallbacks.cpp
 LEGO Racers 2/src/rendererstagedefaultbuilder.cpp
 LEGO Racers 2/src/rendererstageplanresolver.cpp
+LEGO Racers 2/src/rendererbufferdispatch.cpp
+LEGO Racers 2/src/rendererfogstate.cpp
+LEGO Racers 2/src/renderercommands.cpp
+LEGO Racers 2/src/renderersprite.cpp
+LEGO Racers 2/src/renderertransformqueries.cpp
+LEGO Racers 2/src/renderertextureloading.cpp
+LEGO Racers 2/src/rendererimmediate.cpp
+LEGO Racers 2/src/rendereranimationresource.cpp
+LEGO Racers 2/src/renderertexturemaintenance.cpp

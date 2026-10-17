@@ -69,8 +69,9 @@ source. The texture-state dispatcher, resource factory, buffer factories, transf
 viewports and stream setup now have source bodies. Owner integration still
 requires record construction and full main-table wiring. Default texture
 creation/upload, resource initialization, animation callbacks and draw-plan
-resolution now have compiled source. Texture-loading helpers and scene/frame
-callbacks remain in recovery; these paths have not been run.
+resolution now have compiled source. Texture-loading helpers, mip maintenance, sprite submission and immediate
+drawing now have source. Scene/frame callbacks, full construction/table wiring
+and GUI packet drawing remain in recovery; these paths have not been run.
 The [initialization dependency audit](work-renderer-initialization.md) lists
 those concrete prerequisites; no incomplete renderer singleton is instantiated.
 DirectInput now has a complete

@@ -4,11 +4,13 @@
 #include "decomp.h"
 #include "directx8.h"
 #include "pixelformat.h"
+#include "rendereranimationresource.h"
 #include "rendererbuffer.h"
 #include "rendererbufferobjects.h"
 #include "rendererdispatch.h"
 #include "rendererrecords.h"
 #include "renderertexturemanager.h"
+#include "renderertimingstatistics.h"
 #include "types.h"
 
 #include <stddef.h>
@@ -65,9 +67,52 @@ class Matrix3;
 class Quaternion;
 class Vector3;
 class BitmapImage;
+class Terrain;
 
 class DisplayRenderer {
 public:
+	DisplayRenderer();
+	void PrepareDrawPacketState(struct RendererDrawPacketView* p_packet);
+	void DrawTerrain(Terrain* p_terrain);
+	void ReapplyLights();
+	LegoBool32 SetDeviceResourceMode(LegoU32 p_mode);
+	LegoBool32 AdvanceDeviceFallback();
+	LegoBool32 ReconfigureDisplayMode(LegoU32 p_width, LegoU32 p_height, LegoU32 p_bitDepth, LegoS32 p_refreshRate);
+	LegoBool32 AcceptUnusedRendererPolicy(LegoU32 p_unused);
+	void BuildBumpMapVectors(struct RendererStagePlanRequest* p_request);
+	void DrawGuiRectangle(const struct RendererGuiRectangle* p_rectangle);
+	void DrawQuadPacket(const void* p_packet);
+	void DrawRendererPacket(struct RendererDrawPacketView* p_packet);
+	void DrawIndexedPacket(struct RendererDrawPacketView* p_packet);
+	void RefreshTextureFormats();
+	RendererAnimationResourceRecord* FindOrAllocateAnimationResource(const LegoChar* p_path, LegoBool32 p_loadNow);
+	void DrawStencilOverlay();
+	void DrawUnlitLines(const Vector3* p_vertices, LegoS32 p_count);
+	void DrawUnlitTriangles(const void* p_vertices, LegoS32 p_count);
+	void ReleaseDeviceResources();
+	LegoBool32 RestoreDeviceResources();
+	LegoBool32 BeginScene();
+	void DrawLookupEntry(RendererLookupTableState::Entry* p_entry);
+	void BeginSpriteBatch(LegoS32 p_textureId, LegoU32 p_blendMode, LegoFloat p_unused0, LegoFloat p_unused1);
+	void DrawSprite(struct RendererSpriteRecord* p_sprite);
+	void DrawSpriteGeometry(struct RendererSpriteRecord* p_sprite);
+	struct RendererSpriteVertex* AllocateSpriteVertices();
+	void SetTextureTransform(LegoS32 p_index, const Matrix3* p_rotation, const Vector3* p_translation);
+	void SetTextureRenderTarget(RendererTextureRecord* p_record);
+	void DrawStencilVolumes(LegoS32 p_vertexCount);
+	void PrepareDrawPlan(struct RendererStagePlanRequest* p_request);
+	LegoBool32 SupportsUnknownDrawFeature(LegoU32, LegoU32, LegoU32, LegoU32, LegoU32, LegoU32);
+	LegoBool32 RejectUnknownDrawRequest(LegoU32 p_arg0, LegoU32 p_arg1, LegoU32 p_arg2);
+	LegoBool32 IsPointWithinViewport(const Vector3* p_source, Vector3* p_result);
+	void GetTimingMetrics(LegoFloat p_metrics[6]);
+	void SetTextureQuality(LegoU32 p_quality);
+	void SetFogEnabled(LegoU32 p_enabled);
+	void SetFogColor(LegoU32 p_color);
+	void SetFogRange(LegoFloat p_start, LegoFloat p_end);
+	void SetAlphaTestReference(LegoU32 p_reference);
+	void SetDepthAlwaysWrite();
+	void AdjustSolidPassScope(LegoU32 p_enter);
+	LegoBool32 IsSolidPassOverrideActive();
 	LegoBool32 BuildMipSidecar(
 		const LegoChar* p_sourcePath,
 		const LegoChar* p_outputSuffix,
@@ -77,8 +122,8 @@ public:
 	void UpdateTransformCache();
 	void EndScene();
 	LegoFloat ScaleProjectionCoordinate(LegoFloat p_scale, LegoFloat p_depth);
-	void TransformProjectedPoint(const Vector3* p_source, Vector3* p_result);
-	void TransformViewportPoint(const Vector3* p_source, Vector3* p_result);
+	LegoFloat TransformProjectedPoint(const Vector3* p_source, Vector3* p_result);
+	LegoFloat TransformViewportPoint(const Vector3* p_source, Vector3* p_result);
 	LegoBool32 LoadTextureImage(
 		LegoS32 p_id,
 		BitmapImage* p_image,
@@ -337,7 +382,8 @@ public:
 	LegoU32 m_ambientColor;     // 0x24598, D3DRS_AMBIENT default
 	LegoU32 m_stageFactorColor; // 0x2459c
 	D3DMATERIAL8 m_material;    // 0x245a0
-	undefined m_unk0x245e4[0x25148 - 0x245e4];
+	undefined m_unk0x245e4[0x245e8 - 0x245e4];
+	RendererTimingStatisticsState m_timingStatistics;  // 0x245e8
 	RendererTextureStageManager m_textureStageManager; // 0x25148
 	RendererDefaultRecord m_textureDefaults;           // 0x28740
 	RendererVertexBuffer m_vertexRecords[5000];        // 0x28768
@@ -362,9 +408,11 @@ public:
 	LegoU32 m_cachedVertexShader;                     // 0xc7620
 	LegoU32 m_cachedTextureStageStates[256];          // 0xc7624, (stage << 5) | state
 	LegoS32 m_unk0xc7a24;
-	undefined m_unk0xc7a28[4];
-	LegoFloat m_stageBlend; // 0xc7a2c
-	undefined m_unk0xc7a30[0xc7ec4 - 0xc7a30];
+	LegoU16 m_currentDrawFlags; // 0xc7a28
+	undefined m_unk0xc7a2a[2];
+	LegoFloat m_stageBlend;                                  // 0xc7a2c
+	RendererAnimationResourceRecord m_animationResources[4]; // 0xc7a30
+	LegoU32 m_unk0xc7ec0;
 	LegoBool32 m_nvidiaWorkaround; // 0xc7ec4
 	LegoU32 m_unk0xc7ec8;
 	LegoU32 m_unk0xc7ecc;
@@ -437,6 +485,7 @@ DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_deviceBehaviorFlags) == 0x7f0);
 DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_vertexBufferUsage) == 0x2456c);
 DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_foundPreferredDepthFormat) == 0x24570);
 DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_ambientColor) == 0x24598);
+DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_timingStatistics) == 0x245e8);
 DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_fillMode) == 0xc626c);
 DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_cachedRenderStates) == 0xc734c);
 DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_cachedTextureHandles) == 0xc75fc);
