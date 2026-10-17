@@ -36,7 +36,7 @@ The observed startup chain is:
 The path is still not a closed startup implementation. The initializer uses
 the renderer object's vtable and fields beyond the shared typed prefix. The
 constructor proves a minimum owner extent of `0xc7f2c` bytes, while the common
-`DisplayRenderer` model currently reaches `0xc7ec8`; neither is a full class
+`DisplayRenderer` model currently reaches `0xc7efc`; neither is a full class
 size proof. The initializer depends on the renderer lifecycle/layout,
 application configuration dispatch, a native window at the right lifecycle
 point, and many renderer/resource methods. In particular, it calls the large
@@ -75,11 +75,11 @@ zero when all six checks fail.
 This method is implemented as `DisplayRenderer::SelectDepthStencilFormat` in
 `LEGO Racers 2/src/rendererdevice.cpp` and shares the typed prefix in
 `renderer.h`. The prefix names only fields supported by the retail accesses;
-its size assertion ends at `0xc7ec8` and does not claim the full renderer size.
+its size assertion ends at `0xc7efc` and does not claim the full renderer size.
 It aliases the existing static renderer allocation; it is not constructed
-separately. Its isolated Visual C++ 6 SP5 build passed with the generated
-DirectX 8 configuration. The function remains annotated `STUB` pending
-integration and reccmp review. No game behavior test was run.
+separately. The combined Visual C++ 6 SP5 builds passed with the generated
+DirectX 8 configuration. The function remains `STUB` at its measured 60.38%
+raw score. No game or probe was run for this implementation batch.
 
 ## Next closed unit
 
@@ -91,4 +91,6 @@ Only after the device exists can the small render-target allocator at
 `0x004acfb0` be wired meaningfully; it creates vertex buffers on the device at
 `this+0x7b0` and consumes state well beyond the existing adapter prefix.
 Until those fields and callees are closed, the adapter catalog and mode
-selection are prerequisites rather than a running renderer.
+selection are prerequisites rather than a running renderer. The presentation
+block at `+0x7b8` uses the real `D3DPRESENT_PARAMETERS` type, whose `0x34`-byte
+size is asserted against the DirectX 8 declaration.

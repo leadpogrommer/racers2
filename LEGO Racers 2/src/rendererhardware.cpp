@@ -35,7 +35,7 @@ void DisplayRenderer::ConfigureNvidiaWorkaround()
 	// Retail clears this state for matching hardware even when the user's
 	// NVidia setting subsequently disables the workaround.
 	if (m_nvidiaWorkaround == TRUE) {
-		m_unk0x2456c = 0;
+		m_vertexBufferUsage = 0;
 	}
 	if (g_displayConfiguration->m_nvidia == 0) {
 		m_nvidiaWorkaround = FALSE;

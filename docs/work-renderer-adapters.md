@@ -77,7 +77,7 @@ The real DirectX 8 interfaces from `d3d8.h` match the retail virtual calls:
 `IDirect3D8::GetAdapterCount` is at vtable offset `+0x10`,
 `GetAdapterIdentifier` at `+0x14`, `GetAdapterModeCount` at `+0x18`,
 `EnumAdapterModes` at `+0x1c`, `GetAdapterDisplayMode` at `+0x20`,
-`GetDeviceCaps` at `+0x34`, and `CreateDevice` at `+0x40`. The executable
+`GetDeviceCaps` at `+0x34`, and `CreateDevice` at `+0x3c`. The executable
 pushes the interface pointer as the COM `This` argument. No replacement COM
 interface or vtable is needed.
 
@@ -118,8 +118,8 @@ initializes many other large renderer subsystems. The adapter/mode methods
 read through `this+0x38d7`, including the actual `IDirect3D8*`, selection
 state, inline ten-record catalog, and accepted count described above. The
 shared `DisplayRenderer` prefix in `LEGO Racers 2/include/renderer.h` now also
-models verified depth/stencil and hardware fields through `+0xc7ec7`, with a
-`0xc7ec8` prefix-size assertion. This remains shorter than the constructor's
+models verified depth/stencil and hardware fields through `+0xc7efb`, with a
+`0xc7efc` prefix-size assertion. This remains shorter than the constructor's
 proven minimum object extent and is not a substitute for full construction.
 
 The current source group uses `IDirect3D8`, `D3DCAPS8`,

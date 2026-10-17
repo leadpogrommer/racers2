@@ -22,9 +22,9 @@ is independently established. The exclusive minimum endpoint,
 `0x0058b140 + 0xc7f2c`, equals `0x0065306c`, where nearby code stores a
 separate scalar float; this corroborates the boundary but does not prove the
 renderer type's exact `sizeof`. `DisplayRenderer` now describes the observed
-prefix through the hardware-policy flag at `+0xc7ec4`, with intervening unknown
-regions. Its `0xc7ec8`-byte size assertion does not describe a constructible
-full renderer object.
+prefix through the vertex-buffer outputs at `+0xc7efb`, with intervening
+unknown regions. Its `0xc7efc`-byte size assertion does not describe a
+constructible full renderer object.
 
 The constructor first writes a temporary vptr value `0x00535728`, then at
 `0x004abd20` installs `0x00535554`. The final table begins with initializer
@@ -109,15 +109,16 @@ the renderer.
 
 The adjacent helper `0x004abdb0` clears five selected dwords and writes vptr
 `0x005358dc` at offset zero; the renderer constructor calls it at parent
-offsets `+0x4` and `+0x2c`. The retail table starts with targets `0x004bd870`
-and `0x004bd880`, but those targets and a matching rebuilt virtual table are
-not recovered. The helper is therefore not implemented: embedding the retail
-address in the rebuilt object would create an invalid vptr. The call-site
-starts are 0x28 bytes apart, which does not by itself establish either
-subobject's complete size.
+offsets `+0x4` and `+0x2c`. The retail table's first target is `0x004bd870`;
+the next is the runtime purecall handler `0x0051a08f`. `0x004bd880` is an
+instruction inside the first target, not a table entry. The methods and a
+matching rebuilt virtual table are not recovered. The helper is therefore
+not implemented: embedding the retail address in the rebuilt object would
+create an invalid vptr. The call-site starts are 0x28 bytes apart, which does
+not by itself establish either subobject's complete size.
 
 The full constructor still cannot be represented safely by the current
-`DisplayRenderer` class: its modeled layout ends at `+0xc7ec7`, while retail
+`DisplayRenderer` class: its modeled layout ends at `+0xc7efb`, while retail
 construction initializes to `+0xc7f2b`, and the repeated subobject types and
 their semantics are not recovered. No partial full-renderer constructor,
 destructor, or synthetic success path was added; only the complete

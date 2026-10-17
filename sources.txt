@@ -37,3 +37,9 @@ LEGO Racers 2/src/renderer.cpp
 LEGO Racers 2/src/rendererhardware.cpp
 LEGO Racers 2/src/rendererdevice.cpp
 LEGO Racers 2/src/rendererlifecycle.cpp
+LEGO Racers 2/src/platformfpu.cpp
+LEGO Racers 2/src/rendererbuffer.cpp
+LEGO Racers 2/src/rendererstate.cpp
+LEGO Racers 2/src/renderercache.cpp
+LEGO Racers 2/src/rendererdefaults.cpp
+LEGO Racers 2/src/inputdevice.cpp

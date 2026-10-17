@@ -6,12 +6,12 @@ Reviewed semantically identical near matches (initially at least 95% raw) are
 implemented functions, counted separately from exact matches.
 
 Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-17.
-The match guard verified **104 exact functions and two reviewed near matches**;
-57 additional reconstructions remain `STUB` because behavior is unresolved or
-below the near-match threshold. Both builds agree on all 163 measured rows and
-annotation statuses. Data comparison verifies 42 annotated globals with zero
-issues. The CLI denominator of 165 also includes two inventory-only cleanup
-functions that have no additional measured match rows.
+The match guard verified **110 exact functions and three reviewed near
+matches**; 68 additional reconstructions remain `STUB` because behavior is
+unresolved or below the near-match threshold. Both builds agree on all 181
+measured rows and annotation statuses. Data comparison verifies 46 annotated
+globals with zero issues. The CLI denominator of 183 also includes two
+inventory-only cleanup functions that have no additional measured match rows.
 
 This is the reconstructed subset, not whole-game coverage. The automatic
 Ghidra inventory has **4,228 discovered function starts**, including **21 thunks**
@@ -135,13 +135,21 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004ab3b0` | `PrintDiagnostic` | 79.41% | Work in progress |
 | `0x004abe90` | `RendererZeroPair::RendererZeroPair` | 100.00% | Verified exact |
 | `0x004abeb0` | `RendererSubrecordGroup::RendererSubrecordGroup` | 100.00% | Verified exact |
+| `0x004ac120` | `DisplayRenderer::UsesHardwareVertexProcessing` | 100.00% | Verified exact |
 | `0x004acd00` | `DisplayRenderer::ConfigureNvidiaWorkaround` | 12.61% | Work in progress |
+| `0x004acfb0` | `DisplayRenderer::CreateVertexBuffers` | 95.33% | Reviewed near match |
 | `0x004ad2c0` | `DisplayRenderer::EnumerateSupportedAdapters` | 33.33% | Work in progress |
 | `0x004ad540` | `GetDisplayFormatBitDepth` | 29.17% | Work in progress |
 | `0x004ad5a0` | `DisplayRenderer::GetSelectedAdapterModeCount` | 100.00% | Verified exact |
 | `0x004ad5c0` | `DisplayRenderer::GetSelectedAdapterMode` | 16.47% | Work in progress |
 | `0x004ada60` | `DisplayRenderer::FindBestDisplayMode` | 22.32% | Work in progress |
+| `0x004adba0` | `DisplayRenderer::InitializeDefaultRenderStates` | 60.53% | Work in progress |
+| `0x004adfe0` | `DisplayRenderer::SetCachedRenderState` | 100.00% | Verified exact |
+| `0x004ae010` | `DisplayRenderer::ResetTextureStages` | 30.95% | Work in progress |
+| `0x004ae310` | `DisplayRenderer::SetCachedTextureStageState` | 43.48% | Work in progress |
 | `0x004aebb0` | `DisplayRenderer::SelectDepthStencilFormat` | 60.38% | Work in progress |
+| `0x004af130` | `InputDeviceService::AcquireAvailableDevices` | 100.00% | Verified exact |
+| `0x004af1a0` | `InputDeviceService::FindDeviceByType` | 57.58% | Work in progress |
 | `0x004b4690` | `FUN_004b4690` | 100.00% | Verified exact |
 | `0x004b46c0` | `CreateNativeWindow` | 90.72% | Work in progress |
 | `0x004b4750` | `RegisterNativeWindowClass` | 32.00% | Work in progress |
@@ -162,6 +170,10 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004b4de0` | `FitWindowToChildren` | 100.00% | Verified exact |
 | `0x004b4e80` | `ScreenRectToClient` | 100.00% | Verified exact |
 | `0x004bb1f0` | `SetScreenshotDirectory` | 100.00% | Verified exact |
+| `0x004bd5f0` | `RendererLookupTableState::Initialize` | 51.97% | Work in progress |
+| `0x004bd6d0` | `RendererLookupTableState::ReleaseStorage` | 66.67% | Work in progress |
+| `0x004bd710` | `RendererLookupTableState::Clear` | 28.07% | Work in progress |
+| `0x004bd770` | `RendererLookupTableState::Insert` | 60.00% | Work in progress |
 | `0x004c32b0` | `FUN_004c32b0` | 100.00% | Verified exact |
 | `0x004c33b0` | `FUN_004c33b0` | 100.00% | Verified exact |
 | `0x004c3460` | `FindFirstNonemptyRow` | 100.00% | Verified exact |
@@ -184,23 +196,31 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004d1a70` | `SplinePath::FUN_004d1a70` | 100.00% | Verified exact |
 | `0x004d1aa0` | `SplinePath::FUN_004d1aa0` | 39.73% | Work in progress |
 | `0x004d1d90` | `SplinePath::FUN_004d1d90` | 47.71% | Work in progress |
+| `0x004dc590` | `DisplayRenderer::SetTextureFiltering` | 45.95% | Work in progress |
+| `0x004e7b10` | `InitializeRendererFloatingPoint` | 71.43% | Work in progress |
+| `0x004e7b30` | `SaveFloatingPointControl` | 100.00% | Verified exact |
+| `0x004e7b40` | `RestoreFloatingPointControl` | 100.00% | Verified exact |
 | `0x004e7b50` | `ShowDiagnosticDialog` | 100.00% | Verified exact |
 | `0x004e7b90` | `AllocateAlignedMemory` | 100.00% | Verified exact |
 | `0x004e7bb0` | `DecompressGtcBlock` | 9.78% | Work in progress |
+| `0x004ec470` | `MouseInputDevice::ReadState` | 100.00% | Verified exact |
+| `0x004ec590` | `KeyboardInputDevice::ReadState` | 72.92% | Work in progress |
 
 The latest recovery adds the application singleton, complete 38-slot dispatch
 tables, resource linkage, memory pool, real aligned GlobalAlloc wrapper,
-diagnostics, mode-3 file manager and compressed archive reader. Both dispatch
-tables' 76 callback pointers pass binary wiring verification; this verifies
-table contents, not method-body equivalence or C++ vtable matching. Raw scores
-remain visible for unfinished bodies. The two reviewed near matches are the
-read facade (95.24%) and heap cursor adjustment (95.83%). Library provenance
-remains unresolved for the pool and block decoder.
+diagnostics, mode-3 file manager and compressed archive reader, plus renderer
+and DirectInput helpers. Both dispatch tables' 76 callback pointers pass
+binary wiring verification; this verifies table contents, not method-body
+equivalence or C++ vtable matching. Raw scores remain visible for unfinished
+bodies. The three reviewed near matches are `WinFile::Read` (95.24%),
+`DisplayRenderer::CreateVertexBuffers` (95.33%), and `MemoryHeap::UpdateCursor`
+(95.83%). Library provenance remains unresolved for the pool and block decoder.
 
 A bounded run of the rebuilt executable exited with code 0 after startup read
 the per-user `C:\users\ilya\Documents\Games\LEGO Racers 2\Saved Games\LR2.cfg`
-path, both archive metadata files, and opened GAMEDATA.GTC. This reaches application construction/config loading
-and archive initialization through the current process startup path, but the
+path, both archive metadata files, and opened GAMEDATA.GTC. This reaches
+application construction/config loading and archive initialization through
+the current process startup path, but the
 entry point is still temporary and exits without creating a window or
 rendering gameplay. An isolated real-file probe also reads three archive
 assets, including a 349,562-byte texture spanning three logical blocks and a
@@ -210,12 +230,15 @@ Two original cleanup extents are inventory-only: 0x004a2550 has no unique
 PDB-name mapping, and 0x0049b930 folds with the heap exit callback in the
 rebuilt image. Neither is counted as an extra measured match.
 
-Display config load/save, managed existence, user-data path construction and
-native-window helpers are included. Runtime startup now constructs the
-application and reads its config; window creation and rendering remain
-unreached. The extracted resource file contains all five retail resources
-(7,022 payload bytes) and is consumed by both builders when present. Renderer
-builds require the generated DirectX 8 configuration; both builders have
+Display config load/save, managed existence, user-data path construction,
+native-window helpers, renderer state helpers and DirectInput state readers
+are included. Earlier runtime checks construct the application and read its
+config and selected archive assets; window creation and rendering remain
+unreached. No game or probe ran during the latest renderer/input batch. Future
+runtime execution is reserved for a significant milestone expected to render
+the menu or enter gameplay. The extracted resource file contains all five
+retail resources (7,022 payload bytes) and is consumed by both builders when
+present. Renderer builds require the generated DirectX 8 configuration; both builders have
 passed with it, and the isolated probe imports D3D8, DInput8 and DSound8.
 
 Evidence and open dependencies are recorded in the [file facade](work-file-facade.md),
@@ -227,8 +250,10 @@ Evidence and open dependencies are recorded in the [file facade](work-file-facad
 [runtime support](work-runtime-support.md), [display config](work-application-config.md),
 [application startup](work-application-runtime.md),
 [user data](work-userdatapath.md), [native windows](work-nativewindow.md),
-[resource extraction](work-resources.md), and [DirectX 8](work-directx8.md)
-notes.
+[resource extraction](work-resources.md), [DirectX 8](work-directx8.md),
+[renderer lifecycle](work-renderer-lifecycle.md),
+[renderer state](work-renderer-state.md), [input devices](work-input-device.md),
+and [display startup](work-renderer-device.md) notes.
 The [startup research](work-startup.md) and [application-object research](work-application.md)
 trace the real entry point and message-loop dependencies. The temporary entry
 point still does not start the game.

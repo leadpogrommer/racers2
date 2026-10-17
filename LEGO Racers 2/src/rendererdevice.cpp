@@ -39,7 +39,7 @@ LegoBool32 DisplayRenderer::SelectDepthStencilFormat()
 			if (format == D3DFMT_D24S8) {
 				m_foundPreferredDepthFormat = TRUE;
 			}
-			m_depthStencilFormat = format;
+			m_presentationParameters.AutoDepthStencilFormat = format;
 			return TRUE;
 		}
 	}

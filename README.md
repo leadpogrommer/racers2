@@ -12,15 +12,19 @@ settings that still need investigation.
 
 Verified reconstructions include character predicates, line classification,
 fixed string buffers, file operations, window geometry, command-line parsing,
-startup helpers, bitmap scanning, terrain lookup and spline helpers.
-The current checkpoint has **104 exact function matches**, **two reviewed
-near matches**, and 57 unfinished implementations. See
+startup helpers, bitmap scanning, terrain lookup, spline helpers, and
+foundational renderer/input operations.
+The current checkpoint has **110 exact function matches**, **three reviewed
+near matches**, and 68 unfinished implementations. See
 [current progress](docs/progress.md) for the measured function list and
 remaining work. The application singleton and its two complete 38-slot
-dispatch tables are now wired, and startup has been exercised through config
-and archive metadata reads. The executable still has a temporary entry point
-and does not reach a window, rendered menu, or gameplay. Whole-game coverage
-is not established. Ghidra currently discovers 4,228 function starts,
+dispatch tables are wired, and earlier runtime checks exercised config,
+archive metadata, and selected asset reads. The executable still has a
+temporary entry point and does not reach a window, rendered menu, or gameplay.
+No game or probe was run for the current renderer/input implementation batch;
+future runtime checks are reserved for significant milestones expected to
+reach a rendered menu or gameplay. Whole-game coverage is not established.
+Ghidra currently discovers 4,228 function starts,
 including 21 thunks and linked libraries; this is a provisional inventory,
 not a count of game-authored functions. See the
 [inventory notes](docs/research.md#automatic-function-inventory).

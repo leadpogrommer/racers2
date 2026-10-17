@@ -24,10 +24,14 @@ For accepted hardware, `this+0x2456c` is cleared **before** applying the
 configuration's `NVidia` gate at `+0x2c`. A zero configuration value then
 clears the workaround flag again, but does not undo that earlier write. A
 failed identifier query or different vendor leaves `+0x2456c` untouched.
-The purpose of this latter field remains unknown.
+The `+0x2456c` field is the vertex-buffer usage word: retail sets it to
+`D3DUSAGE_WRITEONLY` or zero, and the vertex-buffer creator ORs in the
+additional `0x200` usage bit. The adjacent `+0x24570` field records whether
+the selected depth format is `D3DFMT_D24S8`, as established by the depth-format
+selector.
 
 The renderer header now describes one common observed prefix for hardware,
-adapter, mode and depth/stencil methods. Its size assertion ends at `0xc7ec8`;
+adapter, mode and depth/stencil methods. Its size assertion ends at `0xc7efc`;
 the original constructor writes through `+0xc7f2b`, so this is explicitly not
 the complete owner or a substitute for construction. No window or renderer
 device is created by these helpers. The method measures 12.61% raw instruction
