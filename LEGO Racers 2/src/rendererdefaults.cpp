@@ -14,8 +14,8 @@ void DisplayRenderer::InitializeDefaultRenderStates()
 		 ++textureHandleIndex) {
 		m_cachedTextureHandles[textureHandleIndex] = 0x12345678;
 	}
-	m_unk0xc761c = 0;
-	m_unk0xc7620 = 0;
+	m_cachedStreamBuffer = NULL;
+	m_cachedVertexShader = 0;
 
 	if (m_device != NULL) {
 		SetCachedRenderState(D3DRS_FILLMODE, m_fillMode);

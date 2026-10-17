@@ -6,6 +6,8 @@
 #include <windows.h>
 
 // Recovered leaf policies bound into the complete application dispatch tables.
+// FUNCTION: LEGORACERS2 0x00403910 FOLDED
+// IsApplicationDevelopmentMode
 LegoBool32 IsApplicationDevelopmentMode();
 LegoU32 GetApplicationHeapReserve();
 LegoU32 GetApplicationIconResourceId();

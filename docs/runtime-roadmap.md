@@ -58,14 +58,18 @@ the pool's library provenance is still unresolved. See [file recovery](work-file
 The real display initializer is `0x004ac130`; it creates the Direct3D8
 interface, selects an adapter/mode, creates a device, and configures further
 rendering subsystems. The static renderer owner and adapter/mode layout are
-documented in [renderer adapter research](work-renderer-adapters.md). Current
-code covers several adapter, mode, state-cache, vertex-buffer and depth-format
-helpers, but the full renderer constructor and initializer remain open and no
-validated display-startup path is connected. Texture-format enumeration and
+documented in [renderer adapter research](work-renderer-adapters.md). The full
+initializer now has compiled source, still under review at 22.87%
+raw similarity. The constructor, renderer owner and complete dispatch table
+remain open, and no validated display-startup path is connected. Texture-format
+enumeration and
 selection, pixel-format descriptions, material colors, clear/present operations,
 depth/blend state controls and ordered cache insertion now have recovered
-source. The full renderer owner still requires its nested record constructors,
-complete dispatch table, texture-state dispatcher and resource-manager calls.
+source. The texture-state dispatcher, resource factory, buffer factories, transforms,
+viewports and stream setup now have source bodies. Owner integration still
+requires the remaining record constructors and callbacks, default texture
+creation/upload (`0x004d9f20`/`0x004da540`), and draw-plan resolution
+(`0x004e24f0` and its large profile builders).
 The [initialization dependency audit](work-renderer-initialization.md) lists
 those concrete prerequisites; no incomplete renderer singleton is instantiated.
 DirectInput now has a complete

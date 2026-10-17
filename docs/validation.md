@@ -39,7 +39,23 @@ python tools/compare.py
 
 ## Continued decompilation
 
-The combined SP5/Wine and CMake/NMake builds were revalidated on 2026-10-17.
+The latest renderer checkpoint was verified on 2026-10-17 in both the Python
+builder and CMake/NMake: **204 exact functions, seven reviewed near matches,
+and 173 STUB rows**. All 384 measured raw scores and annotation statuses agree.
+Both outputs pass data comparison for 68 annotated globals, application wiring
+for 76 pointers, input wiring for 80 pointers, and all 307 input-format entries.
+The 14 tooling tests pass; the additional regression covers ANSI/non-UTF-8
+archive member names in VC6 link maps, preserving the ASCII symbol/address
+columns used by the static verifiers. No game behavior tests were added.
+
+The compiled initializer at `0x004ac130` is still STUB at 22.87%; its presence
+does not establish a runnable renderer. No game or probe was executed for this
+checkpoint. The annotated abstract lookup table uses the real CRT purecall,
+whose nine-byte archive identity was reviewed separately from game functions.
+
+### Earlier checkpoints
+
+Before this extended renderer batch, both builds were revalidated on 2026-10-17.
 Both passed the match guard for **154 exact functions and four reviewed near
 matches**. All 266 measured raw scores and annotation statuses agree across
 the two builds: 158 implemented reconstructions and 108 unfinished bodies.
@@ -151,7 +167,7 @@ The next runtime execution is reserved for a significant milestone expected
 to reach a rendered menu or gameplay; the historical runtime evidence above is
 unchanged.
 
-These results cover the recovered subset. The automatic 4,228-start inventory
+These results cover the recovered subset. The automatic 4,254-start inventory
 includes libraries and thunks and is not a whole-game completion denominator.
 The executable still uses a temporary entry point and has not reached rendered
 gameplay.
@@ -164,10 +180,10 @@ least 95%) uses FUNCTION instead of STUB. The normal guard verifies those
 implemented claims without replacing their real scores. Exact and reviewed
 near matches are reported separately. The optional `--require-exact` mode
 continues to reject every sub-100% raw match, including effective-only matches.
-The normal guard passes all 158 implemented functions. Strict exact mode
-continues to reject the four reviewed near matches: two at 95.24%, one at
-95.33% and one at 95.83%. Their source annotations and work notes retain the
-actual scores and equivalence review; no function was promoted solely because the policy
-changed. The 13 tooling tests cover the near-match boundary, strict mode,
-invalid scores, unresolved/missing functions and library-identification
-fixtures.
+The normal guard passes all 211 implemented functions. Strict exact mode
+rejects the seven reviewed near matches, preserving their raw scores. These
+include the bitmap storage cleanup at 95.24%, stage-priority masking at 96.97%,
+and high-resolution texture policy at 98.11%, alongside the four previously
+reviewed functions. The 14 tooling tests cover the near-match boundary,
+strict mode, invalid scores, missing functions, library identification and
+legacy link-map decoding.

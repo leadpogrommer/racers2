@@ -332,3 +332,17 @@ implementation is now in the game build; exploratory history remains under
 scores, layout and unresolved application lifecycle effects. Known CRT code
 continues to come from the pinned library. A named attribution for the pool
 requires stronger evidence, such as matching source/object code or symbols.
+
+## Renderer abstract-table purecall
+
+Renderer lookup-state base construction installs two pointers to retail
+`0x0051a08f`. Its complete nine-byte body is `push 0x19; call 0x0051a443;
+pop ecx; ret`. The pinned `LIBCMT.LIB` member
+`build\intel\mt_obj\purevirt.obj`, symbol `__purecall`, matches all five
+non-relocation bytes; its only relocation is the four-byte call displacement,
+with two differing raw bytes. The reference tables and error-number-25 call
+support this short-body identification. The candidate scan was restricted to
+this proven nine-byte extent, with the minimum evidence limit explicitly
+lowered for this small routine; it is not a broad short-function scan.
+The source uses the real linked CRT `_purecall`, and `library_msvc.h` records
+the library mapping. It is excluded from game-function completion claims.

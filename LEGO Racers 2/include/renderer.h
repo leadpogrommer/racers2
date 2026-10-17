@@ -4,7 +4,11 @@
 #include "decomp.h"
 #include "directx8.h"
 #include "pixelformat.h"
+#include "rendererbuffer.h"
+#include "rendererbufferobjects.h"
 #include "rendererdispatch.h"
+#include "rendererrecords.h"
+#include "renderertexturemanager.h"
 #include "types.h"
 
 #include <stddef.h>
@@ -18,6 +22,21 @@ struct RendererAdapterRecord {
 
 DECOMP_SIZE_ASSERT(RendererAdapterRecord, 0x4d8);
 
+struct RendererViewportRecord {
+	LegoU32 m_inUse;
+	D3DVIEWPORT8 m_viewport;
+};
+DECOMP_SIZE_ASSERT(RendererViewportRecord, 0x1c);
+
+struct RendererLightRecord {
+	LegoU16 m_flags;
+	LegoU16 m_deviceIndex;
+	LegoFloat m_radius;
+	D3DLIGHT8 m_light;
+};
+DECOMP_SIZE_ASSERT(D3DLIGHT8, 0x68);
+DECOMP_SIZE_ASSERT(RendererLightRecord, 0x70);
+
 struct RendererTextureFormat {
 	D3DFORMAT m_format;
 	LegoU32 m_selectedAsCompressed; // 0x04, set when a DXT preference is selected
@@ -28,8 +47,108 @@ DECOMP_SIZE_ASSERT(RendererTextureFormat, 0x28);
 
 // This is an evidenced prefix of the static renderer object at 0x0058b140.
 // The full object extends beyond this prefix; its complete size is not known.
+class Matrix3;
+class Quaternion;
+class Vector3;
+class BitmapImage;
+
 class DisplayRenderer {
 public:
+	void SetTextureIndexMap(LegoU32 p_index, LegoU32 p_value);
+	LegoBool32 ShouldUseHighResolutionTextures();
+	LegoBool32 ShouldUseTextureResourceIndex(LegoU32 p_kind);
+	LegoBool32 IsTextureResourceKindAccepted(LegoU32 p_kind);
+	LegoBool32 IsTextureResourceKindSpecial(LegoU32 p_kind);
+	LegoBool32 SupportsDotProduct3();
+	void CopyBitmapMipToLockedSurface(
+		LegoU32 p_mipLevel,
+		const BitmapImage* p_image,
+		const RendererTextureFormat* p_format,
+		const D3DLOCKED_RECT* p_locked
+	);
+	LegoBool32 CreatePrimaryTexture(RendererTextureRecord* p_record, LegoBool32 p_compressed);
+	LegoBool32 CreateSecondaryTexture(RendererTextureRecord* p_record);
+	LegoS32 GetTextureMipLevelCount(LegoS32 p_width, LegoS32 p_height) const;
+	void AdjustTextureDimensions(LegoU32* p_width, LegoU32* p_height, LegoU32 p_ignoredFormat);
+	LegoBool32 SetTextureRecordDimensions(
+		RendererTextureRecord* p_record,
+		LegoU32 p_width,
+		LegoU32 p_height,
+		LegoU32 p_mipLevels,
+		LegoU32 p_flagA,
+		LegoU8 p_sevenBitField,
+		LegoU32 p_formatMode
+	);
+	LegoBool32 Initialize();
+	void ConfigureStreamResources(LegoU32 p_enabled);
+	RendererVertexBuffer* CreateVertexBuffer(
+		LegoU32 p_attributes,
+		LegoS32 p_count,
+		LegoS32 p_textureCount,
+		LegoU32 p_mode
+	);
+	LegoBool32 TryReuseVertexStorage(
+		LegoU32 p_attributes,
+		LegoS32 p_count,
+		LegoS32 p_textureCount,
+		LegoU32 p_mode,
+		RendererVertexBuffer* p_buffer
+	);
+	RendererVertexStorage* AllocateVertexStorage(
+		LegoU32 p_attributes,
+		LegoS32 p_count,
+		LegoS32 p_textureCount,
+		LegoU32 p_mode
+	);
+	RendererIndexBuffer* CreateIndexBuffer(LegoU32 p_kind, LegoS32 p_count);
+	void SelectLights(const Vector3* p_center, LegoFloat p_radius, LegoU32 p_mode, LegoU32* p_maskAndDirection);
+	void SetProjection(
+		LegoFloat p_orthographicScale,
+		LegoFloat p_horizontalFov,
+		LegoFloat p_verticalFov,
+		LegoFloat p_nearPlane,
+		LegoFloat p_farPlane,
+		LegoU32 p_mode
+	);
+	void SetViewTransform(const Matrix3* p_rotation, const Vector3* p_position);
+	void SetWorldTransform(const Matrix3* p_rotation, const Vector3* p_position);
+	void SetWorldTransform(const Quaternion* p_rotation, const Vector3* p_position);
+	LegoS32 AcquireAuxiliaryResource(RendererAuxiliaryResourceRecord* p_record, LegoU32 p_resourceType);
+	RendererTextureRecord* FindOrCreateTextureRecord(
+		const LegoChar* p_path,
+		LegoU32 p_kind,
+		LegoS32 p_index,
+		LegoU32 p_resourceMode,
+		LegoU32 p_auxiliaryMode,
+		LegoBool32 p_load
+	);
+	LegoS32 CreateTextureResource(
+		const LegoChar* p_path,
+		LegoU32 p_resourceKind,
+		LegoS32 p_resourceIndex,
+		LegoU32 p_createMode,
+		LegoU16 p_referenceType
+	);
+	RendererResourceCacheEntry* FindOrAllocateTextureResource(const LegoChar* p_path, LegoBool32 p_loadNow);
+	LegoS32 AddTextureReference(void* p_resource, LegoU16 p_resourceType);
+	RendererResourceRef* FindTextureReference(void* p_resource);
+	void SetStencilBufferEnabled(LegoU32 p_enabled);
+	void ResetStencilOperations(LegoU32 p_ignored);
+	void SetStencilFunction(LegoU32 p_function);
+	void SetStencilOperation(LegoU32 p_target, LegoU32 p_operation, LegoU32 p_reference);
+	void SetColorOverride(LegoU32 p_color);
+	void DisableColorOverride();
+	void SetBlendModeOverride(LegoU32 p_mode);
+	void ClearBlendModeOverride();
+	void SetVertexStream(IDirect3DVertexBuffer8* p_buffer, LegoU32 p_stride, LegoU32 p_shader);
+	void ApplyTextureOperation(LegoU32 p_operation);
+	void BindMappedTexture(LegoS32 p_slot);
+	void RestoreTextureStageDefaults();
+	RendererTextureRecord* GetTextureRecord(LegoU32 p_index);
+	LegoS32 AddViewport(LegoU32 p_x, LegoU32 p_y, LegoU32 p_width, LegoU32 p_height);
+	void UpdateViewport(LegoU32 p_index, LegoU32 p_x, LegoU32 p_y, LegoU32 p_width, LegoU32 p_height);
+	void SelectViewport(LegoU32 p_index);
+	void SetProjectionFromViewport(const D3DVIEWPORT8* p_viewport);
 	void SetDepthState(LegoU32 p_enabled);
 	void SetAlphaBlendMode(LegoU32 p_mode);
 	void SetMaterialColor(LegoU32 p_color);
@@ -59,12 +178,47 @@ public:
 		LegoU32* p_refreshRate
 	);
 
-	const RendererDispatchView* m_vtable; // 0x000
-	undefined m_unk0x4[0x4d8 - 0x4];
+	const RendererDispatchView* m_vtable;     // 0x000
+	RendererLookupTableState m_bucketedDraws; // 0x04
+	RendererLookupTableState m_orderedDraws;  // 0x2c
+	RendererLookupTableState m_deferredDraws; // 0x54
+	undefined m_unk0x7c[0x88 - 0x7c];
+	RendererAuxiliaryResourceRecord* m_auxiliaryResources; // 0x88
+	RendererResourceRef* m_resourceReferences;             // 0x8c
+	LegoS32 m_resourceReferenceCount;                      // 0x90
+	RendererResourceCacheEntry* m_resourceCache;           // 0x94
+	RendererResourceRef** m_resources0x98;                 // 0x98
+	LegoS32 m_resourceCount0x9c;                           // 0x9c
+	void** m_resources0xa0;                                // 0xa0
+	LegoS32 m_resourceCount0xa4;                           // 0xa4
+	RendererResourceLookupEntry* m_resourceLookup;         // 0xa8
+	LegoS32 m_resourceLookupCount;                         // 0xac
+	LegoU32 m_resourceLoadMode;                            // 0xb0
+	RendererTextureRecord* m_textureHash[256];             // 0xb4
+	undefined m_unk0x4b4[0x4d8 - 0x4b4];
 	LegoS32 m_unk0x4d8;
-	undefined m_unk0x4dc[0x780 - 0x4dc];
-	LegoFloat m_clearQuadDepth; // 0x780
-	undefined m_unk0x784[0x7ac - 0x784];
+	undefined m_unk0x4dc[0x53c - 0x4dc];
+	D3DMATRIX m_transform0x53c;        // 0x53c
+	D3DMATRIX m_worldTransform;        // 0x57c
+	D3DMATRIX m_viewTransform;         // 0x5bc
+	D3DMATRIX m_projectionTransform;   // 0x5fc
+	D3DMATRIX m_viewportTransform;     // 0x63c
+	D3DMATRIX m_transform0x67c;        // 0x67c
+	D3DMATRIX m_transform0x6bc;        // 0x6bc
+	D3DMATRIX m_transform0x6fc;        // 0x6fc
+	D3DMATRIX m_defaultWorldTransform; // 0x73c
+	LegoFloat m_nearClip;              // 0x77c
+	LegoFloat m_clearQuadDepth;        // 0x780
+	LegoFloat m_projectionPixelScale;  // 0x784
+	LegoU32 m_unk0x788;
+	LegoFloat m_viewportX;                          // 0x78c
+	LegoFloat m_viewportY;                          // 0x790
+	LegoFloat m_viewportRight;                      // 0x794
+	LegoFloat m_viewportBottom;                     // 0x798
+	LegoFloat m_viewportWidth;                      // 0x79c
+	LegoFloat m_viewportHeight;                     // 0x7a0
+	LegoFloat m_viewportHalfWidth;                  // 0x7a4
+	LegoFloat m_viewportHalfHeight;                 // 0x7a8
 	IDirect3D8* m_direct3D;                         // 0x7ac
 	IDirect3DDevice8* m_device;                     // 0x7b0
 	LegoU32 m_requestedAdapterIndex;                // 0x7b4
@@ -78,18 +232,24 @@ public:
 	D3DFORMAT m_modeFormat;        // 0x804, raw format rather than derived bit depth
 	LegoU32 m_requestedBitDepth;   // 0x808
 	LegoBool32 m_clockwiseCulling; // 0x80c, chooses D3DCULL_CW rather than CCW
-	undefined m_unk0x810[0x820 - 0x810];
+	LegoU32 m_unk0x810;
+	LegoU32 m_deviceMemory; // 0x814, GetAvailableTextureMem
+	LegoU32 m_unk0x818;
+	LegoU32 m_totalPhysicalMemory;                                // 0x81c
 	RendererAdapterRecord* m_selectedAdapter;                     // 0x820
 	RendererTextureFormat* m_selectedTextureFormats[8];           // 0x824
 	RendererTextureFormat* m_selectedCompressedTextureFormats[8]; // 0x844
 	RendererAdapterRecord m_adapters[10];                         // 0x864
 	LegoU32 m_adapterCount;                                       // 0x38d4
-	undefined m_unk0x38d8[0x2395c - 0x38d8];
-	LegoS32 m_textureFormatCount;               // 0x2395c
-	RendererTextureFormat m_textureFormats[64]; // 0x23960
-	undefined m_unk0x24360[0x24520 - 0x24360];
-	LegoU32 m_clearRenderTarget; // 0x24520
-	undefined m_unk0x24524[0x2456c - 0x24524];
+	RendererTextureRecord m_textureRecords[800];                  // 0x38d8
+	LegoU32 m_defaultTextureIndex;                                // 0x22cd8
+	LegoU32 m_textureIndexMap[800];                               // 0x22cdc
+	LegoS32 m_textureFormatCount;                                 // 0x2395c
+	RendererTextureFormat m_textureFormats[64];                   // 0x23960
+	RendererViewportRecord m_viewports[16];                       // 0x24360
+	LegoU32 m_clearRenderTarget;                                  // 0x24520
+	LegoU32 m_currentViewportIndex;                               // 0x24524
+	undefined m_unk0x24528[0x2456c - 0x24528];
 	LegoU32 m_vertexBufferUsage;            // 0x2456c, D3DUSAGE_WRITEONLY or zero
 	LegoBool32 m_foundPreferredDepthFormat; // 0x24570, selected D24S8
 	LegoU32 m_unk0x24574;                   // 0x24574
@@ -97,29 +257,71 @@ public:
 	LegoU32 m_ambientColor; // 0x24598, D3DRS_AMBIENT default
 	undefined m_unk0x2459c[4];
 	D3DMATERIAL8 m_material; // 0x245a0
-	undefined m_unk0x245e4[0xc626c - 0x245e4];
+	undefined m_unk0x245e4[0x25148 - 0x245e4];
+	RendererTextureStageManager m_textureStageManager; // 0x25148
+	RendererDefaultRecord m_textureDefaults;           // 0x28740
+	RendererVertexBuffer m_vertexRecords[5000];        // 0x28768
+	RendererVertexStorage m_vertexStorage[128];        // 0x8a1e8
+	RendererIndexBuffer m_indexRecords[5000];          // 0x8b3e8
+	RendererIndexStorage m_indexStorage[64];           // 0xc5d68
+	LegoU32 m_unk0xc6268;
 	LegoU32 m_fillMode; // 0xc626c
-	undefined m_unk0xc6270[0xc6288 - 0xc6270];
-	LegoU32 m_useBlendModeOverride; // 0xc6288
-	LegoU32 m_blendModeOverride;    // 0xc628c
-	undefined m_unk0xc6290[0xc734c - 0xc6290];
-	LegoU32 m_cachedRenderStates[0xac];      // 0xc734c
-	LegoU32 m_cachedTextureHandles[8];       // 0xc75fc
-	LegoU32 m_unk0xc761c;                    // 0xc761c
-	LegoU32 m_unk0xc7620;                    // 0xc7620
-	LegoU32 m_cachedTextureStageStates[256]; // 0xc7624, (stage << 5) | state
-	undefined m_unk0xc7a24[0xc7ec4 - 0xc7a24];
+	LegoU32 m_unk0xc6270;
+	LegoU32 m_colorOverrideEnabled;   // 0xc6274
+	LegoFloat m_colorOverride[4];     // 0xc6278
+	LegoU32 m_useBlendModeOverride;   // 0xc6288
+	LegoU32 m_blendModeOverride;      // 0xc628c
+	RendererLightRecord m_lights[32]; // 0xc6290
+	LegoS32 m_lightCount;             // 0xc7090
+	LegoFloat m_lightDirection[3];    // 0xc7094
+	undefined m_unk0xc70a0[0xc734c - 0xc70a0];
+	LegoU32 m_cachedRenderStates[0xac];           // 0xc734c
+	LegoU32 m_cachedTextureHandles[8];            // 0xc75fc
+	IDirect3DVertexBuffer8* m_cachedStreamBuffer; // 0xc761c
+	LegoU32 m_cachedVertexShader;                 // 0xc7620
+	LegoU32 m_cachedTextureStageStates[256];      // 0xc7624, (stage << 5) | state
+	LegoS32 m_unk0xc7a24;
+	undefined m_unk0xc7a28[0xc7ec4 - 0xc7a28];
 	LegoBool32 m_nvidiaWorkaround; // 0xc7ec4
-	undefined m_unk0xc7ec8[0xc7edc - 0xc7ec8];
+	LegoU32 m_unk0xc7ec8;
+	undefined m_unk0xc7ecc[0xc7ed4 - 0xc7ecc];
+	LegoU32 m_createDeviceBuffers;                     // 0xc7ed4
+	LegoS32 m_streamResourceId;                        // 0xc7ed8
 	LegoU32 m_vertexBufferCapacity;                    // 0xc7edc
 	IDirect3DVertexBuffer8* m_normalVertexBuffer;      // 0xc7ee0, FVF 0x152
 	IDirect3DVertexBuffer8* m_transformedVertexBuffer; // 0xc7ee4, FVF 0x144
-	undefined m_unk0xc7ee8[0xc7ef8 - 0xc7ee8];
-	IDirect3DVertexBuffer8* m_specularVertexBuffer; // 0xc7ef8, FVF 0x1c4
+	RendererIndexBuffer* m_streamingIndexBuffer;       // 0xc7ee8
+	RendererVertexBuffer* m_quadVertexBuffer;          // 0xc7eec
+	RendererIndexBuffer* m_quadIndexBuffer;            // 0xc7ef0
+	LegoU32 m_streamVertexCount;                       // 0xc7ef4
+	IDirect3DVertexBuffer8* m_specularVertexBuffer;    // 0xc7ef8, FVF 0x1c4
+	RendererIndexBuffer* m_streamIndexBuffer;          // 0xc7efc
+	BYTE* m_mappedStreamVertices;                      // 0xc7f00
+	RendererDefaultRecord m_drawDefaults;              // 0xc7f04
 };
 
 // This remains a prefix: the constructor proves storage through +0xc7f2b.
-DECOMP_SIZE_ASSERT(DisplayRenderer, 0xc7efc);
+DECOMP_SIZE_ASSERT(DisplayRenderer, 0xc7f2c);
+DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_bucketedDraws) == 0x04);
+DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_orderedDraws) == 0x2c);
+DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_deferredDraws) == 0x54);
+DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_textureStageManager) == 0x25148);
+DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_textureDefaults) == 0x28740);
+DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_lights) == 0xc6290);
+DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_lightCount) == 0xc7090);
+DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_vertexRecords) == 0x28768);
+DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_vertexStorage) == 0x8a1e8);
+DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_indexRecords) == 0x8b3e8);
+DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_indexStorage) == 0xc5d68);
+DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_quadVertexBuffer) == 0xc7eec);
+DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_streamIndexBuffer) == 0xc7efc);
+DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_drawDefaults) == 0xc7f04);
+DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_textureRecords) == 0x38d8);
+DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_defaultTextureIndex) == 0x22cd8);
+DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_textureIndexMap) == 0x22cdc);
+DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_viewports) == 0x24360);
+DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_currentViewportIndex) == 0x24524);
+DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_viewportTransform) == 0x63c);
 DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_direct3D) == 0x7ac);
 DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_clearQuadDepth) == 0x780);
 DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_textureQuality) == 0x7ec);
@@ -150,6 +352,8 @@ DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_vertexBufferCapacity) == 0xc7ed
 DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_normalVertexBuffer) == 0xc7ee0);
 DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_transformedVertexBuffer) == 0xc7ee4);
 DECOMP_STATIC_ASSERT(offsetof(DisplayRenderer, m_specularVertexBuffer) == 0xc7ef8);
+
+void __stdcall MultiplyMatrix4(D3DMATRIX* p_result, const D3DMATRIX* p_left, const D3DMATRIX* p_right);
 
 extern HRESULT g_lastDirect3DResult;
 

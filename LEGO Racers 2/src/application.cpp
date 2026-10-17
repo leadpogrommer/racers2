@@ -36,7 +36,7 @@ ApplicationDisplaySettings* Application::GetDisplaySettings()
 	return &m_display;
 }
 
-// FUNCTION: LEGORACERS2 0x0049a6a0
+// FUNCTION: LEGORACERS2 0x0049a6a0 FOLDED
 LegoU32 Application::GetUnknownFlag()
 {
 	return m_unk0x10;

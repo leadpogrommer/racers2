@@ -1,5 +1,16 @@
 # Renderer initialization dependency audit
 
+Current checkpoint: the projection now extends through `+0xc7f2b` with size
+`0xc7f2c`; the initializer has compiled source at 22.87% raw, and the
+texture-state dispatcher, frame transforms, viewports, resource factory,
+stream setup and buffer factories have source bodies. The owner constructor,
+complete tables, texture upload and draw-plan builders remain open. See
+[initializer work](work-renderer-initialize.md) and the
+[runtime roadmap](runtime-roadmap.md). The following audit preserves the
+earlier dependency-discovery snapshot and its then-current source status.
+
+## Earlier dependency snapshot
+
 This is a read-only audit of retail `DisplayRenderer` construction at
 `0x004ab9e0` and initialization at `0x004ac130`, cross-checked against the
 current source tree. No renderer constructor or initializer is currently

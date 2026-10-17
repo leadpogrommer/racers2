@@ -60,9 +60,9 @@ then rebuilds and checks every `FUNCTION` claim together. A worker reporting
 ## Automatic function inventory
 
 The current Ghidra inventory in
-`data/ghidra-export/discovered-functions.csv` contains **4,228 distinct
+`data/ghidra-export/discovered-functions.csv` contains **4,254 distinct
 function starts**, including **21 entries marked as thunks** and linked
-CRT/library code. All 4,228 records are internal to the executable rather
+CRT/library code. All 4,254 records are internal to the executable rather
 than external imports. This is the automated discovery snapshot, not a
 verified count of game-authored functions. Analysis can miss functions or
 split/merge boundaries; manually reviewed callbacks already demonstrate

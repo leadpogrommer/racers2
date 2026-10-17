@@ -11,6 +11,7 @@
 // the table or claim its complete size.
 class RendererLookupTableState {
 public:
+	RendererLookupTableState();
 	struct Entry {
 		LegoU32 m_key;
 		Entry* m_next;
@@ -20,11 +21,12 @@ public:
 
 	void Initialize(LegoU32 p_bucketCount, LegoU32 p_entryCapacity, LegoU32 p_bucketShift, LegoU32 p_unk0x10);
 	void Insert(LegoU32 p_key, LegoU32 p_unk0x0c, LegoU32 p_unk0x08, LegoS32 p_hashKey);
+	void InsertLinear(LegoU32 p_key, LegoU32 p_unk0x0c, LegoU32 p_unk0x08, LegoS32 p_ignoredHash);
 	void InsertOrdered(LegoU32 p_key, LegoU32 p_unk0x0c, LegoU32 p_unk0x08, LegoS32 p_hashKey);
 	void ReleaseStorage();
 	void Clear();
 
-	void* m_vtable;            // 0x00
+	const void* m_vtable;      // 0x00
 	Entry** m_bucketHeads;     // 0x04
 	Entry** m_bucketTails;     // 0x08
 	Entry* m_entryStorage;     // 0x0c
@@ -37,6 +39,7 @@ public:
 };
 
 DECOMP_SIZE_ASSERT(RendererLookupTableState::Entry, 0x10);
+DECOMP_SIZE_ASSERT(RendererLookupTableState, 0x28);
 DECOMP_STATIC_ASSERT(offsetof(RendererLookupTableState, m_vtable) == 0x00);
 DECOMP_STATIC_ASSERT(offsetof(RendererLookupTableState, m_bucketHeads) == 0x04);
 DECOMP_STATIC_ASSERT(offsetof(RendererLookupTableState, m_bucketTails) == 0x08);

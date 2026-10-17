@@ -23,6 +23,9 @@
 // LIBRARY: LEGORACERS2 0x0051a060
 // __chkstk
 
+// LIBRARY: LEGORACERS2 0x0051a08f
+// __purecall
+
 // LIBRARY: LEGORACERS2 0x0051a0a0
 // _strrchr
 

@@ -1,6 +1,5 @@
 #include "applicationpolicy.h"
 
-// FUNCTION: LEGORACERS2 0x00403910
 LegoBool32 IsApplicationDevelopmentMode()
 {
 	return FALSE;

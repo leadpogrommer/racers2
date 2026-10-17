@@ -14,23 +14,26 @@ Verified reconstructions include character predicates, line classification,
 fixed string buffers, file operations, window geometry, command-line parsing,
 startup helpers, bitmap scanning, terrain lookup, spline helpers, and
 foundational renderer/input operations.
-The current checkpoint has **154 exact function matches**, **four reviewed
-near matches**, and 108 unfinished implementations. See
+The current checkpoint has **204 exact function matches**, **seven reviewed
+near matches**, and 173 unfinished implementations across 384 measured
+functions. See
 [current progress](docs/progress.md) for the measured function list and
 remaining work. The application singleton and its two complete 38-slot
 dispatch tables, all three 25-slot input-device tables, and the five-slot
 input service table are wired. The full DirectInput initializer and joystick
 axis/effect dependencies are reconstructed, pending startup integration.
-Texture-format selection, depth/blend controls, material setup, frame clears,
-and presentation now have recovered source bodies; four new helpers match
-exactly. The complete renderer owner and initializer remain open.
+Renderer source now covers transforms, viewports, lighting selection, buffer
+pools and uploads, TGA loading, resource lookup, and the full display-initializer
+body. The initializer remains under review at 22.87% raw similarity; the
+renderer owner, complete dispatch tables, texture upload and draw-plan closure
+still prevent startup integration.
 Earlier runtime checks exercised config,
 archive metadata, and selected asset reads. The executable still has a
 temporary entry point and does not reach a window, rendered menu, or gameplay.
 No game or probe was run for the current renderer/input implementation batch;
 future runtime checks are reserved for significant milestones expected to
 reach a rendered menu or gameplay. Whole-game coverage is not established.
-Ghidra currently discovers 4,228 function starts,
+Ghidra currently discovers 4,254 function starts,
 including 21 thunks and linked libraries; this is a provisional inventory,
 not a count of game-authored functions. See the
 [inventory notes](docs/research.md#automatic-function-inventory).

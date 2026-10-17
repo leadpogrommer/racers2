@@ -19,7 +19,10 @@ from toolchain import ROOT
 
 def map_symbols(path):
     symbols = {}
-    for line in path.read_text(encoding="utf-8").splitlines():
+    # VC6 emits an ANSI map, and legacy import archives can contribute
+    # non-UTF-8 bytes to member names. Decode one byte per character so the
+    # ASCII symbol/address columns remain intact without dropping input.
+    for line in path.read_text(encoding="latin-1").splitlines():
         match = re.match(r"\s+[0-9a-fA-F]{4}:[0-9a-fA-F]+\s+(\S+)\s+([0-9a-fA-F]{8})\b", line)
         if not match:
             continue
