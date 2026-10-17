@@ -13,13 +13,17 @@ settings that still need investigation.
 Verified reconstructions include character predicates, line classification,
 fixed string buffers, file operations, window geometry, command-line parsing,
 startup helpers, bitmap scanning, terrain lookup and spline helpers.
-The current checkpoint has **79 exact function matches**, with 19 unfinished
-implementations. See [current progress](docs/progress.md) for the measured
-function list and remaining work. The executable has a
-temporary entry point; it does not run the game yet. Whole-game coverage is
-not established. Ghidra currently discovers 4,228 function starts, including
-21 thunks and linked libraries; this is a provisional inventory, not a count
-of game-authored functions. See the [inventory notes](docs/research.md#automatic-function-inventory).
+The current checkpoint has **104 exact function matches**, **two reviewed
+near matches**, and 57 unfinished implementations. See
+[current progress](docs/progress.md) for the measured function list and
+remaining work. The application singleton and its two complete 38-slot
+dispatch tables are now wired, and startup has been exercised through config
+and archive metadata reads. The executable still has a temporary entry point
+and does not reach a window, rendered menu, or gameplay. Whole-game coverage
+is not established. Ghidra currently discovers 4,228 function starts,
+including 21 thunks and linked libraries; this is a provisional inventory,
+not a count of game-authored functions. See the
+[inventory notes](docs/research.md#automatic-function-inventory).
 See [initial validation](docs/validation.md) for the checks performed and the
 commands for this supplied workspace.
 
@@ -28,8 +32,10 @@ reference exports used for parallel decompilation work.
 
 [Library identification](docs/library-identification.md) distinguishes confirmed
 MSVC runtime routines from the separate pool allocator whose provenance is
-still unresolved. Pool allocator research is still outside the game build, but is now a required
-startup dependency to resolve for the playable milestone.
+still unresolved. The required pool, archive-reading path, extracted retail
+resources, and application startup support are included in the build. Renderer
+and main-loop work remains; see the [runtime roadmap](docs/runtime-roadmap.md)
+and [runtime startup notes](docs/work-application-runtime.md).
 
 ## Setup
 
@@ -67,16 +73,34 @@ asset-loading and DirectX 8 blockers.
 
 ## Build and measure
 
+Renderer sources need a local DirectX 8 configuration before the first build.
+For Linux with Wine, generate it once and pass it to the builder:
+
 ```sh
-python tools/build.py
+python tools/directx8.py --mode wine --output-dir build-dx8-config
+python tools/build.py --directx8-config build-dx8-config/directx8-config.json
 python tools/compare.py
 python tools/compare.py --address 0x0045de00
 ```
 
+For a local genuine SDK, use `--mode sdk --sdk-root <path>` instead. CMake
+reads the same JSON path from `LR2_DIRECTX8_CONFIG`; see
+[DirectX setup](docs/work-directx8.md).
+
 The builder uses MSVC natively on Windows and Wine on Linux, emits an x86 PE
 and PDB, and writes `build/reccmp-build.yml` using paths for the host running
 reccmp. Set `WINEPREFIX` to an absolute prefix path if needed; the same setting
-must be used for build and comparison. No game assets are needed for this build.
+must be used for build and comparison. Game data archives are not needed to
+link; extract and link the retail `.res` to include the original dialog and
+icons. The user-data helper also needs an x86 SHFOLDER import library. Linux
+builds use the installed Wine archive; on Windows set `SHFOLDER_LIB` to an SDK
+library if it is not in LIB.
+[Shell API setup](docs/work-userdatapath.md#import-library-setup) documents both builders.
+
+To link the retail dialog and icon resources, run
+`python tools/extract_resources.py`; builders pick up the ignored
+`build-resources/retail.res` by default. See
+[resource extraction](docs/work-resources.md).
 
 Open `build/reports/LEGORACERS2.html` for per-function assembly diffs. JSON and
 SVG reports are beside it. The comparison command also checks annotations and

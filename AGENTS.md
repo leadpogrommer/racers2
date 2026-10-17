@@ -22,13 +22,22 @@ From this repository, with reccmp installed in the active Python environment:
 
 ```sh
 python tools/setup.py --fetch-toolchain
-python tools/build.py
+python tools/directx8.py --mode wine --output-dir build-dx8-config
+python tools/build.py --directx8-config build-dx8-config/directx8-config.json
 python tools/compare.py
 python tools/compare.py --address 0x0045de00
 python -m unittest discover -s tests
 ```
 
 Linux requires Wine; `WINEPREFIX` selects the prefix for both build and reccmp.
+The user-data path imports SHGetFolderPathA from SHFOLDER. On Linux the builder
+selects Wine's PE-i386 archive; on Windows provide an SDK library through
+SHFOLDER_LIB or the SDK LIB path. CMake also accepts LR2_SHFOLDER_LIBRARY.
+For a local genuine SDK, generate the configuration with
+`python tools/directx8.py --mode sdk --sdk-root <path>`. CMake reads the same
+JSON path from `LR2_DIRECTX8_CONFIG`. Use `util/directx8.h` for the real
+SDK/Wine interfaces; never define replacement COM tables.
+
 The build manifest is `sources.txt`; add new compilation units there. Keep the
 flags in CMake and `tools/build.py` aligned. `bootstrap.cpp` is temporary entry
 scaffolding with no retail address; replace it when reconstructing real startup.
@@ -39,8 +48,10 @@ source paths in the manifest remain relative to this repository.
 Use per-function reccmp comparison to validate recovered game functions.
 Do not add behavioral tests for reconstructed game functions unless requested.
 Keep library identification and the tests protecting identification/match tooling.
-Only execute a recompiled game when explicitly needed; ordinary matching reads
-the original and emits PE/PDB/report files without running the game.
+Reserve runtime testing for significant milestones, such as a build expected
+to open and correctly render the menu. Do not run incremental startup or asset
+probes between small recovery batches. Ordinary build, matching and data-layout
+checks read the original and emit PE/PDB/report files without running the game.
 
 ## Primary objective: a playable game
 
@@ -50,6 +61,12 @@ resource/file loading, graphics/input/audio initialization, main loop and
 connections needed to reach gameplay. Track observable milestones such as
 startup, a rendered menu and a playable race. The current temporary bootstrap
 is not a running game; do not describe a placeholder window as gameplay.
+The current bounded runtime milestone constructs the application, accesses its
+per-user display config, reads both archive metadata files, and opens the GTC
+archive. It still does not create a window or render gameplay. Reuse the retail
+dialog/icon resources through `tools/extract_resources.py`; keep generated
+`.res` files in ignored build output. Renderer builds require the tested local
+DirectX 8 configuration from `tools/directx8.py` and the real DX8 interfaces.
 
 Instruction matching is a diagnostic and secondary goal. Do not postpone a
 needed subsystem to polish register allocation or instruction scheduling in

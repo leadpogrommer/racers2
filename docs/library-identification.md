@@ -326,7 +326,9 @@ it does **not** prove who authored it or exclude a third-party engine library.
 Its application configuration and logging dependencies suggest an engine-level
 allocator, but that attribution remains provisional.
 
-Allocator reconstruction is deferred. The exploratory source is retained
-under `research/allocator/`, outside the game source root,
-build manifest, and game-function progress claims. A named library attribution
+The pool is a proven startup and archive-loading dependency. Its recovered
+implementation is now in the game build; exploratory history remains under
+`research/allocator/`. See [memory-heap recovery](work-memoryheap.md) for raw
+scores, layout and unresolved application lifecycle effects. Known CRT code
+continues to come from the pinned library. A named attribution for the pool
 requires stronger evidence, such as matching source/object code or symbols.

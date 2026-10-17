@@ -1,15 +1,23 @@
 #ifndef LR2_FILEMANAGER_H
 #define LR2_FILEMANAGER_H
 
+#include "decomp.h"
 #include "types.h"
 #include "winfile.h"
+
+LegoS32 GetFileStorageMode();
 
 class FileManager {
 public:
 	FileManager();
 	~FileManager() {}
+	void Initialize(BOOL p_force);
+	BOOL FindArchiveEntry(LPCSTR p_path, BOOL* p_found, WinFile* p_file);
+	void TrackOpen(LPCSTR p_path, WinFile* p_file);
+	void Read(WinFile* p_file, LPVOID p_buffer, DWORD p_bytes, DWORD p_flags);
 	void Close(WinFile* p_file);
 	DWORD GetSize(WinFile* p_file);
+	BOOL Exists(LPCSTR p_path);
 	DWORD SeekCurrent(WinFile* p_file, LONG p_offset);
 	void SetFlags(LegoU32 p_mask, LegoBool32 p_enabled);
 
@@ -28,6 +36,16 @@ public:
 	LegoS32 m_archivePosition;         // 0x44
 	LegoU32 m_flags;                   // 0x48
 };
+
+DECOMP_SIZE_ASSERT(FileManager, 0x4c);
+
+struct ArchiveFileEntry {
+	LegoChar m_name[128];
+	LegoU32 m_archiveOffset;
+	LegoU32 m_size;
+};
+
+DECOMP_SIZE_ASSERT(ArchiveFileEntry, 0x88);
 
 FileManager* GetFileManager();
 

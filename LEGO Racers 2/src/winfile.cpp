@@ -1,6 +1,68 @@
 #include "winfile.h"
 
+#include "application.h"
 #include "filemanager.h"
+
+#include <string.h>
+
+BOOL __stdcall ReadCompressedData(LPVOID p_buffer, DWORD p_bytes, DWORD p_offset, DWORD p_flags);
+
+// GLOBAL: LEGORACERS2 0x00549b58
+LegoBool32 g_checkArchiveRedirect = TRUE;
+
+// FUNCTION: LEGORACERS2 0x004a21b0
+WinFile::WinFile(LPCSTR p_path, LegoS32 p_mode, BOOL* p_result)
+{
+	m_handle = NULL;
+	m_cachedSize = (DWORD) -1;
+	m_archiveOffset = 0;
+	m_position = 0;
+	m_unk0x10 = (DWORD) -1;
+	m_compressed = FALSE;
+	Open(p_path, p_mode, p_result);
+}
+
+// STUB: LEGORACERS2 0x004a21f0
+void WinFile::Open(LPCSTR p_path, LegoS32 p_mode, BOOL* p_result)
+{
+	BOOL result = FALSE;
+	FileManager* manager;
+	BOOL found;
+
+	switch (p_mode) {
+	case 0:
+		manager = GetFileManager();
+		if (!manager->FindArchiveEntry(p_path, &found, this)) {
+			result = OpenPath(p_path);
+			if (result) {
+				GetFileManager()->TrackOpen(p_path, this);
+			}
+		}
+		else {
+			result = found;
+		}
+		break;
+	case 1:
+		result = CreateAlways(p_path);
+		break;
+	case 2:
+		result = OpenOrCreate(p_path);
+		break;
+	case 3:
+		result = OpenAppend(p_path);
+		break;
+	}
+
+	if (p_result != NULL) {
+		*p_result = result;
+	}
+}
+
+// FUNCTION: LEGORACERS2 0x004a2290
+void WinFile::Read(LPVOID p_buffer, DWORD p_bytes, DWORD p_flags)
+{
+	GetFileManager()->Read(this, p_buffer, p_bytes, p_flags);
+}
 
 // FUNCTION: LEGORACERS2 0x004a22b0
 void WinFile::CloseManaged()
@@ -24,6 +86,49 @@ WinFile::~WinFile()
 DWORD WinFile::SeekManagedCurrent(LONG p_offset)
 {
 	return GetFileManager()->SeekCurrent(this, p_offset);
+}
+
+// FUNCTION: LEGORACERS2 0x004a2300
+BOOL ManagedPathExists(LPCSTR p_path)
+{
+	return GetFileManager()->Exists(p_path);
+}
+
+// STUB: LEGORACERS2 0x004a4570
+BOOL WinFile::OpenPath(LPCSTR p_path)
+{
+	LPCSTR openPath = p_path;
+	if (g_checkArchiveRedirect) {
+		if (!GetApplication()->IsDevelopmentMode() && _stricmp(p_path, "GameData.dat") == 0) {
+			m_compressed = TRUE;
+			openPath = "GameData.gtc";
+			g_checkArchiveRedirect = FALSE;
+		}
+	}
+
+	m_handle = CreateFile(
+		openPath,
+		GENERIC_READ,
+		FILE_SHARE_READ,
+		NULL,
+		OPEN_EXISTING,
+		FILE_ATTRIBUTE_NORMAL | FILE_FLAG_SEQUENTIAL_SCAN,
+		NULL
+	);
+	while (m_handle == INVALID_HANDLE_VALUE && GetLastError() == ERROR_SHARING_VIOLATION) {
+		Sleep(500);
+		// Retail retries the originally requested name, even after the GTC redirect.
+		m_handle = CreateFile(
+			p_path,
+			GENERIC_READ,
+			FILE_SHARE_READ,
+			NULL,
+			OPEN_EXISTING,
+			FILE_ATTRIBUTE_NORMAL | FILE_FLAG_SEQUENTIAL_SCAN,
+			NULL
+		);
+	}
+	return m_handle != INVALID_HANDLE_VALUE;
 }
 
 // FUNCTION: LEGORACERS2 0x004a4620
@@ -102,6 +207,16 @@ BOOL WinFile::OpenAppend(LPCSTR p_path)
 		SeekEnd();
 	}
 	return TRUE;
+}
+
+// STUB: LEGORACERS2 0x004a4a90
+BOOL WinFile::ReadAt(LPVOID p_buffer, DWORD p_bytes, DWORD p_offset, DWORD p_flags)
+{
+	if (m_compressed) {
+		ReadCompressedData(p_buffer, p_bytes, p_offset, p_flags);
+		return TRUE;
+	}
+	return ReadExact(p_buffer, p_bytes, p_offset, p_flags);
 }
 
 // FUNCTION: LEGORACERS2 0x004a4ac0
