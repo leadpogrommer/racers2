@@ -6,11 +6,11 @@ Reviewed semantically identical near matches (initially at least 95% raw) are
 implemented functions, counted separately from exact matches.
 
 Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-17.
-The match guard verified **110 exact functions and three reviewed near
-matches**; 68 additional reconstructions remain `STUB` because behavior is
-unresolved or below the near-match threshold. Both builds agree on all 181
-measured rows and annotation statuses. Data comparison verifies 46 annotated
-globals with zero issues. The CLI denominator of 183 also includes two
+The match guard verified **117 exact functions and four reviewed near
+matches**; 74 additional reconstructions remain `STUB` because behavior is
+unresolved or below the near-match threshold. Both builds agree on all 195
+measured rows and annotation statuses. Data comparison verifies 47 annotated
+globals with zero issues. The CLI denominator of 197 also includes two
 inventory-only cleanup functions that have no additional measured match rows.
 
 This is the reconstructed subset, not whole-game coverage. The automatic
@@ -148,8 +148,16 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004ae010` | `DisplayRenderer::ResetTextureStages` | 30.95% | Work in progress |
 | `0x004ae310` | `DisplayRenderer::SetCachedTextureStageState` | 43.48% | Work in progress |
 | `0x004aebb0` | `DisplayRenderer::SelectDepthStencilFormat` | 60.38% | Work in progress |
+| `0x004aed00` | `CheckDirectInputResult` | 100.00% | Verified exact |
+| `0x004aefe0` | `InputThreeArgumentNoOp` | 100.00% | Verified exact |
+| `0x004aeff0` | `InputZeroAxis` | 100.00% | Verified exact |
+| `0x004af000` | `InputDeviceService::PollDevices` | 83.33% | Work in progress |
+| `0x004af050` | `InputDeviceService::Shutdown` | 91.53% | Work in progress |
+| `0x004af090` | `InputDeviceService::RegisterDevice` | 41.38% | Work in progress |
 | `0x004af130` | `InputDeviceService::AcquireAvailableDevices` | 100.00% | Verified exact |
+| `0x004af170` | `InputDeviceService::RefreshDevices` | 86.27% | Work in progress |
 | `0x004af1a0` | `InputDeviceService::FindDeviceByType` | 57.58% | Work in progress |
+| `0x004af1e0` | `InputDeviceRecord::LoadDeviceInfo` | 57.43% | Work in progress |
 | `0x004b4690` | `FUN_004b4690` | 100.00% | Verified exact |
 | `0x004b46c0` | `CreateNativeWindow` | 90.72% | Work in progress |
 | `0x004b4750` | `RegisterNativeWindowClass` | 32.00% | Work in progress |
@@ -203,18 +211,25 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004e7b50` | `ShowDiagnosticDialog` | 100.00% | Verified exact |
 | `0x004e7b90` | `AllocateAlignedMemory` | 100.00% | Verified exact |
 | `0x004e7bb0` | `DecompressGtcBlock` | 9.78% | Work in progress |
+| `0x004ec3f0` | `MouseInputDevice::SetRelativeAxisRange` | 100.00% | Verified exact |
+| `0x004ec450` | `EnumerateMouseAxisObject` | 100.00% | Verified exact |
 | `0x004ec470` | `MouseInputDevice::ReadState` | 100.00% | Verified exact |
+| `0x004ec4d0` | `MouseInputDevice::IsButtonPressed` | 100.00% | Verified exact |
+| `0x004ec500` | `MouseInputDevice::GetAxisValue` | 47.76% | Work in progress |
 | `0x004ec590` | `KeyboardInputDevice::ReadState` | 72.92% | Work in progress |
+| `0x004ec630` | `KeyboardInputDevice::IsKeyPressed` | 100.00% | Verified exact |
+| `0x004ee050` | `InputDeviceRecord::GetButtonValue` | 95.24% | Reviewed near match |
 
 The latest recovery adds the application singleton, complete 38-slot dispatch
 tables, resource linkage, memory pool, real aligned GlobalAlloc wrapper,
 diagnostics, mode-3 file manager and compressed archive reader, plus renderer
-and DirectInput helpers. Both dispatch tables' 76 callback pointers pass
-binary wiring verification; this verifies table contents, not method-body
-equivalence or C++ vtable matching. Raw scores remain visible for unfinished
-bodies. The three reviewed near matches are `WinFile::Read` (95.24%),
-`DisplayRenderer::CreateVertexBuffers` (95.33%), and `MemoryHeap::UpdateCursor`
-(95.83%). Library provenance remains unresolved for the pool and block decoder.
+and DirectInput helpers. Both application tables' 76 callback pointers and
+both mouse/keyboard tables' 50 callback pointers pass binary wiring verification;
+this verifies table contents, not method-body equivalence or C++ vtable matching.
+Raw scores remain visible for unfinished bodies. The four reviewed near matches
+are `WinFile::Read` (95.24%), `DisplayRenderer::CreateVertexBuffers` (95.33%),
+`MemoryHeap::UpdateCursor` (95.83%), and `InputDeviceRecord::GetButtonValue`
+(95.24%). Library provenance remains unresolved for the pool and block decoder.
 
 A bounded run of the rebuilt executable exited with code 0 after startup read
 the per-user `C:\users\ilya\Documents\Games\LEGO Racers 2\Saved Games\LR2.cfg`
@@ -253,6 +268,8 @@ Evidence and open dependencies are recorded in the [file facade](work-file-facad
 [resource extraction](work-resources.md), [DirectX 8](work-directx8.md),
 [renderer lifecycle](work-renderer-lifecycle.md),
 [renderer state](work-renderer-state.md), [input devices](work-input-device.md),
+[input dispatch](work-input-runtime.md), [input setup](work-input-setup.md),
+[input queries](work-input-queries.md), [input lifecycle](work-input-lifecycle.md),
 and [display startup](work-renderer-device.md) notes.
 The [startup research](work-startup.md) and [application-object research](work-application.md)
 trace the real entry point and message-loop dependencies. The temporary entry

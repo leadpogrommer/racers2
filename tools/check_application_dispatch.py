@@ -29,11 +29,11 @@ def map_symbols(path):
     return symbols
 
 
-def read_table(binary, address):
+def read_table(binary, address, count=38):
     _, optional, sections = pe_headers(binary)
     image_base = u32(binary, optional + 28)
     offset = rva_offset(sections, address - image_base)
-    return struct.unpack_from("<38I", binary, offset)
+    return struct.unpack_from(f"<{count}I", binary, offset)
 
 
 def verify(original, rebuilt, link_map, inventory):

@@ -5,7 +5,11 @@
 
 class InputDeviceService {
 public:
+	LegoBool32 PollDevices(LegoU32 p_inputState);
+	void Shutdown();
+	void RegisterDevice(InputDeviceRecord* p_device);
 	void AcquireAvailableDevices();
+	void RefreshDevices();
 	InputDeviceRecord* FindDeviceByType(LegoU32 p_index, LegoU32 p_type);
 
 	const LegoU32* m_vtable;           // 0x00

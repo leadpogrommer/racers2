@@ -43,3 +43,7 @@ LEGO Racers 2/src/rendererstate.cpp
 LEGO Racers 2/src/renderercache.cpp
 LEGO Racers 2/src/rendererdefaults.cpp
 LEGO Racers 2/src/inputdevice.cpp
+LEGO Racers 2/src/inputsetup.cpp
+LEGO Racers 2/src/inputqueries.cpp
+LEGO Racers 2/src/inputlifecycle.cpp
+LEGO Racers 2/src/inputruntime.cpp

@@ -40,22 +40,24 @@ python tools/compare.py
 ## Continued decompilation
 
 The combined SP5/Wine and CMake/NMake builds were revalidated on 2026-10-17.
-Both passed the match guard for **110 exact functions and three reviewed near
-matches**. All 181 measured raw scores and annotation statuses agree across
-the two builds: 113 implemented reconstructions and 68 unfinished bodies.
-The CLI denominator of 183 also includes the unmatched 10-byte generated
+Both passed the match guard for **117 exact functions and four reviewed near
+matches**. All 195 measured raw scores and annotation statuses agree across
+the two builds: 121 implemented reconstructions and 74 unfinished bodies.
+The CLI denominator of 197 also includes the unmatched 10-byte generated
 cleanup at 0x004a2550, which has no unique name mapping, and the one-byte
 save-config exit callback at 0x0049b930, which folds with the heap callback.
 Neither contributes an extra measured match row.
-At the prior checkpoint, annotation lint, formatting checks and all 13 tooling
-tests passed. Those tests cover the match guard and library identification.
-Tooling was unchanged in this batch, so the tests were not rerun; no game
+Annotation lint, formatting checks and all 13 tooling tests passed. Those
+tests cover the match guard and library identification. The new input-table
+verifier checks all 50 original targets and rebuilt pointers in each build;
+the existing application verifier still passes all 76 pointers. No game
 behavioral tests were added.
 
-Data comparison verified 46 annotated globals with zero issues in both
+Data comparison verified 47 annotated globals with zero issues in both
 builds. New storage includes the pool lists/arena/guard/probe state, file
 initialization and redirection flags, compressed-block cache, error-dialog result, saved
-config pointers/guard/record, main/view handles, title buffer and accelerators.
+config pointers/guard/record, main/view handles, title buffer, accelerators and
+the mouse-axis scale (verified as bits `0x3c808081`).
 Both builds completed without compiler warnings. The pool and archive reader
 are now in the main build as required startup dependencies, with unresolved
 provenance kept explicit. [Current progress](progress.md) lists the scores.
@@ -117,7 +119,12 @@ the texture against an independently decoded retail-byte oracle, and it does
 not create a window or render a frame.
 
 The subsequent renderer and DirectInput helper batch was validated by
-compilation and reccmp only. No game or probe was executed during that batch.
+compilation, reccmp and static table checks only. The latest input batch adds
+14 measured bodies: seven exact, one reviewed near match and six below the
+annotation threshold. It also emits the mouse and keyboard constructors and
+complete dispatch tables; the full service initializer remains blocked on the
+joystick path. Both builds agree on every score and annotation. No game or
+probe was executed during these batches.
 The next runtime execution is reserved for a significant milestone expected
 to reach a rendered menu or gameplay; the historical runtime evidence above is
 unchanged.
@@ -135,10 +142,10 @@ least 95%) uses FUNCTION instead of STUB. The normal guard verifies those
 implemented claims without replacing their real scores. Exact and reviewed
 near matches are reported separately. The optional `--require-exact` mode
 continues to reject every sub-100% raw match, including effective-only matches.
-The normal guard passes all 113 implemented functions. Strict exact mode
-continues to reject the three reviewed near matches at 95.24%, 95.33% and
-95.83%. Their source annotations and work notes retain the actual scores and
-equivalence review; no function was promoted solely because the policy
+The normal guard passes all 121 implemented functions. Strict exact mode
+continues to reject the four reviewed near matches: two at 95.24%, one at
+95.33% and one at 95.83%. Their source annotations and work notes retain the
+actual scores and equivalence review; no function was promoted solely because the policy
 changed. The 13 tooling tests cover the near-match boundary, strict mode,
 invalid scores, unresolved/missing functions and library-identification
 fixtures.
