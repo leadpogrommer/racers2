@@ -8,3 +8,4 @@ targets:
       - reccmp/function-sizes.csv
       - reccmp/floats.csv
       - reccmp/strings.csv
+      - reccmp/compiler-globals.csv

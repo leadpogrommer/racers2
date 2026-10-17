@@ -12,3 +12,13 @@ LEGO Racers 2/src/matrix3.cpp
 LEGO Racers 2/src/startup.cpp
 LEGO Racers 2/src/commandline.cpp
 LEGO Racers 2/src/windowutil.cpp
+LEGO Racers 2/src/bitmaputil.cpp
+LEGO Racers 2/src/scalarutil.cpp
+LEGO Racers 2/src/spline.cpp
+LEGO Racers 2/src/screenshot.cpp
+LEGO Racers 2/src/bitmapfont.cpp
+LEGO Racers 2/src/quaternion.cpp
+LEGO Racers 2/src/bitmapimage.cpp
+LEGO Racers 2/src/packedquaternion.cpp
+LEGO Racers 2/src/terrain.cpp
+LEGO Racers 2/src/terrainvertexgrid.cpp

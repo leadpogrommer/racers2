@@ -12,11 +12,14 @@ settings that still need investigation.
 
 Verified reconstructions include character predicates, line classification,
 fixed string buffers, file operations, window geometry, command-line parsing,
-startup helpers and spline helpers.
-See [current progress](docs/progress.md)
-for the measured function list and remaining work. The executable has a
+startup helpers, bitmap scanning, terrain lookup and spline helpers.
+The current checkpoint has **79 exact function matches**, with 19 unfinished
+implementations. See [current progress](docs/progress.md) for the measured
+function list and remaining work. The executable has a
 temporary entry point; it does not run the game yet. Whole-game coverage is
-not established.
+not established. Ghidra currently discovers 4,228 function starts, including
+21 thunks and linked libraries; this is a provisional inventory, not a count
+of game-authored functions. See the [inventory notes](docs/research.md#automatic-function-inventory).
 See [initial validation](docs/validation.md) for the checks performed and the
 commands for this supplied workspace.
 
@@ -25,7 +28,8 @@ reference exports used for parallel decompilation work.
 
 [Library identification](docs/library-identification.md) distinguishes confirmed
 MSVC runtime routines from the separate pool allocator whose provenance is
-still unresolved. Allocator reconstruction is deferred outside the game build.
+still unresolved. Pool allocator research is still outside the game build, but is now a required
+startup dependency to resolve for the playable milestone.
 
 ## Setup
 
@@ -56,6 +60,11 @@ its compiler component versions. An existing installation can be selected with
 `--toolchain` or `MSVC6_ROOT`; it must contain `VC98` and `Common`. Toolchain
 files and original game files are not added to Git.
 
+The main priority is a playable rebuild: startup, resource loading, rendering,
+input and the main loop take precedence over polishing instruction differences.
+See the [runtime roadmap](docs/runtime-roadmap.md) for the concrete startup,
+asset-loading and DirectX 8 blockers.
+
 ## Build and measure
 
 ```sh
@@ -71,7 +80,11 @@ must be used for build and comparison. No game assets are needed for this build.
 
 Open `build/reports/LEGORACERS2.html` for per-function assembly diffs. JSON and
 SVG reports are beside it. The comparison command also checks annotations and
-fails if a `FUNCTION` claim is absent, stubbed, or below 100% instruction accuracy.
+fails if a `FUNCTION` claim is absent, stubbed, or below the initial 95% raw
+accuracy threshold. `FUNCTION` includes exact matches and reviewed semantically
+identical near matches; their actual scores stay visible. The optional
+`python tools/check_matches.py build/reports/LEGORACERS2.json --require-exact`
+check requires 100% raw matches.
 Report coverage is relative to annotated functions; the whole-game function
 total is unknown. CRT symbols are excluded with `--nolib`, and remain available
 for explicit comparisons.

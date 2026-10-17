@@ -1,8 +1,17 @@
 #if 0
-// Identified CRT routines; measured separately from reconstructed game code.
+// Identified library routines; measured separately from reconstructed game code.
+
+// LIBRARY: LEGORACERS2 0x004a2050
+// ?DeleteMediaType@@YGXPAU_AMMediaType@@@Z
+
+// LIBRARY: LEGORACERS2 0x00519ee0
+// __onexit
 
 // LIBRARY: LEGORACERS2 0x00519f5e
 // _atexit
+
+// LIBRARY: LEGORACERS2 0x00519f9f
+// _sprintf
 
 // LIBRARY: LEGORACERS2 0x0051a000
 // _strncmp
@@ -20,8 +29,26 @@
 // LIBRARY: LEGORACERS2 0x0051a19b
 // _atol
 
+// LIBRARY: LEGORACERS2 0x0051a231
+// _vsprintf
+
+// LIBRARY: LEGORACERS2 0x0051a2c2
+// _atof
+
 // LIBRARY: LEGORACERS2 0x0051a33b
 // _WinMainCRTStartup
+
+// LIBRARY: LEGORACERS2 0x0051a870
+// __alldiv
+
+// LIBRARY: LEGORACERS2 0x0051a940
+// __aullrem
+
+// LIBRARY: LEGORACERS2 0x0051a9c0
+// __aulldiv
+
+// LIBRARY: LEGORACERS2 0x0051aa30
+// __allmul
 
 // LIBRARY: LEGORACERS2 0x0051aa70
 // _strncpy
@@ -38,17 +65,131 @@
 // LIBRARY: LEGORACERS2 0x0051aca8
 // _free
 
+// LIBRARY: LEGORACERS2 0x0051ad91
+// _wcscpy
+
 // LIBRARY: LEGORACERS2 0x0051adc0
 // _strstr
+
+// LIBRARY: LEGORACERS2 0x0051b929
+// _toupper
 
 // LIBRARY: LEGORACERS2 0x0051baa0
 // _memchr
 
+// LIBRARY: LEGORACERS2 0x0051bb45
+// _ldexp
+
+// LIBRARY: LEGORACERS2 0x0051bd2b
+// _floor
+
+// LIBRARY: LEGORACERS2 0x0051be77
+// _qsort
+
+// LIBRARY: LEGORACERS2 0x0051bfcb
+// _shortsort
+
+// LIBRARY: LEGORACERS2 0x0051c019
+// _swap
+
+// LIBRARY: LEGORACERS2 0x0051c045
+// _frexp
+
+// LIBRARY: LEGORACERS2 0x0051c16e
+// __forcdecpt
+
+// LIBRARY: LEGORACERS2 0x0051c22e
+// __fassign
+
+// LIBRARY: LEGORACERS2 0x0051c26c
+// __cftoe
+
+// LIBRARY: LEGORACERS2 0x0051c2cd
+// __cftoe2
+
+// LIBRARY: LEGORACERS2 0x0051c38f
+// __cftof
+
+// LIBRARY: LEGORACERS2 0x0051c3e4
+// __cftof2
+
+// LIBRARY: LEGORACERS2 0x0051c48b
+// __cftog
+
+// LIBRARY: LEGORACERS2 0x0051c51e
+// __cfltcvt
+
 // LIBRARY: LEGORACERS2 0x0051e470
 // _strlen
 
+// LIBRARY: LEGORACERS2 0x0051e731
+// __wincmdln
+
+// LIBRARY: LEGORACERS2 0x0051e842
+// __setargv
+
+// LIBRARY: LEGORACERS2 0x0051e8db
+// _parse_cmdline
+
+// LIBRARY: LEGORACERS2 0x0051ea8f
+// ___crtGetEnvironmentStringsA
+
+// LIBRARY: LEGORACERS2 0x0051ebc1
+// __ioinit
+
+// LIBRARY: LEGORACERS2 0x00520dd0
+// _strchr
+
+// LIBRARY: LEGORACERS2 0x00521097
+// __powhlp
+
 // LIBRARY: LEGORACERS2 0x00521230
 // _memset
+
+// LIBRARY: LEGORACERS2 0x005217e9
+// _strncnt
+
+// LIBRARY: LEGORACERS2 0x00522115
+// __copysign
+
+// LIBRARY: LEGORACERS2 0x00522a14
+// __abstract_cw
+
+// LIBRARY: LEGORACERS2 0x00522aa6
+// __hw_cw
+
+// LIBRARY: LEGORACERS2 0x00522b2f
+// _tolower
+
+// LIBRARY: LEGORACERS2 0x00522c69
+// __ZeroTail
+
+// LIBRARY: LEGORACERS2 0x00522dd6
+// __ShrMan
+
+// LIBRARY: LEGORACERS2 0x00523055
+// __fptostr
+
+// LIBRARY: LEGORACERS2 0x00523128
+// ___dtold
+
+// LIBRARY: LEGORACERS2 0x005231e0
+// _strcpy
+
+// LIBRARY: LEGORACERS2 0x005231f0
+// _strcat
+
+// LIBRARY: LEGORACERS2 0x005236f9
+// ___strgtold12
+
+// LIBRARY: LEGORACERS2 0x00523e03
+// _CPtoLCID
+
+// LIBRARY: LEGORACERS2 0x00524017
+// _strtoxl
+
+// LIBRARY: LEGORACERS2 0x00524360
+// _strcmp
 
 // LIBRARY: LEGORACERS2 0x00524400
 // _strcspn
@@ -56,8 +197,20 @@
 // LIBRARY: LEGORACERS2 0x00524440
 // _strpbrk
 
+// LIBRARY: LEGORACERS2 0x00524e20
+// __itoa
+
+// LIBRARY: LEGORACERS2 0x00524e4d
+// _xtoa
+
 // LIBRARY: LEGORACERS2 0x00524eb0
 // __stricmp
+
+// LIBRARY: LEGORACERS2 0x00524f80
+// __strnicmp
+
+// LIBRARY: LEGORACERS2 0x0052ded6
+// __strupr
 
 // LIBRARY: LEGORACERS2 0x0052e00a
 // __strlwr

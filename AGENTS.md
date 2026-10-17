@@ -42,16 +42,72 @@ Keep library identification and the tests protecting identification/match toolin
 Only execute a recompiled game when explicitly needed; ordinary matching reads
 the original and emits PE/PDB/report files without running the game.
 
+## Primary objective: a playable game
+
+The user's top priority is to get the rebuilt game running with the supplied
+installation assets. Prioritize the real startup path, application lifecycle,
+resource/file loading, graphics/input/audio initialization, main loop and
+connections needed to reach gameplay. Track observable milestones such as
+startup, a rendered menu and a playable race. The current temporary bootstrap
+is not a running game; do not describe a placeholder window as gameplay.
+
+Instruction matching is a diagnostic and secondary goal. Do not postpone a
+needed subsystem to polish register allocation or instruction scheduling in
+an otherwise recovered leaf helper. Use builds and eventual game runs to
+validate runnable milestones when the implementation supports them. Continue
+library identification; do not spend the main effort rebuilding known libraries.
+
+## Agent workflow and priorities
+
+Use the user's requested cheaper-model subagents for independent areas, with
+separate file ownership and isolated build directories. Keep shared manifests,
+size/literal CSVs and combined validation with the integration owner. Use the
+available parallel capacity when there is independent decompilation work;
+do not assign several agents to edit the same files concurrently.
+
+Every agent must attempt to infer descriptive function names from the recovered
+code, callers and data. Use the inferred working name once the behavior is
+understood, including for non-exact reconstructions, and explain uncertain
+interpretations in the notes. These are descriptive names, not claims to have
+recovered original symbols. Keep `FUN_XXXXXXXX` only when there is not enough
+evidence to describe what the function does. Rename declarations, definitions
+and callers together when improving an existing name.
+
+Prioritize recovering more behavior over spending successive batches on small
+instruction-match improvements. Build and measure each reconstruction, then
+use bounded matching attempts. If the code is close and the agent is confident
+that it behaves identically, retain the readable implementation, record the
+measured score and the reasoning for behavioral equivalence, and move to the
+next function. Register allocation and instruction scheduling differences do
+not require endless polishing. A similarity score alone does not establish
+equivalence; unresolved branch, aliasing, rounding or caller-contract differences
+must remain documented as unresolved, rather than called functionally recovered.
+
+A function confidently recovered with identical behavior and a near-perfect
+instruction match is implemented, not a stub. Use `FUNCTION` and document the
+remaining code-generation differences and equivalence reasoning in work notes.
+The initial near-match threshold is 95% raw instruction accuracy. A score alone
+is insufficient: do not promote code with known behavioral differences or
+unresolved semantics. Exact matches and reviewed near matches are counted
+separately, with their actual scores visible. Use `STUB` for unfinished or
+unresolved reconstructions. Move on once a function is sufficiently recovered;
+perfect matching must not block progress toward a playable game.
+
 ## Annotations and evidence
 
 - Check runtime/SDK provenance before reconstructing generic library-looking
   routines. Known library implementations should come from their library when
   available, with verified `LIBRARY` mappings. See `docs/library-identification.md`;
-  a failed signature search does not establish game authorship. The unattributed
-  pool allocator is deferred under `research/allocator/`, outside game progress.
+  a failed signature search does not establish game authorship. Pool research
+  is under `research/allocator/`. The pool is a verified startup/asset-loading
+  dependency: resolve its interfaces and required behavior for the playable
+  build while keeping its provenance explicit and reusing known libraries.
 - Use the exact module `LEGORACERS2` and lowercase, eight-digit original VAs.
-- `// FUNCTION: LEGORACERS2 0x0045de00` means a measured 100% instruction match.
-  Use `// STUB:` for incomplete work; `STUB(address)` prevents accidental folding.
+- `// FUNCTION: LEGORACERS2 0x0045de00` marks an implemented function: an exact
+  match or a reviewed, semantically identical near match (initially at least
+  95% raw instruction accuracy). Keep raw accuracy and review reasoning visible.
+  Use `// STUB:` for unfinished/unresolved work; `STUB(address)` prevents
+  accidental folding of placeholders.
 - Use `// LIBRARY:` for CRT/third-party symbols, `// SYNTHETIC:` for generated
   methods, `// GLOBAL:` for variable storage, and `// VTABLE:` for vtables.
 - The colon is required. Globals identify the variable, not a pointed-to string.
@@ -76,14 +132,16 @@ Use `NULL` for pointers and `TRUE/FALSE` for Lego boolean types.
 
 Unknown functions: `FUN_XXXXXXXX`; globals: `g_unk0xXXXXXXXX`; members:
 `m_unk0xNN`; parameters: `p_...`; virtual slots: `VTable0xNN`. Give semantic
-names when supported by evidence. Document member and vtable slot offsets.
+working names inferred from behavior as described above. Document member and
+vtable slot offsets.
 Use one root class per header, coherent class implementation units, and gap
 arrays expressed as `end - start`. Recover member access rather than copying
 decompiler pointer arithmetic. Preserve behavior while matching, including bugs.
 
 Run clang-format on changed C++ files. Run `tools/compare.py` before claiming a
-match; it lints, generates HTML/JSON/SVG, and rejects missing/sub-100% FUNCTION
-claims. No naming-convention CI from LR1 is inherited.
+match; it lints, generates HTML/JSON/SVG, and rejects missing, stubbed or
+below-threshold FUNCTION claims. `tools/check_matches.py --require-exact`
+provides the optional 100% instruction-match check. No naming-convention CI from LR1 is inherited.
 
 ## Repository hygiene
 

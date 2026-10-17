@@ -76,7 +76,8 @@ For a retrieved message, virtual slot `+0x20` gets first refusal; if it returns
 nonzero, WinMain calls `TranslateMessage` and `DispatchMessageA`. It then calls
 virtual slot `+0x18`; a nonzero result takes the idle/update path. That path
 checks `GetAsyncKeyState(VK_F10)`, calls `0x004bb210` when the low key-state
-bit is set, and calls `0x004a3aa0` for the frame/update work.
+bit is set, and calls `0x004a3aa0` for the frame/update work. The F10 helper
+is a BMP screen-capture routine; see [capture research](work-screenshot.md).
 
 When global `0x0067a500` is `1`, the loop calls `0x004c3020`, destroys window
 handle global `0x0067a4a0`, and clears the flag. On `WM_QUIT`, WinMain calls
@@ -173,6 +174,6 @@ geometry and child-window fitting helpers. Those eleven routines are now
 reconstructed in `windowutil.cpp`; see [window-helper evidence](work-window-helpers.md).
 
 Avoid naming `0x00578648` or the other globals as LR1 types without separate
-LR2 evidence. The separate `0x004c3460` candidate scans rows in 8-bit or
-32-bit data for a non-`0xff`/nonzero byte and appears to be an image-buffer
-helper; it is not on the direct startup or message-loop path.
+LR2 evidence. The separate `0x004c3460` helper is now reconstructed as an exact bitmap row
+scanner used by font loading; see [bitmap-helper evidence](work-bitmap-helpers.md).
+It is not on the direct startup or message-loop path.

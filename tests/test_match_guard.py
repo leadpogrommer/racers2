@@ -17,8 +17,21 @@ class MatchGuardTests(unittest.TestCase):
     def test_exact_match_passes(self):
         self.assertEqual(check_report(self.report(), {0x45de00}), [])
 
-    def test_effective_match_does_not_hide_instruction_difference(self):
-        self.assertTrue(check_report(self.report(matching=0.99, effective=True), {0x45de00}))
+    def test_reviewed_near_match_is_implemented(self):
+        self.assertEqual(check_report(self.report(matching=0.99), {0x45de00}), [])
+        self.assertEqual(check_report(self.report(matching=0.95), {0x45de00}), [])
+
+    def test_exact_mode_preserves_raw_accuracy_requirement(self):
+        self.assertTrue(check_report(self.report(matching=0.99, effective=True), {0x45de00}, require_exact=True))
+        self.assertEqual(check_report(self.report(), {0x45de00}, require_exact=True), [])
+
+    def test_effective_score_does_not_override_low_raw_score(self):
+        self.assertTrue(check_report(self.report(matching=0.949, effective=True), {0x45de00}))
+
+    def test_invalid_accuracy_fails(self):
+        for accuracy in (None, True, False, "0.99", float("nan"), float("inf"), -0.1, 1.1):
+            with self.subTest(accuracy=accuracy):
+                self.assertTrue(check_report(self.report(matching=accuracy), {0x45de00}))
 
     def test_missing_or_unlinked_function_fails(self):
         self.assertTrue(check_report(self.report(), {0x45dda0, 0x45de00}))

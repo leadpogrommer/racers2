@@ -1,5 +1,31 @@
 #include "winfile.h"
 
+#include "filemanager.h"
+
+// FUNCTION: LEGORACERS2 0x004a22b0
+void WinFile::CloseManaged()
+{
+	GetFileManager()->Close(this);
+}
+
+// FUNCTION: LEGORACERS2 0x004a22c0
+DWORD WinFile::GetManagedSize()
+{
+	return GetFileManager()->GetSize(this);
+}
+
+// FUNCTION: LEGORACERS2 0x004a22d0
+WinFile::~WinFile()
+{
+	CloseManaged();
+}
+
+// FUNCTION: LEGORACERS2 0x004a22e0
+DWORD WinFile::SeekManagedCurrent(LONG p_offset)
+{
+	return GetFileManager()->SeekCurrent(this, p_offset);
+}
+
 // FUNCTION: LEGORACERS2 0x004a4620
 BOOL WinFile::CreateAlways(LPCSTR p_path)
 {
@@ -27,6 +53,29 @@ BOOL WinFile::OpenOrCreate(LPCSTR p_path)
 DWORD WinFile::SeekEnd()
 {
 	DWORD position = SetFilePointer(m_handle, 0, NULL, FILE_END);
+	if (position == (DWORD) -1) {
+		return 0;
+	}
+	return position;
+}
+
+// FUNCTION: LEGORACERS2 0x004a4740
+DWORD WinFile::SeekBounded(LONG p_offset)
+{
+	LONG size = GetManagedSize();
+	if (p_offset < -size) {
+		p_offset = -size;
+	}
+	if (p_offset > size) {
+		p_offset = size;
+	}
+	DWORD position;
+	if (p_offset >= 0) {
+		position = SetFilePointer(m_handle, p_offset, NULL, FILE_BEGIN);
+	}
+	else {
+		position = SetFilePointer(m_handle, p_offset, NULL, FILE_END);
+	}
 	if (position == (DWORD) -1) {
 		return 0;
 	}

@@ -40,15 +40,47 @@ python tools/compare.py
 ## Continued decompilation
 
 The combined SP5/Wine and CMake/NMake builds were revalidated on 2026-10-17.
-Both passed the strict guard for **51 functions at 100% instruction accuracy**.
-Annotation lint, formatting checks and all 10 tooling tests passed. These cover
-the match guard and synthetic library-identification fixtures. Game-function
-validation uses reccmp; optional behavioral tests were removed.
-All 62 reported raw scores and annotation statuses agree across the two builds.
-[Current progress](progress.md) lists the functions and the unfinished
-implementations. These results cover the reconstructed subset; the executable
-still uses a temporary entry point and does not start the game. Data comparison
-verified all five recovered globals (four startup variables and the child-window
-enumeration handle) with zero issues. The final builds
-completed without compiler warnings. Allocator research is excluded from these
-counts and from the main build pending provenance investigation.
+Both passed the strict guard for **79 functions at 100% instruction accuracy**.
+All 98 measured raw scores and annotation statuses agree across the two builds:
+79 exact reconstructions and 19 unfinished implementations. The unmatched
+10-byte generated cleanup at 0x004a2550 retains an original-size inventory row
+but has no unique name mapping, so it is excluded from that measured total.
+Annotation lint, formatting checks and all 13 tooling tests passed. These cover
+the match guard and library-identification fixtures. Game-function validation
+uses reccmp, and no behavioral tests or game execution were added.
+
+Data comparison verified 14 recovered globals with zero issues: four startup
+variables, the child-window enumeration handle, the compression path and file
+manager pointers, the file-manager initialization guard, two spline cache
+variables, the screenshot directory/enable state and two terrain edge-selection
+words. Both final builds completed
+without compiler warnings. Allocator research is excluded from the main build
+pending provenance investigation. [Current progress](progress.md) lists all
+measured functions and their remaining mismatches.
+
+The latest exact matches are five terrain bounds/tile/border/vertex methods.
+The terrain cell helper and quaternion decoder have recovered source but
+remain STUB. Spline evaluators retain improved copy/scale ordering. A consumed
+file-seek result established a DWORD return contract; the facade still matches
+100%, while the corrected manager method remains unfinished at 79.49%.
+New function extents were checked through their final returns or tail jumps.
+The original synthetic cleanup has an ambiguous generated name and is documented
+without an address-forcing workaround. Library identification remains separate,
+including CRT helpers and the verified DirectShow DeleteMediaType body.
+
+These results cover the recovered subset. The automatic 4,228-start inventory
+includes libraries and thunks and is not a whole-game completion denominator.
+The executable still uses a temporary entry point and does not start the game.
+
+## Functional recovery policy
+
+The primary objective is a playable rebuilt game. A reviewed function with
+identical behavior and a near-perfect raw instruction match (initially at
+least 95%) uses FUNCTION instead of STUB. The normal guard verifies those
+implemented claims without replacing their real scores. Exact and reviewed
+near matches are reported separately. The optional `--require-exact` mode
+continues to reject every sub-100% raw match, including effective-only matches.
+The current 79 exact functions pass both modes; no existing partial function
+was promoted solely because the policy changed. The 13 tooling tests cover
+the near-match boundary, strict mode, invalid scores, unresolved/missing
+functions and library-identification fixtures.

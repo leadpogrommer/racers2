@@ -83,20 +83,19 @@ void SplineBasis::FUN_004d1610()
 	}
 	default: {
 
-		negativeReciprocal = -1.0f / m_unk0x84;
-		twiceReciprocal = 2.0f / m_unk0x84;
-		reciprocal = 1.0f / m_unk0x84;
-		reciprocalMinusThree = reciprocal - 3.0f;
-
 		m_basis[1][0] = 1.0f;
 		m_basis[0][0] = 0.0f;
 		m_basis[1][1] = 0.0f;
 		m_basis[2][0] = 0.0f;
 		m_basis[3][0] = 0.0f;
 		m_basis[3][1] = 0.0f;
+		negativeReciprocal = -1.0f / m_unk0x84;
 		m_basis[0][1] = negativeReciprocal;
+		twiceReciprocal = 2.0f / m_unk0x84;
 		m_basis[0][2] = twiceReciprocal;
 		m_basis[0][3] = negativeReciprocal;
+		reciprocal = 1.0f / m_unk0x84;
+		reciprocalMinusThree = reciprocal - 3.0f;
 		m_basis[2][1] = reciprocal;
 		m_basis[3][3] = reciprocal;
 		m_basis[1][2] = reciprocalMinusThree;

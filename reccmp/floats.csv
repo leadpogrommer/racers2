@@ -4,3 +4,6 @@ address,type,size
 0052f2f0,float,4
 0052f440,float,4
 0052f8a4,float,4
+00535360,float,4
+00535364,float,4
+00535368,float,4

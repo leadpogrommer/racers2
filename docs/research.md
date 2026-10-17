@@ -56,3 +56,16 @@ python tools/build.py --source-list build-worker/sources.txt --build-dir build-w
 The integration owner merges `sources.txt` and verified function-size entries,
 then rebuilds and checks every `FUNCTION` claim together. A worker reporting
 100% effective similarity alone does not meet the instruction-match requirement.
+
+## Automatic function inventory
+
+The current Ghidra inventory in
+`data/ghidra-export/discovered-functions.csv` contains **4,228 distinct
+function starts**, including **21 entries marked as thunks** and linked
+CRT/library code. All 4,228 records are internal to the executable rather
+than external imports. This is the automated discovery snapshot, not a
+verified count of game-authored functions. Analysis can miss functions or
+split/merge boundaries; manually reviewed callbacks already demonstrate
+that the inventory is incomplete. It must not be used as a whole-game
+completion denominator. Source reconstruction and instruction matches are
+listed separately in [progress](progress.md).

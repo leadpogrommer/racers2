@@ -47,3 +47,19 @@ return for an unordered comparison, leaving the vector unchanged. Blending at
 operation order matters when an input aliases the output. The read-only float
 at `0x0052f2f0` is positive zero; it is seeded in `reccmp/floats.csv` as a literal
 pool entry rather than annotated as a game global.
+
+## Drive classification
+
+`GetPathDriveKind` at `0x004a4bc0` copies the first three path bytes into a
+four-byte NUL-terminated local root and calls `GetDriveTypeA`. Its 125-byte
+body includes every switch return through `0x004a4c3c`; a five-entry jump
+table follows at `0x004a4c40`. The return mapping is removable=0, fixed=1,
+remote=2, RAM disk=3, CD-ROM=4, and any other Win32 drive result=5. The caller
+at `0x0040a734` explicitly compares the result with 4, corroborating CD-ROM
+use. The helper retains the retail three-byte copy without adding path checks.
+
+The initial reconstruction remains STUB at 35.71%. Retail retains an EBP
+frame and emits a generic inline copy loop; the default build eliminates the
+frame and uses word/byte copies. No frame-forcing source or optimization
+pragmas were introduced. The pinned-CRT candidate scan has no match for this
+wrapper, so its original engine/library ownership is unestablished.

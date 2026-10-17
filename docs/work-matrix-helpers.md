@@ -45,43 +45,103 @@ locals before writing the corresponding three outputs, matching the observed
 row-at-a-time alias behavior. The current code retains these semantics and
 uses readable matrix indexing.
 
-The best measured natural-forward formulation reached 84.62% for each
-function. It keeps the left coefficients in locals, uses nested row/column
-loops, and writes each result as the sum of three forward-ordered products.
-The matching instructions still differ in x87 scheduling and the address
-chosen as the right-matrix traversal base. Earlier source layouts scored
-56.41% and 58.97%; the index-based layout raised both to 84.62%. Both methods
-remain STUB-annotated because neither reaches 100%. The return type is
-supported at the ABI level by EAX=this, while callers do not use the result;
-pointer versus reference spelling is not recovered.
+Both products now match at 100%. Each uses a natural accumulator in source:
+initialize from the first product, then add the second and third products in
+sequence. The first method caches a left row; the second caches a left column.
+This matches the retail x87 accumulation order and the per-row/per-column
+alias behavior. Earlier source variants scored 56.41%, 58.97%, and 84.62%; a
+single accumulating result raised both functions to 100%. Both return this in
+EAX and use ret 8. The pointer return spelling is retained for ABI/codegen;
+callers discard the result, so pointer versus reference remains ambiguous.
 
 ## Other matrix evidence and open signatures
 
-The determinant helper at 0x004a5250 is 55 bytes and currently scores 52.38%.
-Its natural sequential accumulation is semantically correct, but the compiler
-reassociates part of the determinant expression. It remains STUB.
+The quaternion-to-matrix helper at 0x004a4d30 is 204 bytes and remains STUB
+at 25.71%. Its formulas and output order are recovered from the full body.
+Retail caches the quaternion-derived inputs before writing the matrix, so the
+current implementation preserves behavior if the input overlaps the
+destination. A source variant that read quaternion components during output
+scored 31.88% but was rejected because it changed that alias behavior.
+
+The Euler helper at 0x004a4f60 is 211 bytes and now matches at 100%. Retail
+preserves this in EAX and uses ret 4; callers discard EAX, so the natural
+Matrix3* return-this signature is retained for code generation, with the C++
+pointer-versus-reference spelling still ambiguous. All input angles are
+converted to cached sine and cosine values before writes. Named negative
+product intermediates reproduce retail's negation-then-add sequence for two
+entries.
+
+The symmetric-fill helper at 0x004a5080 is 137 bytes and remains STUB. Its
+current readable implementation caches the squared components and the three
+cross-products before storing the symmetric matrix entries; it scores 42.22%,
+up from 15.73%. A Matrix3* return-this signature supports the observed EAX=this
+value while callers discard it. Retail keeps x-squared live in x87 while
+spilling y-squared and z-squared, then duplicates negative cross-products
+through integer stores. That schedule is not reproduced by the current natural
+source.
+
+The determinant helper at 0x004a5250 is 55 bytes and remains STUB. A staged
+source form with named first/second/third minors and products, then sequential
+addition, improves the best score from 52.38% to 61.90%. Retail computes the
+first cofactor term, then the second, then the third. VC6 still emits the
+second term before the first term in the staged build, so the main residual is
+compiler scheduling/reassociation rather than a formula or sign mismatch.
+Earlier three-term-local and direct-return variants scored 38.10% and 28.57%.
+The staged locals are the current best readable form; no compiler options or
+instruction-forcing constructs were used.
 
 Transpose helper 0x004a5040 reads nine source floats in transposed order and
-writes them to this. The body is 50 bytes. Retail preserves ECX=this in EAX
-through return, and the callers inspected ignore EAX; the current void
-signature is therefore not established as the original source signature.
-A Matrix3* return-this declaration is ABI-compatible and plausible, but should
-not be treated as recovered source spelling. The operation is not generally
-alias-safe: when source and destination are the same matrix, sequential stores
-can overwrite values that later loads read.
+writes them to this. The body is 50 bytes and now matches at 100%. Retail
+preserves ECX=this in EAX through return, and the callers inspected ignore
+EAX. The implementation uses a Matrix3* return-this signature; reference
+return has the same x86 ABI, so the original C++ spelling remains ambiguous.
+The operation is not generally alias-safe: when source and destination are the
+same matrix, sequential stores can overwrite values that later loads read.
 
 ## Addition and row scaling
 
 0x004a5110 is a 63-byte thiscall helper (ret 4) that adds the corresponding
-three values in each of three rows from its argument into this. Its typed
-row/column loop scored 21.28%. Retail uses a compact pointer-difference loop
-that appears to preserve elementwise aliasing. The implementation remains
-STUB; no pointer arithmetic was added to mimic its register layout.
+three values in each of three rows from its argument into this. The natural
+typed row loop now matches at 100%. Retail preserves this in EAX; callers
+discard the result, so pointer versus reference source spelling remains
+unresolved. Elementwise self-addition is preserved when source aliases this.
+
+Matrix3 inverse helper 0x004a5150 spans 254 bytes and returns this in EAX
+(ret 4). The current implementation computes reciprocal determinant, using a
+zero scale when the determinant compares equal to zero or is unordered, then
+writes the transposed cofactor matrix in column-major traversal order. It uses
+the same source/destination alias order as retail. This readable cyclic-index
+form scores 77.22% and remains STUB. A first cyclic counter-loop version scored
+22.56%; expressing the recovered cycle as the local index table `{1, 2, 0,
+1}` brought the generated traversal much closer to retail. Explicitly
+unrolling the nine cofactor assignments scored 21.95%, so the typed table loop
+remains. The current code does not cache the source matrix: retail reads each
+minor as it writes, so in-place inversion observes earlier stores.
+Its result depends on 0x004a5250, which is still STUB-annotated despite the
+recovered determinant formula.
 
 0x004a52c0 is a 66-byte thiscall helper (ret 8) that multiplies each source
-row by the matching entry in a three-float scale array and stores it to this.
-Its typed loop scored 34.62%. Retail hoists one scale per row and walks the
-source and destination in row strides. The implementation remains STUB.
+column by the matching entry in a three-float scale array and stores it as a
+row of this: output[row][column] = scale[row] * source[column][row]. This is
+the row-scaled transpose of the source. The natural typed loop now matches at
+100%. Retail preserves this in EAX; callers discard the result, so pointer
+versus reference source spelling remains unresolved. Its sequential write
+order is observable when source and destination alias; the implementation
+keeps that order.
+
+## Adjacent closed leaf candidate
+
+The nearby standalone quaternion normalizer at 0x004a5310 is 102 bytes,
+ending at 0x004a5375. It reads four consecutive floats from ECX, computes
+their Euclidean magnitude, returns that magnitude in x87 ST(0), and scales
+all four components by its reciprocal when the magnitude is nonzero. The zero
+case returns zero and leaves the components alone. The packed-quaternion
+decoder at 0x004a5440 writes all four components and invokes this normalizer;
+array indexing at 0x0044a63c/0x0044a680 advances quaternion records in 16-byte
+steps. This supports a four-float Quaternion layout and 0x10 size assertion.
+The new Quaternion::Normalize source is STUB at 85.37%. Direct, reordered,
+and staged square-sum forms all generated the same residual x87 scheduling;
+the direct expression remains the clearest form.
 
 ## Compiler options and evaluation order
 
@@ -95,5 +155,5 @@ Matrix products cache the left row/column before writing its outputs, so
 destination aliasing the left operand preserves those coefficients for that
 row/column. The destination may alias the right operand, where later reads can
 observe earlier writes; do not add temporary whole-matrix copies that alter
-that behavior. Similar evaluation order matters in the exact Vector3 blend and
-in-place transpose.
+that behavior. Similar evaluation order matters in the exact Vector3 blend,
+matrix transpose, and row-scaled transpose.
