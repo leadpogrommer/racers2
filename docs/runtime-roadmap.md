@@ -70,8 +70,7 @@ viewports and stream setup now have source bodies. Owner integration still
 requires record construction and full main-table wiring. Default texture
 creation/upload, resource initialization, animation callbacks and draw-plan
 resolution now have compiled source. Texture-loading helpers, mip maintenance, sprite submission and immediate
-drawing now have source. Scene/frame callbacks, full construction/table wiring
-and GUI packet drawing remain in recovery; these paths have not been run.
+drawing now have source. Scene startup, reset/resource restoration, packet submission, GUI rectangles and all eight quad-packet variants now have compiled source. Constructor/table integration, lookup submission and terrain drawing remain in recovery; these paths have not been run.
 The [initialization dependency audit](work-renderer-initialization.md) lists
 those concrete prerequisites; no incomplete renderer singleton is instantiated.
 DirectInput now has a complete
@@ -102,3 +101,7 @@ retail entry path. No game or probe execution is planned during small
 implementation batches. Reserve the next runtime check for a significant
 milestone expected to render the menu or enter gameplay, and track a rendered
 menu before claiming a playable milestone.
+
+## Controller and clock recovery
+
+The readiness gate also initializes the controller/replay manager selected by `0x0054a330`, backed by `0x00679d48`. Controller records, bindings and recorded-input access now have compiled source, along with the actual WinMM periodic-event and named-mutex adapter. The manager and RDTSC-based clock are being recovered separately; polling timers are not started by the temporary entry point. The full main renderer tables have a prepared 207-slot inventory and verifier, but remain unlinked while their callback closure is incomplete. This inventory has not yet passed rebuilt-table verification.

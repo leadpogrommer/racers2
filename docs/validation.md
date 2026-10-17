@@ -40,10 +40,10 @@ python tools/compare.py
 ## Continued decompilation
 
 The latest renderer checkpoint was verified on 2026-10-17 in both the Python
-builder and CMake/NMake: **233 exact functions, nine reviewed near matches,
-and 258 STUB rows**. All 500 measured raw scores and annotation statuses agree.
-Both outputs pass data comparison for 82 annotated globals, application wiring
-for 76 pointers, input wiring for 80 pointers, and all 307 input-format entries.
+builder and CMake/NMake: **245 exact functions, nine reviewed near matches,
+and 279 STUB rows**. All 533 measured raw scores and annotation statuses agree.
+Both outputs pass data comparison for 95 annotated globals, application wiring
+for 76 pointers, renderer resource/buffer wiring for 78 pointers, input wiring for 80 pointers, and all 307 input-format entries.
 The 16 tooling tests pass; regressions cover optional D3DX8 configuration and ANSI/non-UTF-8
 archive member names in VC6 link maps, preserving the ASCII symbol/address
 columns used by the static verifiers. No game behavior tests were added.
@@ -203,8 +203,8 @@ probe was run for this batch.
 
 ## Renderer submission and loading checkpoint
 
-Both builders agree on 500 measured rows, including 233 exact matches, nine
-reviewed near matches and 258 STUBs. All 82 annotated globals pass data comparison.
+That checkpoint verified 500 measured rows: 233 exact matches, nine reviewed
+near matches and 258 STUBs, plus 82 annotated globals without data issues.
 `check_renderer_resource_dispatch.py` now verifies 78 callbacks across texture,
 cache, abstract, vertex/index-buffer and animation-resource tables. Application
 and input dispatch (76 and 80 pointers) and all 307 input-format entries still
@@ -215,3 +215,9 @@ unlinked work. The temporary entry point still does not start the game. Large
 loading/maintenance functions remain STUB after review found and corrected
 incorrect mip offsets, CRT case conversion and surface-copy contracts; their
 compilation alone is not evidence of correct rendered pixels.
+
+### Scene, GUI and controller checkpoint
+
+Both builders agree on 533 measured function rows: 245 exact, nine reviewed near matches and 279 STUB. The twelve added exact matches are controller cleanup, device assignment, binding append/lookup, auxiliary-renderer lookup, and seven timer/mutex wrappers. Device reset, resource restoration, scene startup, packet drawing, clipping, tagged quads and bump vectors retain their measured STUB status. Both data reports verify 95 globals with zero issues. All 78 renderer resource/buffer callbacks, 76 application callbacks, 80 input callbacks and 307 input-format entries pass static checks. Sixteen tooling tests pass. No game or asset probe ran.
+
+Identical-code folding now selects different public aliases for existing empty callbacks and path setters. FOLDED annotations retain one original comparison address through the actual shared body, without adding writes or disabling linker folding. The full 207-slot renderer table verifier is prepared but cannot be run successfully until those tables are linked.

@@ -11,7 +11,8 @@ IDirect3DSurface8* g_savedRendererTarget;
 // GLOBAL: LEGORACERS2 0x0067bd6c
 D3DVIEWPORT8* g_savedRendererViewport;
 
-// STUB: LEGORACERS2 0x00406cd0
+// Retail 0x00406cd0 shares its rebuilt eight-byte body with the annotated
+// exception filter at 0x004c32b0. Keep one comparison mapping for this ICF body.
 LegoBool32 DisplayRenderer::AcceptUnusedRendererPolicy(LegoU32)
 {
 	return TRUE;

@@ -99,7 +99,7 @@ void RendererResourceCacheEntry::InitializeRecord()
 	m_vtable = (void*) &g_rendererResourceCacheDispatch;
 }
 
-// FUNCTION: LEGORACERS2 0x004c0070
+// FUNCTION: LEGORACERS2 0x004c0070 FOLDED
 LegoBool32 RendererResourceCacheEntry::SetPath(const LegoChar* p_path)
 {
 	strcpy(m_path, p_path);

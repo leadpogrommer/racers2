@@ -68,19 +68,30 @@ class Quaternion;
 class Vector3;
 class BitmapImage;
 class Terrain;
+class TerrainVertexGrid;
 
 class DisplayRenderer {
 public:
 	DisplayRenderer();
 	void PrepareDrawPacketState(struct RendererDrawPacketView* p_packet);
 	void DrawTerrain(Terrain* p_terrain);
+	void BuildTerrainGridStream(
+		LegoU8** p_vertexCursor,
+		TerrainVertexGrid* p_grid,
+		LegoS32 p_level,
+		LegoU32* p_indexOffset,
+		LegoU32* p_vertexBase,
+		LegoS32 p_topology
+	);
 	void ReapplyLights();
+	LegoFloat GetMaximumDirectionalLightIntensity();
+	RendererAuxiliaryResourceRecord* GetAuxiliaryResource(LegoS32 p_index);
 	LegoBool32 SetDeviceResourceMode(LegoU32 p_mode);
 	LegoBool32 AdvanceDeviceFallback();
 	LegoBool32 ReconfigureDisplayMode(LegoU32 p_width, LegoU32 p_height, LegoU32 p_bitDepth, LegoS32 p_refreshRate);
 	LegoBool32 AcceptUnusedRendererPolicy(LegoU32 p_unused);
 	void BuildBumpMapVectors(struct RendererStagePlanRequest* p_request);
-	void DrawGuiRectangle(const struct RendererGuiRectangle* p_rectangle);
+	void DrawGuiRectangle(const struct RendererGuiRectangle* p_rectangle, RendererDefaultRecord* p_defaults);
 	void DrawQuadPacket(const void* p_packet);
 	void DrawRendererPacket(struct RendererDrawPacketView* p_packet);
 	void DrawIndexedPacket(struct RendererDrawPacketView* p_packet);
@@ -313,7 +324,8 @@ public:
 	undefined m_unk0x4b8[0x4c0 - 0x4b8];
 	LegoU32 m_unk0x4c0;
 	RendererResourceWorkList* m_resourceWorkList; // 0x4c4
-	undefined m_unk0x4c8[0x4d0 - 0x4c8];
+	LegoU32 m_unk0x4c8;
+	void* m_unk0x4cc;
 	LegoS32 m_unk0x4d0;
 	LegoS32 m_unk0x4d4;
 	LegoS32 m_unk0x4d8;

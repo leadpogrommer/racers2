@@ -6,10 +6,10 @@ Reviewed semantically identical near matches (initially at least 95% raw) are
 implemented functions, counted separately from exact matches.
 
 Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-17.
-The match guard verified **233 exact functions and nine reviewed near
-matches**. Another 258 reconstructions remain `STUB`; both builders agree on
-all 500 measured raw scores and annotation statuses. Data comparison verifies
-82 annotated globals with zero issues. Unlinked inventory entries and folded
+The match guard verified **245 exact functions and nine reviewed near
+matches**. Another 279 reconstructions remain `STUB`; both builders agree on
+all 533 measured raw scores and annotation statuses. Data comparison verifies
+95 annotated globals with zero issues. Unlinked inventory entries and folded
 aliases may also appear in the CLI denominator without another measured row.
 
 This is the reconstructed subset, not whole-game coverage. The automatic
@@ -77,7 +77,7 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004a2d20` | `FileManager::SeekCurrent` | 79.49% | Work in progress |
 | `0x004a2d80` | `FileManager::SetFlags` | 100.00% | Verified exact |
 | `0x004a3ed0` | `GetMemoryHeap` | 60.00% | Work in progress |
-| `0x004a3f20` | `OnSavedDisplayConfigExit` | 100.00% | Verified exact |
+| `0x004a3f20` | `DestroyMissingRecordedControllerInput` | 100.00% | Verified exact |
 | `0x004a3f30` | `MemoryHeap::EnterOperation` | 85.71% | Work in progress |
 | `0x004a3f60` | `MemoryHeap::LeaveOperation` | 100.00% | Verified exact |
 | `0x004a3f80` | `MemoryHeap::MemoryHeap` | 82.54% | Work in progress |
@@ -134,7 +134,7 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004a5e90` | `InitializeSimulationFrameRate` | 53.33% | Work in progress |
 | `0x004a5ec0` | `InitializeSimulationStepSeconds` | 100.00% | Verified exact |
 | `0x004a5ef0` | `InitializeSimulationStepMilliseconds` | 100.00% | Verified exact |
-| `0x004a7cc0` | `?ReleaseRendererDrawPacket@@YIXPAURendererDrawPacket@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\applicationdispatch.h111434517@@PAX@Z` | 66.67% | Work in progress |
+| `0x004a7cc0` | `?ReleaseRendererDrawPacket@@YIXPAURendererDrawPacket@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\applicationdispatch.h20058168@@PAX@Z` | 66.67% | Work in progress |
 | `0x004ab2a0` | `ReportFatalError` | 85.25% | Work in progress |
 | `0x004ab3b0` | `PrintDiagnostic` | 79.41% | Work in progress |
 | `0x004ab560` | `RendererVertexBufferLegacyConditionalFree` | 75.86% | Work in progress |
@@ -201,6 +201,7 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004ad540` | `GetDisplayFormatBitDepth` | 29.17% | Work in progress |
 | `0x004ad5a0` | `DisplayRenderer::GetSelectedAdapterModeCount` | 100.00% | Verified exact |
 | `0x004ad5c0` | `DisplayRenderer::GetSelectedAdapterMode` | 16.47% | Work in progress |
+| `0x004ad640` | `DisplayRenderer::ReconfigureDisplayMode` | 12.84% | Work in progress |
 | `0x004ada60` | `DisplayRenderer::FindBestDisplayMode` | 22.32% | Work in progress |
 | `0x004adba0` | `DisplayRenderer::InitializeDefaultRenderStates` | 60.53% | Work in progress |
 | `0x004adfe0` | `DisplayRenderer::SetCachedRenderState` | 100.00% | Verified exact |
@@ -250,6 +251,14 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004b4d60` | `ExpandChildWindowBounds` | 100.00% | Verified exact |
 | `0x004b4de0` | `FitWindowToChildren` | 100.00% | Verified exact |
 | `0x004b4e80` | `ScreenRectToClient` | 100.00% | Verified exact |
+| `0x004b7b80` | `InputController::InputController` | 83.33% | Work in progress |
+| `0x004b7c20` | `InputController::~InputController` | 100.00% | Verified exact |
+| `0x004b7d80` | `InputController::SetDevice` | 100.00% | Verified exact |
+| `0x004b7da0` | `InputController::AppendBinding` | 100.00% | Verified exact |
+| `0x004b7e30` | `InputController::GetBinding` | 100.00% | Verified exact |
+| `0x004b7e40` | `InputController::GetRecordedInput` | 71.11% | Work in progress |
+| `0x004b7eb0` | `InputController::GetCurrentInput` | 65.57% | Work in progress |
+| `0x004b7f20` | `InputController::RecordInputRange` | 92.00% | Work in progress |
 | `0x004bb1f0` | `SetScreenshotDirectory` | 100.00% | Verified exact |
 | `0x004bd5f0` | `RendererLookupTableState::Initialize` | 51.97% | Work in progress |
 | `0x004bd6d0` | `RendererLookupTableState::ReleaseStorage` | 66.67% | Work in progress |
@@ -261,6 +270,7 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004be2f0` | `RendererResourceCacheEntry::RendererResourceCacheEntry` | 27.27% | Work in progress |
 | `0x004be320` | `RendererAuxiliaryResourceRecord::InitializeHeader` | 100.00% | Verified exact |
 | `0x004bf150` | `DisplayRenderer::SelectLights` | 25.63% | Work in progress |
+| `0x004bf6e0` | `DisplayRenderer::ReapplyLights` | 66.21% | Work in progress |
 | `0x004bf920` | `LoadMipSidecar` | 47.11% | Work in progress |
 | `0x004bfa60` | `EnsureMipSidecar` | 42.22% | Work in progress |
 | `0x004bfb50` | `DisplayRenderer::FindOrCreateTextureRecord` | 23.90% | Work in progress |
@@ -276,6 +286,7 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004c0510` | `RendererAuxiliaryResourceRecord::InitializeFrom` | 48.15% | Work in progress |
 | `0x004c05e0` | `RendererAuxiliaryResourceRecord::Matches` | 47.93% | Work in progress |
 | `0x004c0670` | `RendererAuxiliaryResourceRecord::SetCallback` | 61.54% | Work in progress |
+| `0x004c06d0` | `DisplayRenderer::GetAuxiliaryResource` | 100.00% | Verified exact |
 | `0x004c0770` | `DisplayRenderer::AcquireAuxiliaryResource` | 35.54% | Work in progress |
 | `0x004c09a0` | `DisplayRenderer::FindOrAllocateTextureResource` | 44.59% | Work in progress |
 | `0x004c0a60` | `DisplayRenderer::AddTextureReference` | 89.66% | Work in progress |
@@ -328,15 +339,19 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004da500` | `RendererTextureRecord::UnlockPrimarySurface` | 80.85% | Work in progress |
 | `0x004da540` | `RendererTextureRecord::UploadBitmapImage` | 34.86% | Work in progress |
 | `0x004da5e0` | `DisplayRenderer::BuildMipSidecar` | 34.70% | Work in progress |
-| `0x004da9f0` | `?ReadBitmapInfoSettings@@YAIPBDPAUBitmapInfoSettings@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\bitmapimage.h103718926@@@Z` | 2.29% | Work in progress |
+| `0x004da9f0` | `?ReadBitmapInfoSettings@@YAIPBDPAUBitmapInfoSettings@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\bitmapimage.h303826095@@@Z` | 2.29% | Work in progress |
 | `0x004dabe0` | `ParseBitmapInfoValue` | 40.31% | Work in progress |
 | `0x004dac90` | `GenerateBitmapMipLevel` | 17.20% | Work in progress |
 | `0x004db5c0` | `FindClosestPaletteColor` | 30.09% | Work in progress |
 | `0x004db650` | `GenerateNormalMap` | 12.59% | Work in progress |
 | `0x004db900` | `DisplayRenderer::SetTextureIndexMap` | 100.00% | Verified exact |
 | `0x004db920` | `UpdateTextureRecordFormat` | 8.00% | Work in progress |
+| `0x004db9c0` | `DisplayRenderer::ReleaseDeviceResources` | 91.25% | Work in progress |
+| `0x004dbab0` | `DisplayRenderer::SetDeviceResourceMode` | 66.29% | Work in progress |
 | `0x004dbbe0` | `DisplayRenderer::RefreshTextureFormats` | 13.39% | Work in progress |
 | `0x004dbfb0` | `RendererTextureRecord::ReleaseTexture` | 66.67% | Work in progress |
+| `0x004dc000` | `DisplayRenderer::RestoreDeviceResources` | 37.88% | Work in progress |
+| `0x004dc250` | `DisplayRenderer::AdvanceDeviceFallback` | 41.45% | Work in progress |
 | `0x004dc4c0` | `DisplayRenderer::ShouldUseHighResolutionTextures` | 98.11% | Reviewed near match |
 | `0x004dc510` | `DisplayRenderer::SetTextureQuality` | 97.14% | Reviewed near match |
 | `0x004dc590` | `DisplayRenderer::SetTextureFiltering` | 45.95% | Work in progress |
@@ -350,8 +365,12 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004dc990` | `DisplayRenderer::IsSolidPassOverrideActive` | 31.58% | Work in progress |
 | `0x004dc9b0` | `DisplayRenderer::ClearBuffers` | 35.91% | Work in progress |
 | `0x004dccc0` | `DisplayRenderer::SetAlphaBlendMode` | 8.94% | Work in progress |
+| `0x004dcf30` | `DisplayRenderer::PrepareDrawPacketState` | 47.41% | Work in progress |
+| `0x004dd130` | `DisplayRenderer::BeginScene` | 68.29% | Work in progress |
 | `0x004dd230` | `DisplayRenderer::EndScene` | 100.00% | Verified exact |
 | `0x004dd240` | `RendererTimingStatisticsState::GetMetrics` | 20.42% | Work in progress |
+| `0x004dd460` | `DisplayRenderer::DrawRendererPacket` | 40.99% | Work in progress |
+| `0x004dd900` | `DisplayRenderer::DrawIndexedPacket` | 31.08% | Work in progress |
 | `0x004dd9f0` | `DisplayRenderer::IsPointWithinViewport` | 38.76% | Work in progress |
 | `0x004ddad0` | `MultiplyMatrix4` | 100.00% | Verified exact |
 | `0x004ddb30` | `DisplayRenderer::ScaleProjectionCoordinate` | 100.00% | Verified exact |
@@ -364,6 +383,8 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004de110` | `ApplyDefaultWorldTransform` | 70.83% | Work in progress |
 | `0x004de160` | `DisplayRenderer::SetViewTransform` | 13.58% | Work in progress |
 | `0x004de2e0` | `DisplayRenderer::SetProjection` | 41.45% | Work in progress |
+| `0x004de460` | `DisplayRenderer::BuildBumpMapVectors` | 9.51% | Work in progress |
+| `0x004de990` | `ApplySpecialDrawPacketEffect` | 20.03% | Work in progress |
 | `0x004dee20` | `DisplayRenderer::SetStencilBufferEnabled` | 40.00% | Work in progress |
 | `0x004dee90` | `DisplayRenderer::ResetStencilOperations` | 81.63% | Work in progress |
 | `0x004deed0` | `DisplayRenderer::SetStencilFunction` | 13.51% | Work in progress |
@@ -372,6 +393,7 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004df220` | `DisplayRenderer::DisableColorOverride` | 100.00% | Verified exact |
 | `0x004df230` | `DisplayRenderer::SetBlendModeOverride` | 100.00% | Verified exact |
 | `0x004df250` | `DisplayRenderer::ClearBlendModeOverride` | 100.00% | Verified exact |
+| `0x004df260` | `DisplayRenderer::DrawGuiRectangle` | 25.51% | Work in progress |
 | `0x004df6b0` | `DisplayRenderer::BeginSpriteBatch` | 93.33% | Work in progress |
 | `0x004df6e0` | `DisplayRenderer::DrawSprite` | 75.00% | Work in progress |
 | `0x004df720` | `DisplayRenderer::AllocateSpriteVertices` | 62.50% | Work in progress |
@@ -389,6 +411,7 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004e03d0` | `DisplayRenderer::DrawUnlitTriangles` | 20.22% | Work in progress |
 | `0x004e0560` | `DisplayRenderer::ApplyTextureOperation` | 31.77% | Work in progress |
 | `0x004e0d40` | `DisplayRenderer::SetVertexStream` | 56.72% | Work in progress |
+| `0x004e0db0` | `DisplayRenderer::DrawQuadPacket` | 9.31% | Work in progress |
 | `0x004e18a0` | `DisplayRenderer::SetTextureTransform` | 6.59% | Work in progress |
 | `0x004e1950` | `PassThroughStageValidationResult` | 100.00% | Verified exact |
 | `0x004e1960` | `RendererTextureStageManager::Initialize` | 92.36% | Work in progress |
@@ -519,10 +542,20 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004ee5e0` | `JoystickInputDevice::StopEnvelopedConstantForce` | 100.00% | Verified exact |
 | `0x004ee600` | `JoystickInputDevice::ReleaseEffects` | 100.00% | Verified exact |
 | `0x004ee660` | `JoystickInputDevice::SetAutoCenter` | 100.00% | Verified exact |
+| `0x004f4a40` | `InitializeMultimediaTimerService` | 53.01% | Work in progress |
+| `0x004f4ad0` | `ShutdownMultimediaTimerService` | 100.00% | Verified exact |
+| `0x004f4af0` | `MultimediaTimerService::EndPeriod` | 100.00% | Verified exact |
+| `0x004f4b10` | `MultimediaTimerService::CreatePeriodicEvent` | 100.00% | Verified exact |
+| `0x004f4b40` | `MultimediaTimerService::KillPeriodicEvent` | 100.00% | Verified exact |
+| `0x004f4b60` | `MultimediaTimerService::CreateNamedMutex` | 100.00% | Verified exact |
+| `0x004f4b90` | `MultimediaTimerService::CloseMutex` | 100.00% | Verified exact |
+| `0x004f4bb0` | `MultimediaTimerService::AcquireNamedMutex` | 67.80% | Work in progress |
+| `0x004f4c00` | `MultimediaTimerService::ReleaseNamedMutex` | 100.00% | Verified exact |
 | `0x004f54a0` | `BitmapImage::LoadTga` | 17.27% | Work in progress |
 | `0x004f59c0` | `BitmapImage::ReleaseStorage` | 95.24% | Reviewed near match |
 | `0x004f5a10` | `WriteBitmapTgaFile` | 30.77% | Work in progress |
 | `0x004fb7f0` | `RendererAuxiliaryResourceRecord::CopyToDeviceMaterial` | 78.87% | Work in progress |
+| `0x004fb880` | `ClipGuiRectangle` | 77.94% | Work in progress |
 
 The latest renderer batch adds 13 measured bodies: four exact matches and nine
 below the annotation threshold. It recovers texture-format enumeration and

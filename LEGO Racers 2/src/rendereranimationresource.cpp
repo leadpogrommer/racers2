@@ -68,6 +68,8 @@ LegoBool32 RendererAnimationResourceRecord::ReturnsTrue()
 	return TRUE;
 }
 
+// The compiler folds this identical path/resource prefix into the cache setter.
+// FUNCTION: LEGORACERS2 0x004c0070 FOLDED
 LegoBool32 RendererAnimationResourceRecord::SetPath(const LegoChar* p_path)
 {
 	strcpy(m_path, p_path);

@@ -14,8 +14,8 @@ Verified reconstructions include character predicates, line classification,
 fixed string buffers, file operations, window geometry, command-line parsing,
 startup helpers, bitmap scanning, terrain lookup, spline helpers, and
 foundational renderer/input operations.
-The current checkpoint has **233 exact function matches**, **nine reviewed
-near matches**, and 258 unfinished implementations across 500 measured
+The current checkpoint has **245 exact function matches**, **nine reviewed
+near matches**, and 279 unfinished implementations across 533 measured
 functions. See
 [current progress](docs/progress.md) for the measured function list and
 remaining work. The application singleton and its two complete 38-slot
@@ -27,10 +27,10 @@ pools and uploads, TGA loading, resource lookup, and the full display-initialize
 body. The initializer remains under review at 22.87% raw similarity; the
 reserved renderer storage is now present. Texture upload, animation resources
 and draw-plan builders also have source. The actual renderer constructor, full
-dispatch wiring, remaining scene/draw callbacks and startup integration remain open.
+dispatch wiring, lookup callbacks and startup integration remain open.
 Bitmap loading and mip preprocessing, texture maintenance, buffer dispatch,
 sprite submission, immediate drawing and animation records now have source;
-large bodies still require semantic review.
+large bodies still require semantic review. Device reset/resource restoration, scene startup, GUI rectangle clipping, all eight quad-packet cases and bump-vector generation also have compiled source. Controller records, recorded-input access, timer events and named mutexes have source; the controller manager and system clock remain in recovery.
 Earlier runtime checks exercised config,
 archive metadata, and selected asset reads. The executable still has a
 temporary entry point and does not reach a window, rendered menu, or gameplay.

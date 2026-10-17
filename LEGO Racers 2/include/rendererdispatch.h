@@ -11,6 +11,8 @@ class Vector3;
 class RendererIndexBuffer;
 struct RendererTextureRecord;
 struct RendererDefaultSlot;
+struct RendererDefaultRecord;
+struct RendererGuiRectangle;
 
 // View of an observed game dispatch slot. This does not construct a table or
 // propose a source class hierarchy. The preceding slots retain their offsets.
@@ -34,7 +36,10 @@ struct RendererDispatchView {
 	undefined m_unk0x28[0x34 - 0x28];
 	typedef void(__fastcall* Action)(DisplayRenderer*, void*);
 	Action m_uploadDefaultVertexConstants; // 0x34
-	undefined m_unk0x38[0x64 - 0x38];
+	undefined m_unk0x38[0x58 - 0x38];
+	typedef LegoFloat(__fastcall* ScaleCoordinate)(DisplayRenderer*, void*, LegoFloat, LegoFloat);
+	ScaleCoordinate m_scaleProjectionCoordinate; // 0x58
+	undefined m_unk0x5c[0x64 - 0x5c];
 	typedef LegoFloat(__fastcall* TransformPoint)(DisplayRenderer*, void*, const Vector3*, Vector3*);
 	TransformPoint m_transformViewport; // 0x64, target4ddce0
 	undefined m_unk0x68[0x7c - 0x68];
@@ -51,7 +56,11 @@ struct RendererDispatchView {
 	SetValue m_releaseViewport;      // 0xbc
 	undefined m_unk0xc0[0xc8 - 0xc0];
 	SetValue m_action0xc8; // 0xc8
-	undefined m_unk0xcc[0x100 - 0xcc];
+	undefined m_unk0xcc[0xf4 - 0xcc];
+	typedef void(__fastcall*
+					 DrawGuiRectangle)(DisplayRenderer*, void*, const RendererGuiRectangle*, RendererDefaultRecord*);
+	DrawGuiRectangle m_drawGuiRectangle; // 0xf4
+	undefined m_unk0xf8[0x100 - 0xf8];
 	CreateIndexBuffer m_createIndexBuffer; // 0x100
 	undefined m_unk0x104[0x114 - 0x104];
 	GetTextureRecord m_getTextureRecord; // 0x114

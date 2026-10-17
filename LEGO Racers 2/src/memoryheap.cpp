@@ -50,6 +50,7 @@ MemoryHeap* GetMemoryHeap()
 	return g_memoryHeapSingleton;
 }
 
+// FUNCTION: LEGORACERS2 0x004a3f20 FOLDED
 static void DestroyMemoryHeapAtExit()
 {
 }
