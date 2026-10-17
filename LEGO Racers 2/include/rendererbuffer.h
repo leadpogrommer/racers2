@@ -19,7 +19,8 @@ public:
 	};
 
 	void Initialize(LegoU32 p_bucketCount, LegoU32 p_entryCapacity, LegoU32 p_bucketShift, LegoU32 p_unk0x10);
-	Entry* Insert(LegoU32 p_key, LegoU32 p_unk0x0c, LegoU32 p_unk0x08, LegoS32 p_hashKey);
+	void Insert(LegoU32 p_key, LegoU32 p_unk0x0c, LegoU32 p_unk0x08, LegoS32 p_hashKey);
+	void InsertOrdered(LegoU32 p_key, LegoU32 p_unk0x0c, LegoU32 p_unk0x08, LegoS32 p_hashKey);
 	void ReleaseStorage();
 	void Clear();
 

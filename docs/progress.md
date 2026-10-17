@@ -6,11 +6,11 @@ Reviewed semantically identical near matches (initially at least 95% raw) are
 implemented functions, counted separately from exact matches.
 
 Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-17.
-The match guard verified **150 exact functions and four reviewed near
-matches**; 99 additional reconstructions remain `STUB` because behavior is
-unresolved or below the near-match threshold. Both builds agree on all 253
-measured rows and annotation statuses. Data comparison verifies 64 annotated
-globals with zero issues. The CLI denominator of 256 also includes three
+The match guard verified **154 exact functions and four reviewed near
+matches**; 108 additional reconstructions remain `STUB` because behavior is
+unresolved or below the near-match threshold. Both builds agree on all 266
+measured rows and annotation statuses. Data comparison verifies 65 annotated
+globals with zero issues. The CLI denominator of 269 also includes three
 inventory-only folded/cleanup functions that have no additional measured
 match rows.
 
@@ -136,9 +136,11 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004ab3b0` | `PrintDiagnostic` | 79.41% | Work in progress |
 | `0x004abe90` | `RendererZeroPair::RendererZeroPair` | 100.00% | Verified exact |
 | `0x004abeb0` | `RendererSubrecordGroup::RendererSubrecordGroup` | 100.00% | Verified exact |
+| `0x004ac110` | `DisplayRenderer::GetTextureQuality` | 100.00% | Verified exact |
 | `0x004ac120` | `DisplayRenderer::UsesHardwareVertexProcessing` | 100.00% | Verified exact |
 | `0x004acd00` | `DisplayRenderer::ConfigureNvidiaWorkaround` | 12.61% | Work in progress |
 | `0x004acfb0` | `DisplayRenderer::CreateVertexBuffers` | 95.33% | Reviewed near match |
+| `0x004ad130` | `GetChannelMaskBitCount` | 14.56% | Work in progress |
 | `0x004ad2c0` | `DisplayRenderer::EnumerateSupportedAdapters` | 33.33% | Work in progress |
 | `0x004ad540` | `GetDisplayFormatBitDepth` | 29.17% | Work in progress |
 | `0x004ad5a0` | `DisplayRenderer::GetSelectedAdapterModeCount` | 100.00% | Verified exact |
@@ -148,6 +150,9 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004adfe0` | `DisplayRenderer::SetCachedRenderState` | 100.00% | Verified exact |
 | `0x004ae010` | `DisplayRenderer::ResetTextureStages` | 30.95% | Work in progress |
 | `0x004ae310` | `DisplayRenderer::SetCachedTextureStageState` | 43.48% | Work in progress |
+| `0x004ae5c0` | `DisplayRenderer::SetMaterialColor` | 15.53% | Work in progress |
+| `0x004ae660` | `PixelFormatDescription::Initialize` | 69.44% | Work in progress |
+| `0x004ae9d0` | `GetChannelMaskLoss` | 11.96% | Work in progress |
 | `0x004aebb0` | `DisplayRenderer::SelectDepthStencilFormat` | 60.38% | Work in progress |
 | `0x004aed00` | `CheckDirectInputResult` | 100.00% | Verified exact |
 | `0x004aed30` | `InputDeviceService::Initialize` | 84.53% | Work in progress |
@@ -184,6 +189,7 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004bd6d0` | `RendererLookupTableState::ReleaseStorage` | 66.67% | Work in progress |
 | `0x004bd710` | `RendererLookupTableState::Clear` | 28.07% | Work in progress |
 | `0x004bd770` | `RendererLookupTableState::Insert` | 60.00% | Work in progress |
+| `0x004bd7c0` | `RendererLookupTableState::InsertOrdered` | 100.00% | Verified exact |
 | `0x004c32b0` | `FUN_004c32b0` | 100.00% | Verified exact |
 | `0x004c33b0` | `FUN_004c33b0` | 100.00% | Verified exact |
 | `0x004c3460` | `FindFirstNonemptyRow` | 100.00% | Verified exact |
@@ -206,7 +212,14 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004d1a70` | `SplinePath::FUN_004d1a70` | 100.00% | Verified exact |
 | `0x004d1aa0` | `SplinePath::FUN_004d1aa0` | 39.73% | Work in progress |
 | `0x004d1d90` | `SplinePath::FUN_004d1d90` | 48.32% | Work in progress |
+| `0x004d8800` | `DisplayRenderer::AddSupportedTextureFormat` | 50.00% | Work in progress |
+| `0x004d8840` | `DisplayRenderer::InitializeTextureFormats` | 100.00% | Verified exact |
+| `0x004da240` | `DisplayRenderer::SelectTextureFormat` | 40.00% | Work in progress |
 | `0x004dc590` | `DisplayRenderer::SetTextureFiltering` | 45.95% | Work in progress |
+| `0x004dc7f0` | `DisplayRenderer::SetDepthState` | 26.67% | Work in progress |
+| `0x004dc9b0` | `DisplayRenderer::ClearBuffers` | 31.36% | Work in progress |
+| `0x004dccc0` | `DisplayRenderer::SetAlphaBlendMode` | 8.94% | Work in progress |
+| `0x004dfb20` | `DisplayRenderer::Present` | 100.00% | Verified exact |
 | `0x004e7b10` | `InitializeRendererFloatingPoint` | 71.43% | Work in progress |
 | `0x004e7b30` | `SaveFloatingPointControl` | 100.00% | Verified exact |
 | `0x004e7b40` | `RestoreFloatingPointControl` | 100.00% | Verified exact |
@@ -279,7 +292,18 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004ee600` | `JoystickInputDevice::ReleaseEffects` | 100.00% | Verified exact |
 | `0x004ee660` | `JoystickInputDevice::SetAutoCenter` | 100.00% | Verified exact |
 
-The latest input batch adds 58 measured reconstructions (33 exact matches and
+The latest renderer batch adds 13 measured bodies: four exact matches and nine
+below the annotation threshold. It recovers texture-format enumeration and
+selection, pixel masks, material colors, frame clearing/presentation,
+depth/blend state controls and ordered cache insertion. No renderer owner or
+partial dispatch table is instantiated. Both builds retain all 76 application
+and 80 input pointers and all 307 input-format entries. See
+[texture formats](work-renderer-texture-formats.md), [pixel formats](work-pixelformat.md),
+[presentation](work-renderer-presentation.md), [state controls](work-renderer-state-control.md),
+[lookup tables](work-renderer-lookup.md), and the
+[initialization audit](work-renderer-initialization.md).
+
+The preceding input batch adds 58 measured reconstructions (33 exact matches and
 25 below the annotation threshold), the folded null helper, the complete
 service initializer and joystick dispatch table. All 307 input-format entries
 match retail, including its mouse button GUID filters. The temporary bootstrap

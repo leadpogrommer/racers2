@@ -51,12 +51,7 @@ void RendererLookupTableState::Clear()
 }
 
 // STUB: LEGORACERS2 0x004bd770
-RendererLookupTableState::Entry* RendererLookupTableState::Insert(
-	LegoU32 p_key,
-	LegoU32 p_unk0x0c,
-	LegoU32 p_unk0x08,
-	LegoS32 p_hashKey
-)
+void RendererLookupTableState::Insert(LegoU32 p_key, LegoU32 p_unk0x0c, LegoU32 p_unk0x08, LegoS32 p_hashKey)
 {
 	Entry* entry = &m_entryStorage[m_itemCount];
 	++m_itemCount;
@@ -67,5 +62,4 @@ RendererLookupTableState::Entry* RendererLookupTableState::Insert(
 	entry->m_unk0x08 = p_unk0x08;
 	entry->m_unk0x0c = p_unk0x0c;
 	m_bucketHeads[bucketIndex] = entry;
-	return entry;
 }

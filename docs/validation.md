@@ -40,21 +40,22 @@ python tools/compare.py
 ## Continued decompilation
 
 The combined SP5/Wine and CMake/NMake builds were revalidated on 2026-10-17.
-Both passed the match guard for **150 exact functions and four reviewed near
-matches**. All 253 measured raw scores and annotation statuses agree across
-the two builds: 154 implemented reconstructions and 99 unfinished bodies.
-The CLI denominator of 256 also includes the unmatched 10-byte generated
+Both passed the match guard for **154 exact functions and four reviewed near
+matches**. All 266 measured raw scores and annotation statuses agree across
+the two builds: 158 implemented reconstructions and 108 unfinished bodies.
+The CLI denominator of 269 also includes the unmatched 10-byte generated
 cleanup at 0x004a2550, which has no unique name mapping, and the one-byte
 save-config exit callback at 0x0049b930, which folds with the heap callback.
 The null-return helper at 0x00473140 also folds with the existing zero leaf.
 These three inventory-only functions do not add measured match rows.
-Annotation lint, formatting checks and all 13 tooling tests passed. Those
-tests cover the match guard and library identification. The new input-table
+Annotation lint and formatting checks passed. The existing 13 tooling tests
+last passed with the preceding input batch; they cover the match guard and
+library identification. The new input-table
 verifier checks all 80 original targets and rebuilt pointers in each build;
 the existing application verifier still passes all 76 pointers. No game
 behavioral tests were added.
 
-Data comparison verified 64 annotated globals with zero issues in both
+Data comparison verified 65 annotated globals with zero issues in both
 builds. New storage includes the pool lists/arena/guard/probe state, file
 initialization and redirection flags, compressed-block cache, error-dialog result, saved
 config pointers/guard/record, main/view handles, title buffer, accelerators and
@@ -62,6 +63,14 @@ the mouse-axis scale (verified as bits `0x3c808081`). The latest input batch
 also verifies the static service and selector, joystick HRESULT/last-device
 pointer, shared force-feedback offsets, and six effect-description workspaces
 and their first-use flags.
+The renderer follow-up adds 13 measured bodies: four exact and nine below
+threshold. Its new clear-result HRESULT at `0x0067bd58` is separately mapped
+from the existing renderer initialization HRESULT. Both builders agree on every
+measured score/status; all 65 annotated globals compare with zero issues.
+The application/input pointer and input-format checkers pass for both outputs.
+Only compilation, instruction comparison and static data checks were run for
+this follow-up; the existing 13 tooling tests were unchanged and were not
+repeated. No game behavior tests or game/probe execution were added.
 Both builds completed without compiler warnings. The pool and archive reader
 are now in the main build as required startup dependencies, with unresolved
 provenance kept explicit. [Current progress](progress.md) lists the scores.
@@ -155,7 +164,7 @@ least 95%) uses FUNCTION instead of STUB. The normal guard verifies those
 implemented claims without replacing their real scores. Exact and reviewed
 near matches are reported separately. The optional `--require-exact` mode
 continues to reject every sub-100% raw match, including effective-only matches.
-The normal guard passes all 154 implemented functions. Strict exact mode
+The normal guard passes all 158 implemented functions. Strict exact mode
 continues to reject the four reviewed near matches: two at 95.24%, one at
 95.33% and one at 95.83%. Their source annotations and work notes retain the
 actual scores and equivalence review; no function was promoted solely because the policy

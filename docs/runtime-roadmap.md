@@ -61,7 +61,14 @@ rendering subsystems. The static renderer owner and adapter/mode layout are
 documented in [renderer adapter research](work-renderer-adapters.md). Current
 code covers several adapter, mode, state-cache, vertex-buffer and depth-format
 helpers, but the full renderer constructor and initializer remain open and no
-validated display-startup path is connected. DirectInput now has a complete
+validated display-startup path is connected. Texture-format enumeration and
+selection, pixel-format descriptions, material colors, clear/present operations,
+depth/blend state controls and ordered cache insertion now have recovered
+source. The full renderer owner still requires its nested record constructors,
+complete dispatch table, texture-state dispatcher and resource-manager calls.
+The [initialization dependency audit](work-renderer-initialization.md) lists
+those concrete prerequisites; no incomplete renderer singleton is instantiated.
+DirectInput now has a complete
 source path for keyboard, mouse and joystick initialization, including axis
 handling and force feedback. The three device tables and service table pass
 verification of all 80 emitted pointers; all 307 data-format entries also match

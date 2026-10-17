@@ -57,3 +57,8 @@ LEGO Racers 2/src/inputjoystick.cpp
 LEGO Racers 2/src/inputservice.cpp
 LEGO Racers 2/src/joystickparams.cpp
 LEGO Racers 2/src/inputformats.cpp
+LEGO Racers 2/src/pixelformat.cpp
+LEGO Racers 2/src/renderertextureformats.cpp
+LEGO Racers 2/src/rendererlookup.cpp
+LEGO Racers 2/src/rendererstatecontrol.cpp
+LEGO Racers 2/src/rendererpresentation.cpp

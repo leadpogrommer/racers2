@@ -14,13 +14,16 @@ Verified reconstructions include character predicates, line classification,
 fixed string buffers, file operations, window geometry, command-line parsing,
 startup helpers, bitmap scanning, terrain lookup, spline helpers, and
 foundational renderer/input operations.
-The current checkpoint has **150 exact function matches**, **four reviewed
-near matches**, and 99 unfinished implementations. See
+The current checkpoint has **154 exact function matches**, **four reviewed
+near matches**, and 108 unfinished implementations. See
 [current progress](docs/progress.md) for the measured function list and
 remaining work. The application singleton and its two complete 38-slot
 dispatch tables, all three 25-slot input-device tables, and the five-slot
 input service table are wired. The full DirectInput initializer and joystick
 axis/effect dependencies are reconstructed, pending startup integration.
+Texture-format selection, depth/blend controls, material setup, frame clears,
+and presentation now have recovered source bodies; four new helpers match
+exactly. The complete renderer owner and initializer remain open.
 Earlier runtime checks exercised config,
 archive metadata, and selected asset reads. The executable still has a
 temporary entry point and does not reach a window, rendered menu, or gameplay.
