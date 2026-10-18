@@ -6,10 +6,10 @@ Reviewed semantically identical near matches (initially at least 95% raw) are
 implemented functions, counted separately from exact matches.
 
 Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-19.
-The match guard verified **269 exact functions and ten reviewed near
-matches**. Another 368 reconstructions remain `STUB`; both builders agree on
-all 647 measured raw scores and annotation statuses. Data comparison verifies
-123 annotated globals with zero issues. Unlinked inventory entries and folded
+The match guard verified **271 exact functions and ten reviewed near
+matches**. Another 380 reconstructions remain `STUB`; both builders agree on
+all 661 measured raw scores and annotation statuses. Data comparison verifies
+127 annotated globals with zero issues. Unlinked inventory entries and folded
 aliases may also appear in the CLI denominator without another measured row.
 
 This is the reconstructed subset, not whole-game coverage. The automatic
@@ -149,10 +149,17 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004a5e90` | `InitializeSimulationFrameRate` | 53.33% | Work in progress |
 | `0x004a5ec0` | `InitializeSimulationStepSeconds` | 100.00% | Verified exact |
 | `0x004a5ef0` | `InitializeSimulationStepMilliseconds` | 100.00% | Verified exact |
+| `0x004a5f50` | `InitializeMaximumAngularSpeed` | 33.33% | Work in progress |
+| `0x004a5f80` | `InitializeMaximumAngularSpeedSquared` | 100.00% | Verified exact |
+| `0x004a5fb0` | `InitializeMaximumLinearSpeedSquared` | 33.33% | Work in progress |
 | `0x004a6190` | `ResetGameObjectInitializationValue` | 63.16% | Work in progress |
+| `0x004a6480` | `PhysicalLifecycleState::RebuildWorldMatrix` | 100.00% | Verified exact |
+| `0x004a64c0` | `PhysicalLifecycleState::UpdateAndClampVelocities` | 52.25% | Work in progress |
+| `0x004a6c30` | `ClearLifecycleParent` | 51.52% | Work in progress |
+| `0x004a6f00` | `PhysicalLifecycleState::GetParentVelocityAtOffset` | 84.62% | Work in progress |
 | `0x004a74b0` | `IsLookupPointWithinRadius` | 45.45% | Work in progress |
 | `0x004a7510` | `ApplyLookupResourceState` | 18.70% | Work in progress |
-| `0x004a7cc0` | `?ReleaseRendererDrawPacket@@YIXPAURendererDrawPacket@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\applicationdispatch.h866218934@@PAX@Z` | 66.67% | Work in progress |
+| `0x004a7cc0` | `?ReleaseRendererDrawPacket@@YIXPAURendererDrawPacket@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\applicationdispatch.h2848619995@@PAX@Z` | 66.67% | Work in progress |
 | `0x004a9d20` | `GetLookupResourceOrigin` | 91.30% | Work in progress |
 | `0x004aa7b0` | `GameManager::UpdateComponents` | 21.52% | Work in progress |
 | `0x004ab2a0` | `ReportFatalError` | 85.25% | Work in progress |
@@ -308,6 +315,7 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004b9560` | `InputControllerManager::StopPolling` | 69.84% | Work in progress |
 | `0x004b95b0` | `ControllerPollTimerCallback` | 100.00% | Verified exact |
 | `0x004bb1f0` | `SetScreenshotDirectory` | 100.00% | Verified exact |
+| `0x004bb210` | `CaptureScreenshot` | 38.59% | Work in progress |
 | `0x004bd5f0` | `RendererLookupTableState::Initialize` | 51.97% | Work in progress |
 | `0x004bd6d0` | `RendererLookupTableState::ReleaseStorage` | 66.67% | Work in progress |
 | `0x004bd710` | `RendererLookupTableState::Clear` | 28.07% | Work in progress |
@@ -400,7 +408,7 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004da500` | `RendererTextureRecord::UnlockPrimarySurface` | 80.85% | Work in progress |
 | `0x004da540` | `RendererTextureRecord::UploadBitmapImage` | 34.86% | Work in progress |
 | `0x004da5e0` | `DisplayRenderer::BuildMipSidecar` | 34.70% | Work in progress |
-| `0x004da9f0` | `?ReadBitmapInfoSettings@@YAIPBDPAUBitmapInfoSettings@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\bitmapimage.h268496450@@@Z` | 2.29% | Work in progress |
+| `0x004da9f0` | `?ReadBitmapInfoSettings@@YAIPBDPAUBitmapInfoSettings@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\bitmapimage.h152856257@@@Z` | 2.29% | Work in progress |
 | `0x004dabe0` | `ParseBitmapInfoValue` | 40.31% | Work in progress |
 | `0x004dac90` | `GenerateBitmapMipLevel` | 17.20% | Work in progress |
 | `0x004db5c0` | `FindClosestPaletteColor` | 30.09% | Work in progress |
@@ -632,6 +640,12 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004f90e0` | `GetSpatialGridShift` | 90.91% | Work in progress |
 | `0x004fb7f0` | `RendererAuxiliaryResourceRecord::CopyToDeviceMaterial` | 78.87% | Work in progress |
 | `0x004fb880` | `ClipGuiRectangle` | 77.94% | Work in progress |
+| `0x00502d10` | `ParseAiffAudioData` | 28.57% | Work in progress |
+| `0x00502f00` | `SwapBigEndianDword` | 8.33% | Work in progress |
+| `0x00502f20` | `SwapBigEndianWord` | 14.29% | Work in progress |
+| `0x00502f40` | `ConvertBigEndianPcm` | 31.58% | Work in progress |
+| `0x00502fc0` | `ParseWaveOrAiffAudioData` | 45.59% | Work in progress |
+| `0x00503050` | `ParseWaveAudioData` | 18.62% | Work in progress |
 | `0x00507310` | `SpatialSlotNode::Initialize` | 18.18% | Work in progress |
 | `0x00507320` | `SpatialSlotNode::InsertBefore` | 80.00% | Work in progress |
 | `0x00507350` | `SpatialSlotNode::InsertAfter` | 45.71% | Work in progress |

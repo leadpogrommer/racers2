@@ -138,3 +138,7 @@ LEGO Racers 2/src/spatialregistry.cpp
 LEGO Racers 2/src/spatialgrid.cpp
 LEGO Racers 2/src/spatialconstruction.cpp
 LEGO Racers 2/src/spatialaxis.cpp
+LEGO Racers 2/src/audioformat.cpp
+LEGO Racers 2/src/physicallifecycle.cpp
+LEGO Racers 2/src/physicslimits.cpp
+LEGO Racers 2/src/screenshotcapture.cpp

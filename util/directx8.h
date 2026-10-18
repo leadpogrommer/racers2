@@ -22,6 +22,9 @@
 #endif
 
 #include <multimon.h>
+// VC6's multimon shim supplies HMONITOR, but also redirects this native API to
+// an optional xGetSystemMetrics stub. The game imports USER32 directly.
+#undef GetSystemMetrics
 
 #ifndef DECLARE_INTERFACE_IID_
 #define DECLARE_INTERFACE_IID_(iface, base, iid) DECLARE_INTERFACE_(iface, base)

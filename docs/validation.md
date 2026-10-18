@@ -250,3 +250,10 @@ WinMain, message handling, teardown, frame orchestration, global pause and colli
 Both builders agree on 647 measured rows: 269 exact, ten reviewed near matches and 368 STUB. Slot storage, linked registries, static grid insertion/removal, axis sorting and dynamic-index construction now link. All eight spatial dispatch pointers pass verification against the retail tables and rebuilt map. The generic sorting helpers retain low raw scores and remain STUB; no instruction-match claim is made for them. Both data reports verify 123 globals with zero issues. Sixteen tooling/library-identification tests pass.
 
 The audio-mode selector is linked, while the full audio singleton and startup/frame dependencies remain staged. No game, startup or asset probe was run.
+
+
+## Lifecycle, parser and capture checkpoint (2026-10-19)
+
+Both builders agree on 661 measured rows: 271 exact, ten reviewed near matches and 380 STUB. The physical world-matrix rebuild and angular-limit square initializer add two exact matches. Parent detachment, parent-point velocity, velocity clamps, audio format parsing/conversion and screenshot capture retain their raw measurements and STUB status. Both data reports verify 127 globals with zero issues. The Wine DX8 bridge now keeps the genuine USER32 GetSystemMetrics declaration after the VC6 multimon header.
+
+No game, screenshot, startup or asset probe was run. The temporary entry point remains until the complete frame/audio/object path links.

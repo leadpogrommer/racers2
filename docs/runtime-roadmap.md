@@ -117,3 +117,6 @@ Component transform interpolation, controller pause/origin adjustments, componen
 
 
 Slot allocation, registry lists, static-grid mutation, dynamic-index construction and axis sorting now link independently. Full collision query/narrow-phase work and lifecycle coupling remain staged. This closes storage/construction dependencies without claiming a working collision solver or menu. See [spatial recovery](work-spatial-index.md).
+
+
+Physical lifecycle detachment and velocity support, physics-limit CRT initialization, WAVE/AIFF parsing and F10 screenshot capture now link. Screenshot surface cleanup remains under review. Global Pause Mode construction, full frame rendering, shadow-context ownership and audio callback tables are staged for integration. No rendered-menu claim is made. See [physical lifecycle](work-physical-lifecycle.md) and [capture notes](work-screenshot-capture.md).
