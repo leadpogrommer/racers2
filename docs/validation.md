@@ -337,3 +337,11 @@ All 390 claims and eight complete folded bodies pass. Both data reports verify
 48 newly checked widget callbacks. The existing 21 tooling/library tests pass.
 The Python response-file link also verifies the isolated long-path build.
 No runtime or game behavioral test was added. See [widget notes](work-menu-widgets.md).
+
+## Controller service and scene callbacks
+
+Both 294-unit builds pass and agree on 1,350 measured raw scores: 397 exact
+functions, eighteen reviewed near matches and 935 STUB reconstructions. Both
+data reports verify 242 globals with zero issues. All eleven dispatch checks,
+eight complete folded aliases and the existing 21 tooling/library tests pass.
+No runtime probe was executed. See [batch evidence](work-controller-recording.md).

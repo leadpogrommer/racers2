@@ -6,10 +6,10 @@ Reviewed semantically identical near matches (initially at least 95% raw) are
 implemented functions, counted separately from exact matches.
 
 Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-19.
-The match guard verified **374 exact functions and sixteen reviewed near
-matches**. Another 849 reconstructions remain `STUB`; both builders agree on
-all 1,239 measured raw scores and annotation statuses. Data comparison verifies
-228 annotated globals with zero issues. Eight genuine folded aliases also have
+The match guard verified **397 exact functions and eighteen reviewed near
+matches**. Another 935 reconstructions remain `STUB`; both builders agree on
+all 1,350 measured raw scores and annotation statuses. Data comparison verifies
+242 annotated globals with zero issues. Eight genuine folded aliases also have
 complete-byte and exact linker-map verification. Unlinked inventory entries
 may appear in the CLI denominator without another measured row.
 
@@ -31,6 +31,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x00406f90` | `InitializeGameLocalizationPath` | 22.22% | Work in progress |
 | `0x004071a0` | `GameControllerScore::Initialize` | 100.00% | Verified exact |
 | `0x004071f0` | `GameControllerPairGroups::Initialize` | 22.64% | Work in progress |
+| `0x00407f00` | `PauseDetector::PauseDetector` | 61.54% | Work in progress |
 | `0x00407f30` | `BodypartManagerGetObjectSize` | 100.00% | Verified exact |
 | `0x00409190` | `GameControllerItem::Initialize` | 100.00% | Verified exact |
 | `0x0040a000` | `InitializeControllerBindingProfile` | 39.72% | Work in progress |
@@ -57,8 +58,10 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x0040b1b0` | `GameControllerSelection::HasReward` | 96.00% | Reviewed near match |
 | `0x0040b2c0` | `GameControllerSelection::UnlockDefaults` | 87.93% | Work in progress |
 | `0x0040b340` | `InitializeGameControllerWord` | 100.00% | Verified exact |
+| `0x0040b4e0` | `PauseDetectorUpdate` | 9.23% | Work in progress |
 | `0x0040ec90` | `Application::GetDisplaySettings` | 100.00% | Verified exact |
 | `0x00410380` | `GetScreenPrinterSize` | 100.00% | Verified exact |
+| `0x004109c0` | `InitializeFoyerSceneNames` | 20.51% | Work in progress |
 | `0x00416b80` | `SetMenuWidgetFont` | 100.00% | Verified exact |
 | `0x00417d10` | `MenuPanel::MenuPanel` | 100.00% | Verified exact |
 | `0x00417d40` | `MenuPanel::Initialize` | 25.00% | Work in progress |
@@ -136,6 +139,8 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x0041c430` | `MenuManager::Initialize` | 22.58% | Work in progress |
 | `0x0041c4d0` | `MenuManager::Remove` | 100.00% | Work in progress |
 | `0x0041c6d0` | `MenuManager::ApplyFonts` | 71.70% | Work in progress |
+| `0x0041c750` | `CreateCommonMenuWidgets` | 39.29% | Work in progress |
+| `0x0041c810` | `DestroyCommonMenuWidgets` | 80.00% | Work in progress |
 | `0x00423090` | `MenuManager::GetPanelRectangle` | 100.00% | Verified exact |
 | `0x004230d0` | `MenuManager::GetSecondaryPanelRectangle` | 100.00% | Verified exact |
 | `0x004236a0` | `MenuManager::SetPanelClipRectangle` | 77.42% | Work in progress |
@@ -153,6 +158,11 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004266d0` | `MenuTextGroup::UpdateBounds` | 53.66% | Work in progress |
 | `0x00427910` | `ApplySavedAudioLevels` | 40.00% | Work in progress |
 | `0x00427970` | `ApplySavedAudioQuality` | 76.92% | Work in progress |
+| `0x0042b200` | `SecondaryManagerMediaState::IsSlotEnabled` | 94.74% | Work in progress |
+| `0x0042b220` | `SecondaryManagerMediaState::Refresh` | 50.49% | Work in progress |
+| `0x0042b2b0` | `SecondaryManagerMediaState::GetSlot` | 100.00% | Verified exact |
+| `0x0042b2c0` | `SecondaryManagerMediaState::HasActiveSlot` | 77.42% | Work in progress |
+| `0x0042b300` | `PauseConditionSlotIsSet` | 81.25% | Work in progress |
 | `0x0042ce60` | `BitmapFontSet::BitmapFontSet` | 100.00% | Verified exact |
 | `0x0042ce80` | `BitmapFontSet::~BitmapFontSet` | 0.00% | Work in progress |
 | `0x0042cef0` | `BitmapFontSet::Initialize` | 23.08% | Work in progress |
@@ -173,7 +183,25 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x00436070` | `ReleaseControllerPauseMenuTextures` | 100.00% | Verified exact |
 | `0x004360d0` | `LoadControllerBuilderTextures` | 13.85% | Work in progress |
 | `0x00436af0` | `ReleaseControllerBuilderTextures` | 15.14% | Work in progress |
+| `0x00437970` | `NestedTextBoxManagerPrefix::NestedTextBoxManagerPrefix` | 36.11% | Work in progress |
+| `0x004379f0` | `NestedTextBoxManagerGetObjectSize` | 100.00% | Verified exact |
+| `0x00437a00` | `NestedTextBoxManagerDestroy` | 95.65% | Reviewed near match |
+| `0x00437a20` | `NestedTextBoxManagerDestructor` | 0.00% | Work in progress |
+| `0x00437a30` | `NestedTextBoxManagerInitialize` | 76.92% | Work in progress |
+| `0x00437a50` | `NestedTextBoxManagerRemove` | 18.60% | Work in progress |
+| `0x00437ac0` | `NestedTextBoxManagerUpdate` | 30.29% | Work in progress |
+| `0x00438540` | `ClearTextBoxManagerResources` | 38.81% | Work in progress |
+| `0x00438be0` | `HasActiveTextBoxPauseTarget` | 49.35% | Work in progress |
+| `0x00438c90` | `ReleaseTextBoxManagerResource` | 86.96% | Work in progress |
+| `0x00438cb0` | `UpdateTextBoxVoiceResource` | 37.31% | Work in progress |
+| `0x00438d60` | `SelectTextBoxVoice` | 13.84% | Work in progress |
+| `0x00438e50` | `TextBoxManager::TextBoxManager` | 64.29% | Work in progress |
+| `0x00438e80` | `TextBoxManagerGetObjectSize` | 100.00% | Verified exact |
+| `0x00438e90` | `TextBoxManagerDestroy` | 72.00% | Work in progress |
+| `0x00438ec0` | `TextBoxManager::Initialize` | 27.48% | Work in progress |
+| `0x00438fa0` | `TextBoxManager::Remove` | 32.43% | Work in progress |
 | `0x0043dcd0` | `GetConfiguredAudioServiceMode` | 85.71% | Work in progress |
+| `0x0044a520` | `SelectPauseTargetData` | 72.73% | Work in progress |
 | `0x0044b3b0` | `DeleteConstraint` | 78.26% | Work in progress |
 | `0x0044cd00` | `BodypartManagerInitialize` | 8.00% | Work in progress |
 | `0x004534e0` | `GameObjectBaseDestroy` | 100.00% | Work in progress |
@@ -262,7 +290,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004a3a20` | `IsGameObjectFlagSelected` | 64.52% | Work in progress |
 | `0x004a3aa0` | `AdvanceGameFrame` | 54.72% | Work in progress |
 | `0x004a3ca0` | `ShutdownGameManager` | 100.00% | Verified exact |
-| `0x004a3ed0` | `GetMemoryHeap` | 56.00% | Work in progress |
+| `0x004a3ed0` | `GetMemoryHeap` | 60.00% | Work in progress |
 | `0x004a3f20` | `DestroyMemoryHeapAtExit` | 100.00% | Verified exact |
 | `0x004a3f30` | `MemoryHeap::EnterOperation` | 85.71% | Work in progress |
 | `0x004a3f60` | `MemoryHeap::LeaveOperation` | 100.00% | Verified exact |
@@ -508,6 +536,45 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004b1020` | `AudioService::Shutdown` | 81.22% | Work in progress |
 | `0x004b1150` | `AudioService::Restart` | 48.43% | Work in progress |
 | `0x004b13d0` | `GetAudioServiceShutdownStatus` | 100.00% | Verified exact |
+| `0x004b1410` | `InitializeControllerRecordingServiceStorage` | 2.30% | Work in progress |
+| `0x004b14e0` | `ControllerRecordingService::SetUnknownWord0x2c` | 100.00% | Verified exact |
+| `0x004b14f0` | `ControllerRecordingService::SetUnknownWord0xd8` | 100.00% | Verified exact |
+| `0x004b1500` | `ControllerRecordingService::GetUnknownWord0xd8` | 100.00% | Verified exact |
+| `0x004b1510` | `ControllerRecordingService::GetUnknownWord0x20` | 100.00% | Verified exact |
+| `0x004b1520` | `ControllerRecordingService::GetRequestedInputValue` | 100.00% | Verified exact |
+| `0x004b1530` | `ControllerRecordingService::SetRequestedInputValue` | 100.00% | Verified exact |
+| `0x004b1550` | `ControllerRecordingService::Initialize` | 70.55% | Work in progress |
+| `0x004b1700` | `ControllerRecordingService::Shutdown` | 37.13% | Work in progress |
+| `0x004b17e0` | `ControllerRecordingService::AllocateRecord` | 91.43% | Work in progress |
+| `0x004b1810` | `ControllerRecordingService::FindRecordByKey` | 14.29% | Work in progress |
+| `0x004b1850` | `ControllerRecordingService::RemoveRecordByKey` | 41.13% | Work in progress |
+| `0x004b1910` | `ControllerRecordingService::AllocateSessionRecord` | 46.81% | Work in progress |
+| `0x004b1960` | `ControllerRecordingService::RemoveSessionRecord` | 35.00% | Work in progress |
+| `0x004b19f0` | `ControllerRecordingService::EnumerateServiceProviders` | 40.08% | Work in progress |
+| `0x004b1db0` | `ControllerRecordingService::EnumerateDevicesForProvider` | 30.84% | Work in progress |
+| `0x004b1ee0` | `ControllerRecordingService::EnumerateHosts` | 36.70% | Work in progress |
+| `0x004b1f80` | `ControllerRecordingService::CancelPeerOperation` | 100.00% | Verified exact |
+| `0x004b1fa0` | `ControllerRecordingService::SelectServiceProvider` | 62.99% | Work in progress |
+| `0x004b2160` | `ControllerRecordingService::HostSession` | 42.06% | Work in progress |
+| `0x004b22c0` | `ControllerRecordingService::ConnectToSession` | 75.79% | Work in progress |
+| `0x004b2340` | `ControllerRecordingService::ResetNegotiatedState` | 100.00% | Verified exact |
+| `0x004b2370` | `ControllerRecordingService::RestartPeerSession` | 54.12% | Work in progress |
+| `0x004b23e0` | `ControllerRecordingService::InitializePeer` | 65.22% | Work in progress |
+| `0x004b2410` | `ControllerRecordingService::WaitForInput` | 100.00% | Verified exact |
+| `0x004b2470` | `ControllerRecordingService::CopyDeviceNames` | 50.00% | Work in progress |
+| `0x004b24f0` | `ControllerRecordingService::CopySessionNames` | 45.87% | Work in progress |
+| `0x004b2580` | `ControllerRecordingService::CopySessionRecords` | 28.17% | Work in progress |
+| `0x004b2670` | `ControllerRecordingService::FindRecordKeyByValue` | 44.44% | Work in progress |
+| `0x004b26b0` | `ControllerRecordingService::GetOccupiedRecordKey` | 48.65% | Work in progress |
+| `0x004b26f0` | `ControllerRecordingService::FindRecordForCurrentKey` | 27.27% | Work in progress |
+| `0x004b2730` | `ControllerRecordingService::SetCurrentRecordName` | 16.22% | Work in progress |
+| `0x004b2790` | `ControllerRecordingService::SetRecordValue` | 100.00% | Verified exact |
+| `0x004b27d0` | `ControllerRecordingService::GetCurrentRecordValue` | 61.54% | Work in progress |
+| `0x004b27e0` | `ControllerRecordingService::GetCurrentKey` | 100.00% | Verified exact |
+| `0x004b27f0` | `ControllerRecordingService::FindOccupiedRecordValue` | 48.65% | Work in progress |
+| `0x004b2830` | `ControllerRecordingService::CopyRecordValues` | 100.00% | Verified exact |
+| `0x004b2870` | `ControllerRecordingService::AssignRecordOwner` | 26.67% | Work in progress |
+| `0x004b28e0` | `ControllerRecordingService::CopyInputStatistics` | 100.00% | Verified exact |
 | `0x004b2960` | `GetSystemClock` | 92.86% | Work in progress |
 | `0x004b29b0` | `SystemClock::Initialize` | 37.04% | Work in progress |
 | `0x004b2b50` | `ReturnZeroClockValue` | 100.00% | Verified exact |
@@ -611,12 +678,15 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004b8010` | `InputControllerManager::RebindController` | 53.33% | Work in progress |
 | `0x004b8040` | `InputControllerManager::ConfigureController` | 53.24% | Work in progress |
 | `0x004b8220` | `InputControllerManager::AppendControllerBinding` | 66.67% | Work in progress |
+| `0x004b8250` | `InputControllerManager::GetControllerInputForOwner` | 55.24% | Work in progress |
 | `0x004b8460` | `InputControllerManager::GetTimingState` | 34.85% | Work in progress |
 | `0x004b8520` | `InputControllerManager::GetElapsedTime` | 45.45% | Work in progress |
 | `0x004b8570` | `InputControllerManager::GetCurrentFrame` | 100.00% | Verified exact |
 | `0x004b85a0` | `InputControllerManager::PollInput` | 47.84% | Work in progress |
 | `0x004b86f0` | `InputControllerManager::PollController` | 11.13% | Work in progress |
 | `0x004b8f40` | `InputControllerManager::SetPaused` | 37.18% | Work in progress |
+| `0x004b9040` | `InputControllerManager::GetInputRequestElapsedTime` | 32.10% | Work in progress |
+| `0x004b92b0` | `DecodeSecondaryManagerMediaSlot` | 40.00% | Work in progress |
 | `0x004b93e0` | `InitializeInputControllerManagerStorage` | 66.67% | Work in progress |
 | `0x004b94c0` | `InputControllerManager::AcquirePollMutex` | 100.00% | Work in progress |
 | `0x004b94e0` | `InputControllerManager::ReleasePollMutex` | 100.00% | Verified exact |
@@ -643,6 +713,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004bb6f0` | `GlobalPauseController::GlobalPauseController` | 68.18% | Work in progress |
 | `0x004bb740` | `GlobalPauseController::SetObserver` | 100.00% | Work in progress |
 | `0x004bb750` | `GlobalPauseController::ClearObserver` | 66.67% | Work in progress |
+| `0x004bb760` | `RequestPauseForObject` | 100.00% | Verified exact |
 | `0x004bb7a0` | `GlobalPauseController::EnterPause` | 81.97% | Work in progress |
 | `0x004bb7f0` | `GlobalPauseController::LeavePause` | 75.76% | Work in progress |
 | `0x004bb850` | `GlobalPauseController::Update` | 45.36% | Work in progress |
@@ -1028,7 +1099,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004ee7e0` | `SetAudioCommentaryGain` | 21.05% | Work in progress |
 | `0x004ee800` | `QueueAudioCommentary` | 23.08% | Work in progress |
 | `0x004ee820` | `StopAudioCommentary` | 35.71% | Work in progress |
-| `0x004ee880` | `EnqueueAudioCommentary` | 40.54% | Work in progress |
+| `0x004ee880` | `EnqueueAudioCommentary` | 43.24% | Work in progress |
 | `0x004ee900` | `PlayNextAudioCommentary` | 12.05% | Work in progress |
 | `0x004ee9b0` | `InitializeAudioPcmBuffer` | 72.62% | Work in progress |
 | `0x004eeaa0` | `ShutdownAudioPcmBuffer` | 60.61% | Work in progress |
@@ -1103,6 +1174,45 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004f29f0` | `CommentaryAudioStream::DecodePcm` | 17.96% | Work in progress |
 | `0x004f2ea0` | `CommentaryAudioStream::ReleasePlaybackBuffer` | 100.00% | Verified exact |
 | `0x004f2ec0` | `RestoreCommentaryPlaybackBuffer` | 30.08% | Work in progress |
+| `0x004f2fd0` | `ControllerRecordingPeerMessageHandler` | 100.00% | Verified exact |
+| `0x004f2ff0` | `ControllerRecordingLobbyMessageHandler` | 100.00% | Verified exact |
+| `0x004f3010` | `ControllerRecordingService::DispatchDirectPlayMessage` | 41.10% | Work in progress |
+| `0x004f3080` | `GetDirectPlayMessagePayloadSize` | 46.88% | Work in progress |
+| `0x004f3100` | `ControllerRecordingService::HandleDirectPlayMessage` | 45.26% | Work in progress |
+| `0x004f3550` | `ControllerRecordingService::ProcessSpecialInputCommand` | 53.99% | Work in progress |
+| `0x004f3620` | `ControllerRecordingService::RecordPeerState` | 94.34% | Work in progress |
+| `0x004f3670` | `ControllerRecordingService::ProcessValue` | 50.35% | Work in progress |
+| `0x004f37d0` | `ControllerRecordingService::GetProviderKeyValue` | 100.00% | Verified exact |
+| `0x004f37f0` | `ControllerRecordingService::RemoveProviderKey` | 100.00% | Verified exact |
+| `0x004f3820` | `ControllerRecordingObjectMap::Initialize` | 19.63% | Work in progress |
+| `0x004f3930` | `ControllerRecordingObjectMap::Shutdown` | 91.30% | Work in progress |
+| `0x004f3980` | `ControllerRecordingObjectMap::CreatePacket` | 43.08% | Work in progress |
+| `0x004f3a30` | `ControllerRecordingObjectMap::AllocatePacket` | 33.77% | Work in progress |
+| `0x004f3a90` | `ControllerRecordingObjectMap::ClearMatchingId` | 69.33% | Work in progress |
+| `0x004f3b00` | `ControllerRecordingProviderEntry::CancelPending` | 100.00% | Verified exact |
+| `0x004f3b20` | `ControllerRecordingProviderEntry::SetKey` | 100.00% | Verified exact |
+| `0x004f3b40` | `ControllerRecordingProviderMap::Initialize` | 36.59% | Work in progress |
+| `0x004f3ba0` | `ControllerRecordingProviderMap::Shutdown` | 41.12% | Work in progress |
+| `0x004f3c20` | `ControllerRecordingProviderMap::Add` | 61.73% | Work in progress |
+| `0x004f3c90` | `ControllerRecordingProviderMap::SetState` | 95.00% | Reviewed near match |
+| `0x004f3d00` | `ControllerRecordingProviderMap::FindValue` | 65.75% | Work in progress |
+| `0x004f3d60` | `ControllerRecordingProviderMap::Remove` | 94.29% | Work in progress |
+| `0x004f3dd0` | `ControllerRecordingProviderMap::PruneExpiredEntries` | 89.71% | Work in progress |
+| `0x004f3e70` | `ControllerRecordingMessageQueue::Initialize` | 86.36% | Work in progress |
+| `0x004f3eb0` | `ControllerRecordingMessageQueue::Shutdown` | 74.29% | Work in progress |
+| `0x004f3ef0` | `ControllerRecordingMessageQueue::EnsureBytes` | 78.57% | Work in progress |
+| `0x004f3f20` | `ControllerRecordingMessageQueue::Enqueue` | 30.43% | Work in progress |
+| `0x004f40d0` | `ControllerRecordingMessageQueue::Dequeue` | 69.70% | Work in progress |
+| `0x004f4190` | `ControllerRecordingService::RecordInput` | 19.82% | Work in progress |
+| `0x004f4450` | `ControllerRecordingService::UpdateInputRecord` | 42.67% | Work in progress |
+| `0x004f44c0` | `ControllerRecordingService::ReceiveRemoteInput` | 57.29% | Work in progress |
+| `0x004f4600` | `ControllerRecordingService::SendRequestedInput` | 23.85% | Work in progress |
+| `0x004f46a0` | `ControllerRecordingService::HasInputFrame` | 18.42% | Work in progress |
+| `0x004f4710` | `ControllerRecordingService::RequestInputFrame` | 59.81% | Work in progress |
+| `0x004f47c0` | `ControllerRecordingService::PollRequestedInput` | 53.33% | Work in progress |
+| `0x004f4870` | `ControllerRecordingProviderAssociations::Initialize` | 88.89% | Work in progress |
+| `0x004f4890` | `ControllerRecordingProviderAssociations::AllocateAssociation` | 91.67% | Work in progress |
+| `0x004f48c0` | `ControllerRecordingProviderAssociations::PruneStaleAssociations` | 47.76% | Work in progress |
 | `0x004f4a40` | `InitializeMultimediaTimerService` | 53.01% | Work in progress |
 | `0x004f4ad0` | `ShutdownMultimediaTimerService` | 100.00% | Verified exact |
 | `0x004f4af0` | `MultimediaTimerService::EndPeriod` | 100.00% | Verified exact |
@@ -1236,11 +1346,12 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x00508290` | `CollectXAxisCandidates` | 8.33% | Work in progress |
 | `0x00508330` | `SpatialAxisIndex::InsertFirst` | 4.82% | Work in progress |
 | `0x005083e0` | `SpatialAxisIndex::InsertSecond` | 4.82% | Work in progress |
+| `0x005084b0` | `SpatialGridCell::Initialize` | 40.00% | Work in progress |
 | `0x005084c0` | `SpatialGridCell::Insert` | 100.00% | Verified exact |
 | `0x005084e0` | `SpatialGridCell::Remove` | 100.00% | Verified exact |
 | `0x00508500` | `StaticSpatialGrid::GetCell` | 94.12% | Work in progress |
 | `0x00508520` | `CollectGridCollisionCandidates` | 18.11% | Work in progress |
-| `0x00508690` | `StaticSpatialGrid::StaticSpatialGrid` | 69.42% | Work in progress |
+| `0x00508690` | `StaticSpatialGrid::StaticSpatialGrid` | 71.07% | Work in progress |
 | `0x00508740` | `StaticSpatialGrid::Insert` | 28.26% | Work in progress |
 | `0x00508840` | `StaticSpatialGrid::Remove` | 88.89% | Work in progress |
 | `0x00508890` | `StaticSpatialGrid::Update` | 100.00% | Verified exact |

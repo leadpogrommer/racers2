@@ -68,7 +68,7 @@ DECOMP_SIZE_ASSERT(GameControllerPlayerBlock, 0x344);
 
 struct LocalizedStringTable;
 class BitmapFontSet;
-struct InputController;
+class InputController;
 
 struct GameController : GameObject {
 	GameController(GameObjectTemplate* p_template);

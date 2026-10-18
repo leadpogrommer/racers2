@@ -75,7 +75,7 @@ extern const BodypartManagerDispatch g_bodypartManagerDispatch = {
 	&GameObjectBaseNoOp,
 	&GameObjectBaseNoOp,
 	&BodypartManagerInitialize,
-	&GameObjectBaseTrue,
+	&GameObjectBaseZero,
 	&GameObjectBaseZeroOneArgument,
 	&GameObjectBaseRemove,
 	&GameObjectBaseZero,

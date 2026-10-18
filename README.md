@@ -14,8 +14,8 @@ Verified reconstructions include character predicates, line classification,
 fixed string buffers, file operations, window geometry, command-line parsing,
 startup helpers, bitmap scanning, terrain lookup, spline helpers, and
 foundational renderer/input operations.
-The current checkpoint has **374 exact function matches**, **sixteen reviewed
-near matches**, and 849 unfinished implementations across 1,239 measured
+The current checkpoint has **397 exact function matches**, **eighteen reviewed
+near matches**, and 935 unfinished implementations across 1,350 measured
 functions. See
 [current progress](docs/progress.md) for the measured function list and
 remaining work. The application singleton and its two complete 38-slot
@@ -32,8 +32,8 @@ sprite submission, immediate drawing and animation records now have source;
 large bodies still require semantic review. Device reset/resource restoration, scene startup, GUI rectangle clipping, all eight quad-packet cases and bump-vector generation also have compiled source. Controller records, recorded-input access, timer events and named mutexes have source; the controller manager, system clock, and platform readiness helper now have compiled source. The fixed-step scheduler, game-object registry loops and renderer resource cleanup also have compiled source. Registry allocation, insertion, removal and initialization now have compiled source. Concrete menu-object creation and startup integration remain open.
 Controller defaults, player car setup, bodypart lists, shared menu sprites,
 key-icon/string replacement, ScreenPrinter and HUD/pause/builder textures now
-have linked source. The widget, foyer, nested textbox and network service
-closures are still being integrated; see [frontend notes](docs/work-controller-frontend.md).
+have linked source. The recording service, pause detector and nested textbox now link. Foyer and
+remaining frontend widget closures are still being integrated; see [frontend notes](docs/work-controller-frontend.md).
 Earlier runtime checks exercised config,
 archive metadata, and selected asset reads. The executable still has a
 temporary entry point and does not reach a window, rendered menu, or gameplay.

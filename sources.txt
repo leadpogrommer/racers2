@@ -285,3 +285,10 @@ LEGO Racers 2/src/menuintegerselector.cpp
 LEGO Racers 2/src/menulabelselector.cpp
 LEGO Racers 2/src/menurangeslider.cpp
 LEGO Racers 2/src/globaloverlayappend.cpp
+LEGO Racers 2/src/controllerrecordingservice.cpp
+LEGO Racers 2/src/controllerrecordingquery.cpp
+LEGO Racers 2/src/textboxmanager.cpp
+LEGO Racers 2/src/pausedetector.cpp
+LEGO Racers 2/src/secondarymanagerstate.cpp
+LEGO Racers 2/src/foyerscenenames.cpp
+LEGO Racers 2/src/menumanagercommonwidgets.cpp

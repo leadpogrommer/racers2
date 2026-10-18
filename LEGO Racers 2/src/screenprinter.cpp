@@ -30,7 +30,7 @@ LegoU32 __fastcall GetScreenPrinterSize(GameObject*, void*)
 const ScreenPrinterDispatch g_screenPrinterDispatch = {
 	{&GameObjectBaseDestroy,      &GameObjectBaseApplyChildTransform,
 	 &GameObjectBaseNoOp,         &GameObjectBaseNoOp,
-	 &InitializeScreenPrinter,    &GameObjectBaseTrue,
+	 &InitializeScreenPrinter,    &GameObjectBaseZero,
 	 &UpdateScreenPrinter,        &RemoveScreenPrinter,
 	 &GameObjectBaseZero,         &GameObjectBaseZero,
 	 &GameObjectBaseNoOp,         &GameObjectBaseNoOp,

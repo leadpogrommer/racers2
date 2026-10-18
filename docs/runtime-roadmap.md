@@ -163,3 +163,12 @@ recovered source; all 48 pointers pass static verification. Text append and
 overlay scaling dependencies also link. These controls still need the
 remaining frontend construction/state connections before a credible rendered
 menu check. No game or probe was executed; see [widget notes](work-menu-widgets.md).
+
+## Controller service and scene callbacks
+
+The complete recording-service table, queued DirectPlay handlers, nested
+textbox callbacks, pause detector, media state and common widget ownership now
+link. Scene callback return values were corrected against the original bytes.
+Foyer loading, remaining frontend controls, startup movies and complete
+GameController startup still need integration before replacing bootstrap.
+No runtime probe was executed. See [batch evidence](work-controller-recording.md).

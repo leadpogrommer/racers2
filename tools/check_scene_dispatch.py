@@ -2,17 +2,45 @@
 """Verify all recovered startup scene callback pointers without running the game."""
 
 import argparse
+import csv
 from pathlib import Path
 import struct
 
 from check_renderer_resource_dispatch import verify
+from check_application_dispatch import map_symbols
+from folded_functions import code_bytes
 from toolchain import ROOT
 
 TABLES = {
     "bodypart": (0x0052f584, 21, "g_bodypartManagerDispatch"),
     "glyph": (0x0052f57c, 2, "g_overlayGlyphManagerDispatch"),
     "screen": (0x005325b8, 21, "g_screenPrinterDispatch"),
+    "textbox": (0x00530a68, 21, "g_textBoxManagerDispatch"),
+    "nested_textbox": (0x00530a10, 21, "g_nestedTextBoxManagerDispatch"),
+    "pause": (0x0052f5ec, 20, "g_pauseDetectorDispatch"),
+    "pause_initial": (0x0052f63c, 20, "g_pauseDetectorInitialDispatch"),
 }
+
+
+def verify_constant_callbacks(original, rebuilt, link_map, inventory):
+    # These two retail targets have opposite return values. Pointer inventories
+    # alone cannot detect a wrong symbol association repeated in both the CSV
+    # and C++ table, so also check their complete original/emitted bodies.
+    aliases = {
+        0x00403910: ("GameObjectBaseZero", bytes.fromhex("33c0c3")),
+        0x00403920: ("GameObjectBaseTrue", bytes.fromhex("b801000000c3")),
+    }
+    symbols = map_symbols(link_map)
+    for address, (symbol, expected) in aliases.items():
+        if code_bytes(original.read_bytes(), address, len(expected)) != expected:
+            raise ValueError(f"Unexpected retail constant callback at {address:08x}")
+        if code_bytes(rebuilt.read_bytes(), symbols[symbol], len(expected)) != expected:
+            raise ValueError(f"Unexpected emitted constant callback: {symbol}")
+    with inventory.open(newline="", encoding="utf-8") as stream:
+        for row in csv.DictReader(stream):
+            target = int(row["original"], 16)
+            if target in aliases and row["symbol"] != aliases[target][0]:
+                raise ValueError(f"{row['table']}+{row['offset']}: wrong constant-return callback")
 
 
 def main():
@@ -23,9 +51,12 @@ def main():
     try:
         verify(args.original, args.build_dir / "LEGO Racers 2.exe", args.build_dir / "legoracers2.map",
                ROOT / "reccmp" / "scene-dispatch.csv", TABLES)
+        verify_constant_callbacks(args.original, args.build_dir / "LEGO Racers 2.exe",
+                                  args.build_dir / "legoracers2.map", ROOT / "reccmp" / "scene-dispatch.csv")
     except (KeyError, OSError, ValueError, struct.error) as error:
         parser.exit(1, f"Scene dispatch verification failed: {error}\n")
-    print("Verified startup scene tables: 44/44 retail targets and rebuilt callback pointers.")
+    count = sum(spec[1] for spec in TABLES.values())
+    print(f"Verified startup scene tables: {count}/{count} retail targets and rebuilt callback pointers.")
     print("Callback behavior and instruction accuracy are separate checks.")
 
 
