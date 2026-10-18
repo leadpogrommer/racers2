@@ -12,6 +12,4 @@ struct AudioSettingsContextView {
 
 LegoU32 GetConfiguredAudioServiceMode();
 
-extern AudioSettingsContextView* g_audioSettingsContext;
-
 #endif // LR2_AUDIOSETTINGS_H

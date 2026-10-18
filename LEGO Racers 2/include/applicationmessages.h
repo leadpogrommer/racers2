@@ -33,8 +33,6 @@ struct GameApplicationMessageContextView {
 	void* m_textInputTarget; // 0x2a84
 };
 
-extern GameApplicationMessageContextView* g_gameApplicationMessageContext;
-
 LegoBool32 WINAPI FilterApplicationWindowMessage(HWND p_window, UINT p_message, WPARAM p_wParam, LPARAM p_lParam);
 
 #endif // LR2_APPLICATIONMESSAGES_H

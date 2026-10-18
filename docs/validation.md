@@ -295,3 +295,26 @@ pass. No game-function behavioral tests or runtime/game probes were run.
 GameController initialization and concrete frontend transition sources remain
 staged; the temporary bootstrap is still the executable entry point. See
 [integration notes](work-main-integration.md).
+
+
+## Frontend resource and shared menu checkpoint (2026-10-19)
+
+Both Python/SP5 and CMake/NMake builds pass with 275 translation units.
+Their reports agree on 1,149 measured functions: 341 exact, sixteen reviewed
+near matches, and 792 STUB reconstructions. All 357 FUNCTION claims pass.
+Six genuine folded aliases have complete original/emitted-byte and exact
+linker-map checks. Both data reports verify 217 globals with zero issues.
+All nine dispatch inventories pass in both builds, including the 44 newly
+checked bodypart/glyph/ScreenPrinter pointers and 144 audio pointers.
+The 21 existing tooling/library-identification tests pass.
+
+The batch adds controller defaults/player cars/session setup, bodypart lists,
+menu text/icon ownership, HUD/pause/builder image loading, sprite geometry,
+font metrics and the shared RNG. It also removes duplicate storage for the
+controller's network/reverb pointers. The DirectPlay SDK check compiles and
+links against genuine SDK interfaces and was not executed. See
+[frontend notes](work-controller-frontend.md).
+
+No game, menu, startup, movie or asset probe was executed. The temporary
+bootstrap remains; open widget, scene-manager, network and startup-movie
+closures still prevent the intended menu milestone.

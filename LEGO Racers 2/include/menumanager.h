@@ -46,6 +46,7 @@ struct MenuManager : GameObject {
 	~MenuManager();
 	void Initialize();
 	void Remove();
+	void ApplyFonts();
 };
 
 DECOMP_SIZE_ASSERT(MenuManager, 0x2b4);

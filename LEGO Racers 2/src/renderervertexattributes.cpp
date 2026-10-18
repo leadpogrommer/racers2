@@ -31,7 +31,7 @@ LegoU8* RendererVertexBuffer::GetVertex(LegoS32 p_index)
 	return m_data + m_stride * p_index;
 }
 
-// FUNCTION: LEGORACERS2 0x004ab5e0
+// FUNCTION: LEGORACERS2 0x004ab5e0 FOLDED
 LegoU32 RendererVertexBuffer::GetPositionOffset()
 {
 	return m_positionOffset;

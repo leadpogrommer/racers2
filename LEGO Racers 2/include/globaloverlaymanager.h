@@ -9,12 +9,14 @@
 #include <stddef.h>
 
 struct LocalizedStringTable;
+class BitmapFont;
+struct GlobalOverlayGlyphReplacementManagerView;
 
 struct GlobalOverlayRecord {
 	const void* m_vtable;                  // 0x00
 	LegoU16 m_text[0x100];                 // 0x04
 	LegoU32 m_flags;                       // 0x204
-	void* m_font;                          // 0x208
+	BitmapFont* m_font;                    // 0x208
 	LegoU32 m_color;                       // 0x20c
 	LegoFloat m_positionX;                 // 0x210
 	LegoFloat m_positionY;                 // 0x214
@@ -34,9 +36,19 @@ struct GlobalOverlayRecord {
 	LegoFloat m_measuredWidth;             // 0x250
 	void InitializeFromParameters(const LegoU32* p_parameters, LegoS32 p_stringIndex);
 	void InitializeText(const LegoU16* p_text, LegoU32 p_flags, LegoFloat p_time);
+	void InitializeNarrowText(const LegoChar* p_text, LegoU32 p_flags, LegoFloat p_time);
 	void InitializeTextByIndex(LegoS32 p_stringIndex, LegoU32 p_flags, LegoFloat p_time);
 	void SetPosition(const LegoFloat* p_position, LegoU32 p_mode);
 	void SetScale(LegoFloat p_scale);
+	void SetFont(BitmapFont* p_font);
+	void Translate(const LegoFloat* p_offset);
+	void SetColor(const LegoU32* p_color);
+	void SetAlpha(LegoU8 p_alpha);
+	void SetList(LegoS32 p_listId);
+	LegoFloat GetEffectiveScale() const;
+	LegoFloat GetLineHeight() const;
+	void SetClipRectangle(const LegoFloat* p_topLeft, const LegoFloat* p_bottomRight);
+	LegoS32 GetTextLength() const;
 	void Release();
 };
 
@@ -45,8 +57,42 @@ struct GlobalOverlayListNode {
 	GlobalOverlayListNode* m_next;
 };
 
+struct GlobalOverlaySprite {
+	LegoU32 m_flags;
+	LegoFloat m_left, m_top, m_right, m_bottom;
+	LegoFloat m_clipLeft, m_clipTop, m_clipRight, m_clipBottom;
+	LegoFloat m_tileWidth, m_tileHeight;
+	LegoU32 m_color;   // 0x2c, alpha is its high byte
+	LegoU32 m_texture; // 0x30
+	LegoFloat m_u, m_v, m_uEnd, m_vEnd;
+	LegoU32 m_type; // 0x44
+	LegoU32 m_unk0x48;
+	LegoU32 m_alignment; // 0x4c, bit0 selects center-based geometry
+	LegoU32 m_unk0x50;
+	LegoS32 m_listId; // 0x54
+	void Initialize(const LegoU32* p_parameters);
+	void Release();
+	void SetVisible(LegoU32 p_visible);
+	void SetPosition(const LegoFloat* p_position);
+	void Translate(const LegoFloat* p_offset);
+	void SetSize(const LegoFloat* p_size);
+	void GetSize(LegoFloat* p_size) const;
+	void GetRectangle(LegoFloat* p_topLeft, LegoFloat* p_bottomRight) const;
+	void SetTextureRegion(const LegoFloat* p_topLeft, const LegoFloat* p_bottomRight, LegoS32 p_texture);
+	void SetTexture(LegoU32 p_texture);
+	void SetColor(const LegoU32* p_color);
+	void SetAlpha(LegoU8 p_alpha);
+	void SetType(LegoU32 p_type);
+	void SetList(LegoS32 p_listId);
+	void SetClipRectangle(const LegoFloat* p_topLeft, const LegoFloat* p_bottomRight);
+};
+DECOMP_SIZE_ASSERT(GlobalOverlaySprite, 0x58);
+DECOMP_STATIC_ASSERT(offsetof(GlobalOverlaySprite, m_texture) == 0x30);
+DECOMP_STATIC_ASSERT(offsetof(GlobalOverlaySprite, m_alignment) == 0x4c);
+DECOMP_STATIC_ASSERT(offsetof(GlobalOverlaySprite, m_listId) == 0x54);
+
 struct GlobalOverlayManager : GameObject {
-	undefined m_overlayEntries[300][0x58];     // 0x58, opaque 0x58-byte records
+	GlobalOverlaySprite m_overlayEntries[300]; // 0x58, stride 0x58
 	GlobalOverlayListNode m_overlayNodes[300]; // 0x6778, compact links for the 0x58-stride pool
 	GlobalOverlayListNode* m_overlayNodePool;  // 0x70d8
 	GlobalOverlayListNode* m_overlayHeads[16]; // 0x70dc
@@ -62,8 +108,11 @@ struct GlobalOverlayManager : GameObject {
 	GlobalOverlayManager(GameObjectTemplate* p_template);
 	void UpdateRecords(void* p_argument);
 	void SetLocalizedStrings(LocalizedStringTable* p_strings);
+	void SetGlyphReplacementManager(GlobalOverlayGlyphReplacementManagerView* p_manager);
 	GlobalOverlayRecord* AllocateRecord(const LegoU32* p_parameters, LegoS32 p_listId);
 	void MoveRecord(GlobalOverlayRecord* p_record, LegoS32 p_sourceList, LegoS32 p_destinationList);
+	GlobalOverlaySprite* AllocateSprite(const LegoU32* p_parameters);
+	void MoveSprite(GlobalOverlaySprite* p_sprite, LegoS32 p_sourceList, LegoS32 p_destinationList);
 };
 
 DECOMP_SIZE_ASSERT(GlobalOverlayRecord, 0x254);

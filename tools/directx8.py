@@ -14,7 +14,7 @@ import shutil
 from toolchain import DEFAULT_TOOLCHAIN, ROOT
 
 
-WINE_HEADERS = ("basetsd.h", "d3d8.h", "d3d8caps.h", "d3d8types.h", "dinput.h", "dsound.h")
+WINE_HEADERS = ("basetsd.h", "d3d8.h", "d3d8caps.h", "d3d8types.h", "dinput.h", "dsound.h", "dplay8.h", "dpaddr.h", "dplobby8.h")
 DX_LIBRARIES = ("d3d8.lib", "dinput8.lib", "dsound.lib", "dxguid.lib")
 DEFAULT_WINE_INCLUDE = Path("/usr/include/wine/windows")
 DEFAULT_WINE_LIB = Path("/usr/lib/wine/i386-windows")
@@ -58,7 +58,7 @@ def _prepare_wine_overlay(source_dir, overlay_dir):
 def _sdk_paths(sdk_root):
     sdk_root = Path(sdk_root).expanduser().resolve()
     include_dir = sdk_root / "Include"
-    _require_files(include_dir, ("d3d8.h", "dinput.h", "dsound.h"), "DirectX SDK headers")
+    _require_files(include_dir, ("d3d8.h", "dinput.h", "dsound.h", "dplay8.h", "dpaddr.h", "dplobby8.h"), "DirectX SDK headers")
 
     library_dir = None
     for candidate in (sdk_root / "Lib" / "x86", sdk_root / "Lib", sdk_root / "lib" / "x86"):

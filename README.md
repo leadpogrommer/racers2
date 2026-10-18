@@ -14,8 +14,8 @@ Verified reconstructions include character predicates, line classification,
 fixed string buffers, file operations, window geometry, command-line parsing,
 startup helpers, bitmap scanning, terrain lookup, spline helpers, and
 foundational renderer/input operations.
-The current checkpoint has **299 exact function matches**, **twelve reviewed
-near matches**, and 750 unfinished implementations across 1,061 measured
+The current checkpoint has **341 exact function matches**, **sixteen reviewed
+near matches**, and 792 unfinished implementations across 1,149 measured
 functions. See
 [current progress](docs/progress.md) for the measured function list and
 remaining work. The application singleton and its two complete 38-slot
@@ -30,14 +30,18 @@ and draw-plan builders also have source. The renderer constructor, full dispatch
 Bitmap loading and mip preprocessing, texture maintenance, buffer dispatch,
 sprite submission, immediate drawing and animation records now have source;
 large bodies still require semantic review. Device reset/resource restoration, scene startup, GUI rectangle clipping, all eight quad-packet cases and bump-vector generation also have compiled source. Controller records, recorded-input access, timer events and named mutexes have source; the controller manager, system clock, and platform readiness helper now have compiled source. The fixed-step scheduler, game-object registry loops and renderer resource cleanup also have compiled source. Registry allocation, insertion, removal and initialization now have compiled source. Concrete menu-object creation and startup integration remain open.
+Controller defaults, player car setup, bodypart lists, shared menu sprites,
+key-icon/string replacement, ScreenPrinter and HUD/pause/builder textures now
+have linked source. The widget, foyer, nested textbox and network service
+closures are still being integrated; see [frontend notes](docs/work-controller-frontend.md).
 Earlier runtime checks exercised config,
 archive metadata, and selected asset reads. The executable still has a
 temporary entry point and does not reach a window, rendered menu, or gameplay.
 No game or probe was run for the current renderer/input implementation batch;
 future runtime checks are reserved for significant milestones expected to
 reach a rendered menu or gameplay. Whole-game coverage is not established.
-Ghidra currently discovers 4,254 function starts,
-including 21 thunks and linked libraries; this is a provisional inventory,
+Ghidra currently discovers 4,459 function starts,
+including 22 thunks and linked libraries; this is a provisional inventory,
 not a count of game-authored functions. See the
 [inventory notes](docs/research.md#automatic-function-inventory).
 See [initial validation](docs/validation.md) for the checks performed and the

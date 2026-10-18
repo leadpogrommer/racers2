@@ -27,7 +27,9 @@ struct GameControllerPair {
 };
 struct GameControllerPairGroups {
 	void Initialize();
-	undefined m_unk0x00[0x0c];
+	LegoU32 m_index;
+	LegoU32 m_enabled;
+	LegoU32 m_unk0x08;
 	GameControllerPair m_pairs[2];
 	GameControllerPair m_firstGroups[9];
 	GameControllerPair m_secondGroups[9];
@@ -36,6 +38,12 @@ DECOMP_SIZE_ASSERT(GameControllerPairGroups, 0xac);
 
 struct GameControllerSelection {
 	void Initialize();
+	void UnlockWorld(LegoU32 p_world);
+	void UnlockTrack(LegoU32 p_world, LegoU32 p_track);
+	LegoBool32 IsTrackUnlocked(LegoU32 p_world, LegoU32 p_track) const;
+	void UnlockReward(LegoU32 p_world, LegoU32 p_reward, LegoU32 p_includeBonus);
+	LegoBool32 HasReward(LegoU32 p_world, LegoU32 p_reward) const;
+	void UnlockDefaults(LegoU32 p_includeFinalTrack, LegoU32 p_rewards);
 	LegoS32 m_values[8];
 };
 DECOMP_SIZE_ASSERT(GameControllerSelection, 0x20);
@@ -114,7 +122,11 @@ struct GameController : GameObject {
 	GameControllerName m_names[2]; // 0x134
 	undefined m_unk0x15c[0x1e4 - 0x15c];
 	GameControllerPairGroups m_pairGroups[2]; // 0x1e4
-	undefined m_unk0x33c[0x350 - 0x33c];
+	LegoU32 m_graphicsQuality;                // 0x33c
+	LegoU32 m_unk0x340;
+	LegoU32 m_unk0x344;
+	LegoU32 m_unk0x348;
+	LegoU32 m_unk0x34c;
 	GameControllerSelection m_selection; // 0x350
 	LegoU32 m_unk0x370;
 	GameControllerScore m_scores[3][25]; // 0x374
@@ -122,7 +134,11 @@ struct GameController : GameObject {
 	GameControllerItemBlock m_itemBlocks[39]; // 0xaa0
 	GameControllerItem m_lastBlockItems[36];  // 0x7dcc
 	LegoU32 m_blockState[2][4];               // 0x809c
-	undefined m_unk0x80bc[0x817c - 0x80bc];
+	LegoU32 m_unk0x80bc[4];
+	LegoU32 m_unk0x80cc;
+	LegoU32 m_unk0x80d0[5];
+	LegoU32 m_settingsCookie; // 0x80e4
+	undefined m_unk0x80e8[0x817c - 0x80e8];
 	GameControllerPlayerBlock m_playerBlocks[8]; // 0x817c
 	undefined m_unk0x9b9c[0x9bdc - 0x9b9c];
 	GameObject* m_screenPrinter; // 0x9bdc

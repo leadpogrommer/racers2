@@ -128,3 +128,18 @@ also depends on the actual controller-recording service. Startup movie support
 is still incomplete. These dependencies must close before replacing the
 bootstrap and attempting the menu milestone. No runtime/game probe was executed
 for this integration batch.
+
+
+## Frontend resources and shared menu support
+
+The combined build now links controller defaults, session reset, default player
+cars, bodypart lists, key-icon/string replacement, ScreenPrinter, shared menu
+sprite allocation/geometry and the HUD/pause/builder texture paths. The shared
+random-state singleton and font metrics are also present. Both builders pass,
+and 217 data globals have zero comparison issues. See
+[frontend integration](work-controller-frontend.md).
+
+GameController's complete creation/update path remains staged while concrete
+widget, foyer, textbox, network and other scene dependencies close. The retail
+entry path has not replaced bootstrap. No runtime check was performed; the
+next run remains reserved for a build expected to open and render the menu.

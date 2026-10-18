@@ -361,3 +361,24 @@ See [artifact identity and matching evidence](work-d3dx8.md) and
 ## Spatial storage provenance
 
 A bounded scan of 0x005073a0, 0x005075a0, 0x00508690 and 0x00507d10 against 1,466 available LIBCMT functions found no candidate. The ignored report is `data/spatial-library-candidates.csv`. These generic-looking containers remain of unresolved provenance; the failed scan is not proof of game authorship. Their source is needed by the real collision-service construction path.
+
+### DirectPlay 8 network input service
+
+The COM creation pairs in 0x004b1550 identify the actual SDK interfaces:
+
+| Retail data | SDK symbol | GUID |
+| --- | --- | --- |
+| 0x00538348 | CLSID_DirectPlay8Peer | 286f484d-375e-4458-a272-b138e2f80a6a |
+| 0x00538338 | IID_IDirectPlay8Peer | 5102dacf-241b-11d3-aea7-006097b01411 |
+| 0x005382a8 | CLSID_DirectPlay8LobbiedApplication | 667955ad-6b3b-43ca-b949-bc69b5baff7f |
+| 0x00538298 | IID_IDirectPlay8LobbiedApplication | 819074a3-016c-11d3-ae14-006097b01411 |
+
+All 16 bytes of each GUID were read from the pinned PE and agree with the
+installed SDK declarations in dplay8.h/dplobby8.h. The call at service routine
+0x004b2340 through peer slot +0x60 is IDirectPlay8Peer::Close(0). The surrounding
+controller ownership/frame-ring logic remains game code under reconstruction.
+The project includes the real interfaces through util/directplay8.h; the Wine
+header overlay includes dplay8.h, dpaddr.h and dplobby8.h. VC6 compilation and
+linking of both creation GUID pairs and the Close method passed without
+executing the compiler-check executable. These COM interfaces add no static
+library-function matches to the game’s measured function total.

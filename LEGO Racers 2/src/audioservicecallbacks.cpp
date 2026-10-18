@@ -91,7 +91,7 @@ void __fastcall UpdateAudioSourceOutputs(AudioService* p_service, void*)
 	}
 }
 
-// STUB: LEGORACERS2 0x004b13d0
+// FUNCTION: LEGORACERS2 0x004b13d0 FOLDED
 LegoU32 __fastcall GetAudioServiceShutdownStatus(AudioService* p_service, void*)
 {
 	return p_service->m_shutdown;

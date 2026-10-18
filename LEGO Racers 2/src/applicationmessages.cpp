@@ -1,7 +1,8 @@
 #include "applicationmessages.h"
 
-// GLOBAL: LEGORACERS2 0x005544b0
-GameApplicationMessageContextView* g_gameApplicationMessageContext = NULL;
+#include "gamecontroller.h"
+
+extern LegoU32 g_gameControllerStorage[sizeof(GameController) / sizeof(LegoU32)];
 
 // FUNCTION: LEGORACERS2 0x00493550
 LegoBool32 WINAPI FilterApplicationWindowMessage(HWND p_window, UINT p_message, WPARAM p_wParam, LPARAM p_lParam)
@@ -19,7 +20,8 @@ LegoBool32 WINAPI FilterApplicationWindowMessage(HWND p_window, UINT p_message, 
 		return TRUE;
 	}
 
-	GameApplicationMessageContextView* context = g_gameApplicationMessageContext;
+	GameController* controller = (GameController*) g_gameControllerStorage;
+	GameApplicationMessageContextView* context = (GameApplicationMessageContextView*) controller->m_networkApp;
 	if (context == NULL || (context->m_inputMode != 2 && context->m_alternateInputMode != 4) ||
 		context->m_textInputTarget == NULL) {
 		return TRUE;

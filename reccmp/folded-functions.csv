@@ -3,3 +3,5 @@ address,symbol,bytes,name
 004ab600,?GetTextureOffset@RendererVertexBuffer@@QAEIXZ,8b4114c3,RendererVertexBuffer::GetTextureOffset
 004f2590,?IsReading@CommentaryAudioStream@@QAEIXZ,8b4114c3,CommentaryAudioStream::IsReading
 0040b340,?InitializeGameControllerWord@@YIXPAIPAX@Z,c70100000000c3,InitializeGameControllerWord
+004ab5e0,?GetPositionOffset@RendererVertexBuffer@@QAEIXZ,8b4108c3,RendererVertexBuffer::GetPositionOffset
+004b13d0,?GetAudioServiceShutdownStatus@@YIIPAVAudioService@@PAX@Z,8b4108c3,GetAudioServiceShutdownStatus

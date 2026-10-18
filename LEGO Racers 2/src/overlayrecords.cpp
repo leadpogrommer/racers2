@@ -144,8 +144,9 @@ void GlobalOverlayRecord::InitializeTextByIndex(LegoS32 p_stringIndex, LegoU32 p
 	}
 	else {
 		const LegoU16* text;
-		GetLocalizedStringTable()->GetString(p_stringIndex, &text);
-		InitializeText(text, p_flags, p_time);
+		if (GetLocalizedStringTable()->GetString(p_stringIndex, &text)) {
+			InitializeText(text, p_flags, p_time);
+		}
 	}
 }
 
@@ -199,7 +200,7 @@ LegoS32 __fastcall FindOverlayGlyphSequence(void* p_glyphManager, void*, const L
 	LegoS32 count = *(const LegoS32*) (manager + 0x54);
 	const LegoU32* patterns = (const LegoU32*) (manager + 4);
 	for (LegoS32 i = 0; i < count; ++i) {
-		if (CompareOverlayTextPrefix(p_glyphManager, NULL, p_key, (const LegoU16*) patterns[i], p_matchedLength)) {
+		if (CompareOverlayTextPrefix(p_glyphManager, NULL, (const LegoU16*) patterns[i], p_key, p_matchedLength)) {
 			return i;
 		}
 	}
@@ -223,8 +224,8 @@ LegoBool32 __fastcall ExpandOverlayGlyphSequence(
 		if (CompareOverlayTextPrefix(
 				p_glyphManager,
 				NULL,
-				p_key,
 				(const LegoU16*) patterns[i],
+				p_key,
 				p_unusedMatchedLength
 			)) {
 			const LegoU16* replacement = (const LegoU16*) (entry + 0x20);

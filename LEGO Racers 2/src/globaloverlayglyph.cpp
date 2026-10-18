@@ -11,7 +11,7 @@ LegoFloat GetRecordGlyphOffsetScale(const GlobalOverlayRecord* p_record)
 	if ((p_record->m_animationFlags & 8) != 0) {
 		return p_record->m_scale;
 	}
-	return 0.0f;
+	return 1.0f;
 }
 
 } // namespace
@@ -46,8 +46,8 @@ void __fastcall ApplyGlobalOverlayGlyphReplacement(
 	LegoFloat scale = GetRecordGlyphOffsetScale(p_record);
 	LegoFloat baseHeight =
 		*(LegoFloat*) ((LegoU8*) p_record->m_font + 0x20) * *(LegoFloat*) ((LegoU8*) p_record->m_font + 0x18);
-	LegoFloat scaledHeight = baseHeight * entry->m_scaleY;
-	*p_advance = scaledHeight * entry->m_scaleX;
+	LegoFloat scaledHeight = baseHeight * entry->m_heightScale;
+	*p_advance = scaledHeight * entry->m_widthScale;
 	LegoFloat topOffset = ((baseHeight - scaledHeight) * scale) * 0.5f;
 	p_quad->m_top += topOffset;
 	p_quad->m_right = p_quad->m_left + *p_advance;
