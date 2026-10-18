@@ -80,3 +80,13 @@ Vector3* Vector3::FUN_004a4e50(const Matrix3* p_matrix)
 	m_x = x;
 	return this;
 }
+
+// STUB: LEGORACERS2 0x004d5be0
+void Vector3::Cross(const Vector3* p_first, const Vector3* p_second)
+{
+	LegoFloat x = p_second->m_z * p_first->m_y - p_second->m_y * p_first->m_z;
+	LegoFloat z = p_first->m_x * p_second->m_y - p_second->m_x * p_first->m_y;
+	m_y = p_second->m_x * p_first->m_z - p_first->m_x * p_second->m_z;
+	m_z = z;
+	m_x = x;
+}

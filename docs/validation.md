@@ -257,3 +257,8 @@ The audio-mode selector is linked, while the full audio singleton and startup/fr
 Both builders agree on 661 measured rows: 271 exact, ten reviewed near matches and 380 STUB. The physical world-matrix rebuild and angular-limit square initializer add two exact matches. Parent detachment, parent-point velocity, velocity clamps, audio format parsing/conversion and screenshot capture retain their raw measurements and STUB status. Both data reports verify 127 globals with zero issues. The Wine DX8 bridge now keeps the genuine USER32 GetSystemMetrics declaration after the VC6 multimon header.
 
 No game, screenshot, startup or asset probe was run. The temporary entry point remains until the complete frame/audio/object path links.
+
+
+## Contact impulse and frame-state checkpoint
+
+Both SP5 builders pass with 670 measured rows: 272 exact functions, ten reviewed near matches and 388 STUB reconstructions. Their raw scores and statuses agree. The mass-weighted contact separation helper adds an exact match; the other impulse bodies retain their measurements and unresolved floating-point/aliasing status. Data comparison verifies 136 annotated globals with zero issues. The spatial-list dispatch checks pass in both builds. No game or runtime probe ran.

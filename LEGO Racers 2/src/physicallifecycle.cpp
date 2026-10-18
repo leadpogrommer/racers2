@@ -13,11 +13,11 @@ static void ScalePhysicsVector(Vector3* p_vector, LegoFloat p_scale)
 }
 
 // FUNCTION: LEGORACERS2 0x004a6480
-void PhysicalLifecycleState::RebuildWorldMatrix()
+void PhysicalLifecycleState::RebuildInverseInertiaTensor()
 {
 	Matrix3 scaled;
-	scaled.FUN_004a52c0(&m_scale.m_x, &m_rotation);
-	m_worldMatrix.FUN_004a4ea0(&m_rotation, &scaled);
+	scaled.FUN_004a52c0(&m_inverseInertia.m_x, &m_rotation);
+	m_inverseInertiaTensor.FUN_004a4ea0(&m_rotation, &scaled);
 }
 
 // STUB: LEGORACERS2 0x004a64c0
@@ -26,8 +26,8 @@ void PhysicalLifecycleState::UpdateAndClampVelocities()
 	m_linearVelocity.m_x = m_inverseMass * m_linearMomentum.m_x;
 	m_linearVelocity.m_y = m_inverseMass * m_linearMomentum.m_y;
 	m_linearVelocity.m_z = m_inverseMass * m_linearMomentum.m_z;
-	m_worldAngularVelocity = m_localAngularVelocity;
-	m_worldAngularVelocity.FUN_004a4e00(&m_worldMatrix);
+	m_worldAngularVelocity = m_angularMomentum;
+	m_worldAngularVelocity.FUN_004a4e00(&m_inverseInertiaTensor);
 	LegoFloat length = m_linearVelocity.m_z * m_linearVelocity.m_z + m_linearVelocity.m_y * m_linearVelocity.m_y +
 					   m_linearVelocity.m_x * m_linearVelocity.m_x;
 	if (length > g_maximumLinearSpeedSquared) {
@@ -41,7 +41,7 @@ void PhysicalLifecycleState::UpdateAndClampVelocities()
 	// Both retail comparisons skip clamping when the comparison is unordered.
 	if (length > g_maximumAngularSpeedSquared) {
 		LegoFloat scale = (LegoFloat) sqrt(g_maximumAngularSpeedSquared / length);
-		ScalePhysicsVector(&m_localAngularVelocity, scale);
+		ScalePhysicsVector(&m_angularMomentum, scale);
 		ScalePhysicsVector(&m_worldAngularVelocity, scale);
 	}
 }
@@ -63,8 +63,8 @@ void __fastcall ClearLifecycleParent(GameLifecycleComponent* p_lifecycle, void*,
 		state->m_linearMomentum.m_x = velocity.m_x * state->m_mass;
 		state->m_linearMomentum.m_y = velocity.m_y * state->m_mass;
 		state->m_linearMomentum.m_z = velocity.m_z * state->m_mass;
-		state->m_localAngularVelocity = zero;
-		state->RebuildWorldMatrix();
+		state->m_angularMomentum = zero;
+		state->RebuildInverseInertiaTensor();
 		PhysicalLifecycleState* parent = state->GetTransformDispatch()->m_parent(state, NULL);
 		if (parent->GetTransformDispatch()->m_isActive(parent, NULL, 0) == FALSE) {
 			state->m_worldAngularVelocity = zero;
@@ -73,9 +73,9 @@ void __fastcall ClearLifecycleParent(GameLifecycleComponent* p_lifecycle, void*,
 			state->m_worldAngularVelocity = parent->m_worldAngularVelocity;
 		}
 		Matrix3 inverse;
-		inverse.FUN_004a5150(&state->m_worldMatrix);
-		state->m_localAngularVelocity = state->m_worldAngularVelocity;
-		state->m_localAngularVelocity.FUN_004a4e00(&inverse);
+		inverse.FUN_004a5150(&state->m_inverseInertiaTensor);
+		state->m_angularMomentum = state->m_worldAngularVelocity;
+		state->m_angularMomentum.FUN_004a4e00(&inverse);
 		state->UpdateAndClampVelocities();
 	}
 	state->m_parent = NULL;

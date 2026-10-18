@@ -142,3 +142,6 @@ LEGO Racers 2/src/audioformat.cpp
 LEGO Racers 2/src/physicallifecycle.cpp
 LEGO Racers 2/src/physicslimits.cpp
 LEGO Racers 2/src/screenshotcapture.cpp
+LEGO Racers 2/src/contactswap.cpp
+LEGO Racers 2/src/contactimpulse.cpp
+LEGO Racers 2/src/gamerenderaudio.cpp

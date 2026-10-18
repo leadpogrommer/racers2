@@ -137,6 +137,9 @@ perfect matching must not block progress toward a playable game.
 - Read initialized global values from the PE before defining their defaults;
   do not assume a discovered global starts at zero. Verify initial pointers
   against real backing storage and check annotated data after integration.
+- Calculate compound offsets, array ends and signed displacements with a script,
+  then confirm the actual addressing instruction. Do not rely on mental hex
+  arithmetic when defining storage, overlaps or class bounds.
 - Derive each callback ABI from argument pushes, receiver setup and stack
   cleanup. Use fastcall bridges for evidenced thiscall methods, and retain
   cdecl/stdcall for callbacks that actually use those conventions. Trace pushes
