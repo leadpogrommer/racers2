@@ -92,7 +92,7 @@ InputDeviceRecord* __fastcall GetControllerInputDevice(InputController* p_contro
 
 // STUB: LEGORACERS2 0x004b7f60
 InputController* InputControllerManager::FindOrCreateController(
-	LegoU32 p_type,
+	LegoU32 p_ownerKey,
 	LegoU32 p_index,
 	LegoBool32 p_create,
 	LegoBool32 p_record
@@ -101,7 +101,7 @@ InputController* InputControllerManager::FindOrCreateController(
 	LegoS32 index;
 	for (index = 0; index < m_controllerCount; index++) {
 		InputController* controller = m_controllers[index];
-		if (controller->m_deviceType == p_type && controller->m_deviceIndex == p_index) {
+		if (controller->m_ownerKey == p_ownerKey && controller->m_index == p_index) {
 			return controller;
 		}
 	}
@@ -114,7 +114,7 @@ InputController* InputControllerManager::FindOrCreateController(
 	void* memory = AllocateHeapMemory(sizeof(InputController));
 	InputController* controller = memory == NULL ? NULL : new (memory) InputController(p_record);
 	m_controllers[m_controllerCount] = controller;
-	controller->SetDevice(p_type, p_index, 0);
+	controller->SetOwner(p_ownerKey, p_index, 0);
 	controller = m_controllers[m_controllerCount];
 	m_controllerCount++;
 	return controller;

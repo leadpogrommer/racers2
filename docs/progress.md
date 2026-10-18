@@ -6,10 +6,10 @@ Reviewed semantically identical near matches (initially at least 95% raw) are
 implemented functions, counted separately from exact matches.
 
 Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-19.
-The match guard verified **281 exact functions and twelve reviewed near
-matches**. Another 429 reconstructions remain `STUB`; both builders agree on
-all 722 measured raw scores and annotation statuses. Data comparison verifies
-147 annotated globals with zero issues. Unlinked inventory entries and folded
+The match guard verified **289 exact functions and twelve reviewed near
+matches**. Another 441 reconstructions remain `STUB`; both builders agree on
+all 742 measured raw scores and annotation statuses. Data comparison verifies
+148 annotated globals with zero issues. Unlinked inventory entries and folded
 aliases may also appear in the CLI denominator without another measured row.
 
 This is the reconstructed subset, not whole-game coverage. The automatic
@@ -25,7 +25,17 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | --- | --- | ---: | --- |
 | `0x00403910` | `IsApplicationDevelopmentMode` | 100.00% | Verified exact |
 | `0x00403930` | `OnApplicationDiagnostic` | 100.00% | Verified exact |
+| `0x004071a0` | `GameControllerScore::Initialize` | 100.00% | Verified exact |
+| `0x004071f0` | `GameControllerPairGroups::Initialize` | 22.64% | Work in progress |
+| `0x00409190` | `GameControllerItem::Initialize` | 100.00% | Verified exact |
+| `0x0040a540` | `AccessGameLanguagePreference` | 53.12% | Work in progress |
+| `0x0040a760` | `ConfigureGameScreenshotDirectory` | 94.87% | Work in progress |
 | `0x0040a7d0` | `BuildUserDataPath` | 100.00% | Verified exact |
+| `0x0040aef0` | `GameControllerName::Initialize` | 100.00% | Verified exact |
+| `0x0040af10` | `GameControllerName::SetNarrowText` | 100.00% | Verified exact |
+| `0x0040af30` | `GameControllerName::SetWideText` | 69.23% | Work in progress |
+| `0x0040b000` | `GameControllerSelection::Initialize` | 9.09% | Work in progress |
+| `0x0040b340` | `InitializeGameControllerWord` | 100.00% | Verified exact |
 | `0x0040ec90` | `Application::GetDisplaySettings` | 100.00% | Verified exact |
 | `0x0043dcd0` | `GetConfiguredAudioServiceMode` | 85.71% | Work in progress |
 | `0x0045dcb0` | `FUN_0045dcb0` | 100.00% | Verified exact |
@@ -289,12 +299,19 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004b4d60` | `ExpandChildWindowBounds` | 100.00% | Verified exact |
 | `0x004b4de0` | `FitWindowToChildren` | 100.00% | Verified exact |
 | `0x004b4e80` | `ScreenRectToClient` | 100.00% | Verified exact |
+| `0x004b7550` | `LocalizedStringTable::LocalizedStringTable` | 100.00% | Verified exact |
+| `0x004b75c0` | `LocalizedStringTable::Load` | 58.40% | Work in progress |
+| `0x004b7740` | `LocalizedStringTable::Release` | 63.64% | Work in progress |
+| `0x004b77b0` | `LocalizedStringTable::SelectLanguage` | 34.29% | Work in progress |
+| `0x004b78c0` | `LocalizedStringTable::GetString` | 100.00% | Verified exact |
+| `0x004b79c0` | `LocalizedStringTable::BuildLanguagePath` | 100.00% | Verified exact |
+| `0x004b7a60` | `LocalizedStringTable::BuildSortedIndex` | 87.06% | Work in progress |
 | `0x004b7b80` | `InputController::InputController` | 83.33% | Work in progress |
 | `0x004b7c20` | `InputController::~InputController` | 100.00% | Verified exact |
 | `0x004b7c50` | `InputControllerManager::InitializeTiming` | 94.12% | Work in progress |
 | `0x004b7c70` | `InputControllerManager::ResetRecording` | 28.38% | Work in progress |
 | `0x004b7d40` | `InputControllerManager::Shutdown` | 98.18% | Reviewed near match |
-| `0x004b7d80` | `InputController::SetDevice` | 100.00% | Verified exact |
+| `0x004b7d80` | `InputController::SetOwner` | 100.00% | Verified exact |
 | `0x004b7da0` | `InputController::AppendBinding` | 100.00% | Verified exact |
 | `0x004b7dd0` | `GetControllerInputDevice` | 89.66% | Work in progress |
 | `0x004b7e30` | `InputController::GetBinding` | 100.00% | Verified exact |
@@ -302,6 +319,9 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004b7eb0` | `InputController::GetCurrentInput` | 65.57% | Work in progress |
 | `0x004b7f20` | `InputController::RecordInputRange` | 92.00% | Work in progress |
 | `0x004b7f60` | `InputControllerManager::FindOrCreateController` | 48.23% | Work in progress |
+| `0x004b8010` | `InputControllerManager::RebindController` | 53.33% | Work in progress |
+| `0x004b8040` | `InputControllerManager::ConfigureController` | 53.24% | Work in progress |
+| `0x004b8220` | `InputControllerManager::AppendControllerBinding` | 66.67% | Work in progress |
 | `0x004b8460` | `InputControllerManager::GetTimingState` | 34.85% | Work in progress |
 | `0x004b8520` | `InputControllerManager::GetElapsedTime` | 45.45% | Work in progress |
 | `0x004b8570` | `InputControllerManager::GetCurrentFrame` | 100.00% | Verified exact |

@@ -1,5 +1,8 @@
 address,type,size
 005363c0,string,5
+0053e440,string,40
+0053e468,string,9
+0053e928,string,8
 0053e930,string,15
 0053e940,string,7
 0053ef20,string,12
@@ -47,6 +50,11 @@ address,type,size
 0054a114,string,27
 0054a130,string,7
 0054a138,string,19
+0054a2a0,string,13
+0054a2b0,string,34
+0054a2d4,string,28
+0054a2f0,string,42
+0054a31c,string,4
 0054a320,string,16
 0054a334,string,29
 0054a464,string,32

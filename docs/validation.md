@@ -273,3 +273,7 @@ Official Ogg/Vorbis source replaces the need to reconstruct the linked codec. Tw
 ## Contact solver and constraint checkpoint
 
 Both SP5 builders pass with 722 measured rows: 281 exact functions, twelve reviewed near matches and 429 STUB reconstructions. All measured scores and annotation statuses agree. Data comparison verifies 147 annotated globals with zero issues. The six cached-constraint dispatch pointers and eight spatial callbacks match the retail targets in both builds. Four new difference/matrix helpers match exactly; the world-position accessor is reviewed equivalent at 98.70%. The solver, force application and contact response remain under review. No game or runtime probe was run.
+
+## Frontend preferences and localization checkpoint
+
+Both SP5 builders pass with 742 measured rows: 289 exact functions, twelve reviewed near matches and 441 STUB reconstructions. All scores/statuses agree. Data comparison verifies 148 annotated globals with zero issues. Eight added helpers match exactly, including the localization constructor, string access/path builder, narrow name copying and four other record initializers. Four genuine folded bodies pass complete-byte and linker-symbol verification in both builds. The larger loader, language relocation, input binding setup and preferences retain STUB status. GameController storage/construction and its complete 21-slot dispatch pass object compilation and remain staged. No game or runtime probe was run. See [frontend recovery](work-game-controller.md).

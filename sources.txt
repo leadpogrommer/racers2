@@ -181,3 +181,8 @@ LEGO Racers 2/src/contactsolver.cpp
 LEGO Racers 2/src/cachedconstraint.cpp
 LEGO Racers 2/src/constraintendpoint.cpp
 LEGO Racers 2/src/contactconstraint.cpp
+LEGO Racers 2/src/gamecontrollerrecords.cpp
+LEGO Racers 2/src/gamepreferences.cpp
+LEGO Racers 2/src/localizedstringtable.cpp
+LEGO Racers 2/src/localizedstringloading.cpp
+LEGO Racers 2/src/inputcontrollerdefaults.cpp

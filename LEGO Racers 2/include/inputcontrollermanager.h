@@ -37,7 +37,15 @@ public:
 	LegoBool32 ResetRecording(LegoU32 p_mode);
 	void Shutdown();
 	void SetPaused(LegoU32 p_paused);
-	InputController* FindOrCreateController(LegoU32 p_type, LegoU32 p_index, LegoBool32 p_create, LegoBool32 p_record);
+	InputController* FindOrCreateController(
+		LegoU32 p_ownerKey,
+		LegoU32 p_index,
+		LegoBool32 p_create,
+		LegoBool32 p_record
+	);
+	void RebindController(LegoU32 p_ownerKey, LegoU32 p_newOwnerKey, LegoU32 p_index, LegoU32 p_newIndex);
+	void ConfigureController(LegoU32 p_ownerKey, LegoU32 p_index, LegoBool32 p_record, LegoBool32 p_defaults);
+	void AppendControllerBinding(LegoU32 p_ownerKey, LegoU32 p_index, const ControllerBinding* p_binding);
 	void GetTimingState(ControllerTimingState* p_state);
 	void GetElapsedTime(LegoU32* p_seconds, LegoU32* p_microseconds, LegoU32* p_frame);
 	LegoU32 GetCurrentFrame();

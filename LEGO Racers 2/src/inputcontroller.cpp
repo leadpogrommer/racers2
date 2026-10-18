@@ -25,8 +25,8 @@ static void DestroyEmptyCurrentControllerInput()
 InputController::InputController(LegoBool32 p_recordInput)
 {
 	m_state = 1;
-	m_deviceType = 0;
-	m_deviceIndex = 0;
+	m_ownerKey = 0;
+	m_index = 0;
 	m_recordedInput = NULL;
 	m_unk0x12 = 0;
 	m_unk0x10 = 0;
@@ -62,10 +62,10 @@ InputController::~InputController()
 }
 
 // FUNCTION: LEGORACERS2 0x004b7d80
-void InputController::SetDevice(LegoU32 p_type, LegoU32 p_index, LegoU32 p_unused)
+void InputController::SetOwner(LegoU32 p_ownerKey, LegoU32 p_index, LegoU32 p_unused)
 {
-	m_deviceType = p_type;
-	m_deviceIndex = p_index;
+	m_ownerKey = p_ownerKey;
+	m_index = p_index;
 }
 
 // FUNCTION: LEGORACERS2 0x004b7da0

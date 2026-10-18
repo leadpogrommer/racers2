@@ -20,7 +20,7 @@ class InputController {
 public:
 	InputController(LegoBool32 p_recordInput);
 	~InputController();
-	void SetDevice(LegoU32 p_type, LegoU32 p_index, LegoU32 p_unused);
+	void SetOwner(LegoU32 p_ownerKey, LegoU32 p_index, LegoU32 p_unused);
 	void AppendBinding(const ControllerBinding* p_binding);
 	ControllerBinding* GetBinding(LegoS32 p_index);
 	LegoU32* GetRecordedInput(LegoU32 p_frame);
@@ -28,8 +28,8 @@ public:
 	void RecordInputRange(const LegoU32* p_input, LegoU32 p_firstFrame, LegoU32 p_lastFrame);
 
 	LegoU32 m_state;       // 0x00
-	LegoU32 m_deviceType;  // 0x04
-	LegoU32 m_deviceIndex; // 0x08
+	LegoU32 m_ownerKey;    // 0x04; game-object identity, not a device kind
+	LegoU32 m_index;       // 0x08
 	void* m_recordedInput; // 0x0c
 	LegoU8 m_unk0x10;
 	LegoU8 m_unk0x11;
