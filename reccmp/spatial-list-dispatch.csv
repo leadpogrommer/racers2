@@ -1,0 +1,9 @@
+table,offset,original,symbol
+list,00,005075e0,InsertSpatialList
+list,04,00507670,UpdateSpatialList
+registry,00,005075e0,InsertSpatialList
+registry,04,00507670,UpdateSpatialList
+x_axis,00,005075e0,InsertSpatialAxis
+x_axis,04,00508010,UpdateSpatialXAxis
+z_axis,00,005075e0,InsertSpatialAxis
+z_axis,04,00508100,UpdateSpatialZAxis

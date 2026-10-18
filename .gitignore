@@ -24,3 +24,5 @@ __pycache__/
 .DS_Store
 /.idea/
 /.vscode/
+/build-*.sources
+/build-*-sources.txt

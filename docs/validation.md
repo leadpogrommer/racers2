@@ -243,3 +243,10 @@ The constructor is available for startup integration; it is not yet invoked by t
 Both builders agree on 604 measured rows: 254 exact, ten reviewed near matches and 340 STUB. Quaternion shortest-path interpolation adds one exact match. Component transform interpolation, hue-color generation, controller pause/origin adjustment, frame preparation and the configuration-disabled profiler paths compile with their raw scores preserved. Both data reports verify 122 globals with zero issues; all 212 renderer/lookup callbacks, 78 resource/buffer callbacks, 76 application callbacks, 80 input callbacks, twelve controller/clock callbacks and 307 input-format entries pass in both outputs. Sixteen tooling/library-identification tests pass.
 
 WinMain, message handling, teardown, frame orchestration, global pause and collision transform/movement sources also passed object-only VC6 compilation. They remain unlinked until their actual service, dispatch and object dependencies exist. They are excluded from the 604 measured rows. No game or incremental startup/asset probe ran. See [frame and startup recovery](work-game-frame.md).
+
+
+## Spatial storage and grid checkpoint (2026-10-19)
+
+Both builders agree on 647 measured rows: 269 exact, ten reviewed near matches and 368 STUB. Slot storage, linked registries, static grid insertion/removal, axis sorting and dynamic-index construction now link. All eight spatial dispatch pointers pass verification against the retail tables and rebuilt map. The generic sorting helpers retain low raw scores and remain STUB; no instruction-match claim is made for them. Both data reports verify 123 globals with zero issues. Sixteen tooling/library-identification tests pass.
+
+The audio-mode selector is linked, while the full audio singleton and startup/frame dependencies remain staged. No game, startup or asset probe was run.

@@ -356,3 +356,8 @@ retail `d3dx8.lib`, with all non-relocated body bytes identical. Both now have
 LIBRARY mappings; the game build links the genuine external SDK library.
 See [artifact identity and matching evidence](work-d3dx8.md) and
 [build configuration](work-directx8.md#verified-retail-d3dx8-surface-conversion).
+
+
+## Spatial storage provenance
+
+A bounded scan of 0x005073a0, 0x005075a0, 0x00508690 and 0x00507d10 against 1,466 available LIBCMT functions found no candidate. The ignored report is `data/spatial-library-candidates.csv`. These generic-looking containers remain of unresolved provenance; the failed scan is not proof of game authorship. Their source is needed by the real collision-service construction path.

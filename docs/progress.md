@@ -5,11 +5,11 @@ visible, but does not take precedence over startup and gameplay dependencies.
 Reviewed semantically identical near matches (initially at least 95% raw) are
 implemented functions, counted separately from exact matches.
 
-Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-18.
-The match guard verified **254 exact functions and ten reviewed near
-matches**. Another 340 reconstructions remain `STUB`; both builders agree on
-all 604 measured raw scores and annotation statuses. Data comparison verifies
-122 annotated globals with zero issues. Unlinked inventory entries and folded
+Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-19.
+The match guard verified **269 exact functions and ten reviewed near
+matches**. Another 368 reconstructions remain `STUB`; both builders agree on
+all 647 measured raw scores and annotation statuses. Data comparison verifies
+123 annotated globals with zero issues. Unlinked inventory entries and folded
 aliases may also appear in the CLI denominator without another measured row.
 
 This is the reconstructed subset, not whole-game coverage. The automatic
@@ -27,6 +27,7 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x00403930` | `OnApplicationDiagnostic` | 100.00% | Verified exact |
 | `0x0040a7d0` | `BuildUserDataPath` | 100.00% | Verified exact |
 | `0x0040ec90` | `Application::GetDisplaySettings` | 100.00% | Verified exact |
+| `0x0043dcd0` | `GetConfiguredAudioServiceMode` | 85.71% | Work in progress |
 | `0x0045dcb0` | `FUN_0045dcb0` | 100.00% | Verified exact |
 | `0x0045dda0` | `IsTokenCharacter` | 100.00% | Verified exact |
 | `0x0045de00` | `IsHorizontalSpace` | 100.00% | Verified exact |
@@ -151,7 +152,7 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004a6190` | `ResetGameObjectInitializationValue` | 63.16% | Work in progress |
 | `0x004a74b0` | `IsLookupPointWithinRadius` | 45.45% | Work in progress |
 | `0x004a7510` | `ApplyLookupResourceState` | 18.70% | Work in progress |
-| `0x004a7cc0` | `?ReleaseRendererDrawPacket@@YIXPAURendererDrawPacket@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\applicationdispatch.h2969814241@@PAX@Z` | 66.67% | Work in progress |
+| `0x004a7cc0` | `?ReleaseRendererDrawPacket@@YIXPAURendererDrawPacket@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\applicationdispatch.h866218934@@PAX@Z` | 66.67% | Work in progress |
 | `0x004a9d20` | `GetLookupResourceOrigin` | 91.30% | Work in progress |
 | `0x004aa7b0` | `GameManager::UpdateComponents` | 21.52% | Work in progress |
 | `0x004ab2a0` | `ReportFatalError` | 85.25% | Work in progress |
@@ -399,7 +400,7 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004da500` | `RendererTextureRecord::UnlockPrimarySurface` | 80.85% | Work in progress |
 | `0x004da540` | `RendererTextureRecord::UploadBitmapImage` | 34.86% | Work in progress |
 | `0x004da5e0` | `DisplayRenderer::BuildMipSidecar` | 34.70% | Work in progress |
-| `0x004da9f0` | `?ReadBitmapInfoSettings@@YAIPBDPAUBitmapInfoSettings@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\bitmapimage.h2356714085@@@Z` | 2.29% | Work in progress |
+| `0x004da9f0` | `?ReadBitmapInfoSettings@@YAIPBDPAUBitmapInfoSettings@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\bitmapimage.h268496450@@@Z` | 2.29% | Work in progress |
 | `0x004dabe0` | `ParseBitmapInfoValue` | 40.31% | Work in progress |
 | `0x004dac90` | `GenerateBitmapMipLevel` | 17.20% | Work in progress |
 | `0x004db5c0` | `FindClosestPaletteColor` | 30.09% | Work in progress |
@@ -621,97 +622,51 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004f4b90` | `MultimediaTimerService::CloseMutex` | 100.00% | Verified exact |
 | `0x004f4bb0` | `MultimediaTimerService::AcquireNamedMutex` | 67.80% | Work in progress |
 | `0x004f4c00` | `MultimediaTimerService::ReleaseNamedMutex` | 100.00% | Verified exact |
+| `0x004f5140` | `SpatialLinkRegistry::SpatialLinkRegistry` | 90.00% | Work in progress |
+| `0x004f5160` | `SpatialLinkRegistry::Insert` | 80.00% | Work in progress |
+| `0x004f5180` | `SpatialLinkRegistry::Remove` | 100.00% | Verified exact |
 | `0x004f54a0` | `BitmapImage::LoadTga` | 17.27% | Work in progress |
 | `0x004f59c0` | `BitmapImage::ReleaseStorage` | 95.24% | Reviewed near match |
 | `0x004f5a10` | `WriteBitmapTgaFile` | 30.77% | Work in progress |
 | `0x004f6310` | `InitializePlatformServices` | 70.83% | Work in progress |
+| `0x004f90e0` | `GetSpatialGridShift` | 90.91% | Work in progress |
 | `0x004fb7f0` | `RendererAuxiliaryResourceRecord::CopyToDeviceMaterial` | 78.87% | Work in progress |
 | `0x004fb880` | `ClipGuiRectangle` | 77.94% | Work in progress |
-
-## Earlier renderer and input checkpoints
-
-
-The latest renderer batch adds 13 measured bodies: four exact matches and nine
-below the annotation threshold. It recovers texture-format enumeration and
-selection, pixel masks, material colors, frame clearing/presentation,
-depth/blend state controls and ordered cache insertion. No renderer owner or
-partial dispatch table is instantiated. Both builds retain all 76 application
-and 80 input pointers and all 307 input-format entries. See
-[texture formats](work-renderer-texture-formats.md), [pixel formats](work-pixelformat.md),
-[presentation](work-renderer-presentation.md), [state controls](work-renderer-state-control.md),
-[lookup tables](work-renderer-lookup.md), and the
-[initialization audit](work-renderer-initialization.md).
-
-The preceding input batch adds 58 measured reconstructions (33 exact matches and
-25 below the annotation threshold), the folded null helper, the complete
-service initializer and joystick dispatch table. All 307 input-format entries
-match retail, including its mouse button GUID filters. The temporary bootstrap
-still does not call input initialization; see [service recovery](work-input-service.md).
-
-The recovered subset includes the application singleton, complete 38-slot dispatch
-tables, resource linkage, memory pool, real aligned GlobalAlloc wrapper,
-diagnostics, mode-3 file manager and compressed archive reader, plus renderer
-and DirectInput helpers. Binary wiring verification passes for the 76
-application callback pointers and all 80 device/service pointers. This verifies
-table contents, not method-body equivalence or C++ vtable matching.
-Raw scores remain visible for unfinished bodies. The four reviewed near matches
-are `WinFile::Read` (95.24%), `DisplayRenderer::CreateVertexBuffers` (95.33%),
-`MemoryHeap::UpdateCursor` (95.83%), and `InputDeviceRecord::GetButtonValue`
-(95.24%). Library provenance remains unresolved for the pool and block decoder.
-
-A bounded run of the rebuilt executable exited with code 0 after startup read
-the per-user `C:\users\ilya\Documents\Games\LEGO Racers 2\Saved Games\LR2.cfg`
-path, both archive metadata files, and opened GAMEDATA.GTC. This reaches
-application construction/config loading and archive initialization through
-the current process startup path, but the
-entry point is still temporary and exits without creating a window or
-rendering gameplay. An isolated real-file probe also reads three archive
-assets, including a 349,562-byte texture spanning three logical blocks and a
-late archive text file. It exercises compressed reads but makes no
-pixel-correctness claim. See [validation](validation.md).
-Three original extents are inventory-only: 0x004a2550 has no unique
-PDB-name mapping, and 0x0049b930 folds with the heap exit callback in the
-rebuilt image. The three-byte null-return helper at 0x00473140 also folds
-with the existing zero leaf. These do not add measured match rows.
-
-Display config load/save, managed existence, user-data path construction,
-native-window helpers, renderer state helpers and DirectInput state readers
-are included. Earlier runtime checks construct the application and read its
-config and selected archive assets; window creation and rendering remain
-unreached. No game or probe ran during the latest renderer/input batch. Future
-runtime execution is reserved for a significant milestone expected to render
-the menu or enter gameplay. The extracted resource file contains all five
-retail resources (7,022 payload bytes) and is consumed by both builders when
-present. Renderer builds require the generated DirectX 8 configuration; both builders have
-passed with it, and the isolated probe imports D3D8, DInput8 and DSound8.
-
-Evidence and open dependencies are recorded in the [file facade](work-file-facade.md),
-[matrix/vector and quaternion notes](work-matrix-helpers.md),
-[spline evaluation](work-spline-evaluation.md), [scalar helpers](work-scalar-helpers.md),
-[bitmap scanner](work-bitmap-helpers.md), [bitmap font](work-bitmap-font.md),
-[terrain](work-terrain.md), [quaternion codec](work-math-helpers.md),
-[screenshot](work-screenshot.md), [memory pool](work-memoryheap.md),
-[runtime support](work-runtime-support.md), [display config](work-application-config.md),
-[application startup](work-application-runtime.md),
-[user data](work-userdatapath.md), [native windows](work-nativewindow.md),
-[resource extraction](work-resources.md), [DirectX 8](work-directx8.md),
-[renderer lifecycle](work-renderer-lifecycle.md),
-[renderer state](work-renderer-state.md), [input devices](work-input-device.md),
-[input dispatch](work-input-runtime.md), [input service](work-input-service.md),
-[joystick axes](work-joystick-axis.md), [joystick effects](work-joystick-effect.md),
-[periodic parameters](work-joystick-periodic.md), [joystick queries](work-joystick-queries.md),
-[input setup](work-input-setup.md),
-[input queries](work-input-queries.md), [input lifecycle](work-input-lifecycle.md),
-[display startup](work-renderer-device.md),
-[display initialization](work-renderer-initialize.md),
-[buffer objects](work-renderer-buffer-objects.md),
-[texture records](work-renderer-records.md), [TGA loading](work-bitmap-image.md),
-[texture-stage plans](work-renderer-stage-plan.md),
-and [resource policies](work-renderer-resource-policy.md) notes.
-The [startup research](work-startup.md) and [application-object research](work-application.md)
-trace the real entry point and message-loop dependencies. The temporary entry
-point still does not start the game.
-
-Open `build/reports/LEGORACERS2.html` for searchable assembly diffs.
-Regenerate reports with `python tools/build.py` and `python tools/compare.py`
-using the Wine prefix documented in [validation.md](validation.md).
+| `0x00507310` | `SpatialSlotNode::Initialize` | 18.18% | Work in progress |
+| `0x00507320` | `SpatialSlotNode::InsertBefore` | 80.00% | Work in progress |
+| `0x00507350` | `SpatialSlotNode::InsertAfter` | 45.71% | Work in progress |
+| `0x00507380` | `SpatialSlotNode::Unlink` | 100.00% | Verified exact |
+| `0x005073a0` | `SpatialSlotAllocator::SpatialSlotAllocator` | 27.03% | Work in progress |
+| `0x00507410` | `SpatialSlotAllocator::Reset` | 100.00% | Verified exact |
+| `0x00507420` | `SpatialSlotAllocator::AllocateBefore` | 68.97% | Work in progress |
+| `0x00507470` | `SpatialSlotAllocator::RemoveValue` | 78.43% | Work in progress |
+| `0x005074b0` | `SpatialSlotAllocator::ReleaseNode` | 100.00% | Verified exact |
+| `0x005074f0` | `SpatialSlotAllocator::GetNodeIndex` | 100.00% | Verified exact |
+| `0x00507520` | `SpatialSlotAllocator::GetNodeValue` | 40.00% | Work in progress |
+| `0x00507530` | `FindSpatialSlot` | 100.00% | Verified exact |
+| `0x00507550` | `SpatialSlotAllocator::AllocateAfter` | 68.97% | Work in progress |
+| `0x005075a0` | `SpatialLinkRegistry::InitializeList` | 58.33% | Work in progress |
+| `0x005075d0` | `SpatialLinkRegistry::ClearHead` | 100.00% | Verified exact |
+| `0x005075e0` | `SpatialLinkRegistry::InsertValue` | 70.18% | Work in progress |
+| `0x00507670` | `SpatialLinkRegistry::UpdateNode` | 78.32% | Work in progress |
+| `0x00507720` | `SpatialLinkRegistry::RemoveValue` | 100.00% | Verified exact |
+| `0x00507740` | `SpatialLinkRegistry::RemoveNode` | 88.00% | Work in progress |
+| `0x00507770` | `SpatialLinkRegistry::GetNodeIndex` | 100.00% | Verified exact |
+| `0x00507780` | `SpatialLinkRegistry::GetNodeValue` | 100.00% | Verified exact |
+| `0x005078c0` | `SpatialPairList::Initialize` | 75.56% | Work in progress |
+| `0x00507be0` | `SpatialAxisIndex::InitializeFirst` | 91.67% | Work in progress |
+| `0x00507ca0` | `SpatialAxisIndex::Remove` | 100.00% | Verified exact |
+| `0x00507cb0` | `SpatialAxisIndex::InitializeSecond` | 91.67% | Work in progress |
+| `0x00507d10` | `DynamicSpatialIndex::DynamicSpatialIndex` | 100.00% | Verified exact |
+| `0x00508010` | `SpatialAxisIndex::UpdateFirst` | 1.87% | Work in progress |
+| `0x00508100` | `SpatialAxisIndex::UpdateSecond` | 1.87% | Work in progress |
+| `0x00508330` | `SpatialAxisIndex::InsertFirst` | 4.82% | Work in progress |
+| `0x005083e0` | `SpatialAxisIndex::InsertSecond` | 4.82% | Work in progress |
+| `0x005084b0` | `SpatialGridCell::Initialize` | 40.00% | Work in progress |
+| `0x005084c0` | `SpatialGridCell::Insert` | 100.00% | Verified exact |
+| `0x005084e0` | `SpatialGridCell::Remove` | 100.00% | Verified exact |
+| `0x00508500` | `StaticSpatialGrid::GetCell` | 94.12% | Work in progress |
+| `0x00508690` | `StaticSpatialGrid::StaticSpatialGrid` | 71.07% | Work in progress |
+| `0x00508740` | `StaticSpatialGrid::Insert` | 28.26% | Work in progress |
+| `0x00508840` | `StaticSpatialGrid::Remove` | 88.89% | Work in progress |
+| `0x00508890` | `StaticSpatialGrid::Update` | 100.00% | Verified exact |

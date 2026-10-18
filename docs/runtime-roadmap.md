@@ -114,3 +114,6 @@ The five-field scheduler at `0x006ff520` now has compiled reset and update-decis
 ## Frame support and entrypoint staging
 
 Component transform interpolation, controller pause/origin adjustments, component preparation and profiler configuration are linked for measurement. Quaternion shortest-path interpolation matches exactly. The actual WinMain, message handler, shutdown, frame scheduler orchestration, global pause update and collision proxy/movement paths have passed object compilation; their full linkage still needs the audio singleton, collision service/index, contact solver/cache ownership, RenderFrame and concrete scene/menu objects. These staged units do not replace the temporary entrypoint. See [frame recovery](work-game-frame.md).
+
+
+Slot allocation, registry lists, static-grid mutation, dynamic-index construction and axis sorting now link independently. Full collision query/narrow-phase work and lifecycle coupling remain staged. This closes storage/construction dependencies without claiming a working collision solver or menu. See [spatial recovery](work-spatial-index.md).
