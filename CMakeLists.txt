@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.25...4.2)
 cmake_policy(SET CMP0091 NEW)
 cmake_policy(SET CMP0141 NEW)
 
-project(racers2 LANGUAGES CXX)
+project(racers2 LANGUAGES C CXX)
 
 if(NOT WIN32 OR NOT MSVC OR NOT CMAKE_SIZEOF_VOID_P EQUAL 4)
   message(FATAL_ERROR "Use the 32-bit MSVC 6.0 SP5 environment. On Linux, use tools/build.py.")
@@ -19,7 +19,8 @@ set_target_properties(legoracers2 PROPERTIES
   MSVC_RUNTIME_LIBRARY "MultiThreaded"
   MSVC_DEBUG_INFORMATION_FORMAT "Embedded"
 )
-target_include_directories(legoracers2 PRIVATE "LEGO Racers 2/include" util)
+target_include_directories(legoracers2 PRIVATE "LEGO Racers 2/include" util
+  3rdparty/libogg/include 3rdparty/libvorbis/include)
 target_compile_definitions(legoracers2 PRIVATE ENABLE_DECOMP_ASSERTS)
 
 # Keep these settings in sync with tools/build.py. Optimization settings are a
@@ -29,6 +30,11 @@ set(CMAKE_CXX_FLAGS_DEBUG "/Od /D_DEBUG")
 set(CMAKE_CXX_FLAGS_RELEASE "/O2 /Ob1 /DNDEBUG")
 set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "/O2 /Ob1 /DNDEBUG")
 set(CMAKE_CXX_FLAGS_MINSIZEREL "/O1 /DNDEBUG")
+# The original Ogg/Vorbis source is compiled as C with the same CRT/optimization.
+set(CMAKE_C_FLAGS "${CMAKE_CXX_FLAGS}")
+foreach(config DEBUG RELEASE RELWITHDEBINFO MINSIZEREL)
+  set(CMAKE_C_FLAGS_${config} "${CMAKE_CXX_FLAGS_${config}}")
+endforeach()
 # Retain recovered functions whose original callers have not been recovered yet.
 set(CMAKE_EXE_LINKER_FLAGS "/machine:I386 /incremental:no /opt:noref,icf /pdbtype:sept /debug")
 foreach(config DEBUG RELEASE RELWITHDEBINFO MINSIZEREL)

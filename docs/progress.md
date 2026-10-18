@@ -6,10 +6,10 @@ Reviewed semantically identical near matches (initially at least 95% raw) are
 implemented functions, counted separately from exact matches.
 
 Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-19.
-The match guard verified **272 exact functions and ten reviewed near
-matches**. Another 388 reconstructions remain `STUB`; both builders agree on
-all 670 measured raw scores and annotation statuses. Data comparison verifies
-136 annotated globals with zero issues. Unlinked inventory entries and folded
+The match guard verified **277 exact functions and eleven reviewed near
+matches**. Another 411 reconstructions remain `STUB`; both builders agree on
+all 699 measured raw scores and annotation statuses. Data comparison verifies
+143 annotated globals with zero issues. Unlinked inventory entries and folded
 aliases may also appear in the CLI denominator without another measured row.
 
 This is the reconstructed subset, not whole-game coverage. The automatic
@@ -90,8 +90,8 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004a3810` | `SimulationScheduler::Reset` | 72.73% | Work in progress |
 | `0x004a3840` | `SimulationScheduler::NeedsSimulationStep` | 66.46% | Work in progress |
 | `0x004a3ca0` | `ShutdownGameManager` | 100.00% | Verified exact |
-| `0x004a3ed0` | `GetMemoryHeap` | 60.00% | Work in progress |
-| `0x004a3f20` | `LookupNoOpCleanup` | 100.00% | Verified exact |
+| `0x004a3ed0` | `GetMemoryHeap` | 56.00% | Work in progress |
+| `0x004a3f20` | `DestroyMemoryHeapAtExit` | 100.00% | Verified exact |
 | `0x004a3f30` | `MemoryHeap::EnterOperation` | 85.71% | Work in progress |
 | `0x004a3f60` | `MemoryHeap::LeaveOperation` | 100.00% | Verified exact |
 | `0x004a3f80` | `MemoryHeap::MemoryHeap` | 82.54% | Work in progress |
@@ -159,7 +159,7 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004a6f00` | `PhysicalLifecycleState::GetParentVelocityAtOffset` | 84.62% | Work in progress |
 | `0x004a74b0` | `IsLookupPointWithinRadius` | 45.45% | Work in progress |
 | `0x004a7510` | `ApplyLookupResourceState` | 18.70% | Work in progress |
-| `0x004a7cc0` | `?ReleaseRendererDrawPacket@@YIXPAURendererDrawPacket@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\applicationdispatch.h460625078@@PAX@Z` | 66.67% | Work in progress |
+| `0x004a7cc0` | `?ReleaseRendererDrawPacket@@YIXPAURendererDrawPacket@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\applicationdispatch.h1349430029@@PAX@Z` | 66.67% | Work in progress |
 | `0x004a9d20` | `GetLookupResourceOrigin` | 91.30% | Work in progress |
 | `0x004aa7b0` | `GameManager::UpdateComponents` | 21.52% | Work in progress |
 | `0x004ab2a0` | `ReportFatalError` | 85.25% | Work in progress |
@@ -410,7 +410,7 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004da500` | `RendererTextureRecord::UnlockPrimarySurface` | 80.85% | Work in progress |
 | `0x004da540` | `RendererTextureRecord::UploadBitmapImage` | 34.86% | Work in progress |
 | `0x004da5e0` | `DisplayRenderer::BuildMipSidecar` | 34.70% | Work in progress |
-| `0x004da9f0` | `?ReadBitmapInfoSettings@@YAIPBDPAUBitmapInfoSettings@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\bitmapimage.h2583326847@@@Z` | 2.29% | Work in progress |
+| `0x004da9f0` | `?ReadBitmapInfoSettings@@YAIPBDPAUBitmapInfoSettings@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\bitmapimage.h1477024803@@@Z` | 2.29% | Work in progress |
 | `0x004dabe0` | `ParseBitmapInfoValue` | 40.31% | Work in progress |
 | `0x004dac90` | `GenerateBitmapMipLevel` | 17.20% | Work in progress |
 | `0x004db5c0` | `FindClosestPaletteColor` | 30.09% | Work in progress |
@@ -624,6 +624,33 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004ee5e0` | `JoystickInputDevice::StopEnvelopedConstantForce` | 100.00% | Verified exact |
 | `0x004ee600` | `JoystickInputDevice::ReleaseEffects` | 100.00% | Verified exact |
 | `0x004ee660` | `JoystickInputDevice::SetAutoCenter` | 100.00% | Verified exact |
+| `0x004ee700` | `InitializeAudioCommentary` | 39.22% | Work in progress |
+| `0x004ee7a0` | `ShutdownAudioCommentary` | 51.28% | Work in progress |
+| `0x004ee7e0` | `SetAudioCommentaryGain` | 21.05% | Work in progress |
+| `0x004ee800` | `QueueAudioCommentary` | 23.08% | Work in progress |
+| `0x004ee820` | `StopAudioCommentary` | 35.71% | Work in progress |
+| `0x004ee880` | `EnqueueAudioCommentary` | 43.24% | Work in progress |
+| `0x004ee900` | `PlayNextAudioCommentary` | 12.05% | Work in progress |
+| `0x004ee9b0` | `InitializeAudioPcmBuffer` | 72.62% | Work in progress |
+| `0x004eeaa0` | `ShutdownAudioPcmBuffer` | 60.61% | Work in progress |
+| `0x004eead0` | `AppendAudioPcmData` | 46.63% | Work in progress |
+| `0x004ef630` | `CheckAudioMediaResult` | 15.74% | Work in progress |
+| `0x004f2110` | `CommentaryAudioStream::CommentaryAudioStream` | 17.39% | Work in progress |
+| `0x004f2250` | `CommentaryAudioStream::~CommentaryAudioStream` | 100.00% | Verified exact |
+| `0x004f2270` | `CommentaryAudioStream::UpdateBuffer` | 39.82% | Work in progress |
+| `0x004f2450` | `CommentaryAudioStream::Play` | 23.88% | Work in progress |
+| `0x004f24e0` | `CommentaryAudioStream::Stop` | 67.39% | Work in progress |
+| `0x004f2560` | `CommentaryAudioStream::SetGain` | 86.67% | Work in progress |
+| `0x004f2590` | `CommentaryAudioStream::IsReading` | 100.00% | Verified exact |
+| `0x004f25a0` | `BeginAudioRead` | 78.16% | Work in progress |
+| `0x004f2610` | `WaitForAudioRead` | 100.00% | Verified exact |
+| `0x004f2690` | `CountPendingAudioReads` | 88.89% | Work in progress |
+| `0x004f26b0` | `FindCompletedAudioRead` | 97.96% | Reviewed near match |
+| `0x004f2730` | `GetAudioReadRequest` | 100.00% | Verified exact |
+| `0x004f2740` | `CommentaryAudioStream::StartRead` | 44.68% | Work in progress |
+| `0x004f2990` | `CommentaryAudioStream::FinishRead` | 75.00% | Work in progress |
+| `0x004f29f0` | `CommentaryAudioStream::DecodePcm` | 17.96% | Work in progress |
+| `0x004f2ea0` | `CommentaryAudioStream::ReleasePlaybackBuffer` | 100.00% | Verified exact |
 | `0x004f4a40` | `InitializeMultimediaTimerService` | 53.01% | Work in progress |
 | `0x004f4ad0` | `ShutdownMultimediaTimerService` | 100.00% | Verified exact |
 | `0x004f4af0` | `MultimediaTimerService::EndPeriod` | 100.00% | Verified exact |
@@ -655,6 +682,8 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x00502f40` | `ConvertBigEndianPcm` | 31.58% | Work in progress |
 | `0x00502fc0` | `ParseWaveOrAiffAudioData` | 45.59% | Work in progress |
 | `0x00503050` | `ParseWaveAudioData` | 18.62% | Work in progress |
+| `0x00503390` | `CopyAudioBytes` | 23.08% | Work in progress |
+| `0x005033c0` | `ClearAudioBytes` | 34.62% | Work in progress |
 | `0x00507310` | `SpatialSlotNode::Initialize` | 18.18% | Work in progress |
 | `0x00507320` | `SpatialSlotNode::InsertBefore` | 80.00% | Work in progress |
 | `0x00507350` | `SpatialSlotNode::InsertAfter` | 45.71% | Work in progress |

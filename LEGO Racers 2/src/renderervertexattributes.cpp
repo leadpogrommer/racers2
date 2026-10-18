@@ -43,7 +43,7 @@ LegoU32 RendererVertexBuffer::GetNormalOffset()
 	return m_normalOffset;
 }
 
-// FUNCTION: LEGORACERS2 0x004ab600
+// FUNCTION: LEGORACERS2 0x004ab600 FOLDED
 LegoU32 RendererVertexBuffer::GetTextureOffset()
 {
 	return m_textureOffset;

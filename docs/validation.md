@@ -262,3 +262,10 @@ No game, screenshot, startup or asset probe was run. The temporary entry point r
 ## Contact impulse and frame-state checkpoint
 
 Both SP5 builders pass with 670 measured rows: 272 exact functions, ten reviewed near matches and 388 STUB reconstructions. Their raw scores and statuses agree. The mass-weighted contact separation helper adds an exact match; the other impulse bodies retain their measurements and unresolved floating-point/aliasing status. Data comparison verifies 136 annotated globals with zero issues. The spatial-list dispatch checks pass in both builds. No game or runtime probe ran.
+
+
+## Commentary decoder and folded-function checkpoint
+
+Both SP5 builders pass with 699 measured rows: 277 exact functions, eleven reviewed near matches and 411 STUB reconstructions. All raw scores/statuses agree. Data comparison verifies 143 annotated globals with zero issues. Renderer resource/buffer dispatch verification passes all 78 pointers in both builds. The tooling/library suite passes 21 tests, including five fail-closed folded-body regressions. The byte-verification supplement independently checks three complete functions against both PEs and exact linker-map symbols before filling reccmp's folded aliases. Reports include those rows in JSON, HTML and SVG.
+
+Official Ogg/Vorbis source replaces the need to reconstruct the linked codec. Twenty-five public library interfaces have source/caller evidence; 94 relocation-masked internal candidates remain separately inventoried. Commentary and request wrappers link, but stream staging ownership, larger low-score bodies and service/provider table integration remain unresolved. No game, audio playback, asset or runtime probe ran. See [decoder identification and limits](work-xiph-decoder.md).

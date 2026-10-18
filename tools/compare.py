@@ -6,6 +6,8 @@ from pathlib import Path
 import subprocess
 import sys
 
+from folded_functions import supplement_report
+
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -33,6 +35,7 @@ def main():
         "--html", str(prefix.with_suffix(".html")),
         "--svg", str(prefix.with_suffix(".svg")),
     ])
+    supplement_report(ROOT, build_dir)
     subprocess.run([sys.executable, str(ROOT / "tools" / "check_matches.py"),
                     str(prefix.with_suffix(".json"))], check=True)
     print(f"Reports: {reports}\nCoverage is relative to annotated functions; the whole-game total is unknown.")

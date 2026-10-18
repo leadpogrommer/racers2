@@ -74,7 +74,10 @@ def build(build_dir, toolchain, source_list=None, shfolder_lib=None, directx8_co
             "/DWIN32", "/D_WINDOWS", "/DENABLE_DECOMP_ASSERTS",
             *dx_defines,
             "/I" + windows_path(ROOT / "LEGO Racers 2" / "include"),
-            "/I" + windows_path(ROOT / "util"), "/Fo" + windows_path(obj),
+            "/I" + windows_path(ROOT / "util"),
+            "/I" + windows_path(ROOT / "3rdparty/libogg/include"),
+            "/I" + windows_path(ROOT / "3rdparty/libvorbis/include"),
+            "/Fo" + windows_path(obj),
             windows_path(ROOT / source),
         ])
         objects.append(windows_path(obj))

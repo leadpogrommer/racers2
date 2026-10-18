@@ -145,3 +145,33 @@ LEGO Racers 2/src/screenshotcapture.cpp
 LEGO Racers 2/src/contactswap.cpp
 LEGO Racers 2/src/contactimpulse.cpp
 LEGO Racers 2/src/gamerenderaudio.cpp
+LEGO Racers 2/src/audioservicestorage.cpp
+LEGO Racers 2/src/audiocommentary.cpp
+LEGO Racers 2/src/audiocommentarystream.cpp
+LEGO Racers 2/src/audiocommentarydecode.cpp
+LEGO Racers 2/src/audioreadrequests.cpp
+LEGO Racers 2/src/audiomediaresult.cpp
+LEGO Racers 2/src/audiomemory.cpp
+3rdparty/libogg/src/bitwise.c
+3rdparty/libogg/src/framing.c
+3rdparty/libvorbis/lib/analysis.c
+3rdparty/libvorbis/lib/bitbuffer.c
+3rdparty/libvorbis/lib/block.c
+3rdparty/libvorbis/lib/codebook.c
+3rdparty/libvorbis/lib/envelope.c
+3rdparty/libvorbis/lib/floor0.c
+3rdparty/libvorbis/lib/floor1.c
+3rdparty/libvorbis/lib/info.c
+3rdparty/libvorbis/lib/lookup.c
+3rdparty/libvorbis/lib/lpc.c
+3rdparty/libvorbis/lib/lsp.c
+3rdparty/libvorbis/lib/mapping0.c
+3rdparty/libvorbis/lib/mdct.c
+3rdparty/libvorbis/lib/psy.c
+3rdparty/libvorbis/lib/registry.c
+3rdparty/libvorbis/lib/res0.c
+3rdparty/libvorbis/lib/sharedbook.c
+3rdparty/libvorbis/lib/smallft.c
+3rdparty/libvorbis/lib/synthesis.c
+3rdparty/libvorbis/lib/time0.c
+3rdparty/libvorbis/lib/window.c

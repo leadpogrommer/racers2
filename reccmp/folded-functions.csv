@@ -1,0 +1,4 @@
+address,symbol,bytes,name
+004a3f20,?DestroyMemoryHeapAtExit@@YAXXZ,c3,DestroyMemoryHeapAtExit
+004ab600,?GetTextureOffset@RendererVertexBuffer@@QAEIXZ,8b4114c3,RendererVertexBuffer::GetTextureOffset
+004f2590,?IsReading@CommentaryAudioStream@@QAEIXZ,8b4114c3,CommentaryAudioStream::IsReading
