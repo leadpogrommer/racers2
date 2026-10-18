@@ -229,3 +229,10 @@ Both builds agree on 560 measured rows: 252 exact, ten reviewed near matches, an
 ## Registry, scheduler and renderer cleanup checkpoint (2026-10-18)
 
 Both builders agree on 579 measured rows: 253 exact, ten reviewed near matches and 316 STUB. The game-manager shutdown wrapper adds one exact match. The fixed-step scheduler, registry classification/update/removal loops, terrain/material draft and renderer resource shutdown have compiled source with their raw scores retained. The terrain implementation remains incomplete for grouped batches, topology and software processing. Both data reports verify 118 globals with zero issues; registry initialization now uses the retail 32-pointer backing array, capacity32 and nonzero initial flags. All previously verified callback tables and 307 input-format entries pass in both outputs. No game, asset or startup probe was run. Full renderer-table linkage, default audio initialization and concrete menu-object creation remain open.
+
+
+## Renderer construction and registry initialization checkpoint (2026-10-18)
+
+Both builders agree on 595 measured rows: 253 exact, ten reviewed near matches and 332 STUB. The complete constructor, lookup drawing/flush paths, object-registry allocation, insertion, removal and initialization are linked for measurement. Both data reports verify 122 annotated globals with zero issues. The 103-slot base and derived renderer tables plus three two-slot lookup tables pass all 212 pointer checks. Lookup tables use explicit ABI bridges, verified against the retail targets and rebuilt link map rather than compared as pointers to the underlying member methods. All existing application, input, resource/buffer, controller/clock and input-format checks pass in both builds.
+
+The constructor is available for startup integration; it is not yet invoked by the temporary entry point. Audio, frame rendering, concrete game objects and the real WinMain are still being recovered in separate unlinked units. Their missing-symbol notices do not represent measured functions or verified behavior. No game, startup or asset probe ran.

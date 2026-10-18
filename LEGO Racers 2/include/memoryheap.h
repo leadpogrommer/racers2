@@ -3,9 +3,12 @@
 
 #include "heapblock.h"
 
-// The linker folds the two empty heap/config exit callbacks to this symbol.
+// The linker folds the empty process-exit callbacks to one bare RET.
 // FUNCTION: LEGORACERS2 0x004a3f20 FOLDED
 // OnSavedDisplayConfigExit
+
+// FUNCTION: LEGORACERS2 0x004a3f20 FOLDED
+// LookupNoOpCleanup
 
 class MemoryHeap {
 public:

@@ -121,3 +121,10 @@ LEGO Racers 2/src/simulationscheduler.cpp
 LEGO Racers 2/src/rendererterrain.cpp
 LEGO Racers 2/src/gamemanager.cpp
 LEGO Racers 2/src/rendererresourceshutdown.cpp
+LEGO Racers 2/src/gamemanagerinitialize.cpp
+LEGO Racers 2/src/rendererconstruction.cpp
+LEGO Racers 2/src/rendererconstructiondispatch.cpp
+LEGO Racers 2/src/rendererlookupdispatch.cpp
+LEGO Racers 2/src/rendererlookupdraw.cpp
+LEGO Racers 2/src/rendererlookupflush.cpp
+LEGO Racers 2/src/gamemanagerregistration.cpp

@@ -10,7 +10,7 @@
 static GameObject* g_initialGameObjects[32];
 
 // GLOBAL: LEGORACERS2 0x005499ac
-LegoU32 g_gameRegistryMutationDepth = 1;
+LegoU32 g_gameObjectRegistryUsesStaticStorage = 1;
 
 // GLOBAL: LEGORACERS2 0x005499b0
 GameObject** g_gameObjects = g_initialGameObjects;
@@ -37,7 +37,7 @@ GameObject** g_gameObjectsByType = NULL;
 GameObject** g_gameObjectsWithActiveComponents = NULL;
 
 // GLOBAL: LEGORACERS2 0x00578c0c
-LegoU32 g_gameObjectListsNeedRebuild = 0;
+LegoU32 g_gameObjectWorkListsValid = 0;
 
 // GLOBAL: LEGORACERS2 0x00578be8
 GameManager g_gameManagerStorage = {0, 0};
@@ -74,11 +74,11 @@ void GameManager::RebuildObjectWorkLists()
 	for (LegoS32 i = 0; i < g_gameObjectCount; i++) {
 		GameObject* object = g_gameObjects[i];
 		LegoBool32 componentIsActive = FALSE;
-		GameObject* component = (GameObject*) object->m_lifecycle0x54;
+		GameLifecycleComponent* component = object->m_lifecycle0x54;
 
 		if (component != NULL) {
-			const GameObjectDispatchView* dispatch = component->m_vtable;
-			componentIsActive = dispatch->m_predicate0x00(component, NULL, 0);
+			const GameLifecycleDispatchView* dispatch = component->m_vtable;
+			componentIsActive = dispatch->m_isActive(component, NULL, 0);
 			if (component->m_flags != 0 && componentIsActive) {
 				g_gameObjectsWithActiveComponents[g_gameObjectsWithActiveComponentsCount++] = object;
 			}
@@ -90,7 +90,7 @@ void GameManager::RebuildObjectWorkLists()
 		}
 	}
 
-	g_gameObjectListsNeedRebuild = 1;
+	g_gameObjectWorkListsValid = 1;
 }
 
 // STUB: LEGORACERS2 0x004a36c0

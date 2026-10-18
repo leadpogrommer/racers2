@@ -7,9 +7,9 @@ implemented functions, counted separately from exact matches.
 
 Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-18.
 The match guard verified **253 exact functions and ten reviewed near
-matches**. Another 316 reconstructions remain `STUB`; both builders agree on
-all 579 measured raw scores and annotation statuses. Data comparison verifies
-118 annotated globals with zero issues. Unlinked inventory entries and folded
+matches**. Another 332 reconstructions remain `STUB`; both builders agree on
+all 595 measured raw scores and annotation statuses. Data comparison verifies
+122 annotated globals with zero issues. Unlinked inventory entries and folded
 aliases may also appear in the CLI denominator without another measured row.
 
 This is the reconstructed subset, not whole-game coverage. The automatic
@@ -77,14 +77,19 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004a2d20` | `FileManager::SeekCurrent` | 79.49% | Work in progress |
 | `0x004a2d80` | `FileManager::SetFlags` | 100.00% | Verified exact |
 | `0x004a2dd0` | `GetGameManager` | 93.33% | Work in progress |
+| `0x004a3170` | `GameManager::ResizeObjectRegistry` | 23.75% | Work in progress |
+| `0x004a3290` | `GameManager::RegisterObject` | 45.31% | Work in progress |
+| `0x004a3350` | `GameManager::UnregisterObject` | 72.22% | Work in progress |
+| `0x004a33d0` | `GameManager::SortObjectsByParent` | 28.78% | Work in progress |
 | `0x004a34a0` | `GameManager::RebuildObjectWorkLists` | 35.38% | Work in progress |
+| `0x004a3580` | `GameManager::InitializeRegisteredObjects` | 85.71% | Work in progress |
 | `0x004a36c0` | `GameManager::UpdateObjects` | 47.27% | Work in progress |
 | `0x004a3710` | `GameManager::RemoveAllObjects` | 23.16% | Work in progress |
 | `0x004a3810` | `SimulationScheduler::Reset` | 72.73% | Work in progress |
 | `0x004a3840` | `SimulationScheduler::NeedsSimulationStep` | 66.46% | Work in progress |
 | `0x004a3ca0` | `ShutdownGameManager` | 100.00% | Verified exact |
 | `0x004a3ed0` | `GetMemoryHeap` | 60.00% | Work in progress |
-| `0x004a3f20` | `GameManagerStaticDestructor` | 100.00% | Verified exact |
+| `0x004a3f20` | `LookupNoOpCleanup` | 100.00% | Verified exact |
 | `0x004a3f30` | `MemoryHeap::EnterOperation` | 85.71% | Work in progress |
 | `0x004a3f60` | `MemoryHeap::LeaveOperation` | 100.00% | Verified exact |
 | `0x004a3f80` | `MemoryHeap::MemoryHeap` | 82.54% | Work in progress |
@@ -141,7 +146,11 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004a5e90` | `InitializeSimulationFrameRate` | 53.33% | Work in progress |
 | `0x004a5ec0` | `InitializeSimulationStepSeconds` | 100.00% | Verified exact |
 | `0x004a5ef0` | `InitializeSimulationStepMilliseconds` | 100.00% | Verified exact |
-| `0x004a7cc0` | `?ReleaseRendererDrawPacket@@YIXPAURendererDrawPacket@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\applicationdispatch.h6552282@@PAX@Z` | 66.67% | Work in progress |
+| `0x004a6190` | `ResetGameObjectInitializationValue` | 63.16% | Work in progress |
+| `0x004a74b0` | `IsLookupPointWithinRadius` | 45.45% | Work in progress |
+| `0x004a7510` | `ApplyLookupResourceState` | 18.70% | Work in progress |
+| `0x004a7cc0` | `?ReleaseRendererDrawPacket@@YIXPAURendererDrawPacket@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\applicationdispatch.h1817512615@@PAX@Z` | 66.67% | Work in progress |
+| `0x004a9d20` | `GetLookupResourceOrigin` | 91.30% | Work in progress |
 | `0x004ab2a0` | `ReportFatalError` | 85.25% | Work in progress |
 | `0x004ab3b0` | `PrintDiagnostic` | 79.41% | Work in progress |
 | `0x004ab560` | `RendererVertexBufferLegacyConditionalFree` | 75.86% | Work in progress |
@@ -176,6 +185,7 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004ab890` | `RendererIndexBuffer::Lock` | 100.00% | Verified exact |
 | `0x004ab900` | `RendererIndexBuffer::Unlock` | 64.90% | Work in progress |
 | `0x004ab9c0` | `RendererIndexBuffer::SetFlag4` | 100.00% | Verified exact |
+| `0x004ab9e0` | `DisplayRenderer::DisplayRenderer` | 19.73% | Work in progress |
 | `0x004abdb0` | `RendererLookupTableState::RendererLookupTableState` | 100.00% | Verified exact |
 | `0x004abdd0` | `DisplayRenderer::RejectUnknownDrawRequest` | 100.00% | Verified exact |
 | `0x004abde0` | `RendererVertexBuffer::RendererVertexBuffer` | 61.11% | Work in progress |
@@ -299,6 +309,10 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004bd770` | `RendererLookupTableState::Insert` | 60.00% | Work in progress |
 | `0x004bd7c0` | `RendererLookupTableState::InsertOrdered` | 100.00% | Verified exact |
 | `0x004bd830` | `RendererLookupTableState::InsertLinear` | 76.36% | Work in progress |
+| `0x004bd870` | `RendererLookupTableState::FlushOrderedEntries` | 58.18% | Work in progress |
+| `0x004bd8c0` | `RendererLookupTableState::FlushBucketedEntries` | 81.48% | Work in progress |
+| `0x004bd900` | `RendererLookupTableState::FlushDeferredDrawResources` | 33.50% | Work in progress |
+| `0x004bda20` | `DisplayRenderer::DrawLookupEntry` | 12.55% | Work in progress |
 | `0x004be0a0` | `DisplayRenderer::InitializeResources` | 50.16% | Work in progress |
 | `0x004be2f0` | `RendererResourceCacheEntry::RendererResourceCacheEntry` | 27.27% | Work in progress |
 | `0x004be320` | `RendererAuxiliaryResourceRecord::InitializeHeader` | 100.00% | Verified exact |
@@ -340,6 +354,8 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004c3f40` | `Terrain::GetCellVertices` | 63.61% | Work in progress |
 | `0x004c4140` | `Terrain::GetMinimumBounds` | 100.00% | Verified exact |
 | `0x004c41a0` | `Terrain::GetMaximumBounds` | 100.00% | Verified exact |
+| `0x004c6980` | `RenderInitializedResource` | 15.09% | Work in progress |
+| `0x004c6fe0` | `RenderDeferredResource` | 20.66% | Work in progress |
 | `0x004cb340` | `TerrainVertexGrid::SelectEdges` | 100.00% | Verified exact |
 | `0x004cb530` | `UpdateTerrainLodMetrics` | 56.74% | Work in progress |
 | `0x004cb630` | `Terrain::GetVertex` | 100.00% | Verified exact |
@@ -378,7 +394,7 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004da500` | `RendererTextureRecord::UnlockPrimarySurface` | 80.85% | Work in progress |
 | `0x004da540` | `RendererTextureRecord::UploadBitmapImage` | 34.86% | Work in progress |
 | `0x004da5e0` | `DisplayRenderer::BuildMipSidecar` | 34.70% | Work in progress |
-| `0x004da9f0` | `?ReadBitmapInfoSettings@@YAIPBDPAUBitmapInfoSettings@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\bitmapimage.h1637127338@@@Z` | 2.29% | Work in progress |
+| `0x004da9f0` | `?ReadBitmapInfoSettings@@YAIPBDPAUBitmapInfoSettings@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\bitmapimage.h514413611@@@Z` | 2.29% | Work in progress |
 | `0x004dabe0` | `ParseBitmapInfoValue` | 40.31% | Work in progress |
 | `0x004dac90` | `GenerateBitmapMipLevel` | 17.20% | Work in progress |
 | `0x004db5c0` | `FindClosestPaletteColor` | 30.09% | Work in progress |
@@ -602,91 +618,3 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004f6310` | `InitializePlatformServices` | 70.83% | Work in progress |
 | `0x004fb7f0` | `RendererAuxiliaryResourceRecord::CopyToDeviceMaterial` | 78.87% | Work in progress |
 | `0x004fb880` | `ClipGuiRectangle` | 77.94% | Work in progress |
-
-## Earlier renderer and input checkpoints
-
-
-The latest renderer batch adds 13 measured bodies: four exact matches and nine
-below the annotation threshold. It recovers texture-format enumeration and
-selection, pixel masks, material colors, frame clearing/presentation,
-depth/blend state controls and ordered cache insertion. No renderer owner or
-partial dispatch table is instantiated. Both builds retain all 76 application
-and 80 input pointers and all 307 input-format entries. See
-[texture formats](work-renderer-texture-formats.md), [pixel formats](work-pixelformat.md),
-[presentation](work-renderer-presentation.md), [state controls](work-renderer-state-control.md),
-[lookup tables](work-renderer-lookup.md), and the
-[initialization audit](work-renderer-initialization.md).
-
-The preceding input batch adds 58 measured reconstructions (33 exact matches and
-25 below the annotation threshold), the folded null helper, the complete
-service initializer and joystick dispatch table. All 307 input-format entries
-match retail, including its mouse button GUID filters. The temporary bootstrap
-still does not call input initialization; see [service recovery](work-input-service.md).
-
-The recovered subset includes the application singleton, complete 38-slot dispatch
-tables, resource linkage, memory pool, real aligned GlobalAlloc wrapper,
-diagnostics, mode-3 file manager and compressed archive reader, plus renderer
-and DirectInput helpers. Binary wiring verification passes for the 76
-application callback pointers and all 80 device/service pointers. This verifies
-table contents, not method-body equivalence or C++ vtable matching.
-Raw scores remain visible for unfinished bodies. The four reviewed near matches
-are `WinFile::Read` (95.24%), `DisplayRenderer::CreateVertexBuffers` (95.33%),
-`MemoryHeap::UpdateCursor` (95.83%), and `InputDeviceRecord::GetButtonValue`
-(95.24%). Library provenance remains unresolved for the pool and block decoder.
-
-A bounded run of the rebuilt executable exited with code 0 after startup read
-the per-user `C:\users\ilya\Documents\Games\LEGO Racers 2\Saved Games\LR2.cfg`
-path, both archive metadata files, and opened GAMEDATA.GTC. This reaches
-application construction/config loading and archive initialization through
-the current process startup path, but the
-entry point is still temporary and exits without creating a window or
-rendering gameplay. An isolated real-file probe also reads three archive
-assets, including a 349,562-byte texture spanning three logical blocks and a
-late archive text file. It exercises compressed reads but makes no
-pixel-correctness claim. See [validation](validation.md).
-Three original extents are inventory-only: 0x004a2550 has no unique
-PDB-name mapping, and 0x0049b930 folds with the heap exit callback in the
-rebuilt image. The three-byte null-return helper at 0x00473140 also folds
-with the existing zero leaf. These do not add measured match rows.
-
-Display config load/save, managed existence, user-data path construction,
-native-window helpers, renderer state helpers and DirectInput state readers
-are included. Earlier runtime checks construct the application and read its
-config and selected archive assets; window creation and rendering remain
-unreached. No game or probe ran during the latest renderer/input batch. Future
-runtime execution is reserved for a significant milestone expected to render
-the menu or enter gameplay. The extracted resource file contains all five
-retail resources (7,022 payload bytes) and is consumed by both builders when
-present. Renderer builds require the generated DirectX 8 configuration; both builders have
-passed with it, and the isolated probe imports D3D8, DInput8 and DSound8.
-
-Evidence and open dependencies are recorded in the [file facade](work-file-facade.md),
-[matrix/vector and quaternion notes](work-matrix-helpers.md),
-[spline evaluation](work-spline-evaluation.md), [scalar helpers](work-scalar-helpers.md),
-[bitmap scanner](work-bitmap-helpers.md), [bitmap font](work-bitmap-font.md),
-[terrain](work-terrain.md), [quaternion codec](work-math-helpers.md),
-[screenshot](work-screenshot.md), [memory pool](work-memoryheap.md),
-[runtime support](work-runtime-support.md), [display config](work-application-config.md),
-[application startup](work-application-runtime.md),
-[user data](work-userdatapath.md), [native windows](work-nativewindow.md),
-[resource extraction](work-resources.md), [DirectX 8](work-directx8.md),
-[renderer lifecycle](work-renderer-lifecycle.md),
-[renderer state](work-renderer-state.md), [input devices](work-input-device.md),
-[input dispatch](work-input-runtime.md), [input service](work-input-service.md),
-[joystick axes](work-joystick-axis.md), [joystick effects](work-joystick-effect.md),
-[periodic parameters](work-joystick-periodic.md), [joystick queries](work-joystick-queries.md),
-[input setup](work-input-setup.md),
-[input queries](work-input-queries.md), [input lifecycle](work-input-lifecycle.md),
-[display startup](work-renderer-device.md),
-[display initialization](work-renderer-initialize.md),
-[buffer objects](work-renderer-buffer-objects.md),
-[texture records](work-renderer-records.md), [TGA loading](work-bitmap-image.md),
-[texture-stage plans](work-renderer-stage-plan.md),
-and [resource policies](work-renderer-resource-policy.md) notes.
-The [startup research](work-startup.md) and [application-object research](work-application.md)
-trace the real entry point and message-loop dependencies. The temporary entry
-point still does not start the game.
-
-Open `build/reports/LEGORACERS2.html` for searchable assembly diffs.
-Regenerate reports with `python tools/build.py` and `python tools/compare.py`
-using the Wine prefix documented in [validation.md](validation.md).
