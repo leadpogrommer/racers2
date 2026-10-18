@@ -31,6 +31,8 @@ DECOMP_SIZE_ASSERT(LifecycleTransformDispatch, 0x2c);
 // Evidenced state prefix; this is not a claim about the complete derived object.
 struct PhysicalLifecycleState {
 	void RebuildInverseInertiaTensor();
+	void UpdateSleepState();
+	void GetWorldParentOffset(Vector3* p_result);
 	void UpdateAndClampVelocities();
 	void GetParentVelocityAtOffset(const Vector3* p_offset, Vector3* p_result);
 	const LifecycleTransformDispatch* GetTransformDispatch() const
@@ -39,10 +41,12 @@ struct PhysicalLifecycleState {
 	}
 
 	GameLifecycleComponent m_base;
-	Quaternion m_orientation; // 0x10
-	Vector3 m_position;       // 0x20
-	Matrix3 m_rotation;       // 0x2c
-	undefined m_unk0x50[0x7c - 0x50];
+	Quaternion m_orientation;    // 0x10
+	Vector3 m_position;          // 0x20
+	Matrix3 m_rotation;          // 0x2c
+	LegoFloat m_contactFriction; // 0x50
+	LegoFloat m_contactResponse; // 0x54; multiplied across contact participants
+	undefined m_unk0x58[0x7c - 0x58];
 	Vector3 m_parentOffset;         // 0x7c
 	Quaternion m_parentOrientation; // 0x88
 	LegoU32 m_savedParentValue;     // 0x98

@@ -79,6 +79,9 @@ struct GameObject {
 	void RefreshCollisionState();
 	void Initialize();
 	void Remove();
+	LegoBool32 IsVisible();
+	void DrawChild();
+	void UpdateRegion(void* p_region);
 	void ApplyChildTransform(const LegoFloat* p_position, const LegoFloat* p_rotation);
 	void SetParent(GameObject* p_parent, LegoU32 p_flag);
 	void ClearParent(LegoU32 p_flag);
@@ -94,7 +97,7 @@ struct GameObject {
 	LegoU8 m_unk0x4c;
 	LegoU8 m_unk0x4d;
 	LegoU16 m_unk0x4e;
-	LegoU32 m_unk0x50;
+	LegoFloat m_unk0x50;
 	GameLifecycleComponent* m_lifecycle0x54;
 };
 

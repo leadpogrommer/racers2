@@ -6,10 +6,10 @@ Reviewed semantically identical near matches (initially at least 95% raw) are
 implemented functions, counted separately from exact matches.
 
 Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-19.
-The match guard verified **277 exact functions and eleven reviewed near
-matches**. Another 411 reconstructions remain `STUB`; both builders agree on
-all 699 measured raw scores and annotation statuses. Data comparison verifies
-143 annotated globals with zero issues. Unlinked inventory entries and folded
+The match guard verified **281 exact functions and twelve reviewed near
+matches**. Another 429 reconstructions remain `STUB`; both builders agree on
+all 722 measured raw scores and annotation statuses. Data comparison verifies
+147 annotated globals with zero issues. Unlinked inventory entries and folded
 aliases may also appear in the CLI denominator without another measured row.
 
 This is the reconstructed subset, not whole-game coverage. The automatic

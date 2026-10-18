@@ -14,8 +14,8 @@ Verified reconstructions include character predicates, line classification,
 fixed string buffers, file operations, window geometry, command-line parsing,
 startup helpers, bitmap scanning, terrain lookup, spline helpers, and
 foundational renderer/input operations.
-The current checkpoint has **277 exact function matches**, **eleven reviewed
-near matches**, and 411 unfinished implementations across 699 measured
+The current checkpoint has **281 exact function matches**, **twelve reviewed
+near matches**, and 429 unfinished implementations across 722 measured
 functions. See
 [current progress](docs/progress.md) for the measured function list and
 remaining work. The application singleton and its two complete 38-slot

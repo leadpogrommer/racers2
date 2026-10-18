@@ -175,3 +175,9 @@ LEGO Racers 2/src/audiomemory.cpp
 3rdparty/libvorbis/lib/synthesis.c
 3rdparty/libvorbis/lib/time0.c
 3rdparty/libvorbis/lib/window.c
+LEGO Racers 2/src/collisionservicestorage.cpp
+LEGO Racers 2/src/physicalconstraints.cpp
+LEGO Racers 2/src/contactsolver.cpp
+LEGO Racers 2/src/cachedconstraint.cpp
+LEGO Racers 2/src/constraintendpoint.cpp
+LEGO Racers 2/src/contactconstraint.cpp

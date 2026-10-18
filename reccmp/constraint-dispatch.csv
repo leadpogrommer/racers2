@@ -1,0 +1,7 @@
+table,offset,original,symbol
+base,00,0044b3b0,DeleteConstraint
+inert,00,0044b3b0,DeleteConstraint
+contact,00,0044b3b0,DeleteConstraint
+contact,04,00403920,IsContactConstraintActive
+contact,08,004fba30,PrepareContactConstraint
+contact,0c,004fbab0,UpdateContactConstraint
