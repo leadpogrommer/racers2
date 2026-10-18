@@ -1,0 +1,38 @@
+#!/usr/bin/env python3
+"""Verify menu widget callback pointers without executing the rebuilt game."""
+
+import argparse
+from pathlib import Path
+import struct
+
+from check_renderer_resource_dispatch import verify
+from toolchain import ROOT
+
+TABLES = {
+    "base": (0x00530200, 6, "g_menuWidgetBaseDispatch"),
+    "volume": (0x00530220, 6, "g_menuVolumeSliderDispatch"),
+    "range": (0x00530240, 6, "g_menuRangeSliderDispatch"),
+    "choice": (0x0053025c, 6, "g_menuChoiceSelectorDispatch"),
+    "integer": (0x00530350, 6, "g_menuIntegerSelectorDispatch"),
+    "toggle": (0x00530368, 6, "g_menuToggleDispatch"),
+    "label": (0x0052fafc, 6, "g_menuLabelSelectorDispatch"),
+    "text": (0x00530498, 6, "g_menuTextGroupDispatch"),
+}
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--original", type=Path, default=ROOT.parent / "LEGO Racers 2" / "LEGO Racers 2.exe")
+    parser.add_argument("--build-dir", type=Path, default=ROOT / "build")
+    args = parser.parse_args()
+    try:
+        verify(args.original, args.build_dir / "LEGO Racers 2.exe", args.build_dir / "legoracers2.map",
+               ROOT / "reccmp" / "menu-dispatch.csv", TABLES)
+    except (KeyError, OSError, ValueError, struct.error) as error:
+        parser.exit(1, f"Menu dispatch verification failed: {error}\n")
+    print("Verified eight menu widget tables: 48/48 retail targets and rebuilt callback pointers.")
+    print("Callback behavior and instruction accuracy are separate checks.")
+
+
+if __name__ == "__main__":
+    main()

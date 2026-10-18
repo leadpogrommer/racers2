@@ -6,15 +6,15 @@ Reviewed semantically identical near matches (initially at least 95% raw) are
 implemented functions, counted separately from exact matches.
 
 Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-19.
-The match guard verified **349 exact functions and sixteen reviewed near
-matches**. Another 812 reconstructions remain `STUB`; both builders agree on
-all 1,177 measured raw scores and annotation statuses. Data comparison verifies
-218 annotated globals with zero issues. Six genuine folded aliases also have
+The match guard verified **374 exact functions and sixteen reviewed near
+matches**. Another 849 reconstructions remain `STUB`; both builders agree on
+all 1,239 measured raw scores and annotation statuses. Data comparison verifies
+228 annotated globals with zero issues. Eight genuine folded aliases also have
 complete-byte and exact linker-map verification. Unlinked inventory entries
 may appear in the CLI denominator without another measured row.
 
 This is the reconstructed subset, not whole-game coverage. The automatic
-Ghidra inventory has **4,459 discovered function starts**, including **22 thunks**
+Ghidra inventory has **4,489 discovered function starts**, including **22 thunks**
 and linked runtime/library code. It is incomplete and is not a verified count
 of game-authored functions; see [inventory notes](research.md#automatic-function-inventory).
 Identified libraries are excluded from these matches with `--nolib`.
@@ -59,6 +59,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x0040b340` | `InitializeGameControllerWord` | 100.00% | Verified exact |
 | `0x0040ec90` | `Application::GetDisplaySettings` | 100.00% | Verified exact |
 | `0x00410380` | `GetScreenPrinterSize` | 100.00% | Verified exact |
+| `0x00416b80` | `SetMenuWidgetFont` | 100.00% | Verified exact |
 | `0x00417d10` | `MenuPanel::MenuPanel` | 100.00% | Verified exact |
 | `0x00417d40` | `MenuPanel::Initialize` | 25.00% | Work in progress |
 | `0x00417e30` | `MenuPanel::Release` | 100.00% | Verified exact |
@@ -79,6 +80,55 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004194c0` | `MenuPanelSet::Begin` | 77.78% | Work in progress |
 | `0x004194f0` | `MenuPanelSet::End` | 80.00% | Work in progress |
 | `0x00419680` | `MenuPanelSet::SetActive` | 83.64% | Work in progress |
+| `0x004196f0` | `MenuWidgetBase::MenuWidgetBase` | 92.31% | Work in progress |
+| `0x00419720` | `MenuWidgetBase::SetFont` | 100.00% | Verified exact |
+| `0x00419730` | `MenuWidgetBase::RestoreBaseDispatch` | 50.00% | Work in progress |
+| `0x00419760` | `MenuWidgetBase::ResetState` | 100.00% | Verified exact |
+| `0x00419910` | `MenuWidgetBase::ReleaseChildSprites` | 100.00% | Verified exact |
+| `0x00419940` | `MenuWidgetBase::GetNavigationDirection` | 21.79% | Work in progress |
+| `0x00419a00` | `MenuWidgetBase::SetChildClipRectangle` | 100.00% | Verified exact |
+| `0x00419a30` | `MenuWidgetBase::UpdateBounds` | 36.00% | Work in progress |
+| `0x00419b80` | `InitializeMenuWidgetAnimationTuning` | 63.16% | Work in progress |
+| `0x00419bf0` | `InitializeMenuWidgetChoiceTuning` | 100.00% | Verified exact |
+| `0x00419c60` | `InitializeMenuWidgetLabelPositionTuning` | 100.00% | Verified exact |
+| `0x00419c80` | `MenuVolumeSlider::MenuVolumeSlider` | 93.75% | Work in progress |
+| `0x00419fa0` | `MenuVolumeSlider::Destroy` | 100.00% | Verified exact |
+| `0x00419ff0` | `MenuVolumeSlider::HandleInput` | 61.84% | Work in progress |
+| `0x0041a0c0` | `MenuVolumeSlider::UpdateMarker` | 69.77% | Work in progress |
+| `0x0041a120` | `MenuVolumeSlider::SetClipRectangle` | 100.00% | Verified exact |
+| `0x0041a170` | `MenuVolumeSlider::UpdateBounds` | 52.26% | Work in progress |
+| `0x0041a2d0` | `InitializeMenuRangeMarkerSize` | 100.00% | Verified exact |
+| `0x0041a2f0` | `MenuRangeSlider::MenuRangeSlider` | 76.00% | Work in progress |
+| `0x0041a760` | `MenuRangeSlider::Reset` | 100.00% | Verified exact |
+| `0x0041a7c0` | `MenuRangeSlider::UpdateMarker` | 64.71% | Work in progress |
+| `0x0041a810` | `MenuRangeSlider::HandleInput` | 50.14% | Work in progress |
+| `0x0041aa50` | `MenuRangeSlider::SetClipRectangle` | 100.00% | Verified exact |
+| `0x0041aab0` | `MenuRangeSlider::UpdateBounds` | 83.87% | Work in progress |
+| `0x0041ab60` | `MenuRangeSlider::GetPointerValue` | 84.34% | Work in progress |
+| `0x0041abf0` | `MenuRangeSlider::SnapValue` | 78.79% | Work in progress |
+| `0x0041ac50` | `MenuRangeSlider::UpdateValueLabel` | 76.92% | Work in progress |
+| `0x0041ae40` | `MenuToggle::Reset` | 100.00% | Verified exact |
+| `0x0041ae70` | `MenuToggle::HandleInput` | 84.62% | Work in progress |
+| `0x0041aee0` | `MenuToggle::GetLabelRectangle` | 48.05% | Work in progress |
+| `0x0041afd0` | `MenuToggle::SetClipRectangle` | 100.00% | Verified exact |
+| `0x0041b000` | `MenuToggle::UpdateBounds` | 80.49% | Work in progress |
+| `0x0041b080` | `MenuChoiceSelector::MenuChoiceSelector` | 94.44% | Work in progress |
+| `0x0041b510` | `MenuChoiceSelector::Destroy` | 100.00% | Verified exact |
+| `0x0041b550` | `MenuChoiceSelector::HandleInput` | 47.62% | Work in progress |
+| `0x0041b740` | `MenuChoiceSelector::SetClipRectangle` | 100.00% | Verified exact |
+| `0x0041b780` | `MenuChoiceSelector::UpdateBounds` | 68.97% | Work in progress |
+| `0x0041b840` | `MenuIntegerSelector::FormatNumber` | 43.90% | Work in progress |
+| `0x0041ba00` | `MenuIntegerSelector::Reset` | 100.00% | Verified exact |
+| `0x0041ba30` | `MenuIntegerSelector::HandleInput` | 73.47% | Work in progress |
+| `0x0041bab0` | `MenuIntegerSelector::SetClipRectangle` | 100.00% | Verified exact |
+| `0x0041bae0` | `MenuIntegerSelector::UpdateBounds` | 77.14% | Work in progress |
+| `0x0041bbc0` | `MenuLabelSelector::SelectLabel` | 57.97% | Work in progress |
+| `0x0041be00` | `MenuLabelSelector::Reset` | 100.00% | Verified exact |
+| `0x0041be30` | `MenuLabelSelector::HandleInput` | 77.42% | Work in progress |
+| `0x0041bec0` | `MenuLabelSelector::SetClipRectangle` | 100.00% | Verified exact |
+| `0x0041bef0` | `MenuLabelSelector::UpdateBounds` | 55.84% | Work in progress |
+| `0x0041c210` | `InitializeMenuChoiceColorA` | 25.00% | Work in progress |
+| `0x0041c240` | `InitializeMenuChoiceColorB` | 28.57% | Work in progress |
 | `0x0041c310` | `MenuManager::MenuManager` | 82.22% | Work in progress |
 | `0x0041c3f0` | `MenuManagerAllocationSizeBridge` | 100.00% | Work in progress |
 | `0x0041c400` | `MenuManagerDestroyBridge` | 100.00% | Work in progress |
@@ -92,6 +142,15 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x00423710` | `MenuManager::SetSecondaryPanelClipRectangle` | 93.51% | Work in progress |
 | `0x00423d00` | `MenuTextPair::SetClipRectangle` | 100.00% | Verified exact |
 | `0x00423d30` | `MenuTextPair::GetRectangle` | 76.06% | Work in progress |
+| `0x00423ea0` | `InitializeMenuPointerOffsets` | 100.00% | Verified exact |
+| `0x00424130` | `MenuNavigationState::GetPointerPosition` | 34.78% | Work in progress |
+| `0x00424160` | `MenuNavigationState::ReadDirectionInput` | 33.33% | Work in progress |
+| `0x004241a0` | `MenuNavigationState::IsRecordUnderPointer` | 80.00% | Work in progress |
+| `0x00424220` | `MenuNavigationState::IsSpriteUnderPointer` | 80.00% | Work in progress |
+| `0x00426430` | `MenuTextGroup::MenuTextGroup` | 92.86% | Work in progress |
+| `0x00426660` | `MenuTextGroup::Destroy` | 100.00% | Verified exact |
+| `0x00426690` | `MenuTextGroup::SetClipRectangle` | 100.00% | Verified exact |
+| `0x004266d0` | `MenuTextGroup::UpdateBounds` | 53.66% | Work in progress |
 | `0x00427910` | `ApplySavedAudioLevels` | 40.00% | Work in progress |
 | `0x00427970` | `ApplySavedAudioQuality` | 76.92% | Work in progress |
 | `0x0042ce60` | `BitmapFontSet::BitmapFontSet` | 100.00% | Verified exact |
@@ -493,12 +552,15 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004b3980` | `GlobalOverlayRecord::InitializeText` | 43.40% | Work in progress |
 | `0x004b3b10` | `GlobalOverlayRecord::InitializeTextByIndex` | 71.64% | Work in progress |
 | `0x004b3b70` | `GlobalOverlayRecord::InitializeNarrowText` | 100.00% | Verified exact |
+| `0x004b3bb0` | `GlobalOverlayRecord::AppendText` | 41.86% | Work in progress |
+| `0x004b3d00` | `GlobalOverlayRecord::AppendNarrowText` | 100.00% | Verified exact |
 | `0x004b3d40` | `GlobalOverlayRecord::SetPosition` | 90.14% | Work in progress |
 | `0x004b3dc0` | `GlobalOverlayRecord::Translate` | 75.00% | Work in progress |
 | `0x004b3df0` | `GlobalOverlayRecord::SetColor` | 100.00% | Verified exact |
 | `0x004b3e00` | `GlobalOverlayRecord::SetAlpha` | 100.00% | Verified exact |
 | `0x004b3e10` | `GlobalOverlayRecord::SetList` | 92.86% | Work in progress |
 | `0x004b3e40` | `GlobalOverlayRecord::SetFont` | 100.00% | Verified exact |
+| `0x004b3e50` | `GlobalOverlayRecord::SetScale` | 71.11% | Work in progress |
 | `0x004b3ea0` | `GlobalOverlayRecord::GetEffectiveScale` | 100.00% | Verified exact |
 | `0x004b3ec0` | `GlobalOverlayRecord::GetLineHeight` | 100.00% | Verified exact |
 | `0x004b3ee0` | `GlobalOverlayRecord::SetClipRectangle` | 100.00% | Verified exact |
@@ -658,6 +720,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004c5030` | `MeasureGlobalOverlayGlyphReplacement` | 82.35% | Work in progress |
 | `0x004c5090` | `GetGlobalOverlayGlyphReplacementAdvance` | 50.00% | Work in progress |
 | `0x004c50b0` | `FindOverlayGlyphSequence` | 54.79% | Work in progress |
+| `0x004c5100` | `GlobalOverlayGlyphReplacementManagerView::GetIconKeyword` | 100.00% | Verified exact |
 | `0x004c5110` | `ExpandOverlayGlyphSequence` | 42.86% | Work in progress |
 | `0x004c6980` | `RenderInitializedResource` | 15.09% | Work in progress |
 | `0x004c6fe0` | `RenderDeferredResource` | 20.66% | Work in progress |
@@ -965,7 +1028,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004ee7e0` | `SetAudioCommentaryGain` | 21.05% | Work in progress |
 | `0x004ee800` | `QueueAudioCommentary` | 23.08% | Work in progress |
 | `0x004ee820` | `StopAudioCommentary` | 35.71% | Work in progress |
-| `0x004ee880` | `EnqueueAudioCommentary` | 43.24% | Work in progress |
+| `0x004ee880` | `EnqueueAudioCommentary` | 40.54% | Work in progress |
 | `0x004ee900` | `PlayNextAudioCommentary` | 12.05% | Work in progress |
 | `0x004ee9b0` | `InitializeAudioPcmBuffer` | 72.62% | Work in progress |
 | `0x004eeaa0` | `ShutdownAudioPcmBuffer` | 60.61% | Work in progress |
@@ -1173,12 +1236,11 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x00508290` | `CollectXAxisCandidates` | 8.33% | Work in progress |
 | `0x00508330` | `SpatialAxisIndex::InsertFirst` | 4.82% | Work in progress |
 | `0x005083e0` | `SpatialAxisIndex::InsertSecond` | 4.82% | Work in progress |
-| `0x005084b0` | `SpatialGridCell::Initialize` | 40.00% | Work in progress |
 | `0x005084c0` | `SpatialGridCell::Insert` | 100.00% | Verified exact |
 | `0x005084e0` | `SpatialGridCell::Remove` | 100.00% | Verified exact |
 | `0x00508500` | `StaticSpatialGrid::GetCell` | 94.12% | Work in progress |
 | `0x00508520` | `CollectGridCollisionCandidates` | 18.11% | Work in progress |
-| `0x00508690` | `StaticSpatialGrid::StaticSpatialGrid` | 71.07% | Work in progress |
+| `0x00508690` | `StaticSpatialGrid::StaticSpatialGrid` | 69.42% | Work in progress |
 | `0x00508740` | `StaticSpatialGrid::Insert` | 28.26% | Work in progress |
 | `0x00508840` | `StaticSpatialGrid::Remove` | 88.89% | Work in progress |
 | `0x00508890` | `StaticSpatialGrid::Update` | 100.00% | Verified exact |

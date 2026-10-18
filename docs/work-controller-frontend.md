@@ -53,7 +53,8 @@ remain STUB pending further semantic review and rendered output.
 The 0x68-byte ScreenPrinter has four overlay text records and a complete
 21-entry GameObject table. It creates/releases records, applies the font,
 clears text and converts narrow text through the shared conversion path.
-The scratch buffer at 654e20 reserves 0x400 bytes in the unclaimed BSS gap;
+The scratch buffer at 654e20 reserves 0x200 bytes before the subsequently
+identified append scratch at 655020;
 the original buffer capacity remains unproven. The copy has no bound in the
 retail function, and the body matches exactly.
 

@@ -327,3 +327,13 @@ matches, and 812 STUB reconstructions. All 365 claims and the six complete
 folded aliases pass. Both data reports verify 218 globals with zero issues;
 all nine dispatch inventories still pass in each build. No runtime test or
 game behavioral test was added. See [panel notes](work-menu-panels.md).
+
+## Menu widget integration
+
+Both 287-unit builds pass. All 1,239 measured scores and statuses agree: 374
+exact FUNCTION claims, sixteen reviewed near matches, and 849 STUB bodies.
+All 390 claims and eight complete folded bodies pass. Both data reports verify
+228 globals with zero issues. All ten dispatch inventories pass, including
+48 newly checked widget callbacks. The existing 21 tooling/library tests pass.
+The Python response-file link also verifies the isolated long-path build.
+No runtime or game behavioral test was added. See [widget notes](work-menu-widgets.md).

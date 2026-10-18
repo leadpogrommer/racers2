@@ -278,3 +278,10 @@ LEGO Racers 2/src/menupanel.cpp
 LEGO Racers 2/src/menupanelgeometry.cpp
 LEGO Racers 2/src/menupanelupdate.cpp
 LEGO Racers 2/src/menupanelset.cpp
+LEGO Racers 2/src/menuwidget.cpp
+LEGO Racers 2/src/menuwidgetderived.cpp
+LEGO Racers 2/src/menutoggle.cpp
+LEGO Racers 2/src/menuintegerselector.cpp
+LEGO Racers 2/src/menulabelselector.cpp
+LEGO Racers 2/src/menurangeslider.cpp
+LEGO Racers 2/src/globaloverlayappend.cpp

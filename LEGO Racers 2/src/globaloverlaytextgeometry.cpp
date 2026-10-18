@@ -1,6 +1,8 @@
 #include "bitmapfont.h"
 #include "globaloverlaymanager.h"
 
+#include <math.h>
+
 // STUB: LEGORACERS2 0x004b3dc0
 void GlobalOverlayRecord::Translate(const LegoFloat* p_offset)
 {
@@ -25,6 +27,22 @@ void GlobalOverlayRecord::SetList(LegoS32 p_listId)
 {
 	g_globalOverlayManager.MoveRecord(this, m_listId, p_listId);
 	m_listId = p_listId;
+}
+
+// STUB: LEGORACERS2 0x004b3e50
+void GlobalOverlayRecord::SetScale(LegoFloat p_scale)
+{
+	m_scale = p_scale;
+	// The retail double threshold is the promoted float 0.01f. Its FCOMP
+	// unordered path clears the flag as well, so retain that NaN behavior.
+	if (!(fabs(1.0 - p_scale) >= (double) 0.01f)) {
+		m_animationFlags &= ~8u;
+	}
+	else {
+		m_animationFlags |= 8;
+	}
+	const GlobalOverlayRecordDispatch* dispatch = (const GlobalOverlayRecordDispatch*) m_vtable;
+	m_measuredWidth = dispatch->m_measureTextWidth(this, NULL);
 }
 
 // FUNCTION: LEGORACERS2 0x004b3ea0

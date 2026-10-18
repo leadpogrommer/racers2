@@ -153,3 +153,13 @@ panel and 0x28-byte owner replace the earlier string-buffer interpretation of
 SecondaryManager +0x84. Full frontend widget construction, menu state changes,
 recording setup and scene startup remain open. The bootstrap is still active;
 no menu, startup or asset probe was executed. See [panel notes](work-menu-panels.md).
+
+## Shared widget callbacks
+
+The base, volume/range controls, choice selector, integer selector, toggle,
+label selector and text group now have linked constructors and full six-slot
+tables. Their keyboard/mouse, bounds, clipping and release callbacks have
+recovered source; all 48 pointers pass static verification. Text append and
+overlay scaling dependencies also link. These controls still need the
+remaining frontend construction/state connections before a credible rendered
+menu check. No game or probe was executed; see [widget notes](work-menu-widgets.md).

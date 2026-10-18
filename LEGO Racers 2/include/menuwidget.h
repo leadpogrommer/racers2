@@ -41,28 +41,28 @@ DECOMP_STATIC_ASSERT(offsetof(MenuPointerState, m_directionInput) == 0x30);
 struct MenuWidgetDispatch {
 	typedef void(__fastcall* Action)(MenuWidgetBase*, void*);
 	typedef void(__fastcall* SetFont)(MenuWidgetBase*, void*, BitmapFont*);
-	typedef LegoU32(__fastcall* ReturnZeroTwoArguments)(MenuWidgetBase*, void*, LegoU32, LegoU32);
+	typedef LegoU32(__fastcall* HandleInput)(MenuWidgetBase*, void*, LegoU32*, const LegoU32*);
 	typedef void(__fastcall* SetClipRectangle)(MenuWidgetBase*, void*, const LegoFloat*, const LegoFloat*);
 
-	Action m_updateBounds;                     // +0x00
-	SetFont m_setFont;                         // +0x04
-	Action m_unk0x08;                          // +0x08, original target is a bare RET
-	Action m_reset;                            // +0x0c
-	ReturnZeroTwoArguments m_unk0x10;          // +0x10
-	SetClipRectangle m_setClipRectangle;       // +0x14
+	Action m_updateBounds;               // +0x00
+	SetFont m_setFont;                   // +0x04
+	Action m_unk0x08;                    // +0x08, original target is a bare RET
+	Action m_reset;                      // +0x0c
+	HandleInput m_unk0x10;               // +0x10
+	SetClipRectangle m_setClipRectangle; // +0x14
 };
 
 struct MenuWidgetBase {
 	const MenuWidgetDispatch* m_vtable;
 	GlobalOverlaySprite* m_childSprites[2]; // +0x04, +0x08
-	LegoU32 m_state;                         // +0x0c
-	LegoS32 m_initialValue;                  // +0x10
+	LegoU32 m_state;                        // +0x0c
+	LegoS32 m_initialValue;                 // +0x10
 	LegoU32 m_unk0x14;
-	BitmapFont* m_font;                      // +0x18
+	BitmapFont* m_font; // +0x18
 	LegoU32 m_unk0x1c;
 	LegoU32 m_unk0x20;
 	LegoU32 m_unk0x24;
-	LegoFloat m_bounds[4];                   // +0x28: left, top, right, bottom
+	LegoFloat m_bounds[4]; // +0x28: left, top, right, bottom
 
 	MenuWidgetBase(LegoS32 p_initialValue);
 	void SetFont(BitmapFont* p_font);
@@ -88,5 +88,6 @@ void InitializeMenuPointerOffsets();
 // 0x00416b80 is the shared derived-widget font callback. The base table uses
 // MenuWidgetBase::SetFont at 0x00419720 instead.
 void __fastcall SetMenuWidgetFont(MenuWidgetBase* p_widget, void*, BitmapFont* p_font);
+void __fastcall MenuWidgetDerivedNoOp(MenuWidgetBase* p_widget, void* p_edx);
 
 #endif // LR2_MENUWIDGET_H

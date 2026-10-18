@@ -89,7 +89,7 @@ def build(build_dir, toolchain, source_list=None, shfolder_lib=None, directx8_co
         if not resources.is_file():
             raise ValueError(f"Compiled resource file does not exist: {resources}")
         resource_args.append(windows_path(resources))
-    run("LINK.EXE", [
+    link_arguments = [
         "/nologo", "/machine:I386", "/subsystem:windows,4.0", "/incremental:no",
         # Keep recovered functions measurable before the real callers exist.
         # This changes link retention only; instruction generation is unchanged.
@@ -98,7 +98,15 @@ def build(build_dir, toolchain, source_list=None, shfolder_lib=None, directx8_co
         *objects, "kernel32.lib", "user32.lib", "gdi32.lib", "advapi32.lib", "winmm.lib", "ole32.lib", windows_path(shfolder_library(toolchain, shfolder_lib)),
         *dx_link_args,
         *resource_args,
-    ])
+    ]
+    # Isolated build directories lengthen every object path. At hundreds of
+    # units, a direct argv exceeds the Windows process command-line limit and
+    # Wine can fail before LINK produces any diagnostics. VC6 accepts the
+    # same options in a response file, including quoted paths with spaces.
+    response = build_dir / "link.rsp"
+    response.write_text("\n".join(subprocess.list2cmdline([argument]) for argument in link_arguments) + "\n",
+                        encoding="mbcs" if os.name == "nt" else "utf-8")
+    run("LINK.EXE", ["@" + windows_path(response)])
     # Host paths allow Linux reccmp to read Wine-generated artifacts directly.
     config = ("project: " + json.dumps(str(ROOT)) + "\ntargets:\n  LEGORACERS2:\n    path: "
               + json.dumps(str(exe)) + "\n    pdb: " + json.dumps(str(pdb)) + "\n")

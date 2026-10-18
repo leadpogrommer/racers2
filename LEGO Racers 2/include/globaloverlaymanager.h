@@ -37,6 +37,8 @@ struct GlobalOverlayRecord {
 	void InitializeFromParameters(const LegoU32* p_parameters, LegoS32 p_stringIndex);
 	void InitializeText(const LegoU16* p_text, LegoU32 p_flags, LegoFloat p_time);
 	void InitializeNarrowText(const LegoChar* p_text, LegoU32 p_flags, LegoFloat p_time);
+	void AppendText(const LegoU16* p_text, LegoU32 p_addSpace);
+	void AppendNarrowText(const LegoChar* p_text, LegoU32 p_addSpace);
 	void InitializeTextByIndex(LegoS32 p_stringIndex, LegoU32 p_flags, LegoFloat p_time);
 	void SetPosition(const LegoFloat* p_position, LegoU32 p_mode);
 	void SetScale(LegoFloat p_scale);

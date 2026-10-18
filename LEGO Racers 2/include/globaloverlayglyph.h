@@ -48,6 +48,7 @@ struct GlobalOverlayGlyphReplacementManagerView {
 	void Release();
 	void LoadIconTextures();
 	void ReleaseIconTextures();
+	const LegoU16* GetIconKeyword(LegoU32 p_index) const;
 	void SetPlayerName(const GameControllerName* p_name, LegoS32 p_index);
 	void RegisterIcon(GlobalOverlayGlyphEntryView* p_entry);
 	void SetIconTexture(LegoU32 p_index, const GlobalOverlayIconTexture* p_texture);
