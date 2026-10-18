@@ -36,6 +36,7 @@ public:
 	void InitializeTiming(LegoU32 p_frequency, LegoU32 p_pollMultiplier);
 	LegoBool32 ResetRecording(LegoU32 p_mode);
 	void Shutdown();
+	void SetPaused(LegoU32 p_paused);
 	InputController* FindOrCreateController(LegoU32 p_type, LegoU32 p_index, LegoBool32 p_create, LegoBool32 p_record);
 	void GetTimingState(ControllerTimingState* p_state);
 	void GetElapsedTime(LegoU32* p_seconds, LegoU32* p_microseconds, LegoU32* p_frame);

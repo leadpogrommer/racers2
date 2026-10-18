@@ -128,3 +128,7 @@ LEGO Racers 2/src/rendererlookupdispatch.cpp
 LEGO Racers 2/src/rendererlookupdraw.cpp
 LEGO Racers 2/src/rendererlookupflush.cpp
 LEGO Racers 2/src/gamemanagerregistration.cpp
+LEGO Racers 2/src/profiler.cpp
+LEGO Racers 2/src/gameframepreparation.cpp
+LEGO Racers 2/src/inputcontrollerpause.cpp
+LEGO Racers 2/src/gamerender.cpp

@@ -79,7 +79,7 @@ void GameManager::RebuildObjectWorkLists()
 		if (component != NULL) {
 			const GameLifecycleDispatchView* dispatch = component->m_vtable;
 			componentIsActive = dispatch->m_isActive(component, NULL, 0);
-			if (component->m_flags != 0 && componentIsActive) {
+			if (component->m_collisionProxy != NULL && componentIsActive) {
 				g_gameObjectsWithActiveComponents[g_gameObjectsWithActiveComponentsCount++] = object;
 			}
 		}

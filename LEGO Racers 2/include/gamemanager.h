@@ -8,6 +8,7 @@
 #include <stddef.h>
 
 struct GameObject;
+struct CollisionContact;
 
 struct GameObjectTemplate {
 	void NormalizeDevelopmentFlags();
@@ -17,6 +18,7 @@ struct GameObjectTemplate {
 };
 DECOMP_SIZE_ASSERT(GameObjectTemplate, 0x34);
 
+class CollisionProxy;
 struct GameLifecycleComponent;
 
 struct GameLifecycleDispatchView {
@@ -29,9 +31,9 @@ struct GameLifecycleDispatchView {
 
 struct GameLifecycleComponent {
 	const GameLifecycleDispatchView* m_vtable;
-	GameObject* m_owner;  // 0x04
-	LegoU32 m_flags;      // 0x08
-	LegoU32 m_stateFlags; // 0x0c
+	GameObject* m_owner;              // 0x04
+	CollisionProxy* m_collisionProxy; // 0x08
+	LegoU32 m_stateFlags;             // 0x0c
 };
 
 struct GameObjectDispatchView {
@@ -41,29 +43,31 @@ struct GameObjectDispatchView {
 	typedef LegoU32(__fastcall* Value)(GameObject*, void*);
 	typedef LegoU32(__fastcall* ValueArgument)(GameObject*, void*, LegoU32);
 	typedef void(__fastcall* Update)(GameObject*, void*, LegoU32);
+	typedef LegoU32(__fastcall* ValueTwoArguments)(GameObject*, void*, LegoU32, LegoU32);
 
-	Destroy m_destroy;         // 0x00
-	TwoArguments m_action0x04; // 0x04
-	Action m_action0x08;       // 0x08
-	Action m_action0x0c;       // 0x0c
-	Action m_initialize;       // 0x10
-	Value m_isActive;          // 0x14
-	ValueArgument m_update;    // 0x18
-	Action m_remove;           // 0x1c
-	ValueArgument m_value0x20; // 0x20
-	Action m_action0x24;       // 0x24
-	Value m_value0x28;         // 0x28
-	Value m_value0x2c;         // 0x2c
-	Action m_action0x30;       // 0x30
-	Action m_action0x34;       // 0x34
-	Value m_value0x38;         // 0x38
-	Update m_action0x3c;       // 0x3c
-	Value m_value0x40;         // 0x40
-	Update m_action0x44;       // 0x44
-	Value m_value0x48;         // 0x48
+	Destroy m_destroy;             // 0x00
+	TwoArguments m_action0x04;     // 0x04
+	Action m_action0x08;           // 0x08
+	Action m_action0x0c;           // 0x0c
+	Action m_initialize;           // 0x10
+	Value m_isActive;              // 0x14
+	ValueArgument m_update;        // 0x18
+	Action m_remove;               // 0x1c
+	Value m_value0x20;             // 0x20
+	Value m_value0x24;             // 0x24
+	Action m_action0x28;           // 0x28
+	Action m_action0x2c;           // 0x2c
+	Action m_action0x30;           // 0x30
+	Update m_action0x34;           // 0x34
+	Value m_value0x38;             // 0x38
+	TwoArguments m_action0x3c;     // 0x3c
+	Value m_value0x40;             // 0x40
+	ValueTwoArguments m_value0x44; // 0x44
+	Update m_action0x48;           // 0x48
+	Update m_action0x4c;           // 0x4c
 };
 
-DECOMP_SIZE_ASSERT(GameObjectDispatchView, 0x4c);
+DECOMP_SIZE_ASSERT(GameObjectDispatchView, 0x50);
 DECOMP_STATIC_ASSERT(offsetof(GameObjectDispatchView, m_isActive) == 0x14);
 DECOMP_STATIC_ASSERT(offsetof(GameObjectDispatchView, m_update) == 0x18);
 extern const GameObjectDispatchView g_gameObjectBaseDispatch;
@@ -73,6 +77,11 @@ struct GameObject {
 	GameObject(LegoU32 p_type, GameObjectTemplate* p_template, void* p_lifecycle);
 	~GameObject();
 	void RefreshCollisionState();
+	void Initialize();
+	void Remove();
+	void ApplyChildTransform(const LegoFloat* p_position, const LegoFloat* p_rotation);
+	void SetParent(GameObject* p_parent, LegoU32 p_flag);
+	void ClearParent(LegoU32 p_flag);
 	const GameObjectDispatchView* m_vtable;
 	LegoU32 m_type;
 	LegoU32 m_flags;
@@ -111,6 +120,8 @@ public:
 	void PrepareComponents();
 	void SetControllerFrame(const LegoU32* p_frame);
 	void MoveObjects(LegoFloat p_stepSeconds);
+	void RefreshCollisionStates();
+	LegoS32 SolveContacts(CollisionContact** p_contacts);
 	void UpdateComponents(LegoFloat p_frameDelta);
 	void RenderFrame(LegoFloat p_frameDelta);
 	void RemoveAllObjects();

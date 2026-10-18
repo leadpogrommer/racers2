@@ -109,3 +109,8 @@ The readiness gate also initializes the controller/replay manager selected by `0
 ## Fixed-step and object-registry integration
 
 The five-field scheduler at `0x006ff520` now has compiled reset and update-decision methods, using controller elapsed time and the simulation frame rate. The game-manager singleton, object classification/update/removal loops and renderer animation sweep also compile. Its initial registry points to the 32-pointer backing array; allocation, insertion, removal and initialization now compile; concrete menu-object creation is still being recovered. Renderer resource cleanup now has source for the platform teardown chain. These additions do not replace the temporary entry point or establish a rendered-menu milestone. See [scheduler](work-simulation-scheduler.md), [registry](work-game-manager.md), [terrain limitations](work-renderer-terrain.md), and [resource shutdown](work-renderer-resource-shutdown.md).
+
+
+## Frame support and entrypoint staging
+
+Component transform interpolation, controller pause/origin adjustments, component preparation and profiler configuration are linked for measurement. Quaternion shortest-path interpolation matches exactly. The actual WinMain, message handler, shutdown, frame scheduler orchestration, global pause update and collision proxy/movement paths have passed object compilation; their full linkage still needs the audio singleton, collision service/index, contact solver/cache ownership, RenderFrame and concrete scene/menu objects. These staged units do not replace the temporary entrypoint. See [frame recovery](work-game-frame.md).

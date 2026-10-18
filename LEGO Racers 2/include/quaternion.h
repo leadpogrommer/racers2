@@ -15,6 +15,7 @@ public:
 
 	LegoFloat Normalize();
 	Quaternion* Decode(const PackedQuaternion* p_source);
+	void Interpolate(const Quaternion* p_first, const Quaternion* p_second, LegoFloat p_factor);
 };
 
 DECOMP_SIZE_ASSERT(Quaternion, 0x10);

@@ -139,7 +139,10 @@ perfect matching must not block progress toward a playable game.
   against real backing storage and check annotated data after integration.
 - Derive each callback ABI from argument pushes, receiver setup and stack
   cleanup. Use fastcall bridges for evidenced thiscall methods, and retain
-  cdecl/stdcall for callbacks that actually use those conventions.
+  cdecl/stdcall for callbacks that actually use those conventions. Trace pushes
+  across intervening calls: an argument can be staged for a later call while
+  a no-argument getter runs. A push immediately before a call does not by
+  itself establish that callee takes an argument.
 - Compare functions and vtables after layout changes and run `reccmp-datacmp`
   when changing annotated data. A type, calling convention, or class hierarchy
   must be supported by disassembly/callers and matching output.
