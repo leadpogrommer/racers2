@@ -273,3 +273,8 @@ LEGO Racers 2/src/controllerbuildertextures.cpp
 LEGO Racers 2/src/gamerandom.cpp
 LEGO Racers 2/src/globaloverlayspritegeometry.cpp
 LEGO Racers 2/src/globaloverlaytextgeometry.cpp
+LEGO Racers 2/src/menumanagergeometry.cpp
+LEGO Racers 2/src/menupanel.cpp
+LEGO Racers 2/src/menupanelgeometry.cpp
+LEGO Racers 2/src/menupanelupdate.cpp
+LEGO Racers 2/src/menupanelset.cpp

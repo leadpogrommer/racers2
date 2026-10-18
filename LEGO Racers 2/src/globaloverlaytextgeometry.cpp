@@ -62,3 +62,19 @@ LegoS32 GlobalOverlayRecord::GetTextLength() const
 	}
 	return length;
 }
+
+// STUB: LEGORACERS2 0x004b3f30
+void GlobalOverlayRecord::GetRectangle(LegoFloat* p_topLeft, LegoFloat* p_bottomRight) const
+{
+	if (m_text[0] == 0) {
+		p_topLeft[0] = p_topLeft[1] = 1.0f;
+		p_bottomRight[0] = p_bottomRight[1] = 0;
+		return;
+	}
+	p_topLeft[0] = m_positionX;
+	p_topLeft[1] = m_positionY;
+	p_bottomRight[0] = m_positionX;
+	p_bottomRight[1] = m_positionY;
+	p_bottomRight[0] += m_measuredWidth;
+	p_bottomRight[1] += GetLineHeight();
+}

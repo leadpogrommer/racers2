@@ -318,3 +318,12 @@ links against genuine SDK interfaces and was not executed. See
 No game, menu, startup, movie or asset probe was executed. The temporary
 bootstrap remains; open widget, scene-manager, network and startup-movie
 closures still prevent the intended menu milestone.
+
+## Menu panels and geometry
+
+Both builders pass with 280 translation units. All 1,177 measured scores and
+annotation statuses agree: 349 exact FUNCTION claims, sixteen reviewed near
+matches, and 812 STUB reconstructions. All 365 claims and the six complete
+folded aliases pass. Both data reports verify 218 globals with zero issues;
+all nine dispatch inventories still pass in each build. No runtime test or
+game behavioral test was added. See [panel notes](work-menu-panels.md).

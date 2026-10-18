@@ -143,3 +143,13 @@ GameController's complete creation/update path remains staged while concrete
 widget, foyer, textbox, network and other scene dependencies close. The retail
 entry path has not replaced bootstrap. No runtime check was performed; the
 next run remains reserved for a build expected to open and render the menu.
+
+## Menu panel ownership
+
+The six-panel owner, panel transitions, nine-slice sprite geometry and shadows,
+widget/menu clipping, text bounds, and builder-texture ownership now compile
+and link in both builds. Eight new helpers match exactly. The typed 0x108-byte
+panel and 0x28-byte owner replace the earlier string-buffer interpretation of
+SecondaryManager +0x84. Full frontend widget construction, menu state changes,
+recording setup and scene startup remain open. The bootstrap is still active;
+no menu, startup or asset probe was executed. See [panel notes](work-menu-panels.md).

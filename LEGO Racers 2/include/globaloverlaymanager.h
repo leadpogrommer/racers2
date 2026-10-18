@@ -49,6 +49,7 @@ struct GlobalOverlayRecord {
 	LegoFloat GetLineHeight() const;
 	void SetClipRectangle(const LegoFloat* p_topLeft, const LegoFloat* p_bottomRight);
 	LegoS32 GetTextLength() const;
+	void GetRectangle(LegoFloat* p_topLeft, LegoFloat* p_bottomRight) const;
 	void Release();
 };
 

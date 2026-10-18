@@ -6,10 +6,10 @@ Reviewed semantically identical near matches (initially at least 95% raw) are
 implemented functions, counted separately from exact matches.
 
 Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-19.
-The match guard verified **341 exact functions and sixteen reviewed near
-matches**. Another 792 reconstructions remain `STUB`; both builders agree on
-all 1,149 measured raw scores and annotation statuses. Data comparison verifies
-217 annotated globals with zero issues. Six genuine folded aliases also have
+The match guard verified **349 exact functions and sixteen reviewed near
+matches**. Another 812 reconstructions remain `STUB`; both builders agree on
+all 1,177 measured raw scores and annotation statuses. Data comparison verifies
+218 annotated globals with zero issues. Six genuine folded aliases also have
 complete-byte and exact linker-map verification. Unlinked inventory entries
 may appear in the CLI denominator without another measured row.
 
@@ -27,6 +27,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x00403380` | `LoadDefaultPlayerCar` | 63.83% | Work in progress |
 | `0x00403910` | `IsApplicationDevelopmentMode` | 100.00% | Verified exact |
 | `0x00403930` | `OnApplicationDiagnostic` | 100.00% | Verified exact |
+| `0x004047a0` | `GameObjectBaseZeroOneArgument` | 100.00% | Work in progress |
 | `0x00406f90` | `InitializeGameLocalizationPath` | 22.22% | Work in progress |
 | `0x004071a0` | `GameControllerScore::Initialize` | 100.00% | Verified exact |
 | `0x004071f0` | `GameControllerPairGroups::Initialize` | 22.64% | Work in progress |
@@ -58,6 +59,26 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x0040b340` | `InitializeGameControllerWord` | 100.00% | Verified exact |
 | `0x0040ec90` | `Application::GetDisplaySettings` | 100.00% | Verified exact |
 | `0x00410380` | `GetScreenPrinterSize` | 100.00% | Verified exact |
+| `0x00417d10` | `MenuPanel::MenuPanel` | 100.00% | Verified exact |
+| `0x00417d40` | `MenuPanel::Initialize` | 25.00% | Work in progress |
+| `0x00417e30` | `MenuPanel::Release` | 100.00% | Verified exact |
+| `0x00417e40` | `MenuPanel::Activate` | 27.51% | Work in progress |
+| `0x00417fd0` | `MenuPanel::AllocateSprites` | 42.23% | Work in progress |
+| `0x004181c0` | `MenuPanel::ReleaseSprites` | 100.00% | Verified exact |
+| `0x00418230` | `MenuPanel::BeginClosing` | 100.00% | Verified exact |
+| `0x00418260` | `MenuPanel::Deactivate` | 100.00% | Verified exact |
+| `0x00418280` | `MenuPanel::Update` | 52.59% | Work in progress |
+| `0x004187f0` | `MenuPanel::UpdateClipping` | 36.36% | Work in progress |
+| `0x004189a0` | `MenuPanel::ResetGeometry` | 48.65% | Work in progress |
+| `0x00418a10` | `MenuPanel::SetTransitionVelocity` | 28.40% | Work in progress |
+| `0x00418ba0` | `MenuPanel::UpdateSpriteGeometry` | 15.33% | Work in progress |
+| `0x00418fd0` | `MenuPanel::QuerySelection` | 88.89% | Work in progress |
+| `0x00419090` | `MenuPanel::QueryTargetGeometry` | 23.18% | Work in progress |
+| `0x00419410` | `MenuPanelSet::Initialize` | 49.38% | Work in progress |
+| `0x00419470` | `MenuPanelSet::Release` | 89.66% | Work in progress |
+| `0x004194c0` | `MenuPanelSet::Begin` | 77.78% | Work in progress |
+| `0x004194f0` | `MenuPanelSet::End` | 80.00% | Work in progress |
+| `0x00419680` | `MenuPanelSet::SetActive` | 83.64% | Work in progress |
 | `0x0041c310` | `MenuManager::MenuManager` | 82.22% | Work in progress |
 | `0x0041c3f0` | `MenuManagerAllocationSizeBridge` | 100.00% | Work in progress |
 | `0x0041c400` | `MenuManagerDestroyBridge` | 100.00% | Work in progress |
@@ -65,6 +86,12 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x0041c430` | `MenuManager::Initialize` | 22.58% | Work in progress |
 | `0x0041c4d0` | `MenuManager::Remove` | 100.00% | Work in progress |
 | `0x0041c6d0` | `MenuManager::ApplyFonts` | 71.70% | Work in progress |
+| `0x00423090` | `MenuManager::GetPanelRectangle` | 100.00% | Verified exact |
+| `0x004230d0` | `MenuManager::GetSecondaryPanelRectangle` | 100.00% | Verified exact |
+| `0x004236a0` | `MenuManager::SetPanelClipRectangle` | 77.42% | Work in progress |
+| `0x00423710` | `MenuManager::SetSecondaryPanelClipRectangle` | 93.51% | Work in progress |
+| `0x00423d00` | `MenuTextPair::SetClipRectangle` | 100.00% | Verified exact |
+| `0x00423d30` | `MenuTextPair::GetRectangle` | 76.06% | Work in progress |
 | `0x00427910` | `ApplySavedAudioLevels` | 40.00% | Work in progress |
 | `0x00427970` | `ApplySavedAudioQuality` | 76.92% | Work in progress |
 | `0x0042ce60` | `BitmapFontSet::BitmapFontSet` | 100.00% | Verified exact |
@@ -476,6 +503,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004b3ec0` | `GlobalOverlayRecord::GetLineHeight` | 100.00% | Verified exact |
 | `0x004b3ee0` | `GlobalOverlayRecord::SetClipRectangle` | 100.00% | Verified exact |
 | `0x004b3f10` | `GlobalOverlayRecord::GetTextLength` | 100.00% | Verified exact |
+| `0x004b3f30` | `GlobalOverlayRecord::GetRectangle` | 56.72% | Work in progress |
 | `0x004b3fd0` | `DrawGlobalOverlayText` | 6.73% | Work in progress |
 | `0x004b43d0` | `AdvanceGlobalOverlayText` | 55.12% | Work in progress |
 | `0x004b44e0` | `MeasureGlobalOverlayText` | 6.17% | Work in progress |
@@ -1030,7 +1058,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004f4e40` | `CollisionServicePrepareQuery` | 84.21% | Work in progress |
 | `0x004f4e70` | `CollisionServiceQuerySphere` | 85.71% | Work in progress |
 | `0x004f4e90` | `CollisionServiceQuerySegment` | 85.71% | Work in progress |
-| `0x004f4eb0` | `CollisionServiceSweep` | 20.00% | Work in progress |
+| `0x004f4eb0` | `CollisionServiceSweep` | 22.22% | Work in progress |
 | `0x004f50e0` | `CollisionModelTransform::ResetIdentity` | 31.58% | Work in progress |
 | `0x004f5140` | `SpatialLinkRegistry::SpatialLinkRegistry` | 90.00% | Work in progress |
 | `0x004f5160` | `SpatialLinkRegistry::Insert` | 80.00% | Work in progress |

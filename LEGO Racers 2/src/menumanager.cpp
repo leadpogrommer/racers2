@@ -39,15 +39,15 @@ const MenuManagerDispatchView g_menuManagerDispatch = {
 MenuManager::MenuManager(GameObjectTemplate* p_template)
 	: GameObject(0x900, p_template, NULL), m_unk0x198(0), m_unk0x19c(0xffffffff), m_unk0x1a0(0xffffffff), m_unk0x1a4(0),
 	  m_unk0x1a8(0), m_unk0x1d8(0), m_unk0x1dc(0), m_unk0x1e0(0), m_unk0x1e8(0), m_unk0x1ec(0), m_unk0x204(0),
-	  m_unk0x208(0), m_unk0x20c(0), m_unk0x210(0), m_unk0x214(0xffffffff), m_unk0x218(3), m_unk0x21c(0),
-	  m_unk0x220(0xbf800000), m_unk0x224(0xbf800000), m_unk0x228(0xffffffff), m_unk0x22c(0), m_unk0x268(0)
+	  m_unk0x208(0), m_extraChoiceSelector(NULL), m_unk0x210(0), m_unk0x214(0xffffffff), m_unk0x218(3), m_unk0x21c(0),
+	  m_unk0x220(0xbf800000), m_unk0x224(0xbf800000), m_unk0x228(0xffffffff), m_unk0x22c(0), m_transitionCover(NULL)
 {
 	LegoU32 i;
 	for (i = 0; i < 14; ++i) {
 		m_overlayRecords[i] = NULL;
 	}
 	for (i = 0; i < 0x12; ++i) {
-		m_unk0x26c[i] = 0;
+		m_widgets[i] = NULL;
 	}
 	m_vtable = (const GameObjectDispatchView*) &g_menuManagerDispatch;
 }
