@@ -43,6 +43,6 @@ DECOMP_STATIC_ASSERT(offsetof(LocalizedStringTable, m_emptyString) == 0xa0);
 
 DECOMP_SIZE_ASSERT(LocalizedStringTable, 0xd4);
 
-extern LocalizedStringTable* g_localizedStringTable;
+LocalizedStringTable* GetLocalizedStringTable();
 
 #endif // LR2_LOCALIZEDSTRINGTABLE_H

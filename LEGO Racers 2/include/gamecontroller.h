@@ -58,11 +58,16 @@ struct GameControllerPlayerBlock {
 };
 DECOMP_SIZE_ASSERT(GameControllerPlayerBlock, 0x344);
 
+struct LocalizedStringTable;
+class BitmapFontSet;
+struct InputController;
+
 struct GameController : GameObject {
 	GameController(GameObjectTemplate* p_template);
 	~GameController();
 	void Initialize();
 	void Remove();
+	void PlayStartupMovies();
 	LegoU32 Update(LegoU32 p_elapsed);
 
 	LegoU32 m_state;          // 0x58
@@ -72,11 +77,11 @@ struct GameController : GameObject {
 	LegoU32 m_unk0x68;
 	GameObject* m_pauseDetector; // 0x6c
 	void* m_unk0x70;
-	void* m_overlayFont;            // 0x74
-	GameObject* m_secondaryManager; // 0x78
-	GameObject* m_raceManager;      // 0x7c
-	GameObject* m_battleManager;    // 0x80
-	GameObject* m_foyerManager;     // 0x84
+	LocalizedStringTable* m_localizedStrings; // 0x74
+	GameObject* m_secondaryManager;           // 0x78
+	GameObject* m_raceManager;                // 0x7c
+	GameObject* m_battleManager;              // 0x80
+	GameObject* m_foyerManager;               // 0x84
 	void* m_unk0x88;
 	void* m_unk0x8c;
 	void* m_unk0x90;
@@ -94,7 +99,7 @@ struct GameController : GameObject {
 	GameObject* m_killSphereSupervisor; // 0xc0
 	GameObject* m_reverbManager;        // 0xc4
 	GameObject* m_unk0xc8;
-	void* m_unk0xcc;
+	BitmapFontSet* m_fontSet;
 	LegoU32 m_unk0xd0;
 	void* m_unk0xd4;
 	void* m_unk0xd8;
@@ -103,8 +108,8 @@ struct GameController : GameObject {
 	LegoU32 m_unk0xe4;
 	LegoU32 m_unk0xe8;
 	LegoU32 m_unk0xec;
-	LegoU32 m_configuration[8]; // 0xf0
-	void* m_playerProfiles[8];  // 0x110
+	InputController* m_controllers[8]; // 0xf0
+	void* m_playerProfiles[8];         // 0x110
 	undefined m_unk0x130[4];
 	GameControllerName m_names[2]; // 0x134
 	undefined m_unk0x15c[0x1e4 - 0x15c];

@@ -41,7 +41,7 @@ foreach(config DEBUG RELEASE RELWITHDEBINFO MINSIZEREL)
   set(CMAKE_EXE_LINKER_FLAGS_${config} "/incremental:no")
 endforeach()
 target_link_options(legoracers2 PRIVATE "/MAP:$<TARGET_FILE_DIR:legoracers2>/legoracers2.map")
-target_link_libraries(legoracers2 PRIVATE user32 gdi32 advapi32 winmm)
+target_link_libraries(legoracers2 PRIVATE user32 gdi32 advapi32 winmm ole32)
 
 # SHGetFolderPathA is imported from SHFOLDER by the retail user-data helper.
 # An SDK may provide shfolder.lib; Wine's PE-i386 archive is also VC6-compatible.

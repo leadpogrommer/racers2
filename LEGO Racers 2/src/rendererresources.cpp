@@ -8,8 +8,6 @@ extern "C" char* __cdecl _strupr(char* p_text);
 
 namespace
 {
-typedef void(__cdecl* AuxiliaryResourceCallback)(RendererAuxiliaryResourceRecord*, LegoU32);
-
 typedef LegoU32(__fastcall* ResourceKindPolicy)(DisplayRenderer*, void*, LegoU32);
 typedef void*(__fastcall* GetTextureRecord)(DisplayRenderer*, void*, LegoU32);
 typedef void*(__fastcall* CreateExternalTexture)(DisplayRenderer*, void*, const LegoChar*, LegoU32, LegoU16);
@@ -50,7 +48,7 @@ LegoBool32 RendererAuxiliaryResourceRecord::Matches(const RendererAuxiliaryResou
 }
 
 // STUB: LEGORACERS2 0x004c0670
-LegoBool32 RendererAuxiliaryResourceRecord::SetCallback(void* p_callback)
+LegoBool32 RendererAuxiliaryResourceRecord::SetCallback(RendererAuxiliaryResourceCallback p_callback)
 {
 	if (m_path[0] == '\0' || m_callback != NULL) {
 		return FALSE;
@@ -88,12 +86,11 @@ LegoS32 DisplayRenderer::AcquireAuxiliaryResource(RendererAuxiliaryResourceRecor
 		for (LegoS32 i = 0; i < m_resourceLookupCount; i++) {
 			RendererResourceLookupEntry* entry = &m_resourceLookup[i];
 			if (strcmp(entry->m_path, record->m_path) == 0) {
-				record->SetCallback((void*) entry->m_resource);
+				record->SetCallback(entry->m_callback);
 				if (record->m_callback == NULL) {
 					return index;
 				}
-				AuxiliaryResourceCallback callback = (AuxiliaryResourceCallback) record->m_callback;
-				callback(record, 2);
+				record->m_callback(record, 2);
 				return index;
 			}
 		}

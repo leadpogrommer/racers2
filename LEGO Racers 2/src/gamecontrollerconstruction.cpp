@@ -53,7 +53,7 @@ GameController::GameController(GameObjectTemplate* p_template) : GameObject(0x90
 	m_unk0x68 = 0;
 	m_pauseDetector = NULL;
 	m_unk0x70 = NULL;
-	m_overlayFont = NULL;
+	m_localizedStrings = NULL;
 	m_secondaryManager = NULL;
 	m_raceManager = NULL;
 	m_battleManager = NULL;

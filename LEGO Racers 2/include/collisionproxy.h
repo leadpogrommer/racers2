@@ -8,6 +8,7 @@
 
 class CollisionProxy;
 struct CollisionModelView;
+struct CollisionQueryResult;
 
 struct CollisionModelTransform {
 	CollisionModelTransform* ResetIdentity();
@@ -31,6 +32,7 @@ struct CollisionPrimitiveRecord {
 DECOMP_SIZE_ASSERT(CollisionPrimitiveRecord, 0x14);
 
 struct CollisionModelView {
+	LegoBool32 IntersectSegment(const Vector3*, const Vector3*, CollisionQueryResult*);
 	LegoU32 m_unk0x00;
 	LegoU32 m_unk0x04;
 	LegoU32 m_unk0x08;
@@ -78,6 +80,7 @@ class CollisionProxy {
 public:
 	CollisionProxy(CollisionModelView* p_model, LegoU32 p_tag);
 	~CollisionProxy();
+	LegoBool32 IntersectSegment(const Vector3*, const Vector3*, CollisionQueryResult*);
 	void DetachFromIndex();
 	void AttachToIndex();
 	void SetPrimitivePosition(LegoS32 p_index, const Vector3* p_position, LegoU32 p_unused);

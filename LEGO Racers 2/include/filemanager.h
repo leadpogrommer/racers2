@@ -14,7 +14,7 @@ public:
 	void Initialize(BOOL p_force);
 	BOOL FindArchiveEntry(LPCSTR p_path, BOOL* p_found, WinFile* p_file);
 	void TrackOpen(LPCSTR p_path, WinFile* p_file);
-	void Read(WinFile* p_file, LPVOID p_buffer, DWORD p_bytes, DWORD p_flags);
+	BOOL Read(WinFile* p_file, LPVOID p_buffer, DWORD p_bytes, DWORD p_flags);
 	void Close(WinFile* p_file);
 	DWORD GetSize(WinFile* p_file);
 	BOOL Exists(LPCSTR p_path);

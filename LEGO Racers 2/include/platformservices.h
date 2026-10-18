@@ -4,5 +4,6 @@
 #include "types.h"
 
 LegoBool32 InitializePlatformServices();
+void ShutdownPlatformServices();
 
 #endif // LR2_PLATFORMSERVICES_H

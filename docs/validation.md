@@ -277,3 +277,21 @@ Both SP5 builders pass with 722 measured rows: 281 exact functions, twelve revie
 ## Frontend preferences and localization checkpoint
 
 Both SP5 builders pass with 742 measured rows: 289 exact functions, twelve reviewed near matches and 441 STUB reconstructions. All scores/statuses agree. Data comparison verifies 148 annotated globals with zero issues. Eight added helpers match exactly, including the localization constructor, string access/path builder, narrow name copying and four other record initializers. Four genuine folded bodies pass complete-byte and linker-symbol verification in both builds. The larger loader, language relocation, input binding setup and preferences retain STUB status. GameController storage/construction and its complete 21-slot dispatch pass object compilation and remain staged. No game or runtime probe was run. See [frontend recovery](work-game-controller.md).
+
+## Frame, audio, font and collision integration
+
+Both SP5 builders link 247 translation units. The matching reports contain
+1,061 measured functions: 299 exact, twelve reviewed near matches and 750 STUB
+reconstructions. All raw scores/statuses agree between the builders. The ten
+newly promoted exact helpers have complete raw extents and reviewed caller/data
+contracts. Four genuine folded bodies still pass full-byte/linker-map checks.
+
+Data comparison verifies 201 annotated globals with zero issues. The complete
+audio service/provider tables have 144 original targets and 144 emitted callback
+pointers checked independently, alongside the existing renderer, application,
+input, spatial-list and constraint table checks. The 21 tooling/library tests
+pass. No game-function behavioral tests or runtime/game probes were run.
+
+GameController initialization and concrete frontend transition sources remain
+staged; the temporary bootstrap is still the executable entry point. See
+[integration notes](work-main-integration.md).

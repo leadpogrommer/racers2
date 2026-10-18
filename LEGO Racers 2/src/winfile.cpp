@@ -59,9 +59,9 @@ void WinFile::Open(LPCSTR p_path, LegoS32 p_mode, BOOL* p_result)
 }
 
 // FUNCTION: LEGORACERS2 0x004a2290
-void WinFile::Read(LPVOID p_buffer, DWORD p_bytes, DWORD p_flags)
+BOOL WinFile::Read(LPVOID p_buffer, DWORD p_bytes, DWORD p_flags)
 {
-	GetFileManager()->Read(this, p_buffer, p_bytes, p_flags);
+	return GetFileManager()->Read(this, p_buffer, p_bytes, p_flags);
 }
 
 // FUNCTION: LEGORACERS2 0x004a22b0

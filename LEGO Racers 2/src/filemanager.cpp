@@ -137,20 +137,20 @@ BOOL FileManager::FindArchiveEntry(LPCSTR p_path, BOOL* p_found, WinFile* p_file
 }
 
 // STUB: LEGORACERS2 0x004a2ba0
-void FileManager::Read(WinFile* p_file, LPVOID p_buffer, DWORD p_bytes, DWORD p_flags)
+BOOL FileManager::Read(WinFile* p_file, LPVOID p_buffer, DWORD p_bytes, DWORD p_flags)
 {
 	DWORD sourceOffset = p_file->m_archiveOffset + p_file->m_position;
 	if (p_file->m_cachedSize == (DWORD) -1) {
-		p_file->ReadAt(p_buffer, p_bytes, sourceOffset, p_flags);
-		return;
+		return p_file->ReadAt(p_buffer, p_bytes, sourceOffset, p_flags);
 	}
 
 	if (sourceOffset != (DWORD) m_archivePosition && !m_archive.m_compressed) {
 		m_archive.SeekBounded(sourceOffset);
 	}
-	m_archive.ReadAt(p_buffer, p_bytes, sourceOffset, p_flags);
+	BOOL result = m_archive.ReadAt(p_buffer, p_bytes, sourceOffset, p_flags);
 	p_file->m_position += p_bytes;
 	m_archivePosition = p_file->m_archiveOffset + p_file->m_position;
+	return result;
 }
 
 // FUNCTION: LEGORACERS2 0x004a2c20

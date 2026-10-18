@@ -78,7 +78,10 @@ struct AudioSourceRecord {
 	LegoU32 m_unk0xb8;
 	struct AudioChannelRecord* m_channelResource; // 0xbc, reference-counted cleanup record
 	IDirectSoundBuffer* m_playbackBuffer;         // 0xc0
-	LegoU32 m_unk0xc4;
+	union {
+		IDirectSound3DBuffer* m_spatialBuffer; // 0xc4, queried from the 3D source buffer
+		LegoU32 m_unk0xc4;
+	};
 	LegoU32 m_unk0xc8;
 	LegoU32 m_unk0xcc;
 	LegoU32 m_unk0xd0;
@@ -86,12 +89,12 @@ struct AudioSourceRecord {
 };
 
 struct AudioChannelRecord {
-	LegoU32 m_referenceCount; // 0x00
-	LegoU8 m_unk0x04[0x80];
+	LegoU32 m_referenceCount;  // 0x00
+	LegoChar m_fileName[0x80]; // 0x04, canonical uppercase .AIF path
 	LegoU32 m_unk0x84;
 	LegoU32 m_unk0x88;
-	void* m_cachedBuffer;  // 0x8c
-	LegoU32 m_qualityMode; // 0x90
+	void* m_cachedBuffer;                 // 0x8c, source audio data owned through the heap
+	IDirectSoundBuffer* m_playbackBuffer; // 0x90, released through provider slot +0x10
 	LegoU32 m_unk0x94;
 };
 
@@ -107,11 +110,15 @@ struct AudioDeviceRecord {
 };
 
 DECOMP_SIZE_ASSERT(AudioSourceRecord, 0xd8);
+DECOMP_STATIC_ASSERT(offsetof(AudioSourceRecord, m_channelResource) == 0xbc);
+DECOMP_STATIC_ASSERT(offsetof(AudioSourceRecord, m_playbackBuffer) == 0xc0);
+DECOMP_STATIC_ASSERT(offsetof(AudioSourceRecord, m_spatialBuffer) == 0xc4);
 DECOMP_SIZE_ASSERT(AudioSourceRecordDispatch, 0x40);
 DECOMP_SIZE_ASSERT(AudioChannelRecord, 0x98);
 DECOMP_STATIC_ASSERT(offsetof(AudioChannelRecord, m_unk0x84) == 0x84);
+DECOMP_STATIC_ASSERT(offsetof(AudioChannelRecord, m_fileName) == 0x04);
 DECOMP_STATIC_ASSERT(offsetof(AudioChannelRecord, m_cachedBuffer) == 0x8c);
-DECOMP_STATIC_ASSERT(offsetof(AudioChannelRecord, m_qualityMode) == 0x90);
+DECOMP_STATIC_ASSERT(offsetof(AudioChannelRecord, m_playbackBuffer) == 0x90);
 DECOMP_SIZE_ASSERT(AudioDeviceRecord, 0x34);
 
 class AudioService;
@@ -129,54 +136,67 @@ struct AudioServiceDispatch {
 	typedef void(__fastcall* SetPointer)(AudioService*, void*, void*);
 	typedef void(__fastcall* SetPointerAndSize)(AudioService*, void*, const void*, LegoU32);
 	typedef void(__fastcall* SetPath)(AudioService*, void*, LPCSTR);
+	typedef void(__fastcall* SetPathAndUnused)(AudioService*, void*, LPCSTR, LegoU32);
 	typedef void(__fastcall* SetFloatPair)(AudioService*, void*, LegoFloat, LegoFloat);
 	typedef void(__fastcall* GetFloatPair)(AudioService*, void*, LegoFloat*, LegoFloat*);
 	typedef void(__fastcall* SetOffsetAndLength)(AudioService*, void*, LONG, DWORD);
 	typedef void(__fastcall* SetWaveFormat)(AudioService*, void*, WAVEFORMATEX*);
 	typedef void(__fastcall* AppendAudioData)(AudioService*, void*, const void*, LegoS32);
+	typedef void(__fastcall* SetTwoWords)(AudioService*, void*, LegoU32, LegoU32);
+	typedef void(__fastcall* SetThreeWords)(AudioService*, void*, LegoU32, LegoU32, LegoU32);
+	typedef void(__fastcall* AddAudioSource)(AudioService*, void*, const LegoU32*, LegoU32, LegoU32);
+	typedef void(__fastcall* ReleaseSourceRecord)(AudioService*, void*, AudioSourceRecord*);
+	typedef AudioSourceRecord*(__fastcall* FindAudioSource)(AudioService*, void*, LegoU32, LPCSTR);
+	typedef LegoU32(__fastcall* ValidateAudioSource)(AudioService*, void*, LegoU32);
+	typedef void(__fastcall* SetMixerVolume)(AudioService*, void*, LegoFloat, LegoU32);
+	typedef void(__fastcall* AddListener)(AudioService*, void*, const LegoU32*, LegoU32);
+	typedef void(__fastcall* SetListenerGains)(AudioService*, void*, LegoU32, LegoFloat, LegoFloat);
 
-	DeleteObject m_deleteObject;  // 0x00
-	Action m_shutdown;            // 0x04
-	GetValue m_getStatus;         // 0x08
-	Action m_restart;             // 0x0c
-	GetValueOut m_getQuality;     // 0x10
-	SetValue m_setQuality;        // 0x14
-	void* m_unk0x18;              // 0x18
-	SetValue m_update;            // 0x1c
-	SetFloatPair m_setVolumes;    // 0x20
-	GetFloatPair m_getVolumes;    // 0x24
-	SetFloatPair m_setParameters; // 0x28
-	SetValue m_setMusicEnabled;   // 0x2c
-	Action m_unk0x30;             // 0x30
-	Action m_unk0x34;             // 0x34
-	Action m_unk0x38;             // 0x38
-	Action m_unk0x3c;             // 0x3c
-	Action m_unk0x40;             // 0x40
-	Action m_unk0x44;             // 0x44
-	Action m_unk0x48;             // 0x48
-	Action m_unk0x4c;             // 0x4c
-	Action m_unk0x50;             // 0x50
-	Action m_unk0x54;             // 0x54
-	Action m_unk0x58;             // 0x58
-	SetSignedValue m_playCdTrack; // 0x5c
-	Action m_unk0x60;             // 0x60
-	Action m_unk0x64;             // 0x64
-	Action m_unk0x68;             // 0x68
-	Action m_unk0x6c;             // 0x6c
-	Action m_unk0x70;             // 0x70
-	Action m_unk0x74;             // 0x74
-	Action m_unk0x78;             // 0x78
-	Action m_unk0x7c;             // 0x7c
-	Action m_unk0x80;             // 0x80
-	SetPath m_unk0x84;            // 0x84; initialize commentary stream
-	SetFloat m_unk0x88;           // 0x88
-	SetOffsetAndLength m_unk0x8c; // 0x8c
-	SetValue m_unk0x90;           // 0x90
-	Action m_unk0x94;             // 0x94
-	Action m_unk0x98;             // 0x98
-	SetWaveFormat m_unk0x9c;      // 0x9c
-	Action m_unk0xa0;             // 0xa0
-	AppendAudioData m_unk0xa4;    // 0xa4
+	DeleteObject m_deleteObject;            // 0x00
+	Action m_shutdown;                      // 0x04
+	GetValue m_getStatus;                   // 0x08
+	Action m_restart;                       // 0x0c
+	GetValueOut m_getQuality;               // 0x10
+	SetValue m_setQuality;                  // 0x14
+	Action m_unk0x18;                       // 0x18, pure virtual in the base table
+	SetValue m_update;                      // 0x1c
+	SetFloatPair m_setVolumes;              // 0x20
+	GetFloatPair m_getVolumes;              // 0x24
+	SetFloatPair m_setParameters;           // 0x28
+	SetValue m_setMusicEnabled;             // 0x2c
+	SetTwoWords m_unk0x30;                  // 0x30, ret 8
+	AddAudioSource m_addSource;             // 0x34, ret 0xc
+	Action m_unk0x38;                       // 0x38
+	ReleaseSourceRecord m_releaseSource;    // 0x3c
+	SetValue m_removeSource;                // 0x40
+	FindAudioSource m_findSource;           // 0x44
+	ValidateAudioSource m_validateSource;   // 0x48
+	SetThreeWords m_unk0x4c;                // 0x4c, ret 0xc
+	SetValue m_unk0x50;                     // 0x50
+	SetValue m_unk0x54;                     // 0x54
+	SetPathAndUnused m_setDigitalAudioPath; // 0x58; second stack word is ignored
+	SetSignedValue m_playCdTrack;           // 0x5c
+	Action m_stopCdTrack;                   // 0x60
+	SetValue m_unk0x64;                     // 0x64
+	SetMixerVolume m_setMixerVolume;        // 0x68
+	GetFloatPair m_getMixerVolume;          // 0x6c
+	AddListener m_addListener;              // 0x70
+	SetValue m_removeListener;              // 0x74
+	SetTwoWords m_setListenerField0x04;     // 0x78
+	SetTwoWords m_setListenerField0x30;     // 0x7c
+	SetListenerGains m_setListenerGains;    // 0x80
+	SetPath m_initializeCommentary;         // 0x84
+	SetFloat m_setCommentaryGain;           // 0x88
+	SetOffsetAndLength m_queueCommentary;   // 0x8c
+	union {
+		SetValue m_stopCommentary; // 0x90
+		SetValue m_unk0x90;        // compatibility name used by the commentary bridge
+	};
+	Action m_shutdownCommentary;         // 0x94
+	Action m_unk0x98;                    // 0x98
+	SetWaveFormat m_initializePcmBuffer; // 0x9c
+	Action m_shutdownPcmBuffer;          // 0xa0
+	AppendAudioData m_appendPcmData;     // 0xa4
 };
 
 DECOMP_SIZE_ASSERT(AudioServiceDispatch, 0xa8);
@@ -197,36 +217,42 @@ struct AudioBackendStateView {
 struct AudioBackendStateDispatch {
 	typedef AudioBackendStateView*(__fastcall* DeleteObject)(AudioBackendStateView*, void*, LegoU32);
 	typedef void(__fastcall* Action)(AudioBackendStateView*, void*);
+	typedef void(__fastcall* Initialize)(AudioBackendStateView*, void*, HWND);
+	typedef IDirectSoundBuffer*(__fastcall* CreateSourceBuffer)(AudioBackendStateView*, void*, const void*, LegoU32);
+	typedef void(__fastcall* ReleaseBufferPointer)(AudioBackendStateView*, void*, IDirectSoundBuffer**);
+	typedef IDirectSoundBuffer*(__fastcall*
+									DuplicatePlaybackBuffer)(AudioBackendStateView*, void*, IDirectSoundBuffer*);
 	typedef void(__fastcall* ReleaseSourceBuffer)(AudioBackendStateView*, void*, AudioSourceRecord*);
-	typedef void(__fastcall* ReleaseChannelBuffer)(AudioBackendStateView*, void*, void*);
-	typedef LegoBool32(__fastcall* SetPlaybackParameter)(AudioBackendStateView*, void*, IDirectSoundBuffer*, LegoU32);
+	typedef LegoU32(__fastcall* GetSourceSampleRate)(AudioBackendStateView*, void*, const void*, LegoU32);
+	typedef LegoBool32(__fastcall* StartPlayback)(AudioBackendStateView*, void*, IDirectSoundBuffer*, LegoU32);
 	typedef LegoBool32(__fastcall* StopPlayback)(AudioBackendStateView*, void*, IDirectSoundBuffer*);
 	typedef LegoBool32(__fastcall* IsPlaybackActive)(AudioBackendStateView*, void*, IDirectSoundBuffer*);
 	typedef LegoBool32(__fastcall* SetPlaybackFrequency)(AudioBackendStateView*, void*, IDirectSoundBuffer*, LegoS32);
 	typedef LegoBool32(__fastcall* PlaybackAction)(AudioBackendStateView*, void*, IDirectSoundBuffer*);
 	typedef void(__fastcall* UpdateSource)(AudioBackendStateView*, void*, AudioSourceRecord*);
 
-	DeleteObject m_destroy;                      // 0x00
-	Action m_unk0x04;                            // 0x04
-	Action m_unk0x08;                            // 0x08
-	Action m_unk0x0c;                            // 0x0c
-	ReleaseChannelBuffer m_releaseChannelBuffer; // 0x10
-	Action m_unk0x14;                            // 0x14
-	ReleaseSourceBuffer m_releaseSourceBuffer;   // 0x18
-	Action m_unk0x1c;                            // 0x1c
-	Action m_unk0x20;                            // 0x20
-	SetPlaybackParameter m_unk0x24;              // 0x24
-	StopPlayback m_stopPlayback;                 // 0x28
-	IsPlaybackActive m_isPlaybackActive;         // 0x2c
-	SetPlaybackFrequency m_setPlaybackFrequency; // 0x30
-	PlaybackAction m_resetPlaybackPosition;      // 0x34
-	UpdateSource m_updateSource;                 // 0x38
+	DeleteObject m_destroy;                            // 0x00
+	Initialize m_initialize;                           // 0x04
+	Action m_releaseDeviceInterfaces;                  // 0x08
+	CreateSourceBuffer m_createSourceBuffer;           // 0x0c
+	ReleaseBufferPointer m_releaseBufferPointer;       // 0x10
+	DuplicatePlaybackBuffer m_duplicatePlaybackBuffer; // 0x14
+	ReleaseSourceBuffer m_releaseSourceBuffer;         // 0x18
+	Action m_unk0x1c;                                  // 0x1c
+	GetSourceSampleRate m_getSourceSampleRate;         // 0x20
+	StartPlayback m_startPlayback;                     // 0x24
+	StopPlayback m_stopPlayback;                       // 0x28
+	IsPlaybackActive m_isPlaybackActive;               // 0x2c
+	SetPlaybackFrequency m_setPlaybackFrequency;       // 0x30
+	PlaybackAction m_resetPlaybackPosition;            // 0x34
+	UpdateSource m_updateSource;                       // 0x38
 };
 
 DECOMP_STATIC_ASSERT(offsetof(AudioBackendStateView, m_initializationStatus) == 0x0c);
 DECOMP_SIZE_ASSERT(AudioBackendStateView, 0x10);
 DECOMP_STATIC_ASSERT(offsetof(AudioBackendStateDispatch, m_releaseSourceBuffer) == 0x18);
 DECOMP_SIZE_ASSERT(AudioBackendStateDispatch, 0x3c);
+extern const AudioBackendStateDispatch g_audioBackendBaseDispatch;
 
 class AudioService {
 public:
@@ -240,6 +266,10 @@ public:
 	void SetVolumes(LegoFloat p_volumeA, LegoFloat p_volumeB);
 	void GetVolumes(LegoFloat* p_volumeA, LegoFloat* p_volumeB);
 	void SetMusicEnabled(LegoU32 p_enabled);
+	void SetDigitalAudioPath(LPCSTR p_path);
+	void SetCdPlayerMode(LegoU32 p_mode);
+	void SetMixerVolume(LegoFloat p_volume, LegoU32 p_unused);
+	void GetMixerVolume(LegoFloat* p_volumeA, LegoFloat* p_volumeB);
 	void AddListener(const LegoU32* p_listenerData, LegoU32 p_listenerId);
 	void RemoveListener(LegoU32 p_listenerId);
 	void SetListenerField0x04(LegoU32 p_listenerId, LegoU32 p_value);
@@ -299,8 +329,11 @@ DECOMP_STATIC_ASSERT(offsetof(AudioService, m_usesDigitalAudio) == 0x2486c);
 
 AudioService* GetAudioService(LegoBool32 p_create);
 void DestroyAudioService();
+LegoU32 __fastcall GetAudioServiceShutdownStatus(AudioService* p_service, void* p_edx);
 AudioSourceRecord* __fastcall ConstructAudioSourceRecord(AudioSourceRecord* p_record, void* p_edx);
 void __fastcall InitializeAudioSourceRecordFields(AudioSourceRecord* p_record, void* p_edx);
+void __fastcall ReleaseAudioSourceRecordResources(AudioSourceRecord* p_record, void* p_edx);
+void __fastcall DestroyAudioChannelRecordResources(AudioChannelRecord* p_record, void* p_edx);
 AudioChannelRecord* __fastcall ConstructAudioChannelRecord(AudioChannelRecord* p_record, void* p_edx);
 AudioDeviceRecord* __fastcall ConstructAudioDeviceRecord(AudioDeviceRecord* p_record, void* p_edx);
 void __fastcall InitializeAudioDeviceRecord(AudioDeviceRecord* p_record, void* p_edx);

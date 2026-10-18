@@ -18,7 +18,7 @@ public:
 	DWORD GetManagedSize();
 	BOOL ReadExact(LPVOID p_buffer, DWORD p_bytes, DWORD p_unk1, DWORD p_unk2);
 	BOOL ReadAt(LPVOID p_buffer, DWORD p_bytes, DWORD p_offset, DWORD p_flags);
-	void Read(LPVOID p_buffer, DWORD p_bytes, DWORD p_flags);
+	BOOL Read(LPVOID p_buffer, DWORD p_bytes, DWORD p_flags);
 	BOOL WriteExact(LPCVOID p_buffer, DWORD p_bytes);
 	DWORD GetSize();
 	void Close();

@@ -14,11 +14,10 @@ struct CollisionQueryBounds {
 };
 DECOMP_SIZE_ASSERT(CollisionQueryBounds, 0x34);
 
-struct CollisionQueryResult {
-	undefined m_unk0x00[0x24];
-	LegoFloat m_distance;
-};
-DECOMP_SIZE_ASSERT(CollisionQueryResult, 0x28);
+// Ray queries use the same 0x4c record as contact generation. The +0x24
+// field is a parametric distance here; sphere rays also update flags at +0x4a.
+struct CollisionQueryResult : CollisionContact {};
+DECOMP_SIZE_ASSERT(CollisionQueryResult, 0x4c);
 
 struct CollisionPairQueryState {
 	CollisionContact m_records[256];
@@ -53,19 +52,21 @@ CollisionQueryBounds* __fastcall InitializeCollisionQueryBoundsFromRadius(
 );
 
 void __fastcall PrepareCollisionSpatialQueries(CollisionSpatialIndex* p_index, void*);
-LegoU32 QueryCollisionSphere(
+LegoU32 __fastcall QueryCollisionSphere(
 	CollisionSpatialIndex* p_index,
+	void*,
 	const Vector3* p_center,
 	LegoFloat p_radius,
-	LegoU32 p_filter
+	LegoU32* p_tags
 );
-LegoU32 QueryCollisionSegment(
+LegoU32 __fastcall QueryCollisionSegment(
 	CollisionSpatialIndex* p_index,
+	void*,
 	const Vector3* p_start,
 	const Vector3* p_end,
 	CollisionQueryResult* p_result
 );
-LegoBool32 IsCollisionSweepPositionClear(CollisionProxy* p_proxy);
+LegoBool32 __stdcall IsCollisionSweepPositionClear(CollisionProxy* p_proxy);
 
 void __fastcall CollectGridCollisionCandidates(StaticSpatialGrid* p_grid, void*, SpatialIndexLink* p_link);
 LegoBool32 __fastcall TryRecordCollisionPair(

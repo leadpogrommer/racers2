@@ -59,6 +59,8 @@ public:
 };
 
 class DynamicSpatialIndex;
+struct CollisionQueryBounds;
+struct CollisionQueryResult;
 
 struct SpatialGridCell {
 	void Initialize();
@@ -81,7 +83,8 @@ public:
 	void Remove(SpatialIndexLink* p_link);                  // 0x00508840
 	void Update(SpatialIndexLink* p_link);                  // 0x00508890
 	void PrepareQuery(DynamicSpatialIndex* p_dynamicIndex); // 0x005088b0
-	SpatialGridCell* GetCell(LegoS32 p_x, LegoS32 p_z);     // 0x00508500
+	LegoBool32 IntersectSegment(const CollisionQueryBounds*, const Vector3*, const Vector3*, CollisionQueryResult*);
+	SpatialGridCell* GetCell(LegoS32 p_x, LegoS32 p_z); // 0x00508500
 	Vector3 m_origin;
 	LegoFloat m_diameter;
 	LegoFloat m_inverseCellSize;
@@ -121,6 +124,9 @@ struct SpatialPairNode {
 
 struct SpatialPairList {
 	SpatialPairList* Initialize(LegoU32 p_capacity, SpatialLinkRegistry* p_registry);
+	LegoBool32 AddPair(LegoS32 p_first, LegoS32 p_second);
+	LegoBool32 CanPair(LegoS32 p_first, LegoS32 p_second);
+	void ProcessCommonPairs(const SpatialPairList* p_other);
 	LegoU32 m_unk0x00;
 	LegoU32 m_headIndex;
 	SpatialPairNode* m_nodes;
@@ -136,6 +142,8 @@ class DynamicSpatialIndex {
 public:
 	DynamicSpatialIndex(LegoU32 p_capacity, SpatialSlotAllocator* p_allocator, SpatialLinkRegistry* p_registry);
 	void ResetQuery(); // 0x00507d60
+	LegoU32 CollectCandidates(const CollisionQueryBounds* p_bounds, LegoU32* p_tags);
+	LegoBool32 IntersectSegment(const CollisionQueryBounds*, const Vector3*, const Vector3*, CollisionQueryResult*);
 	SpatialAxisIndex m_axes[2];
 	SpatialPairList m_xPairs;          // 0x28
 	SpatialPairList m_zPairs;          // 0x48

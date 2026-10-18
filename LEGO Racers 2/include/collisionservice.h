@@ -12,7 +12,7 @@ struct CollisionQueryResult;
 struct CollisionServiceDispatch {
 	typedef CollisionServiceObject*(__fastcall* Destroy)(CollisionServiceObject*, void*, LegoU32);
 	typedef LegoU32(__fastcall* PrepareQuery)(void*, void*, LegoU32*);
-	typedef LegoU32(__fastcall* QuerySphere)(void*, void*, const Vector3*, LegoFloat, LegoU32);
+	typedef LegoU32(__fastcall* QuerySphere)(void*, void*, const Vector3*, LegoFloat, LegoU32*);
 	typedef LegoU32(__fastcall* QuerySegment)(void*, void*, const Vector3*, const Vector3*, CollisionQueryResult*);
 	typedef void(__fastcall* SetTransform)(void*, void*, CollisionProxy*, const Vector3*, const Matrix3*, LegoS32);
 	typedef void(__fastcall* SetPrimitivePosition)(void*, void*, CollisionProxy*, LegoS32, const Vector3*, LegoU32);

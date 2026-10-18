@@ -62,6 +62,9 @@ DECOMP_SIZE_ASSERT(RendererResourceRef, 0x08);
 DECOMP_STATIC_ASSERT(offsetof(RendererResourceRef, m_referenceCount) == 0x04);
 DECOMP_STATIC_ASSERT(offsetof(RendererResourceRef, m_resourceType) == 0x06);
 
+struct RendererAuxiliaryResourceRecord;
+typedef void(__cdecl* RendererAuxiliaryResourceCallback)(RendererAuxiliaryResourceRecord*, LegoU32);
+
 struct RendererAuxiliaryResourceRecord {
 	RendererAuxiliaryResourceRecord* InitializeHeader();
 	void CopyToDeviceMaterial(D3DMATERIAL8* p_material) const;
@@ -73,7 +76,7 @@ struct RendererAuxiliaryResourceRecord {
 	LegoFloat m_modeFactor;
 	LegoU32 m_mode;
 	LegoChar m_path[8];
-	void* m_callback;
+	RendererAuxiliaryResourceCallback m_callback;
 	LegoU8 m_inUse;
 	LegoU8 m_resourceType;
 	LegoU16 m_referenceCount;
@@ -89,7 +92,7 @@ struct RendererAuxiliaryResourceRecord {
 	);
 	void InitializeFrom(const RendererAuxiliaryResourceRecord* p_source, LegoU8 p_resourceType);
 	LegoBool32 Matches(const RendererAuxiliaryResourceRecord* p_other) const;
-	LegoBool32 SetCallback(void* p_callback);
+	LegoBool32 SetCallback(RendererAuxiliaryResourceCallback p_callback);
 };
 
 DECOMP_SIZE_ASSERT(RendererAuxiliaryResourceRecord, 0x5c);
@@ -105,7 +108,7 @@ DECOMP_STATIC_ASSERT(offsetof(RendererAuxiliaryResourceRecord, m_inUse) == 0x58)
 DECOMP_STATIC_ASSERT(offsetof(RendererAuxiliaryResourceRecord, m_referenceCount) == 0x5a);
 
 struct RendererResourceLookupEntry {
-	LegoU32 m_resource;
+	RendererAuxiliaryResourceCallback m_callback;
 	LegoChar m_path[8];
 };
 

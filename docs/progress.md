@@ -6,14 +6,14 @@ Reviewed semantically identical near matches (initially at least 95% raw) are
 implemented functions, counted separately from exact matches.
 
 Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-19.
-The match guard verified **289 exact functions and twelve reviewed near
-matches**. Another 441 reconstructions remain `STUB`; both builders agree on
-all 742 measured raw scores and annotation statuses. Data comparison verifies
-148 annotated globals with zero issues. Unlinked inventory entries and folded
+The match guard verified **299 exact functions and twelve reviewed near
+matches**. Another 750 reconstructions remain `STUB`; both builders agree on
+all 1,061 measured raw scores and annotation statuses. Data comparison verifies
+201 annotated globals with zero issues. Unlinked inventory entries and folded
 aliases may also appear in the CLI denominator without another measured row.
 
 This is the reconstructed subset, not whole-game coverage. The automatic
-Ghidra inventory has **4,254 discovered function starts**, including **21 thunks**
+Ghidra inventory has **4,439 discovered function starts**, including **21 thunks**
 and linked runtime/library code. It is incomplete and is not a verified count
 of game-authored functions; see [inventory notes](research.md#automatic-function-inventory).
 Identified libraries are excluded from these matches with `--nolib`.

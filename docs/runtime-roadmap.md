@@ -113,18 +113,18 @@ The five-field scheduler at `0x006ff520` now has compiled reset and update-decis
 
 ## Frame support and entrypoint staging
 
-Component transform interpolation, controller pause/origin adjustments, component preparation and profiler configuration are linked for measurement. Quaternion shortest-path interpolation matches exactly. The actual WinMain, message handler, shutdown, frame scheduler orchestration, global pause update and collision proxy/movement paths have passed object compilation; their full linkage still needs the audio singleton, collision service/index, contact solver/cache ownership, RenderFrame and concrete scene/menu objects. These staged units do not replace the temporary entrypoint. See [frame recovery](work-game-frame.md).
+The current combined build links the real message-loop implementation, frame
+orchestration, GameObject lifecycle and rendering, global pause, contact-cache
+ownership, collision queries, RenderFrame, global overlay/Menu Manager, audio
+service/providers/music support and the font atlas loader. Both SP5 builders
+pass; 201 annotated globals have zero data-comparison issues, and all 144 audio
+table pointers pass the independent wiring check. Large recovered routines
+remain under review. See [integration notes](work-main-integration.md).
 
-
-Slot allocation, registry lists, static-grid mutation, dynamic-index construction and axis sorting now link independently. Full collision query/narrow-phase work and lifecycle coupling remain staged. This closes storage/construction dependencies without claiming a working collision solver or menu. See [spatial recovery](work-spatial-index.md).
-
-
-Physical lifecycle detachment and velocity support, physics-limit CRT initialization, WAVE/AIFF parsing and F10 screenshot capture now link. Screenshot surface cleanup remains under review. Global Pause Mode construction, full frame rendering, global overlay ownership and audio callback tables are staged for integration. No rendered-menu claim is made. See [physical lifecycle](work-physical-lifecycle.md) and [capture notes](work-screenshot-capture.md).
-
-Contact impulse support and frame-state cleanup now link independently. The physical-state inverse-inertia and angular-momentum names were corrected from their actual impulse callers. Contact solver/cache, audio, global overlay and concrete menu-object dependencies remain open; the temporary entry point is still in use. See [contact impulses](work-contact-impulses.md).
-
-Commentary queueing, DirectSound stream wrappers, request polling, PCM conversion and the upstream Ogg/Vorbis decoder now link. Full audio-service/provider tables and digital music remain staged. The contact solver has passed object compilation. The real game-specific initializer at `0x00407250` constructs the Menu Manager at `0x0041c310`; this scene-level chain is still required after platform/frame integration. See [decoder notes](work-xiph-decoder.md).
-
-The contact solver, endpoint bindings and acceleration, cached-constraint force/mass calculations and contact-response callbacks now link for measurement. The 128-record cache controller passes object compilation and has a complete 21-entry dispatch; it remains staged with GameObject. Menu Manager and its overlay-record allocation path are in recovery, alongside the real game-specific controller. This is still preparation for the rendered-menu milestone.
-
-Frontend language preferences, screenshot paths, embedded controller records and the localization loader now link for measurement. GameController construction and its full dispatch pass object compilation. Menu Manager and overlay-record allocation compile as objects; Secondary Manager startup is the next frontend transition under recovery. Audio restart also needs the original restoration sequence before full service integration. See [frontend recovery](work-game-controller.md).
+GameController initialization now has staged source for the complete creation
+sequence. Its update/removal, concrete scene-manager constructors and renderer
+callbacks are still being connected. Secondary Manager's media/input transition
+also depends on the actual controller-recording service. Startup movie support
+is still incomplete. These dependencies must close before replacing the
+bootstrap and attempting the menu milestone. No runtime/game probe was executed
+for this integration batch.

@@ -1,7 +1,13 @@
 #include "localizedstringtable.h"
 
-// GLOBAL: LEGORACERS2 0x00679b70
-LocalizedStringTable* g_localizedStringTable = NULL;
+#include "globaloverlaymanager.h"
+
+// Retail 679b70 aliases GlobalOverlayManager+24948. A separate global pointer
+// would remain null after the manager's setter and break every indexed label.
+LocalizedStringTable* GetLocalizedStringTable()
+{
+	return g_globalOverlayManager.m_localizedStrings;
+}
 
 // FUNCTION: LEGORACERS2 0x004b78c0
 LegoBool32 LocalizedStringTable::GetString(LegoS32 p_stringIndex, const LegoU16** p_string) const
