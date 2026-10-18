@@ -22,7 +22,7 @@ TABLES = {
 }
 
 
-def verify(original, rebuilt, link_map, inventory):
+def verify(original, rebuilt, link_map, inventory, tables=TABLES):
     original_data = original.read_bytes()
     if hashlib.sha256(original_data).hexdigest() != ORIGINAL_SHA256:
         raise ValueError("Unsupported original executable SHA-256")
@@ -30,10 +30,10 @@ def verify(original, rebuilt, link_map, inventory):
     symbols = map_symbols(link_map)
     with inventory.open(newline="", encoding="utf-8") as stream:
         rows = list(csv.DictReader(stream))
-    if len(rows) != sum(spec[1] for spec in TABLES.values()):
-        raise ValueError("Inventory must contain every renderer resource/buffer slot")
+    if len(rows) != sum(spec[1] for spec in tables.values()):
+        raise ValueError("Inventory must contain every requested renderer slot")
     failures = []
-    for table, (address, count, table_symbol) in TABLES.items():
+    for table, (address, count, table_symbol) in tables.items():
         slots = [row for row in rows if row["table"] == table]
         if [int(row["offset"], 16) for row in slots] != list(range(0, count * 4, 4)):
             raise ValueError(f"Inventory must list every ordered slot for {table}")

@@ -1,0 +1,13 @@
+table,offset,original,symbol
+clock,00,004b2b90,PushCycleCounter
+clock,04,004b2bc0,PopCycleCounter
+clock,08,004b2c30,ReadClockMilliseconds
+clock,0c,004b2c40,QueryClockTime
+clock,10,004b2cc0,UpdateElapsedTime
+clock,14,004b2b70,ResetClock
+clock,18,004b2b50,ReturnZeroClockValue
+clock,1c,004b2b60,GetClockCalibration
+controller,00,004b9500,InitializeControllerPolling
+controller,04,004b9560,StopControllerPolling
+controller,08,004b94c0,AcquireControllerPollMutex
+controller,0c,004b94e0,ReleaseControllerPollMutex

@@ -39,11 +39,11 @@ python tools/compare.py
 
 ## Continued decompilation
 
-The latest renderer checkpoint was verified on 2026-10-17 in both the Python
-builder and CMake/NMake: **245 exact functions, nine reviewed near matches,
-and 279 STUB rows**. All 533 measured raw scores and annotation statuses agree.
-Both outputs pass data comparison for 95 annotated globals, application wiring
-for 76 pointers, renderer resource/buffer wiring for 78 pointers, input wiring for 80 pointers, and all 307 input-format entries.
+The latest controller/clock checkpoint was verified on 2026-10-18 in both the Python
+builder and CMake/NMake: **252 exact functions, ten reviewed near matches,
+and 298 STUB rows**. All 560 measured raw scores and annotation statuses agree.
+Both outputs pass data comparison for 99 annotated globals, application wiring
+for 76 pointers, renderer resource/buffer wiring for 78 pointers, input wiring for 80 pointers, controller/clock wiring for 12 pointers, and all 307 input-format entries.
 The 16 tooling tests pass; regressions cover optional D3DX8 configuration and ANSI/non-UTF-8
 archive member names in VC6 link maps, preserving the ASCII symbol/address
 columns used by the static verifiers. No game behavior tests were added.
@@ -221,3 +221,7 @@ compilation alone is not evidence of correct rendered pixels.
 Both builders agree on 533 measured function rows: 245 exact, nine reviewed near matches and 279 STUB. The twelve added exact matches are controller cleanup, device assignment, binding append/lookup, auxiliary-renderer lookup, and seven timer/mutex wrappers. Device reset, resource restoration, scene startup, packet drawing, clipping, tagged quads and bump vectors retain their measured STUB status. Both data reports verify 95 globals with zero issues. All 78 renderer resource/buffer callbacks, 76 application callbacks, 80 input callbacks and 307 input-format entries pass static checks. Sixteen tooling tests pass. No game or asset probe ran.
 
 Identical-code folding now selects different public aliases for existing empty callbacks and path setters. FOLDED annotations retain one original comparison address through the actual shared body, without adding writes or disabling linker folding. The full 207-slot renderer table verifier is prepared but cannot be run successfully until those tables are linked.
+
+## Controller and clock checkpoint (2026-10-18)
+
+Both builds agree on 560 measured rows: 252 exact, ten reviewed near matches, and 298 STUB. The three exact clock methods are the zero-value callback, calibration getter and elapsed-microseconds update. Four new exact controller methods are current-frame calculation, mutex release, polling initialization and the timer callback. Controller shutdown is reviewed at 98.18%: its only instruction difference is clearing the unused EDX bridge argument before the stop callback. Both data reports verify 99 globals with zero issues, and both complete controller/clock tables pass pointer verification. The readiness helper now connects renderer resource initialization, DirectInput and controller timing in the original order. The temporary entry point does not invoke it. No game run or incremental startup probe was performed.

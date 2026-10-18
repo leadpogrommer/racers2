@@ -112,3 +112,8 @@ LEGO Racers 2/src/rendererdrawpackets.cpp
 LEGO Racers 2/src/rendererquaddraw.cpp
 LEGO Racers 2/src/rendererquadpacket.cpp
 LEGO Racers 2/src/rendererbumpmap.cpp
+LEGO Racers 2/src/systemclock.cpp
+LEGO Racers 2/src/inputcontrollermanager.cpp
+LEGO Racers 2/src/inputcontrollermapping.cpp
+LEGO Racers 2/src/inputcontrollerpolling.cpp
+LEGO Racers 2/src/platformservices.cpp

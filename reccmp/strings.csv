@@ -44,6 +44,7 @@ address,type,size
 0054a130,string,7
 0054a138,string,19
 0054a320,string,16
+0054a334,string,29
 0054a464,string,32
 0054a484,string,31
 0054a5bc,string,5

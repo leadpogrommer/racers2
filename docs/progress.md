@@ -5,11 +5,11 @@ visible, but does not take precedence over startup and gameplay dependencies.
 Reviewed semantically identical near matches (initially at least 95% raw) are
 implemented functions, counted separately from exact matches.
 
-Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-17.
-The match guard verified **245 exact functions and nine reviewed near
-matches**. Another 279 reconstructions remain `STUB`; both builders agree on
-all 533 measured raw scores and annotation statuses. Data comparison verifies
-95 annotated globals with zero issues. Unlinked inventory entries and folded
+Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-18.
+The match guard verified **252 exact functions and ten reviewed near
+matches**. Another 298 reconstructions remain `STUB`; both builders agree on
+all 560 measured raw scores and annotation statuses. Data comparison verifies
+99 annotated globals with zero issues. Unlinked inventory entries and folded
 aliases may also appear in the CLI denominator without another measured row.
 
 This is the reconstructed subset, not whole-game coverage. The automatic
@@ -77,7 +77,7 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004a2d20` | `FileManager::SeekCurrent` | 79.49% | Work in progress |
 | `0x004a2d80` | `FileManager::SetFlags` | 100.00% | Verified exact |
 | `0x004a3ed0` | `GetMemoryHeap` | 60.00% | Work in progress |
-| `0x004a3f20` | `DestroyMissingRecordedControllerInput` | 100.00% | Verified exact |
+| `0x004a3f20` | `SystemClockProcessExit` | 100.00% | Verified exact |
 | `0x004a3f30` | `MemoryHeap::EnterOperation` | 85.71% | Work in progress |
 | `0x004a3f60` | `MemoryHeap::LeaveOperation` | 100.00% | Verified exact |
 | `0x004a3f80` | `MemoryHeap::MemoryHeap` | 82.54% | Work in progress |
@@ -134,7 +134,7 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004a5e90` | `InitializeSimulationFrameRate` | 53.33% | Work in progress |
 | `0x004a5ec0` | `InitializeSimulationStepSeconds` | 100.00% | Verified exact |
 | `0x004a5ef0` | `InitializeSimulationStepMilliseconds` | 100.00% | Verified exact |
-| `0x004a7cc0` | `?ReleaseRendererDrawPacket@@YIXPAURendererDrawPacket@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\applicationdispatch.h20058168@@PAX@Z` | 66.67% | Work in progress |
+| `0x004a7cc0` | `?ReleaseRendererDrawPacket@@YIXPAURendererDrawPacket@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\applicationdispatch.h27944747@@PAX@Z` | 66.67% | Work in progress |
 | `0x004ab2a0` | `ReportFatalError` | 85.25% | Work in progress |
 | `0x004ab3b0` | `PrintDiagnostic` | 79.41% | Work in progress |
 | `0x004ab560` | `RendererVertexBufferLegacyConditionalFree` | 75.86% | Work in progress |
@@ -232,6 +232,16 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004af170` | `InputDeviceService::RefreshDevices` | 86.27% | Work in progress |
 | `0x004af1a0` | `InputDeviceService::FindDeviceByType` | 57.58% | Work in progress |
 | `0x004af1e0` | `InputDeviceRecord::LoadDeviceInfo` | 57.43% | Work in progress |
+| `0x004b2960` | `GetSystemClock` | 92.86% | Work in progress |
+| `0x004b29b0` | `SystemClock::Initialize` | 37.04% | Work in progress |
+| `0x004b2b50` | `ReturnZeroClockValue` | 100.00% | Verified exact |
+| `0x004b2b60` | `GetClockCalibration` | 100.00% | Verified exact |
+| `0x004b2b70` | `ResetClock` | 70.00% | Work in progress |
+| `0x004b2b90` | `PushCycleCounter` | 7.41% | Work in progress |
+| `0x004b2bc0` | `PopCycleCounter` | 5.71% | Work in progress |
+| `0x004b2c00` | `ReadSystemClockCycles` | 80.95% | Work in progress |
+| `0x004b2c40` | `QueryClockTime` | 80.00% | Work in progress |
+| `0x004b2cc0` | `UpdateElapsedTime` | 100.00% | Verified exact |
 | `0x004b4690` | `FUN_004b4690` | 100.00% | Verified exact |
 | `0x004b46c0` | `CreateNativeWindow` | 90.72% | Work in progress |
 | `0x004b4750` | `RegisterNativeWindowClass` | 32.00% | Work in progress |
@@ -253,12 +263,28 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004b4e80` | `ScreenRectToClient` | 100.00% | Verified exact |
 | `0x004b7b80` | `InputController::InputController` | 83.33% | Work in progress |
 | `0x004b7c20` | `InputController::~InputController` | 100.00% | Verified exact |
+| `0x004b7c50` | `InputControllerManager::InitializeTiming` | 94.12% | Work in progress |
+| `0x004b7c70` | `InputControllerManager::ResetRecording` | 28.38% | Work in progress |
+| `0x004b7d40` | `InputControllerManager::Shutdown` | 98.18% | Reviewed near match |
 | `0x004b7d80` | `InputController::SetDevice` | 100.00% | Verified exact |
 | `0x004b7da0` | `InputController::AppendBinding` | 100.00% | Verified exact |
+| `0x004b7dd0` | `GetControllerInputDevice` | 89.66% | Work in progress |
 | `0x004b7e30` | `InputController::GetBinding` | 100.00% | Verified exact |
 | `0x004b7e40` | `InputController::GetRecordedInput` | 71.11% | Work in progress |
 | `0x004b7eb0` | `InputController::GetCurrentInput` | 65.57% | Work in progress |
 | `0x004b7f20` | `InputController::RecordInputRange` | 92.00% | Work in progress |
+| `0x004b7f60` | `InputControllerManager::FindOrCreateController` | 48.23% | Work in progress |
+| `0x004b8460` | `InputControllerManager::GetTimingState` | 34.85% | Work in progress |
+| `0x004b8520` | `InputControllerManager::GetElapsedTime` | 45.45% | Work in progress |
+| `0x004b8570` | `InputControllerManager::GetCurrentFrame` | 100.00% | Verified exact |
+| `0x004b85a0` | `InputControllerManager::PollInput` | 47.84% | Work in progress |
+| `0x004b86f0` | `InputControllerManager::PollController` | 11.13% | Work in progress |
+| `0x004b93e0` | `InitializeInputControllerManagerStorage` | 66.67% | Work in progress |
+| `0x004b94c0` | `InputControllerManager::AcquirePollMutex` | 100.00% | Work in progress |
+| `0x004b94e0` | `InputControllerManager::ReleasePollMutex` | 100.00% | Verified exact |
+| `0x004b9500` | `InputControllerManager::InitializePolling` | 100.00% | Verified exact |
+| `0x004b9560` | `InputControllerManager::StopPolling` | 69.84% | Work in progress |
+| `0x004b95b0` | `ControllerPollTimerCallback` | 100.00% | Verified exact |
 | `0x004bb1f0` | `SetScreenshotDirectory` | 100.00% | Verified exact |
 | `0x004bd5f0` | `RendererLookupTableState::Initialize` | 51.97% | Work in progress |
 | `0x004bd6d0` | `RendererLookupTableState::ReleaseStorage` | 66.67% | Work in progress |
@@ -339,7 +365,7 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004da500` | `RendererTextureRecord::UnlockPrimarySurface` | 80.85% | Work in progress |
 | `0x004da540` | `RendererTextureRecord::UploadBitmapImage` | 34.86% | Work in progress |
 | `0x004da5e0` | `DisplayRenderer::BuildMipSidecar` | 34.70% | Work in progress |
-| `0x004da9f0` | `?ReadBitmapInfoSettings@@YAIPBDPAUBitmapInfoSettings@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\bitmapimage.h303826095@@@Z` | 2.29% | Work in progress |
+| `0x004da9f0` | `?ReadBitmapInfoSettings@@YAIPBDPAUBitmapInfoSettings@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\bitmapimage.h2709825499@@@Z` | 2.29% | Work in progress |
 | `0x004dabe0` | `ParseBitmapInfoValue` | 40.31% | Work in progress |
 | `0x004dac90` | `GenerateBitmapMipLevel` | 17.20% | Work in progress |
 | `0x004db5c0` | `FindClosestPaletteColor` | 30.09% | Work in progress |
@@ -554,8 +580,12 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004f54a0` | `BitmapImage::LoadTga` | 17.27% | Work in progress |
 | `0x004f59c0` | `BitmapImage::ReleaseStorage` | 95.24% | Reviewed near match |
 | `0x004f5a10` | `WriteBitmapTgaFile` | 30.77% | Work in progress |
+| `0x004f6310` | `InitializePlatformServices` | 70.83% | Work in progress |
 | `0x004fb7f0` | `RendererAuxiliaryResourceRecord::CopyToDeviceMaterial` | 78.87% | Work in progress |
 | `0x004fb880` | `ClipGuiRectangle` | 77.94% | Work in progress |
+
+## Earlier renderer and input checkpoints
+
 
 The latest renderer batch adds 13 measured bodies: four exact matches and nine
 below the annotation threshold. It recovers texture-format enumeration and
