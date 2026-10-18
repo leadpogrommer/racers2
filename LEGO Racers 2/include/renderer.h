@@ -84,6 +84,9 @@ public:
 		LegoS32 p_topology
 	);
 	void ReapplyLights();
+	void GetLightData(LegoS32 p_index, D3DLIGHT8** p_light);
+	void UpdateLightPose(LegoS32 p_index, const Vector3* p_position, const Vector3* p_direction, LegoFloat p_radius);
+	RendererLightRecord* GetLightRecord(LegoS32 p_index);
 	LegoFloat GetMaximumDirectionalLightIntensity();
 	RendererAuxiliaryResourceRecord* GetAuxiliaryResource(LegoS32 p_index);
 	void ApplyAuxiliaryMaterial(LegoS32 p_index);
@@ -98,6 +101,7 @@ public:
 	void DrawRendererPacket(struct RendererDrawPacketView* p_packet);
 	void DrawIndexedPacket(struct RendererDrawPacketView* p_packet);
 	void RefreshTextureFormats();
+	LegoBool32 IsTextureFormatSupported(D3DFORMAT p_format);
 	RendererAnimationResourceRecord* FindOrAllocateAnimationResource(const LegoChar* p_path, LegoBool32 p_loadNow);
 	void DrawStencilOverlay();
 	void DrawUnlitLines(const Vector3* p_vertices, LegoS32 p_count);

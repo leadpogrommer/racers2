@@ -345,3 +345,12 @@ functions, eighteen reviewed near matches and 935 STUB reconstructions. Both
 data reports verify 242 globals with zero issues. All eleven dispatch checks,
 eight complete folded aliases and the existing 21 tooling/library tests pass.
 No runtime probe was executed. See [batch evidence](work-controller-recording.md).
+
+## Track, network status and character preview callbacks
+
+Both 313-unit builds agree on 1,441 measured raw scores: 434 exact FUNCTION
+claims, nineteen reviewed near matches and 988 STUB bodies. Data comparison
+verifies 252 globals with zero issues in each build. All eleven dispatch
+inventories pass, including eleven widget tables (66 slots), along with nine
+complete folded aliases and the existing 21 tooling/library tests.
+No runtime probe was executed. See [batch evidence](work-frontend-preview.md).

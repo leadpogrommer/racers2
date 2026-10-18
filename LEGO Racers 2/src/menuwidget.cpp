@@ -68,6 +68,15 @@ void MenuWidgetBase::RestoreBaseDispatch()
 	m_vtable = &g_menuWidgetBaseDispatch;
 }
 
+// FUNCTION: LEGORACERS2 0x00419740
+void MenuWidgetBase::BeginState()
+{
+	m_state = 1;
+	m_unk0x1c = 0;
+	m_unk0x20 = 0;
+	m_unk0x24 = 0;
+}
+
 // FUNCTION: LEGORACERS2 0x00419760
 void MenuWidgetBase::ResetState()
 {

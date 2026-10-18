@@ -6,15 +6,15 @@ Reviewed semantically identical near matches (initially at least 95% raw) are
 implemented functions, counted separately from exact matches.
 
 Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-19.
-The match guard verified **397 exact functions and eighteen reviewed near
-matches**. Another 935 reconstructions remain `STUB`; both builders agree on
-all 1,350 measured raw scores and annotation statuses. Data comparison verifies
-242 annotated globals with zero issues. Eight genuine folded aliases also have
+The match guard verified **434 exact functions and nineteen reviewed near
+matches**. Another 988 reconstructions remain `STUB`; both builders agree on
+all 1,441 measured raw scores and annotation statuses. Data comparison verifies
+252 annotated globals with zero issues. Nine genuine folded aliases also have
 complete-byte and exact linker-map verification. Unlinked inventory entries
 may appear in the CLI denominator without another measured row.
 
 This is the reconstructed subset, not whole-game coverage. The automatic
-Ghidra inventory has **4,489 discovered function starts**, including **22 thunks**
+Ghidra inventory has **4,491 discovered function starts**, including **22 thunks**
 and linked runtime/library code. It is incomplete and is not a verified count
 of game-authored functions; see [inventory notes](research.md#automatic-function-inventory).
 Identified libraries are excluded from these matches with `--nolib`.
@@ -62,7 +62,18 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x0040ec90` | `Application::GetDisplaySettings` | 100.00% | Verified exact |
 | `0x00410380` | `GetScreenPrinterSize` | 100.00% | Verified exact |
 | `0x004109c0` | `InitializeFoyerSceneNames` | 20.51% | Work in progress |
+| `0x00416b20` | `MenuTrackSelector::MenuTrackSelector` | 82.61% | Work in progress |
 | `0x00416b80` | `SetMenuWidgetFont` | 100.00% | Verified exact |
+| `0x00416b90` | `MenuTrackSelector::Initialize` | 40.85% | Work in progress |
+| `0x00416da0` | `MenuTrackSelector::Reset` | 100.00% | Verified exact |
+| `0x00416df0` | `MenuTrackSelector::HandleInput` | 46.25% | Work in progress |
+| `0x00416fe0` | `MenuTrackSelector::SetActive` | 100.00% | Verified exact |
+| `0x00417010` | `MenuTrackSelector::PopulateRows` | 28.67% | Work in progress |
+| `0x00417230` | `MenuTrackSelector::UpdateRowSelectionVisual` | 69.03% | Work in progress |
+| `0x00417300` | `MenuTrackSelector::SetClipRectangle` | 100.00% | Verified exact |
+| `0x00417350` | `MenuTrackSelector::UpdateBounds` | 61.68% | Work in progress |
+| `0x00417410` | `MenuTrackSelector::FindHoveredRow` | 100.00% | Verified exact |
+| `0x00417450` | `MenuTrackSelector::SetLayoutPosition` | 32.39% | Work in progress |
 | `0x00417d10` | `MenuPanel::MenuPanel` | 100.00% | Verified exact |
 | `0x00417d40` | `MenuPanel::Initialize` | 25.00% | Work in progress |
 | `0x00417e30` | `MenuPanel::Release` | 100.00% | Verified exact |
@@ -86,6 +97,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004196f0` | `MenuWidgetBase::MenuWidgetBase` | 92.31% | Work in progress |
 | `0x00419720` | `MenuWidgetBase::SetFont` | 100.00% | Verified exact |
 | `0x00419730` | `MenuWidgetBase::RestoreBaseDispatch` | 50.00% | Work in progress |
+| `0x00419740` | `MenuWidgetBase::BeginState` | 100.00% | Verified exact |
 | `0x00419760` | `MenuWidgetBase::ResetState` | 100.00% | Verified exact |
 | `0x00419910` | `MenuWidgetBase::ReleaseChildSprites` | 100.00% | Verified exact |
 | `0x00419940` | `MenuWidgetBase::GetNavigationDirection` | 21.79% | Work in progress |
@@ -130,6 +142,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x0041be30` | `MenuLabelSelector::HandleInput` | 77.42% | Work in progress |
 | `0x0041bec0` | `MenuLabelSelector::SetClipRectangle` | 100.00% | Verified exact |
 | `0x0041bef0` | `MenuLabelSelector::UpdateBounds` | 55.84% | Work in progress |
+| `0x0041c1e0` | `InitializeMenuLayoutMargins` | 100.00% | Verified exact |
 | `0x0041c210` | `InitializeMenuChoiceColorA` | 25.00% | Work in progress |
 | `0x0041c240` | `InitializeMenuChoiceColorB` | 28.57% | Work in progress |
 | `0x0041c310` | `MenuManager::MenuManager` | 82.22% | Work in progress |
@@ -143,6 +156,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x0041c810` | `DestroyCommonMenuWidgets` | 80.00% | Work in progress |
 | `0x00423090` | `MenuManager::GetPanelRectangle` | 100.00% | Verified exact |
 | `0x004230d0` | `MenuManager::GetSecondaryPanelRectangle` | 100.00% | Verified exact |
+| `0x00423100` | `MeasureLocalizedTrackLabelWidth` | 52.17% | Work in progress |
 | `0x004236a0` | `MenuManager::SetPanelClipRectangle` | 77.42% | Work in progress |
 | `0x00423710` | `MenuManager::SetSecondaryPanelClipRectangle` | 93.51% | Work in progress |
 | `0x00423d00` | `MenuTextPair::SetClipRectangle` | 100.00% | Verified exact |
@@ -152,17 +166,63 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x00424160` | `MenuNavigationState::ReadDirectionInput` | 33.33% | Work in progress |
 | `0x004241a0` | `MenuNavigationState::IsRecordUnderPointer` | 80.00% | Work in progress |
 | `0x00424220` | `MenuNavigationState::IsSpriteUnderPointer` | 80.00% | Work in progress |
+| `0x00425850` | `InitializeNetworkStatusFirstLabelOffset` | 100.00% | Verified exact |
+| `0x00425880` | `InitializeNetworkStatusSecondLabelOffset` | 100.00% | Verified exact |
+| `0x004258b0` | `InitializeNetworkStatusHeadingOffset` | 100.00% | Verified exact |
+| `0x004258d0` | `MenuNetworkStatusWidget::MenuNetworkStatusWidget` | 93.33% | Work in progress |
+| `0x00425900` | `MenuNetworkStatusWidget::Initialize` | 17.33% | Work in progress |
+| `0x00425d70` | `MenuNetworkStatusWidget::Reset` | 100.00% | Verified exact |
+| `0x00425dc0` | `MenuNetworkStatusWidget::HandleInput` | 6.53% | Work in progress |
+| `0x00426130` | `MenuNetworkStatusWidget::UpdateProviderBounds` | 33.33% | Work in progress |
+| `0x00426330` | `MenuNetworkStatusWidget::UpdateBounds` | 23.26% | Work in progress |
 | `0x00426430` | `MenuTextGroup::MenuTextGroup` | 92.86% | Work in progress |
 | `0x00426660` | `MenuTextGroup::Destroy` | 100.00% | Verified exact |
 | `0x00426690` | `MenuTextGroup::SetClipRectangle` | 100.00% | Verified exact |
 | `0x004266d0` | `MenuTextGroup::UpdateBounds` | 53.66% | Work in progress |
+| `0x00426e50` | `InitializeSecondaryManagerAudioNames` | 34.71% | Work in progress |
+| `0x004276e0` | `LoadSecondaryManagerAudioResources` | 22.33% | Work in progress |
+| `0x004278d0` | `ReleaseSecondaryManagerAudioResources` | 79.25% | Work in progress |
 | `0x00427910` | `ApplySavedAudioLevels` | 40.00% | Work in progress |
 | `0x00427970` | `ApplySavedAudioQuality` | 76.92% | Work in progress |
+| `0x004290b0` | `AcquireMenuPreviewCamera` | 69.84% | Work in progress |
+| `0x00429130` | `ReleaseMenuPreviewCamera` | 90.00% | Work in progress |
+| `0x00429180` | `AcquireMenuPreviewCharacter` | 48.65% | Work in progress |
+| `0x004291e0` | `ReleaseMenuPreviewCharacter` | 53.85% | Work in progress |
+| `0x00429220` | `AcquireMenuPreviewAmbient` | 48.65% | Work in progress |
+| `0x00429280` | `ReleaseMenuPreviewAmbient` | 100.00% | Verified exact |
+| `0x004292a0` | `AcquireMenuPreviewLight` | 69.84% | Work in progress |
+| `0x00429320` | `ReleaseMenuPreviewLight` | 95.45% | Reviewed near match |
 | `0x0042b200` | `SecondaryManagerMediaState::IsSlotEnabled` | 94.74% | Work in progress |
 | `0x0042b220` | `SecondaryManagerMediaState::Refresh` | 50.49% | Work in progress |
 | `0x0042b2b0` | `SecondaryManagerMediaState::GetSlot` | 100.00% | Verified exact |
 | `0x0042b2c0` | `SecondaryManagerMediaState::HasActiveSlot` | 77.42% | Work in progress |
 | `0x0042b300` | `PauseConditionSlotIsSet` | 81.25% | Work in progress |
+| `0x0042c150` | `InitializeCharacterPreviewSize` | 100.00% | Verified exact |
+| `0x0042c180` | `InitializeCharacterPreviewPosition` | 100.00% | Verified exact |
+| `0x0042c1b0` | `InitializeCharacterPreviewCameraPosition` | 100.00% | Verified exact |
+| `0x0042c1e0` | `InitializeCharacterPreviewTargetOffset` | 100.00% | Verified exact |
+| `0x0042c210` | `InitializeCharacterPreviewAmbientColor` | 100.00% | Verified exact |
+| `0x0042c240` | `InitializeCharacterPreviewFirstAmbient` | 100.00% | Verified exact |
+| `0x0042c280` | `InitializeCharacterPreviewFirstDiffuse` | 100.00% | Verified exact |
+| `0x0042c2c0` | `InitializeCharacterPreviewFirstSpecular` | 100.00% | Verified exact |
+| `0x0042c300` | `InitializeCharacterPreviewFirstDirection` | 100.00% | Verified exact |
+| `0x0042c330` | `InitializeCharacterPreviewSecondAmbient` | 100.00% | Verified exact |
+| `0x0042c370` | `InitializeCharacterPreviewSecondDiffuse` | 100.00% | Verified exact |
+| `0x0042c3b0` | `InitializeCharacterPreviewSecondSpecular` | 100.00% | Verified exact |
+| `0x0042c3f0` | `InitializeCharacterPreviewSecondDirection` | 100.00% | Verified exact |
+| `0x0042c410` | `MenuCharacterPreviewSelector::MenuCharacterPreviewSelector` | 32.88% | Work in progress |
+| `0x0042c4b0` | `MenuCharacterPreviewSelector::ReleasePreviewResources` | 59.26% | Work in progress |
+| `0x0042c670` | `MenuCharacterPreviewSelector::AddChoice` | 100.00% | Verified exact |
+| `0x0042c6b0` | `MenuCharacterPreviewSelector::SelectChoice` | 100.00% | Verified exact |
+| `0x0042c6d0` | `MenuCharacterPreviewSelector::HandleInput` | 54.41% | Work in progress |
+| `0x0042c7a0` | `MenuCharacterPreviewSelector::Reset` | 52.38% | Work in progress |
+| `0x0042c810` | `MenuCharacterPreviewSelector::ApplyChoice` | 0.00% | Work in progress |
+| `0x0042c880` | `MenuCharacterPreviewSelector::SetClipRectangle` | 54.12% | Work in progress |
+| `0x0042c910` | `MenuCharacterPreviewSelector::UpdateBounds` | 66.67% | Work in progress |
+| `0x0042ca10` | `MenuCharacterPreviewSelector::GetChoice` | 100.00% | Verified exact |
+| `0x0042ca50` | `MenuCharacterPreviewSelector::InitializeLighting` | 32.07% | Work in progress |
+| `0x0042cc40` | `MenuCharacterPreviewSelector::ReleaseLighting` | 56.25% | Work in progress |
+| `0x0042cca0` | `MenuCharacterPreviewSelector::ConfigureViewport` | 12.15% | Work in progress |
 | `0x0042ce60` | `BitmapFontSet::BitmapFontSet` | 100.00% | Verified exact |
 | `0x0042ce80` | `BitmapFontSet::~BitmapFontSet` | 0.00% | Work in progress |
 | `0x0042cef0` | `BitmapFontSet::Initialize` | 23.08% | Work in progress |
@@ -204,6 +264,17 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x0044a520` | `SelectPauseTargetData` | 72.73% | Work in progress |
 | `0x0044b3b0` | `DeleteConstraint` | 78.26% | Work in progress |
 | `0x0044cd00` | `BodypartManagerInitialize` | 8.00% | Work in progress |
+| `0x0044d8c0` | `BodypartManager::GetTorsoTexture` | 100.00% | Verified exact |
+| `0x0044d920` | `BodypartManager::GetLegTexture` | 100.00% | Verified exact |
+| `0x0044d940` | `BodypartManager::GetFaceTexture` | 100.00% | Verified exact |
+| `0x0044da70` | `BodypartManager::GetLoadedHeadModel` | 100.00% | Verified exact |
+| `0x0044f570` | `CharacterVisual::SetHeadModel` | 24.24% | Work in progress |
+| `0x0044f5d0` | `CharacterVisual::SetTorsoTexture` | 66.67% | Work in progress |
+| `0x0044f610` | `CharacterVisual::SetLegTexture` | 63.41% | Work in progress |
+| `0x0044f650` | `CharacterVisual::SetFaceVariant` | 71.11% | Work in progress |
+| `0x0044f690` | `CharacterVisual::SetFaceGroup` | 69.39% | Work in progress |
+| `0x00450c10` | `CharacterVisual::EnterHiddenMode` | 100.00% | Verified exact |
+| `0x00452a40` | `GameAnimatedObject::UpdateFacing` | 62.50% | Work in progress |
 | `0x004534e0` | `GameObjectBaseDestroy` | 100.00% | Work in progress |
 | `0x0045dcb0` | `FUN_0045dcb0` | 100.00% | Verified exact |
 | `0x0045dda0` | `IsTokenCharacter` | 100.00% | Verified exact |
@@ -223,7 +294,10 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004673e0` | `CharacterPartPreset::Clear` | 53.85% | Work in progress |
 | `0x00479490` | `RendererDefaultRecord::RendererDefaultRecord` | 45.71% | Work in progress |
 | `0x00493550` | `FilterApplicationWindowMessage` | 100.00% | Verified exact |
+| `0x00494cd0` | `NetworkApplicationMenuView::GetProviderLabel` | 32.26% | Work in progress |
 | `0x00494f40` | `ApplicationCharacterQueue::QueueCharacter` | 100.00% | Verified exact |
+| `0x00495100` | `NetworkLobbyStateView::GetLobbyText` | 100.00% | Verified exact |
+| `0x00495130` | `NetworkLobbyStateView::GetLobbyStatus` | 100.00% | Verified exact |
 | `0x0049a610` | `Application::Application` | 90.91% | Work in progress |
 | `0x0049a6a0` | `Application::GetUnknownFlag` | 100.00% | Verified exact |
 | `0x0049a760` | `GetApplication` | 57.14% | Work in progress |
@@ -342,7 +416,10 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004a5310` | `Quaternion::Normalize` | 85.37% | Work in progress |
 | `0x004a5380` | `PackedQuaternion::Pack` | 34.23% | Work in progress |
 | `0x004a5440` | `Quaternion::Decode` | 83.87% | Work in progress |
+| `0x004a55f0` | `Quaternion::FromMatrix` | 44.96% | Work in progress |
 | `0x004a5780` | `Quaternion::Interpolate` | 100.00% | Verified exact |
+| `0x004a5850` | `Quaternion::LookAt` | 18.00% | Work in progress |
+| `0x004a5910` | `Quaternion::FromDirection` | 16.38% | Work in progress |
 | `0x004a5dc0` | `RoundUpToPowerOfTwo` | 100.00% | Verified exact |
 | `0x004a5df0` | `CountTrailingZeroBits` | 100.00% | Verified exact |
 | `0x004a5e10` | `BuildSineTable` | 100.00% | Verified exact |
@@ -362,7 +439,8 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004a6f00` | `PhysicalLifecycleState::GetParentVelocityAtOffset` | 84.62% | Work in progress |
 | `0x004a74b0` | `IsLookupPointWithinRadius` | 45.45% | Work in progress |
 | `0x004a7510` | `ApplyLookupResourceState` | 18.70% | Work in progress |
-| `0x004a7cc0` | `?ReleaseRendererDrawPacket@@YIXPAURendererDrawPacket@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\applicationdispatch.h182315510@@PAX@Z` | 66.67% | Work in progress |
+| `0x004a7cc0` | `?ReleaseRendererDrawPacket@@YIXPAURendererDrawPacket@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\applicationdispatch.h948427425@@PAX@Z` | 66.67% | Work in progress |
+| `0x004a95b0` | `ModelResource::RemapTextureIndices` | 34.29% | Work in progress |
 | `0x004a9d20` | `GetLookupResourceOrigin` | 91.30% | Work in progress |
 | `0x004a9d90` | `GameObjectChildGeometry::SetPosition` | 16.00% | Work in progress |
 | `0x004a9ff0` | `GameObjectChildGeometry::SetRotation` | 0.00% | Work in progress |
@@ -697,6 +775,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004b96d0` | `DestroyCollisionServiceObject` | 100.00% | Work in progress |
 | `0x004b96f0` | `CollisionContact::SwapParticipants` | 90.00% | Work in progress |
 | `0x004b9810` | `CreateCollisionProxy` | 84.21% | Work in progress |
+| `0x004b9830` | `DetachCollisionProxy` | 92.31% | Work in progress |
 | `0x004b9850` | `AttachCollisionProxy` | 52.63% | Work in progress |
 | `0x004b9870` | `DestroyCollisionProxy` | 80.00% | Work in progress |
 | `0x004b9940` | `GameFloatRandom::Initialize` | 100.00% | Verified exact |
@@ -705,6 +784,8 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004ba280` | `PrepareGameObjectForRendering` | 33.08% | Work in progress |
 | `0x004ba370` | `GetGameObjectViewDepth` | 92.68% | Work in progress |
 | `0x004ba3b0` | `UpdateGameObjectRenderGeometry` | 19.95% | Work in progress |
+| `0x004ba810` | `SetGameObjectViewport` | 33.33% | Work in progress |
+| `0x004bb120` | `SetGameObjectLookAt` | 70.89% | Work in progress |
 | `0x004bb1f0` | `SetScreenshotDirectory` | 100.00% | Verified exact |
 | `0x004bb210` | `CaptureScreenshot` | 38.59% | Work in progress |
 | `0x004bb670` | `InitializeGlobalPauseController` | 37.33% | Work in progress |
@@ -734,8 +815,15 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004be320` | `RendererAuxiliaryResourceRecord::InitializeHeader` | 100.00% | Verified exact |
 | `0x004be330` | `DisplayRenderer::ShutdownResources` | 61.24% | Work in progress |
 | `0x004be460` | `BuildAnimationHueColor` | 16.10% | Work in progress |
+| `0x004bed30` | `GameLightProperties::SetEnabled` | 48.00% | Work in progress |
+| `0x004bedb0` | `GameAmbientLight::ApplyToRenderer` | 25.93% | Work in progress |
+| `0x004beef0` | `CopyGameLightProperties` | 15.62% | Work in progress |
+| `0x004bef60` | `GameDirectionalLight::UpdateRendererLight` | 65.79% | Work in progress |
 | `0x004bf150` | `DisplayRenderer::SelectLights` | 25.63% | Work in progress |
 | `0x004bf6e0` | `DisplayRenderer::ReapplyLights` | 66.21% | Work in progress |
+| `0x004bf7a0` | `DisplayRenderer::GetLightData` | 100.00% | Verified exact |
+| `0x004bf7c0` | `DisplayRenderer::UpdateLightPose` | 30.99% | Work in progress |
+| `0x004bf840` | `DisplayRenderer::GetLightRecord` | 100.00% | Verified exact |
 | `0x004bf860` | `DisplayRenderer::GetMaximumDirectionalLightIntensity` | 42.72% | Work in progress |
 | `0x004bf920` | `LoadMipSidecar` | 47.11% | Work in progress |
 | `0x004bfa60` | `EnsureMipSidecar` | 42.22% | Work in progress |
@@ -765,6 +853,8 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004c10d0` | `RegisterResourceCallback` | 40.45% | Work in progress |
 | `0x004c1150` | `UnregisterResourceCallback` | 18.02% | Work in progress |
 | `0x004c11e0` | `RendererAuxiliaryResourceRecord::InitializeMaterial` | 19.77% | Work in progress |
+| `0x004c1e10` | `GameAnimatedObject::SetFrozen` | 75.47% | Work in progress |
+| `0x004c26e0` | `GameAnimatedObject::SetAnimationTransformEnabled` | 12.77% | Work in progress |
 | `0x004c3020` | `StopNativeGame` | 100.00% | Work in progress |
 | `0x004c3040` | `RunGameInstance` | 67.34% | Work in progress |
 | `0x004c32b0` | `FUN_004c32b0` | 100.00% | Verified exact |
@@ -872,7 +962,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004da500` | `RendererTextureRecord::UnlockPrimarySurface` | 80.85% | Work in progress |
 | `0x004da540` | `RendererTextureRecord::UploadBitmapImage` | 34.86% | Work in progress |
 | `0x004da5e0` | `DisplayRenderer::BuildMipSidecar` | 34.70% | Work in progress |
-| `0x004da9f0` | `?ReadBitmapInfoSettings@@YAIPBDPAUBitmapInfoSettings@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\bitmapimage.h295983220@@@Z` | 2.29% | Work in progress |
+| `0x004da9f0` | `?ReadBitmapInfoSettings@@YAIPBDPAUBitmapInfoSettings@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\bitmapimage.h600427851@@@Z` | 2.29% | Work in progress |
 | `0x004dabe0` | `ParseBitmapInfoValue` | 40.31% | Work in progress |
 | `0x004dac90` | `GenerateBitmapMipLevel` | 17.20% | Work in progress |
 | `0x004db5c0` | `FindClosestPaletteColor` | 30.09% | Work in progress |
@@ -1227,6 +1317,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004f4ca0` | `CollisionServiceSetTransform` | 100.00% | Work in progress |
 | `0x004f4cf0` | `CollisionProxyFromService` | 24.49% | Work in progress |
 | `0x004f4dc0` | `DestroyCollisionProxyFromService` | 100.00% | Work in progress |
+| `0x004f4df0` | `DetachCollisionProxyFromService` | 100.00% | Verified exact |
 | `0x004f4e00` | `AttachCollisionProxyFromService` | 100.00% | Work in progress |
 | `0x004f4e40` | `CollisionServicePrepareQuery` | 84.21% | Work in progress |
 | `0x004f4e70` | `CollisionServiceQuerySphere` | 85.71% | Work in progress |

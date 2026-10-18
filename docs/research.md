@@ -69,3 +69,6 @@ split/merge boundaries; manually reviewed callbacks already demonstrate
 that the inventory is incomplete. It must not be used as a whole-game
 completion denominator. Source reconstruction and instruction matches are
 listed separately in [progress](progress.md).
+
+The frontend preview support export currently lists **4,491 starts**, including
+22 thunks; this remains a provisional inventory including linked libraries.

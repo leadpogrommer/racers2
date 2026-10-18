@@ -1,4 +1,5 @@
 address,symbol,bytes,name
+00403930,?OnApplicationDiagnostic@@YGXPBD@Z,c20400,OnApplicationDiagnostic
 0040b340,?InitializeGameControllerWord@@YIXPAIPAX@Z,c70100000000c3,InitializeGameControllerWord
 00416b80,?SetMenuWidgetFont@@YIXPAUMenuWidgetBase@@PAXPAVBitmapFont@@@Z,8b442404894118c20400,SetMenuWidgetFont
 00419720,?SetFont@MenuWidgetBase@@QAEXPAVBitmapFont@@@Z,8b442404894118c20400,MenuWidgetBase::SetFont

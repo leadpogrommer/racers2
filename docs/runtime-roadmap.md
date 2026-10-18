@@ -172,3 +172,11 @@ link. Scene callback return values were corrected against the original bytes.
 Foyer loading, remaining frontend controls, startup movies and complete
 GameController startup still need integration before replacing bootstrap.
 No runtime probe was executed. See [batch evidence](work-controller-recording.md).
+
+## Track, network status and character preview callbacks
+
+Track selection, network status, character appearance selection, shared
+preview camera/light ownership and character hiding now link. Complete widget
+initialization, remaining frontend controls, Foyer events, startup movies and
+controller startup still need integration before replacing bootstrap.
+No runtime probe was executed. See [batch evidence](work-frontend-preview.md).

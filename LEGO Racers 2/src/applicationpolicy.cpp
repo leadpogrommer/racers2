@@ -5,7 +5,7 @@ LegoBool32 IsApplicationDevelopmentMode()
 	return FALSE;
 }
 
-// FUNCTION: LEGORACERS2 0x00403930
+// FUNCTION: LEGORACERS2 0x00403930 FOLDED
 void WINAPI OnApplicationDiagnostic(const LegoChar* p_message)
 {
 }

@@ -5,6 +5,8 @@
 #include "types.h"
 
 class PackedQuaternion;
+class Matrix3;
+class Vector3;
 
 class Quaternion {
 public:
@@ -15,6 +17,9 @@ public:
 
 	LegoFloat Normalize();
 	Quaternion* Decode(const PackedQuaternion* p_source);
+	Quaternion* FromMatrix(const Matrix3* p_matrix);
+	void LookAt(const Vector3* p_position, const Vector3* p_target, const Vector3* p_up, LegoU32 p_preserveSide);
+	void FromDirection(const Vector3* p_direction, Vector3* p_up, LegoU32 p_preserveSide);
 	void Interpolate(const Quaternion* p_first, const Quaternion* p_second, LegoFloat p_factor);
 };
 

@@ -59,6 +59,7 @@ CollisionProxy* __fastcall CollisionProxyFromService(
 );
 LegoU32 __fastcall DestroyCollisionProxyFromService(CollisionServiceObject*, void*, CollisionProxy** p_proxy);
 void __fastcall AttachCollisionProxyFromService(CollisionServiceObject*, void*, CollisionProxy* p_proxy);
+void __fastcall DetachCollisionProxyFromService(CollisionServiceObject*, void*, CollisionProxy* p_proxy);
 
 // GLOBAL: LEGORACERS2 0x00535fa0
 extern const CollisionServiceDispatch g_collisionProxyServiceDispatch = {
@@ -155,6 +156,13 @@ CollisionProxy* __cdecl CreateCollisionProxy(CollisionModelView* p_model, LegoU3
 	return CollisionProxyFromService(g_collisionProxyService, NULL, p_model, p_tag);
 }
 
+// STUB: LEGORACERS2 0x004b9830
+void __cdecl DetachCollisionProxy(CollisionProxy* p_proxy)
+{
+	InitializeCollisionServices();
+	DetachCollisionProxyFromService(g_collisionProxyService, NULL, p_proxy);
+}
+
 // STUB: LEGORACERS2 0x004b9850
 void __cdecl AttachCollisionProxy(CollisionProxy* p_proxy)
 {
@@ -245,6 +253,14 @@ LegoU32 __fastcall DestroyCollisionProxyFromService(CollisionServiceObject*, voi
 	}
 	*p_proxy = NULL;
 	return 0;
+}
+
+// FUNCTION: LEGORACERS2 0x004f4df0
+void __fastcall DetachCollisionProxyFromService(CollisionServiceObject*, void*, CollisionProxy* p_proxy)
+{
+	if (p_proxy != NULL) {
+		p_proxy->DetachFromIndex();
+	}
 }
 
 // STUB: LEGORACERS2 0x004f4e00

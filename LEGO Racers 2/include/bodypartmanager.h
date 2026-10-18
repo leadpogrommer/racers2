@@ -4,9 +4,15 @@
 #include "gamecontrollerinitialization.h"
 #include "gamemanager.h"
 
+struct ModelResource;
+
 class BodypartManager : public GameObject {
 public:
 	BodypartManager(BodypartManagerTemplate* p_template);
+	LegoS32 GetTorsoTexture(LegoS32 p_index, LegoU32 p_species);
+	LegoS32 GetLegTexture(LegoS32 p_index);
+	LegoS32 GetFaceTexture(LegoS32 p_group, LegoS32 p_variant);
+	ModelResource* GetLoadedHeadModel(LegoS32 p_index);
 
 	CharBuffer128 m_paths[8];         // 0x58
 	LegoS32 m_headModelCount;         // 0x458

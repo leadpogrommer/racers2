@@ -5,6 +5,7 @@
 #include "collisionspatialindex.h"
 
 void InitializeCollisionServices();
+void __cdecl DetachCollisionProxy(CollisionProxy* p_proxy);
 void __cdecl AttachCollisionProxy(CollisionProxy* p_proxy);
 
 struct CollisionServiceObject;

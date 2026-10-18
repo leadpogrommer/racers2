@@ -67,6 +67,7 @@ struct MenuWidgetBase {
 	MenuWidgetBase(LegoS32 p_initialValue);
 	void SetFont(BitmapFont* p_font);
 	void RestoreBaseDispatch();
+	void BeginState();
 	void ResetState();
 	void ReleaseChildSprites();
 	void SetChildClipRectangle(const LegoFloat* p_topLeft, const LegoFloat* p_bottomRight);
