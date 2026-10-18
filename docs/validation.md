@@ -39,10 +39,10 @@ python tools/compare.py
 
 ## Continued decompilation
 
-The latest controller/clock checkpoint was verified on 2026-10-18 in both the Python
-builder and CMake/NMake: **252 exact functions, ten reviewed near matches,
-and 298 STUB rows**. All 560 measured raw scores and annotation statuses agree.
-Both outputs pass data comparison for 99 annotated globals, application wiring
+The latest registry/renderer-cleanup checkpoint was verified on 2026-10-18 in both the Python
+builder and CMake/NMake: **253 exact functions, ten reviewed near matches,
+and 316 STUB rows**. All 579 measured raw scores and annotation statuses agree.
+Both outputs pass data comparison for 118 annotated globals, application wiring
 for 76 pointers, renderer resource/buffer wiring for 78 pointers, input wiring for 80 pointers, controller/clock wiring for 12 pointers, and all 307 input-format entries.
 The 16 tooling tests pass; regressions cover optional D3DX8 configuration and ANSI/non-UTF-8
 archive member names in VC6 link maps, preserving the ASCII symbol/address
@@ -225,3 +225,7 @@ Identical-code folding now selects different public aliases for existing empty c
 ## Controller and clock checkpoint (2026-10-18)
 
 Both builds agree on 560 measured rows: 252 exact, ten reviewed near matches, and 298 STUB. The three exact clock methods are the zero-value callback, calibration getter and elapsed-microseconds update. Four new exact controller methods are current-frame calculation, mutex release, polling initialization and the timer callback. Controller shutdown is reviewed at 98.18%: its only instruction difference is clearing the unused EDX bridge argument before the stop callback. Both data reports verify 99 globals with zero issues, and both complete controller/clock tables pass pointer verification. The readiness helper now connects renderer resource initialization, DirectInput and controller timing in the original order. The temporary entry point does not invoke it. No game run or incremental startup probe was performed.
+
+## Registry, scheduler and renderer cleanup checkpoint (2026-10-18)
+
+Both builders agree on 579 measured rows: 253 exact, ten reviewed near matches and 316 STUB. The game-manager shutdown wrapper adds one exact match. The fixed-step scheduler, registry classification/update/removal loops, terrain/material draft and renderer resource shutdown have compiled source with their raw scores retained. The terrain implementation remains incomplete for grouped batches, topology and software processing. Both data reports verify 118 globals with zero issues; registry initialization now uses the retail 32-pointer backing array, capacity32 and nonzero initial flags. All previously verified callback tables and 307 input-format entries pass in both outputs. No game, asset or startup probe was run. Full renderer-table linkage, default audio initialization and concrete menu-object creation remain open.

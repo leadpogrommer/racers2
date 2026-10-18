@@ -117,3 +117,7 @@ LEGO Racers 2/src/inputcontrollermanager.cpp
 LEGO Racers 2/src/inputcontrollermapping.cpp
 LEGO Racers 2/src/inputcontrollerpolling.cpp
 LEGO Racers 2/src/platformservices.cpp
+LEGO Racers 2/src/simulationscheduler.cpp
+LEGO Racers 2/src/rendererterrain.cpp
+LEGO Racers 2/src/gamemanager.cpp
+LEGO Racers 2/src/rendererresourceshutdown.cpp

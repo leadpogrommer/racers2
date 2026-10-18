@@ -6,10 +6,10 @@ Reviewed semantically identical near matches (initially at least 95% raw) are
 implemented functions, counted separately from exact matches.
 
 Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-18.
-The match guard verified **252 exact functions and ten reviewed near
-matches**. Another 298 reconstructions remain `STUB`; both builders agree on
-all 560 measured raw scores and annotation statuses. Data comparison verifies
-99 annotated globals with zero issues. Unlinked inventory entries and folded
+The match guard verified **253 exact functions and ten reviewed near
+matches**. Another 316 reconstructions remain `STUB`; both builders agree on
+all 579 measured raw scores and annotation statuses. Data comparison verifies
+118 annotated globals with zero issues. Unlinked inventory entries and folded
 aliases may also appear in the CLI denominator without another measured row.
 
 This is the reconstructed subset, not whole-game coverage. The automatic
@@ -76,8 +76,15 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004a2c60` | `FileManager::Exists` | 62.30% | Work in progress |
 | `0x004a2d20` | `FileManager::SeekCurrent` | 79.49% | Work in progress |
 | `0x004a2d80` | `FileManager::SetFlags` | 100.00% | Verified exact |
+| `0x004a2dd0` | `GetGameManager` | 93.33% | Work in progress |
+| `0x004a34a0` | `GameManager::RebuildObjectWorkLists` | 35.38% | Work in progress |
+| `0x004a36c0` | `GameManager::UpdateObjects` | 47.27% | Work in progress |
+| `0x004a3710` | `GameManager::RemoveAllObjects` | 23.16% | Work in progress |
+| `0x004a3810` | `SimulationScheduler::Reset` | 72.73% | Work in progress |
+| `0x004a3840` | `SimulationScheduler::NeedsSimulationStep` | 66.46% | Work in progress |
+| `0x004a3ca0` | `ShutdownGameManager` | 100.00% | Verified exact |
 | `0x004a3ed0` | `GetMemoryHeap` | 60.00% | Work in progress |
-| `0x004a3f20` | `SystemClockProcessExit` | 100.00% | Verified exact |
+| `0x004a3f20` | `GameManagerStaticDestructor` | 100.00% | Verified exact |
 | `0x004a3f30` | `MemoryHeap::EnterOperation` | 85.71% | Work in progress |
 | `0x004a3f60` | `MemoryHeap::LeaveOperation` | 100.00% | Verified exact |
 | `0x004a3f80` | `MemoryHeap::MemoryHeap` | 82.54% | Work in progress |
@@ -134,7 +141,7 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004a5e90` | `InitializeSimulationFrameRate` | 53.33% | Work in progress |
 | `0x004a5ec0` | `InitializeSimulationStepSeconds` | 100.00% | Verified exact |
 | `0x004a5ef0` | `InitializeSimulationStepMilliseconds` | 100.00% | Verified exact |
-| `0x004a7cc0` | `?ReleaseRendererDrawPacket@@YIXPAURendererDrawPacket@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\applicationdispatch.h27944747@@PAX@Z` | 66.67% | Work in progress |
+| `0x004a7cc0` | `?ReleaseRendererDrawPacket@@YIXPAURendererDrawPacket@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\applicationdispatch.h6552282@@PAX@Z` | 66.67% | Work in progress |
 | `0x004ab2a0` | `ReportFatalError` | 85.25% | Work in progress |
 | `0x004ab3b0` | `PrintDiagnostic` | 79.41% | Work in progress |
 | `0x004ab560` | `RendererVertexBufferLegacyConditionalFree` | 75.86% | Work in progress |
@@ -295,8 +302,10 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004be0a0` | `DisplayRenderer::InitializeResources` | 50.16% | Work in progress |
 | `0x004be2f0` | `RendererResourceCacheEntry::RendererResourceCacheEntry` | 27.27% | Work in progress |
 | `0x004be320` | `RendererAuxiliaryResourceRecord::InitializeHeader` | 100.00% | Verified exact |
+| `0x004be330` | `DisplayRenderer::ShutdownResources` | 61.24% | Work in progress |
 | `0x004bf150` | `DisplayRenderer::SelectLights` | 25.63% | Work in progress |
 | `0x004bf6e0` | `DisplayRenderer::ReapplyLights` | 66.21% | Work in progress |
+| `0x004bf860` | `DisplayRenderer::GetMaximumDirectionalLightIntensity` | 42.72% | Work in progress |
 | `0x004bf920` | `LoadMipSidecar` | 47.11% | Work in progress |
 | `0x004bfa60` | `EnsureMipSidecar` | 42.22% | Work in progress |
 | `0x004bfb50` | `DisplayRenderer::FindOrCreateTextureRecord` | 23.90% | Work in progress |
@@ -314,12 +323,14 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004c0670` | `RendererAuxiliaryResourceRecord::SetCallback` | 61.54% | Work in progress |
 | `0x004c06d0` | `DisplayRenderer::GetAuxiliaryResource` | 100.00% | Verified exact |
 | `0x004c0770` | `DisplayRenderer::AcquireAuxiliaryResource` | 35.54% | Work in progress |
+| `0x004c0910` | `DisplayRenderer::UpdateAnimatedResources` | 84.11% | Work in progress |
 | `0x004c09a0` | `DisplayRenderer::FindOrAllocateTextureResource` | 44.59% | Work in progress |
 | `0x004c0a60` | `DisplayRenderer::AddTextureReference` | 89.66% | Work in progress |
 | `0x004c0ae0` | `DisplayRenderer::FindTextureReferenceById` | 44.44% | Work in progress |
 | `0x004c0b30` | `DisplayRenderer::FindTextureReference` | 51.16% | Work in progress |
 | `0x004c0b70` | `DisplayRenderer::CreateTextureResource` | 13.55% | Work in progress |
 | `0x004c0ee0` | `DisplayRenderer::ReleaseTextureResourceReference` | 74.69% | Work in progress |
+| `0x004c1050` | `DisplayRenderer::ReleaseAuxiliaryResource` | 45.65% | Work in progress |
 | `0x004c11e0` | `RendererAuxiliaryResourceRecord::InitializeMaterial` | 19.77% | Work in progress |
 | `0x004c32b0` | `FUN_004c32b0` | 100.00% | Verified exact |
 | `0x004c33b0` | `FUN_004c33b0` | 100.00% | Verified exact |
@@ -330,6 +341,7 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004c4140` | `Terrain::GetMinimumBounds` | 100.00% | Verified exact |
 | `0x004c41a0` | `Terrain::GetMaximumBounds` | 100.00% | Verified exact |
 | `0x004cb340` | `TerrainVertexGrid::SelectEdges` | 100.00% | Verified exact |
+| `0x004cb530` | `UpdateTerrainLodMetrics` | 56.74% | Work in progress |
 | `0x004cb630` | `Terrain::GetVertex` | 100.00% | Verified exact |
 | `0x004cb680` | `Terrain::GetTile` | 100.00% | Verified exact |
 | `0x004d0f60` | `SplinePath::FUN_004d0f60` | 48.34% | Work in progress |
@@ -343,6 +355,7 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004d1a70` | `SplinePath::FUN_004d1a70` | 100.00% | Verified exact |
 | `0x004d1aa0` | `SplinePath::FUN_004d1aa0` | 39.73% | Work in progress |
 | `0x004d1d90` | `SplinePath::FUN_004d1d90` | 48.32% | Work in progress |
+| `0x004d42e0` | `TerrainVisibilityContext::GetCellState` | 9.72% | Work in progress |
 | `0x004d8800` | `DisplayRenderer::AddSupportedTextureFormat` | 50.00% | Work in progress |
 | `0x004d8840` | `DisplayRenderer::InitializeTextureFormats` | 100.00% | Verified exact |
 | `0x004d8950` | `ResampleBitmapImage` | 0.67% | Work in progress |
@@ -365,7 +378,7 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004da500` | `RendererTextureRecord::UnlockPrimarySurface` | 80.85% | Work in progress |
 | `0x004da540` | `RendererTextureRecord::UploadBitmapImage` | 34.86% | Work in progress |
 | `0x004da5e0` | `DisplayRenderer::BuildMipSidecar` | 34.70% | Work in progress |
-| `0x004da9f0` | `?ReadBitmapInfoSettings@@YAIPBDPAUBitmapInfoSettings@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\bitmapimage.h2709825499@@@Z` | 2.29% | Work in progress |
+| `0x004da9f0` | `?ReadBitmapInfoSettings@@YAIPBDPAUBitmapInfoSettings@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\bitmapimage.h1637127338@@@Z` | 2.29% | Work in progress |
 | `0x004dabe0` | `ParseBitmapInfoValue` | 40.31% | Work in progress |
 | `0x004dac90` | `GenerateBitmapMipLevel` | 17.20% | Work in progress |
 | `0x004db5c0` | `FindClosestPaletteColor` | 30.09% | Work in progress |
@@ -392,6 +405,7 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004dc9b0` | `DisplayRenderer::ClearBuffers` | 35.91% | Work in progress |
 | `0x004dccc0` | `DisplayRenderer::SetAlphaBlendMode` | 8.94% | Work in progress |
 | `0x004dcf30` | `DisplayRenderer::PrepareDrawPacketState` | 47.41% | Work in progress |
+| `0x004dd0b0` | `DisplayRenderer::ApplyAuxiliaryMaterial` | 91.57% | Work in progress |
 | `0x004dd130` | `DisplayRenderer::BeginScene` | 68.29% | Work in progress |
 | `0x004dd230` | `DisplayRenderer::EndScene` | 100.00% | Verified exact |
 | `0x004dd240` | `RendererTimingStatisticsState::GetMetrics` | 20.42% | Work in progress |
@@ -429,6 +443,7 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004dfb60` | `DisplayRenderer::ApplyTextureTransform` | 24.90% | Work in progress |
 | `0x004dfd10` | `DisplayRenderer::UpdateTextureStageFlags` | 100.00% | Verified exact |
 | `0x004dfd80` | `DisplayRenderer::SetTextureRenderTarget` | 85.87% | Work in progress |
+| `0x004dfec0` | `DisplayRenderer::SetAmbientColorFloats` | 68.42% | Work in progress |
 | `0x004dff90` | `DisplayRenderer::GetStageFactorColor` | 100.00% | Verified exact |
 | `0x004dffa0` | `DisplayRenderer::GetInverseStageFactorColor` | 100.00% | Verified exact |
 | `0x004dffb0` | `DisplayRenderer::DrawStencilVolumes` | 50.00% | Work in progress |
@@ -502,6 +517,10 @@ in the build; see the [runtime roadmap](runtime-roadmap.md) and
 | `0x004ea3e0` | `RendererIndexStorage::ReleaseReference` | 69.39% | Work in progress |
 | `0x004ea440` | `RendererAnimationResourceRecord::ReleaseResourceReference` | 100.00% | Verified exact |
 | `0x004ea460` | `DisplayRenderer::FindOrAllocateAnimationResource` | 42.67% | Work in progress |
+| `0x004ea550` | `UpdateTerrainGridEdgeSelections` | 17.68% | Work in progress |
+| `0x004ea690` | `DisplayRenderer::DrawTerrain` | 10.21% | Work in progress |
+| `0x004eb530` | `DisplayRenderer::BuildTerrainGridStream` | 6.25% | Work in progress |
+| `0x004eb9d0` | `BuildTerrainGeometry` | 7.03% | Work in progress |
 | `0x004ec2c0` | `DisplayRenderer::ConfigureStreamResources` | 30.00% | Work in progress |
 | `0x004ec3f0` | `MouseInputDevice::SetRelativeAxisRange` | 100.00% | Verified exact |
 | `0x004ec450` | `EnumerateMouseAxisObject` | 100.00% | Verified exact |

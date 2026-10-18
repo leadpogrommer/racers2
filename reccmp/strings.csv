@@ -21,6 +21,10 @@ address,type,size
 00549904,string,13
 00549914,string,13
 00549938,string,26
+005499c4,string,21
+005499dc,string,19
+005499f0,string,17
+00549a04,string,46
 00549aa4,string,43
 00549ad0,string,37
 00549af8,string,33

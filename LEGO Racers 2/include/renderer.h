@@ -86,6 +86,8 @@ public:
 	void ReapplyLights();
 	LegoFloat GetMaximumDirectionalLightIntensity();
 	RendererAuxiliaryResourceRecord* GetAuxiliaryResource(LegoS32 p_index);
+	void ApplyAuxiliaryMaterial(LegoS32 p_index);
+	void SetAmbientColorFloats(const LegoFloat* p_color);
 	LegoBool32 SetDeviceResourceMode(LegoU32 p_mode);
 	LegoBool32 AdvanceDeviceFallback();
 	LegoBool32 ReconfigureDisplayMode(LegoU32 p_width, LegoU32 p_height, LegoU32 p_bitDepth, LegoS32 p_refreshRate);
@@ -150,6 +152,9 @@ public:
 	RendererResourceRef* FindTextureReferenceById(LegoS32 p_id, LegoU32 p_type);
 	void ReleaseTextureResourceReference(LegoS32 p_id, LegoU32 p_type);
 	LegoBool32 InitializeResources();
+	void ShutdownResources();
+	void ReleaseAuxiliaryResource(LegoS32 p_index);
+	void UpdateAnimatedResources();
 	void ReleaseTextureRecord(LegoS32 p_recordIndex);
 	void Shutdown();
 	void ReleaseViewport(LegoU32 p_index);
@@ -320,7 +325,7 @@ public:
 	LegoS32 m_resourceLookupCount;                         // 0xac
 	LegoU32 m_resourceLoadMode;                            // 0xb0
 	RendererTextureRecord* m_textureHash[256];             // 0xb4
-	LegoU32 m_unk0x4b4;
+	void* m_unk0x4b4;
 	undefined m_unk0x4b8[0x4c0 - 0x4b8];
 	LegoU32 m_unk0x4c0;
 	RendererResourceWorkList* m_resourceWorkList; // 0x4c4
@@ -390,7 +395,8 @@ public:
 	LegoU32 m_vertexBufferUsage;            // 0x2456c, D3DUSAGE_WRITEONLY or zero
 	LegoBool32 m_foundPreferredDepthFormat; // 0x24570, selected D24S8
 	LegoU32 m_unk0x24574;                   // 0x24574
-	undefined m_unk0x24578[0x24598 - 0x24578];
+	LegoFloat m_ambientColorFloats[4];      // 0x24578
+	undefined m_unk0x24588[0x24598 - 0x24588];
 	LegoU32 m_ambientColor;     // 0x24598, D3DRS_AMBIENT default
 	LegoU32 m_stageFactorColor; // 0x2459c
 	D3DMATERIAL8 m_material;    // 0x245a0

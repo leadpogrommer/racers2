@@ -133,6 +133,13 @@ perfect matching must not block progress toward a playable game.
   writes or assembly blobs to make an implemented function appear matched.
 - Record proven function lengths in `reccmp/function-sizes.csv` (decimal bytes).
   Include all branches after early returns; do not stop at the first `ret`.
+  Exclude alignment padding after the final code byte.
+- Read initialized global values from the PE before defining their defaults;
+  do not assume a discovered global starts at zero. Verify initial pointers
+  against real backing storage and check annotated data after integration.
+- Derive each callback ABI from argument pushes, receiver setup and stack
+  cleanup. Use fastcall bridges for evidenced thiscall methods, and retain
+  cdecl/stdcall for callbacks that actually use those conventions.
 - Compare functions and vtables after layout changes and run `reccmp-datacmp`
   when changing annotated data. A type, calling convention, or class hierarchy
   must be supported by disassembly/callers and matching output.
