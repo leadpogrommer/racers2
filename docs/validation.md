@@ -494,3 +494,13 @@ Data comparison reports zero issues across 287 globals. All twelve dispatch
 verifiers, twelve folded aliases and twenty-one tooling tests pass. The scene
 inventory now checks 501 pointers. No runtime or asset probes were performed.
 See [scene feedback evidence](work-scene-feedback.md).
+
+
+## Skeleton transforms and shared car catalogue (2026-10-19)
+
+Both SP5 builders link 378 units and agree on 1,806 measured scores/statuses:
+517 exact functions, twenty-four reviewed near matches and 1,265 STUB rows.
+All twelve dispatch verifiers and twelve folded aliases pass; both data checks
+report zero issues across 287 globals, including all 46 catalogue entries.
+No runtime or asset probes were performed. See
+[skeleton/catalogue evidence](work-skeleton-and-catalogue.md).

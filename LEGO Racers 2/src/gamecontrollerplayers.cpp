@@ -5,7 +5,7 @@
 #include "winfile.h"
 
 // GLOBAL: LEGORACERS2 0x0053ed7c
-const LegoChar* g_defaultPlayerCarPaths[8] = {
+const LegoChar* g_defaultPlayerCarPaths[46] = {
 	"Game Data\\Car Builder\\Sandy\\Police car.ccd",
 	"Game Data\\Car Builder\\Sandy\\Beach Buggy.ccd",
 	"Game Data\\Car Builder\\Sandy\\CG4x4.ccd",
@@ -13,7 +13,45 @@ const LegoChar* g_defaultPlayerCarPaths[8] = {
 	"Game Data\\Car Builder\\Sandy\\Fire Truck.ccd",
 	"Game Data\\Car Builder\\Sandy\\Post Van.ccd",
 	"Game Data\\Car Builder\\Sandy\\Digger.ccd",
-	"Game Data\\Car Builder\\Arctic\\Snow buggy.ccd"
+	"Game Data\\Car Builder\\Arctic\\Snow buggy.ccd",
+	"Game Data\\Car Builder\\Arctic\\Polar Scout.ccd",
+	"Game Data\\Car Builder\\Arctic\\Small skidoo.ccd",
+	"Game Data\\Car Builder\\Arctic\\Mid skidoo.ccd",
+	"Game Data\\Car Builder\\Arctic\\Outpost Vehicle.ccd",
+	"Game Data\\Car Builder\\Arctic\\Snow Plough.ccd",
+	"Game Data\\Car Builder\\Arctic\\Arm Vehicle.ccd",
+	"Game Data\\Car Builder\\Arctic\\Arctic surfer.ccd",
+	"Game Data\\Car Builder\\Adventure\\Bugatti.ccd",
+	"Game Data\\Car Builder\\Adventure\\Brown Pickup.ccd",
+	"Game Data\\Car Builder\\Adventure\\Dino Catcher.ccd",
+	"Game Data\\Car Builder\\Adventure\\Jeep.ccd",
+	"Game Data\\Car Builder\\Adventure\\Cat Truck.ccd",
+	"Game Data\\Car Builder\\Adventure\\Dino Chase Car.ccd",
+	"Game Data\\Car Builder\\Adventure\\Truck.ccd",
+	"Game Data\\Car Builder\\Adventure\\TriTruck.ccd",
+	"Game Data\\Car Builder\\Mars\\ATV.ccd",
+	"Game Data\\Car Builder\\Mars\\Buggy1.ccd",
+	"Game Data\\Car Builder\\Mars\\Buggy2.ccd",
+	"Game Data\\Car Builder\\Mars\\Hover1.ccd",
+	"Game Data\\Car Builder\\Mars\\Hover2.ccd",
+	"Game Data\\Car Builder\\Mars\\Hover3.ccd",
+	"Game Data\\Car Builder\\Mars\\Moon Rover.ccd",
+	"Game Data\\Car Builder\\Mars\\Moon Rover2.ccd",
+	"Game Data\\Car Builder\\CarCraze\\Xalax1.ccd",
+	"Game Data\\Car Builder\\CarCraze\\Xalax2.ccd",
+	"Game Data\\Car Builder\\CarCraze\\Xalax3.ccd",
+	"Game Data\\Car Builder\\CarCraze\\Xalax4.ccd",
+	"Game Data\\Car Builder\\CarCraze\\Xalax5.ccd",
+	"Game Data\\Car Builder\\CarCraze\\Xalax6.ccd",
+	"Game Data\\Car Builder\\CarCraze\\Rocket Racer.ccd",
+	"Game Data\\Car Builder\\CarCraze\\Chill.ccd",
+	"Game Data\\Car Builder\\CarCraze\\Duster.ccd",
+	"Game Data\\Car Builder\\CarCraze\\Freeze.ccd",
+	"Game Data\\Car Builder\\CarCraze\\Ghost.ccd",
+	"Game Data\\Car Builder\\CarCraze\\Lightor.ccd",
+	"Game Data\\Car Builder\\CarCraze\\Snake.ccd",
+	"Game Data\\Car Builder\\CarCraze\\Warrior.ccd",
+	"Game Data\\Car Builder\\Sandy\\Bonus Car.ccd"
 };
 
 // STUB: LEGORACERS2 0x00403380

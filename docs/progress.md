@@ -7,14 +7,14 @@ implemented functions, counted separately from exact matches.
 
 Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-19.
 The match guard verified **517 exact functions and twenty-four reviewed near
-matches**. Another 1,262 reconstructions remain `STUB`; both builders agree on
-all 1,803 measured raw scores and annotation statuses. Data comparison verifies
+matches**. Another 1,265 reconstructions remain `STUB`; both builders agree on
+all 1,806 measured raw scores and annotation statuses. Data comparison verifies
 287 annotated globals with zero issues. Twelve genuine folded aliases also have
 complete-byte and exact linker-map verification. Unlinked inventory entries
 may appear in the CLI denominator without another measured row.
 
 This is the reconstructed subset, not whole-game coverage. The automatic
-Ghidra inventory has **4,576 discovered function starts**, including **22 thunks**
+Ghidra inventory has **4,595 discovered function starts**, including **26 thunks**
 and linked runtime/library code. It is incomplete and is not a verified count
 of game-authored functions; see [inventory notes](research.md#automatic-function-inventory).
 Identified libraries are excluded from these matches with `--nolib`.
@@ -28,7 +28,8 @@ See [input controls](work-menu-input-and-model-resources.md) and
 [reverb and named factories](work-scene-reverb-and-factories.md) and
 [Foyer selection queries](work-foyer-selection.md) and
 [menu action recovery](work-menu-actions.md) and
-[scene feedback](work-scene-feedback.md).
+[scene feedback](work-scene-feedback.md) and
+[skeleton and catalogue recovery](work-skeleton-and-catalogue.md).
 The executable still uses the temporary bootstrap and has not launched a menu.
 See [frontend integration](work-controller-frontend.md), the
 [runtime roadmap](runtime-roadmap.md), and [library identification](library-identification.md).
@@ -48,9 +49,9 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x00403a30` | `CarDisplayNameRemove` | 92.31% | Work in progress |
 | `0x00403a50` | `CarDisplayNameUpdate` | 58.82% | Work in progress |
 | `0x00403bf0` | `CarDisplayNameDraw` | 19.91% | Work in progress |
-| `0x00403d10` | `?PrepareCarDisplayObject@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\cardisplay.h280954208@@YAXPAUGameObject@@@Z` | 48.65% | Work in progress |
-| `0x00403d50` | `?MarkCarDisplayObjectForRemoval@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\cardisplay.h280954208@@YAXPAUGameObject@@@Z` | 0.00% | Work in progress |
-| `0x00403db0` | `?UpdateCarDisplayRemovalState@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\cardisplay.h280954208@@YAXPAUGameObject@@@Z` | 40.91% | Work in progress |
+| `0x00403d10` | `?PrepareCarDisplayObject@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\cardisplay.h788725429@@YAXPAUGameObject@@@Z` | 48.65% | Work in progress |
+| `0x00403d50` | `?MarkCarDisplayObjectForRemoval@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\cardisplay.h788725429@@YAXPAUGameObject@@@Z` | 0.00% | Work in progress |
+| `0x00403db0` | `?UpdateCarDisplayRemovalState@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\cardisplay.h788725429@@YAXPAUGameObject@@@Z` | 40.91% | Work in progress |
 | `0x00403fa0` | `CarDisplayNameTargetDestroy` | 0.00% | Work in progress |
 | `0x00403fd0` | `CreateCarDisplayNameObject` | 21.25% | Work in progress |
 | `0x00404100` | `Vector3::SetValues` | 100.00% | Verified exact |
@@ -688,6 +689,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004a5310` | `Quaternion::Normalize` | 85.37% | Work in progress |
 | `0x004a5380` | `PackedQuaternion::Pack` | 34.23% | Work in progress |
 | `0x004a5440` | `Quaternion::Decode` | 83.87% | Work in progress |
+| `0x004a5500` | `Quaternion::MultiplyRight` | 30.77% | Work in progress |
 | `0x004a55f0` | `Quaternion::FromMatrix` | 44.96% | Work in progress |
 | `0x004a5780` | `Quaternion::Interpolate` | 100.00% | Verified exact |
 | `0x004a5850` | `Quaternion::LookAt` | 18.00% | Work in progress |
@@ -1194,6 +1196,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004c11e0` | `RendererAuxiliaryResourceRecord::InitializeMaterial` | 19.77% | Work in progress |
 | `0x004c14f0` | `DisplayRenderer::SetResourceLoadMode` | 83.02% | Work in progress |
 | `0x004c1e10` | `GameAnimatedObject::SetFrozen` | 75.47% | Work in progress |
+| `0x004c22c0` | `RebuildFoyerSkeletonTransforms` | 28.06% | Work in progress |
 | `0x004c26e0` | `GameAnimatedObject::SetAnimationTransformEnabled` | 12.77% | Work in progress |
 | `0x004c3020` | `StopNativeGame` | 100.00% | Work in progress |
 | `0x004c3040` | `RunGameInstance` | 67.34% | Work in progress |
@@ -1633,7 +1636,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004f3100` | `ControllerRecordingService::HandleDirectPlayMessage` | 45.26% | Work in progress |
 | `0x004f3550` | `ControllerRecordingService::ProcessSpecialInputCommand` | 53.99% | Work in progress |
 | `0x004f3620` | `ControllerRecordingService::RecordPeerState` | 94.34% | Work in progress |
-| `0x004f3670` | `ControllerRecordingService::ProcessValue` | 49.65% | Work in progress |
+| `0x004f3670` | `ControllerRecordingService::ProcessValue` | 50.35% | Work in progress |
 | `0x004f37d0` | `ControllerRecordingService::GetProviderKeyValue` | 100.00% | Verified exact |
 | `0x004f37f0` | `ControllerRecordingService::RemoveProviderKey` | 100.00% | Verified exact |
 | `0x004f3820` | `ControllerRecordingObjectMap::Initialize` | 19.63% | Work in progress |
@@ -1686,7 +1689,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004f4e40` | `CollisionServicePrepareQuery` | 84.21% | Work in progress |
 | `0x004f4e70` | `CollisionServiceQuerySphere` | 85.71% | Work in progress |
 | `0x004f4e90` | `CollisionServiceQuerySegment` | 85.71% | Work in progress |
-| `0x004f4eb0` | `CollisionServiceSweep` | 20.00% | Work in progress |
+| `0x004f4eb0` | `CollisionServiceSweep` | 22.22% | Work in progress |
 | `0x004f50e0` | `CollisionModelTransform::ResetIdentity` | 31.58% | Work in progress |
 | `0x004f5140` | `SpatialLinkRegistry::SpatialLinkRegistry` | 90.00% | Work in progress |
 | `0x004f5160` | `SpatialLinkRegistry::Insert` | 80.00% | Work in progress |
@@ -1704,6 +1707,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004f54a0` | `BitmapImage::LoadTga` | 17.27% | Work in progress |
 | `0x004f59c0` | `BitmapImage::ReleaseStorage` | 95.24% | Reviewed near match |
 | `0x004f5a10` | `WriteBitmapTgaFile` | 30.77% | Work in progress |
+| `0x004f60f0` | `BindFoyerSkeletonRecord` | 35.79% | Work in progress |
 | `0x004f6310` | `InitializePlatformServices` | 70.83% | Work in progress |
 | `0x004f6360` | `ShutdownPlatformServices` | 88.89% | Work in progress |
 | `0x004f8470` | `IntersectTerrainTriangle` | 18.18% | Work in progress |

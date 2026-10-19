@@ -374,3 +374,5 @@ LEGO Racers 2/src/menumanagercurrentaction.cpp
 LEGO Racers 2/src/foyerscenemenuactions.cpp
 LEGO Racers 2/src/foyerscenecirclepool.cpp
 LEGO Racers 2/src/controllersceneobject.cpp
+LEGO Racers 2/src/foyerskeleton.cpp
+LEGO Racers 2/src/quaternionmultiply.cpp

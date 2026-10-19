@@ -27,6 +27,9 @@ DECOMP_STATIC_ASSERT(offsetof(StartupPlayerSettings, m_unk0x314) == 0x314);
 DECOMP_STATIC_ASSERT(offsetof(StartupPlayerSettings, m_unk0x338) == 0x338);
 DECOMP_SIZE_ASSERT(StartupPlayerSettings, 0x344);
 
+// Retail 0x0053ed7c: complete shared catalogue, first eight seed player cars.
+extern const LegoChar* g_defaultPlayerCarPaths[46];
+
 void LoadDefaultPlayerCar(const CharBuffer128* p_path, GameControllerItemBlock* p_configuration);
 
 #endif

@@ -16,6 +16,7 @@ public:
 	LegoFloat m_w; // 0x0c
 
 	LegoFloat Normalize();
+	Quaternion* MultiplyRight(const Quaternion* p_right);
 	Quaternion* Decode(const PackedQuaternion* p_source);
 	Quaternion* FromMatrix(const Matrix3* p_matrix);
 	void LookAt(const Vector3* p_position, const Vector3* p_target, const Vector3* p_up, LegoU32 p_preserveSide);

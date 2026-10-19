@@ -465,6 +465,7 @@ address,type,size
 0045f900,function,35
 0045f930,function,26
 00460070,function,44
+00460680,function,3
 00466470,function,3849
 00467380,function,82
 004673e0,function,34
@@ -640,6 +641,7 @@ address,type,size
 004a5310,function,102
 004a5380,function,177
 004a5440,function,183
+004a5500,function,235
 004a55f0,function,387
 004a5780,function,205
 004a5850,function,188
@@ -1049,6 +1051,7 @@ address,type,size
 004c11e0,function,780
 004c14f0,function,71
 004c1e10,function,93
+004c22c0,function,484
 004c26e0,function,132
 004c32b0,function,8
 004c33b0,function,52
@@ -1480,6 +1483,7 @@ address,type,size
 004f54a0,function,1299
 004f59c0,function,62
 004f5a10,function,555
+004f60f0,function,173
 004f6310,function,68
 004f8470,function,1093
 004f8da0,function,92

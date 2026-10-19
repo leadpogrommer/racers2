@@ -307,3 +307,13 @@ texture record, pulse update, and the scene effect pool lifecycle. Foyer manager
 transitions and SecondaryManager initialization/update remain open before the
 real controller entry path can run. No runtime probe was run. See
 [scene feedback evidence](work-scene-feedback.md).
+
+
+## Foyer skeleton transforms and complete car catalogue
+
+The 378-unit build links skeleton definition binding, parent transforms and
+quaternion composition, together with all 46 shared car paths. Remaining Foyer
+model/preview code still requires rebuilt transforms and template storage;
+SecondaryManager initialize/update now have staged source with open callees.
+The menu has not launched and no runtime probe was run. See
+[skeleton/catalogue evidence](work-skeleton-and-catalogue.md).
