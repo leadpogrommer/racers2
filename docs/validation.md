@@ -426,3 +426,14 @@ including both recovered input-control tables. All six new function extents were
 reviewed against the original code. No tooling logic changed; the 21 retained
 tooling tests passed in the preceding loading-screen batch. No game behavior
 tests or runtime probes were added or run. See [batch evidence](work-shadow-and-configuration.md).
+
+
+## Menu backdrop and startup supervisor (2026-10-19)
+
+Both canonical SP5 builders link 356 units and agree on all 1,616 measured
+scores/statuses: 487 exact functions, nineteen reviewed near matches and 1,110
+STUB rows. All twelve dispatch checkers pass in both builds, with scene inventory
+expanded to 167 pointers. Twelve folded aliases and 267 annotated globals with
+zero data issues pass. The backdrop fade constant also matches retail bytes
+through an independent map/PE check. All 21 existing tooling tests pass. No game
+behavior tests or runtime probes were added or run. See [batch evidence](work-menu-background.md).

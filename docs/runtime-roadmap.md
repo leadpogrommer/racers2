@@ -249,3 +249,13 @@ menu input bindings. The full algorithms now link, but remain under review below
 the near-match threshold. Car-preview lifecycle and foyer/controller startup
 closures remain open. Bootstrap remains active; no menu run was attempted.
 See [evidence and limits](work-shadow-and-configuration.md).
+
+
+## Menu backdrop and startup supervisor
+
+The 356-unit build links sixteen backdrop quadrant textures, eight overlay
+sprites, menu-state color selection and timed crossfades. KillSphere supervisor
+construction, initialization, removal and its complete 21-slot table now link.
+The backdrop manager still needs the full Secondary Manager lifecycle to call
+it, and GameController startup remains staged. Bootstrap remains active.
+No runtime probe was run; see [recovery and validation](work-menu-background.md).

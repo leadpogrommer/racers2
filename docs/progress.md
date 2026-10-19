@@ -6,15 +6,15 @@ Reviewed semantically identical near matches (initially at least 95% raw) are
 implemented functions, counted separately from exact matches.
 
 Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-19.
-The match guard verified **482 exact functions and nineteen reviewed near
-matches**. Another 1,100 reconstructions remain `STUB`; both builders agree on
-all 1,601 measured raw scores and annotation statuses. Data comparison verifies
+The match guard verified **487 exact functions and nineteen reviewed near
+matches**. Another 1,110 reconstructions remain `STUB`; both builders agree on
+all 1,616 measured raw scores and annotation statuses. Data comparison verifies
 267 annotated globals with zero issues. Twelve genuine folded aliases also have
 complete-byte and exact linker-map verification. Unlinked inventory entries
 may appear in the CLI denominator without another measured row.
 
 This is the reconstructed subset, not whole-game coverage. The automatic
-Ghidra inventory has **4,557 discovered function starts**, including **22 thunks**
+Ghidra inventory has **4,564 discovered function starts**, including **22 thunks**
 and linked runtime/library code. It is incomplete and is not a verified count
 of game-authored functions; see [inventory notes](research.md#automatic-function-inventory).
 Identified libraries are excluded from these matches with `--nolib`.
@@ -22,7 +22,8 @@ See [input controls](work-menu-input-and-model-resources.md) and
 [model geometry, collision and shadows](work-model-loading.md), and
 [loading-screen recovery](work-loading-progress.md) and
 [model draw queues](work-model-drawing.md) and
-[shadow/input configuration](work-shadow-and-configuration.md).
+[shadow/input configuration](work-shadow-and-configuration.md) and
+[menu background/startup supervisor](work-menu-background.md).
 The executable still uses the temporary bootstrap and has not launched a menu.
 See [frontend integration](work-controller-frontend.md), the
 [runtime roadmap](runtime-roadmap.md), and [library identification](library-identification.md).
@@ -51,7 +52,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x0040a760` | `ConfigureGameScreenshotDirectory` | 94.87% | Work in progress |
 | `0x0040a7d0` | `BuildUserDataPath` | 100.00% | Verified exact |
 | `0x0040a970` | `InitializeGameControllerDefaults` | 51.96% | Work in progress |
-| `0x0040abc0` | `ResetGameControllerSession` | 95.83% | Reviewed equivalent near match |
+| `0x0040abc0` | `ResetGameControllerSession` | 95.83% | Reviewed near match |
 | `0x0040ac30` | `InitializeGameControllerPlayers` | 29.20% | Work in progress |
 | `0x0040ad30` | `GameControllerSettings::SetPlayerName` | 86.49% | Work in progress |
 | `0x0040aef0` | `GameControllerName::Initialize` | 100.00% | Verified exact |
@@ -60,9 +61,9 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x0040b000` | `GameControllerSelection::Initialize` | 9.09% | Work in progress |
 | `0x0040b0a0` | `GameControllerSelection::UnlockWorld` | 50.00% | Work in progress |
 | `0x0040b0d0` | `GameControllerSelection::UnlockTrack` | 94.74% | Work in progress |
-| `0x0040b0f0` | `GameControllerSelection::IsTrackUnlocked` | 96.00% | Reviewed equivalent near match |
+| `0x0040b0f0` | `GameControllerSelection::IsTrackUnlocked` | 96.00% | Reviewed near match |
 | `0x0040b160` | `GameControllerSelection::UnlockReward` | 24.00% | Work in progress |
-| `0x0040b1b0` | `GameControllerSelection::HasReward` | 96.00% | Reviewed equivalent near match |
+| `0x0040b1b0` | `GameControllerSelection::HasReward` | 96.00% | Reviewed near match |
 | `0x0040b2c0` | `GameControllerSelection::UnlockDefaults` | 87.93% | Work in progress |
 | `0x0040b340` | `InitializeGameControllerWord` | 100.00% | Verified exact |
 | `0x0040b4e0` | `PauseDetectorUpdate` | 9.23% | Work in progress |
@@ -227,6 +228,15 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x00426660` | `MenuTextGroup::Destroy` | 100.00% | Verified exact |
 | `0x00426690` | `MenuTextGroup::SetClipRectangle` | 100.00% | Verified exact |
 | `0x004266d0` | `MenuTextGroup::UpdateBounds` | 53.66% | Work in progress |
+| `0x004267c0` | `MenuBackground::MenuBackground` | 100.00% | Verified exact |
+| `0x004267e0` | `MenuBackground::Initialize` | 77.78% | Work in progress |
+| `0x00426800` | `MenuBackground::~MenuBackground` | 72.73% | Work in progress |
+| `0x00426820` | `MenuBackground::Update` | 20.39% | Work in progress |
+| `0x00426a30` | `MenuBackground::Load` | 54.01% | Work in progress |
+| `0x00426b60` | `MenuBackground::Release` | 88.00% | Work in progress |
+| `0x00426bb0` | `MenuBackground::SetMode` | 100.00% | Verified exact |
+| `0x00426bd0` | `MenuBackground::Hide` | 100.00% | Verified exact |
+| `0x00426c00` | `MenuBackground::GetMenuCategory` | 17.32% | Work in progress |
 | `0x00426e50` | `InitializeSecondaryManagerAudioNames` | 34.71% | Work in progress |
 | `0x004276e0` | `LoadSecondaryManagerAudioResources` | 22.33% | Work in progress |
 | `0x004278d0` | `ReleaseSecondaryManagerAudioResources` | 79.25% | Work in progress |
@@ -239,7 +249,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x00429220` | `AcquireMenuPreviewAmbient` | 48.65% | Work in progress |
 | `0x00429280` | `ReleaseMenuPreviewAmbient` | 100.00% | Verified exact |
 | `0x004292a0` | `AcquireMenuPreviewLight` | 69.84% | Work in progress |
-| `0x00429320` | `ReleaseMenuPreviewLight` | 95.45% | Reviewed equivalent near match |
+| `0x00429320` | `ReleaseMenuPreviewLight` | 95.45% | Reviewed near match |
 | `0x0042a870` | `SecondaryManager::EnumerateDisplayModes` | 37.43% | Work in progress |
 | `0x0042ab00` | `SecondaryManager::DetectKeyboardLanguage` | 48.54% | Work in progress |
 | `0x0042af70` | `SecondaryManagerMediaState::InitializeBindings` | 44.80% | Work in progress |
@@ -310,11 +320,13 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x00436070` | `ReleaseControllerPauseMenuTextures` | 100.00% | Verified exact |
 | `0x004360d0` | `LoadControllerBuilderTextures` | 13.85% | Work in progress |
 | `0x00436af0` | `ReleaseControllerBuilderTextures` | 15.14% | Work in progress |
+| `0x00436e10` | `LoadControllerBackgroundTextures` | 59.06% | Work in progress |
+| `0x00436f20` | `ReleaseControllerBackgroundTextures` | 100.00% | Verified exact |
 | `0x00437430` | `LoadControllerLoadingTextures` | 29.79% | Work in progress |
 | `0x00437770` | `ReleaseControllerLoadingTextures` | 100.00% | Verified exact |
 | `0x00437970` | `NestedTextBoxManagerPrefix::NestedTextBoxManagerPrefix` | 36.11% | Work in progress |
 | `0x004379f0` | `NestedTextBoxManagerGetObjectSize` | 100.00% | Verified exact |
-| `0x00437a00` | `NestedTextBoxManagerDestroy` | 95.65% | Reviewed equivalent near match |
+| `0x00437a00` | `NestedTextBoxManagerDestroy` | 95.65% | Reviewed near match |
 | `0x00437a20` | `NestedTextBoxManagerDestructor` | 0.00% | Work in progress |
 | `0x00437a30` | `NestedTextBoxManagerInitialize` | 76.92% | Work in progress |
 | `0x00437a50` | `NestedTextBoxManagerRemove` | 18.60% | Work in progress |
@@ -385,6 +397,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x0047c780` | `SetFoyerSceneEventAnimation` | 38.93% | Work in progress |
 | `0x0047f6a0` | `UpdateFoyerSceneHold` | 83.33% | Work in progress |
 | `0x0047fe00` | `UpdateFoyerSceneEvents` | 89.80% | Work in progress |
+| `0x0048e510` | `KillSphereSupervisorAllocationSize` | 100.00% | Verified exact |
 | `0x00493550` | `FilterApplicationWindowMessage` | 100.00% | Verified exact |
 | `0x00494cd0` | `NetworkApplicationMenuView::GetProviderLabel` | 32.26% | Work in progress |
 | `0x00494f40` | `ApplicationCharacterQueue::QueueCharacter` | 100.00% | Verified exact |
@@ -417,7 +430,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004a2170` | `CharBuffer24::CharBuffer24(void)` | 100.00% | Verified exact |
 | `0x004a21b0` | `WinFile::WinFile` | 100.00% | Verified exact |
 | `0x004a21f0` | `WinFile::Open` | 26.79% | Work in progress |
-| `0x004a2290` | `WinFile::Read` | 95.24% | Reviewed equivalent near match |
+| `0x004a2290` | `WinFile::Read` | 95.24% | Reviewed near match |
 | `0x004a22b0` | `WinFile::CloseManaged` | 100.00% | Verified exact |
 | `0x004a22c0` | `WinFile::GetManagedSize` | 100.00% | Verified exact |
 | `0x004a22d0` | `WinFile::~WinFile` | 100.00% | Verified exact |
@@ -480,7 +493,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004a41b0` | `FreeHeapMemory` | 100.00% | Verified exact |
 | `0x004a41d0` | `MemoryHeap::AllocateBlock` | 67.84% | Work in progress |
 | `0x004a4350` | `MemoryHeap::FreeBlock` | 79.67% | Work in progress |
-| `0x004a4480` | `MemoryHeap::UpdateCursor` | 95.83% | Reviewed equivalent near match |
+| `0x004a4480` | `MemoryHeap::UpdateCursor` | 95.83% | Reviewed near match |
 | `0x004a44c0` | `MemoryHeap::FindForward` | 73.68% | Work in progress |
 | `0x004a44f0` | `MemoryHeap::FindBackward` | 100.00% | Verified exact |
 | `0x004a4510` | `MemoryHeap::InitializeBlock` | 100.00% | Verified exact |
@@ -642,7 +655,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004ac120` | `DisplayRenderer::UsesHardwareVertexProcessing` | 100.00% | Verified exact |
 | `0x004ac130` | `DisplayRenderer::Initialize` | 22.87% | Work in progress |
 | `0x004acd00` | `DisplayRenderer::ConfigureNvidiaWorkaround` | 12.61% | Work in progress |
-| `0x004acfb0` | `DisplayRenderer::CreateVertexBuffers` | 95.33% | Reviewed equivalent near match |
+| `0x004acfb0` | `DisplayRenderer::CreateVertexBuffers` | 95.33% | Reviewed near match |
 | `0x004ad060` | `DisplayRenderer::Shutdown` | 87.41% | Work in progress |
 | `0x004ad130` | `GetChannelMaskBitCount` | 14.56% | Work in progress |
 | `0x004ad2c0` | `DisplayRenderer::EnumerateSupportedAdapters` | 33.33% | Work in progress |
@@ -865,6 +878,9 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004b4d60` | `ExpandChildWindowBounds` | 100.00% | Verified exact |
 | `0x004b4de0` | `FitWindowToChildren` | 100.00% | Verified exact |
 | `0x004b4e80` | `ScreenRectToClient` | 100.00% | Verified exact |
+| `0x004b5460` | `KillSphereSupervisor::KillSphereSupervisor` | 61.54% | Work in progress |
+| `0x004b5490` | `KillSphereSupervisor::Initialize` | 92.31% | Work in progress |
+| `0x004b54c0` | `KillSphereSupervisor::Remove` | 77.42% | Work in progress |
 | `0x004b7550` | `LocalizedStringTable::LocalizedStringTable` | 100.00% | Verified exact |
 | `0x004b75c0` | `LocalizedStringTable::Load` | 58.40% | Work in progress |
 | `0x004b7740` | `LocalizedStringTable::Release` | 63.64% | Work in progress |
@@ -876,7 +892,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004b7c20` | `InputController::~InputController` | 100.00% | Verified exact |
 | `0x004b7c50` | `InputControllerManager::InitializeTiming` | 94.12% | Work in progress |
 | `0x004b7c70` | `InputControllerManager::ResetRecording` | 28.38% | Work in progress |
-| `0x004b7d40` | `InputControllerManager::Shutdown` | 98.18% | Reviewed equivalent near match |
+| `0x004b7d40` | `InputControllerManager::Shutdown` | 98.18% | Reviewed near match |
 | `0x004b7d80` | `InputController::SetOwner` | 100.00% | Verified exact |
 | `0x004b7da0` | `InputController::AppendBinding` | 100.00% | Verified exact |
 | `0x004b7dd0` | `GetControllerInputDevice` | 89.66% | Work in progress |
@@ -914,7 +930,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004b9890` | `ReleaseCollisionResource` | 92.31% | Work in progress |
 | `0x004b9940` | `GameFloatRandom::Initialize` | 100.00% | Verified exact |
 | `0x004b9980` | `GameIntegerRandom::Initialize` | 100.00% | Verified exact |
-| `0x004b99b0` | `GetGameRandomState` | 95.83% | Reviewed equivalent near match |
+| `0x004b99b0` | `GetGameRandomState` | 95.83% | Reviewed near match |
 | `0x004ba280` | `PrepareGameObjectForRendering` | 33.08% | Work in progress |
 | `0x004ba370` | `GetGameObjectViewDepth` | 92.68% | Work in progress |
 | `0x004ba3b0` | `UpdateGameObjectRenderGeometry` | 19.95% | Work in progress |
@@ -971,7 +987,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004bffb0` | `GetTexturePathHash` | 100.00% | Verified exact |
 | `0x004bffd0` | `RendererTextureRecord::MatchesResource` | 100.00% | Verified exact |
 | `0x004c0050` | `ReleaseRendererTextureResource` | 11.76% | Work in progress |
-| `0x004c0070` | `RendererResourceCacheEntry::SetPath` | 96.88% | Reviewed equivalent near match |
+| `0x004c0070` | `RendererResourceCacheEntry::SetPath` | 96.88% | Reviewed near match |
 | `0x004c00c0` | `RendererResourceCacheEntry::LoadAnimation` | 31.83% | Work in progress |
 | `0x004c03c0` | `RendererResourceCacheEntry::AdvanceFrame` | 20.69% | Work in progress |
 | `0x004c0450` | `RendererResourceCacheEntry::ReleaseAnimationReferences` | 100.00% | Verified exact |
@@ -1051,7 +1067,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004cdd00` | `CachedConstraint::RebuildEffectiveMassMatrix` | 100.00% | Verified exact |
 | `0x004cdd70` | `ConstraintEndpoint::SetBinding` | 28.57% | Work in progress |
 | `0x004cde00` | `ConstraintEndpoint::SetWorldBinding` | 42.86% | Work in progress |
-| `0x004cde60` | `ConstraintEndpoint::GetWorldPosition` | 98.70% | Reviewed equivalent near match |
+| `0x004cde60` | `ConstraintEndpoint::GetWorldPosition` | 98.70% | Reviewed near match |
 | `0x004cdec0` | `ConstraintEndpoint::UpdateWorldOffset` | 39.29% | Work in progress |
 | `0x004cdf10` | `ConstraintEndpoint::GetPointVelocity` | 8.89% | Work in progress |
 | `0x004cdff0` | `ConstraintEndpoint::UpdatePointAcceleration` | 6.63% | Work in progress |
@@ -1127,8 +1143,8 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004dc000` | `DisplayRenderer::RestoreDeviceResources` | 37.88% | Work in progress |
 | `0x004dc210` | `DisplayRenderer::IsTextureFormatSupported` | 100.00% | Verified exact |
 | `0x004dc250` | `DisplayRenderer::AdvanceDeviceFallback` | 41.45% | Work in progress |
-| `0x004dc4c0` | `DisplayRenderer::ShouldUseHighResolutionTextures` | 98.11% | Reviewed equivalent near match |
-| `0x004dc510` | `DisplayRenderer::SetTextureQuality` | 97.14% | Reviewed equivalent near match |
+| `0x004dc4c0` | `DisplayRenderer::ShouldUseHighResolutionTextures` | 98.11% | Reviewed near match |
+| `0x004dc510` | `DisplayRenderer::SetTextureQuality` | 97.14% | Reviewed near match |
 | `0x004dc590` | `DisplayRenderer::SetTextureFiltering` | 45.95% | Work in progress |
 | `0x004dc6e0` | `DisplayRenderer::SetFogEnabled` | 24.24% | Work in progress |
 | `0x004dc740` | `DisplayRenderer::SetFogColor` | 11.43% | Work in progress |
@@ -1192,7 +1208,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004e18a0` | `DisplayRenderer::SetTextureTransform` | 6.59% | Work in progress |
 | `0x004e1950` | `PassThroughStageValidationResult` | 100.00% | Verified exact |
 | `0x004e1960` | `RendererTextureStageManager::Initialize` | 92.36% | Work in progress |
-| `0x004e1c30` | `RendererTextureStageManager::MaskWithoutHighestPriorityStage` | 96.97% | Reviewed equivalent near match |
+| `0x004e1c30` | `RendererTextureStageManager::MaskWithoutHighestPriorityStage` | 96.97% | Reviewed near match |
 | `0x004e1dd0` | `RendererTextureStageManager::AreTextureOperationsSupported` | 37.74% | Work in progress |
 | `0x004e1e20` | `RendererTextureStageManager::ApplyStagePlanSubrecord` | 34.62% | Work in progress |
 | `0x004e1e60` | `DisplayRenderer::BindMappedTexture` | 46.81% | Work in progress |
@@ -1316,7 +1332,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004edf20` | `JoystickInputDevice::UpdateAutoRange` | 42.42% | Work in progress |
 | `0x004edfc0` | `JoystickAxis::ExpandRange` | 100.00% | Verified exact |
 | `0x004ee020` | `JoystickInputDevice::IsButtonPressed` | 100.00% | Verified exact |
-| `0x004ee050` | `InputDeviceRecord::GetButtonValue` | 95.24% | Reviewed equivalent near match |
+| `0x004ee050` | `InputDeviceRecord::GetButtonValue` | 95.24% | Reviewed near match |
 | `0x004ee080` | `JoystickInputDevice::GetAxisValue` | 100.00% | Verified exact |
 | `0x004ee0c0` | `JoystickInputDevice::Acquire` | 100.00% | Verified exact |
 | `0x004ee110` | `JoystickInputDevice::Unacquire` | 100.00% | Verified exact |
@@ -1343,7 +1359,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004ee7e0` | `SetAudioCommentaryGain` | 21.05% | Work in progress |
 | `0x004ee800` | `QueueAudioCommentary` | 23.08% | Work in progress |
 | `0x004ee820` | `StopAudioCommentary` | 35.71% | Work in progress |
-| `0x004ee880` | `EnqueueAudioCommentary` | 43.24% | Work in progress |
+| `0x004ee880` | `EnqueueAudioCommentary` | 40.54% | Work in progress |
 | `0x004ee900` | `PlayNextAudioCommentary` | 12.05% | Work in progress |
 | `0x004ee9b0` | `InitializeAudioPcmBuffer` | 72.62% | Work in progress |
 | `0x004eeaa0` | `ShutdownAudioPcmBuffer` | 60.61% | Work in progress |
@@ -1411,7 +1427,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004f25a0` | `BeginAudioRead` | 78.16% | Work in progress |
 | `0x004f2610` | `WaitForAudioRead` | 100.00% | Verified exact |
 | `0x004f2690` | `CountPendingAudioReads` | 88.89% | Work in progress |
-| `0x004f26b0` | `FindCompletedAudioRead` | 97.96% | Reviewed equivalent near match |
+| `0x004f26b0` | `FindCompletedAudioRead` | 97.96% | Reviewed near match |
 | `0x004f2730` | `GetAudioReadRequest` | 100.00% | Verified exact |
 | `0x004f2740` | `CommentaryAudioStream::StartRead` | 44.68% | Work in progress |
 | `0x004f2990` | `CommentaryAudioStream::FinishRead` | 75.00% | Work in progress |
@@ -1425,7 +1441,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004f3100` | `ControllerRecordingService::HandleDirectPlayMessage` | 45.26% | Work in progress |
 | `0x004f3550` | `ControllerRecordingService::ProcessSpecialInputCommand` | 53.99% | Work in progress |
 | `0x004f3620` | `ControllerRecordingService::RecordPeerState` | 94.34% | Work in progress |
-| `0x004f3670` | `ControllerRecordingService::ProcessValue` | 49.65% | Work in progress |
+| `0x004f3670` | `ControllerRecordingService::ProcessValue` | 50.35% | Work in progress |
 | `0x004f37d0` | `ControllerRecordingService::GetProviderKeyValue` | 100.00% | Verified exact |
 | `0x004f37f0` | `ControllerRecordingService::RemoveProviderKey` | 100.00% | Verified exact |
 | `0x004f3820` | `ControllerRecordingObjectMap::Initialize` | 19.63% | Work in progress |
@@ -1438,7 +1454,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004f3b40` | `ControllerRecordingProviderMap::Initialize` | 36.59% | Work in progress |
 | `0x004f3ba0` | `ControllerRecordingProviderMap::Shutdown` | 41.12% | Work in progress |
 | `0x004f3c20` | `ControllerRecordingProviderMap::Add` | 61.73% | Work in progress |
-| `0x004f3c90` | `ControllerRecordingProviderMap::SetState` | 95.00% | Reviewed equivalent near match |
+| `0x004f3c90` | `ControllerRecordingProviderMap::SetState` | 95.00% | Reviewed near match |
 | `0x004f3d00` | `ControllerRecordingProviderMap::FindValue` | 65.75% | Work in progress |
 | `0x004f3d60` | `ControllerRecordingProviderMap::Remove` | 94.29% | Work in progress |
 | `0x004f3dd0` | `ControllerRecordingProviderMap::PruneExpiredEntries` | 89.71% | Work in progress |
@@ -1478,7 +1494,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004f4e40` | `CollisionServicePrepareQuery` | 84.21% | Work in progress |
 | `0x004f4e70` | `CollisionServiceQuerySphere` | 85.71% | Work in progress |
 | `0x004f4e90` | `CollisionServiceQuerySegment` | 85.71% | Work in progress |
-| `0x004f4eb0` | `CollisionServiceSweep` | 20.00% | Work in progress |
+| `0x004f4eb0` | `CollisionServiceSweep` | 22.22% | Work in progress |
 | `0x004f50e0` | `CollisionModelTransform::ResetIdentity` | 31.58% | Work in progress |
 | `0x004f5140` | `SpatialLinkRegistry::SpatialLinkRegistry` | 90.00% | Work in progress |
 | `0x004f5160` | `SpatialLinkRegistry::Insert` | 80.00% | Work in progress |
@@ -1494,7 +1510,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004f53a0` | `QueryCollisionSphere` | 88.89% | Work in progress |
 | `0x004f53e0` | `QueryCollisionSegment` | 93.91% | Work in progress |
 | `0x004f54a0` | `BitmapImage::LoadTga` | 17.27% | Work in progress |
-| `0x004f59c0` | `BitmapImage::ReleaseStorage` | 95.24% | Reviewed equivalent near match |
+| `0x004f59c0` | `BitmapImage::ReleaseStorage` | 95.24% | Reviewed near match |
 | `0x004f5a10` | `WriteBitmapTgaFile` | 30.77% | Work in progress |
 | `0x004f6310` | `InitializePlatformServices` | 70.83% | Work in progress |
 | `0x004f6360` | `ShutdownPlatformServices` | 88.89% | Work in progress |

@@ -12,6 +12,7 @@ from folded_functions import code_bytes
 from toolchain import ROOT
 
 TABLES = {
+    "kill_sphere": (0x00535d18, 21, "g_killSphereSupervisorDispatch"),
     "secondary_fx": (0x00533024, 20, "g_secondaryFxManagerDispatch"),
     "bodypart": (0x0052f584, 21, "g_bodypartManagerDispatch"),
     "glyph": (0x0052f57c, 2, "g_overlayGlyphManagerDispatch"),

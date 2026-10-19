@@ -351,3 +351,6 @@ LEGO Racers 2/src/rendererdepthkeys.cpp
 LEGO Racers 2/src/modelshadowgeneration.cpp
 LEGO Racers 2/src/secondarymanagerconfiguration.cpp
 LEGO Racers 2/src/secondarymanagerbindings.cpp
+LEGO Racers 2/src/controllerbackgroundtextures.cpp
+LEGO Racers 2/src/menubackground.cpp
+LEGO Racers 2/src/killspheresupervisor.cpp
