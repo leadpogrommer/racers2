@@ -12,6 +12,18 @@ from folded_functions import code_bytes
 from toolchain import ROOT
 
 TABLES = {
+    "reverb_area": (0x00531188, 20, "g_reverbAreaObjectDispatch"),
+    "reverb_gateway": (0x005311f8, 20, "g_reverbGatewayObjectDispatch"),
+    "reverb_init": (0x005312a8, 20, "g_reverbInitObjectDispatch"),
+    "factory_reverb_area": (0x005311d8, 4, "g_reverbAreaFactoryDispatch"),
+    "factory_reverb_gateway": (0x005311e8, 4, "g_reverbGatewayFactoryDispatch"),
+    "factory_reverb_init": (0x00531298, 4, "g_reverbInitFactoryDispatch"),
+    "factory_base": (0x00536318, 4, "g_gameObjectFactoryEntryDispatch"),
+    "factory_surface": (0x00536cf8, 4, "g_surfaceManagerFactoryDispatch"),
+    "factory_race_start": (0x0052f7e4, 4, "g_raceStartPositionFactoryDispatch"),
+    "race_start": (0x0052f7f4, 21, "g_raceStartPositionObjectDispatch"),
+    "race_start_base": (0x0052f848, 21, "g_raceStartPositionBaseObjectDispatch"),
+    "reverb_manager": (0x00531248, 20, "g_reverbManagerDispatch"),
     "car_records_base": (0x00536d64, 22, "g_carDisplayIndexedRecordOwnerBaseDispatch"),
     "car_name_transform": (0x0052f318, 20, "g_carDisplayNameTransformDispatch"),
     "car_model_transform": (0x0053529c, 20, "g_carDisplayTransformDispatch"),

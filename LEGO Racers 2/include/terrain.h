@@ -23,10 +23,26 @@ public:
 	Vector3* GetMaximumBounds(Vector3* p_result) const;
 	TerrainVertex* GetVertex(LegoS32 p_column, LegoS32 p_row) const;
 	TerrainTile* GetTile(LegoS32 p_column, LegoS32 p_row) const;
+	LegoBool32 GetCellRange(
+		const Vector3* p_position,
+		LegoFloat p_radius,
+		LegoS32* p_minColumn,
+		LegoS32* p_minRow,
+		LegoS32* p_maxColumn,
+		LegoS32* p_maxRow
+	) const;
+	LegoBool32 ProjectToSurface(
+		const Vector3* p_worldPosition,
+		Vector3* p_surfacePosition,
+		Vector3* p_worldNormal
+	) const;
 
 	LegoU8 m_unk0x00[0x138];
-	Vector3 m_scale; // 0x138
-	LegoU8 m_unk0x144[0x15c - 0x144];
+	Vector3 m_scale;           // 0x138
+	LegoFloat m_inverseScaleX; // 0x144
+	LegoFloat m_unk0x148;
+	LegoFloat m_inverseScaleZ; // 0x14c
+	LegoU8 m_unk0x150[0x15c - 0x150];
 	LegoS32 m_columns;        // 0x15c
 	LegoS32 m_rows;           // 0x160
 	LegoFloat m_columnOrigin; // 0x164

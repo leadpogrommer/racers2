@@ -6,15 +6,15 @@ Reviewed semantically identical near matches (initially at least 95% raw) are
 implemented functions, counted separately from exact matches.
 
 Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-19.
-The match guard verified **504 exact functions and twenty-one reviewed near
-matches**. Another 1,176 reconstructions remain `STUB`; both builders agree on
-all 1,701 measured raw scores and annotation statuses. Data comparison verifies
-272 annotated globals with zero issues. Twelve genuine folded aliases also have
+The match guard verified **512 exact functions and twenty-one reviewed near
+matches**. Another 1,205 reconstructions remain `STUB`; both builders agree on
+all 1,738 measured raw scores and annotation statuses. Data comparison verifies
+281 annotated globals with zero issues. Twelve genuine folded aliases also have
 complete-byte and exact linker-map verification. Unlinked inventory entries
 may appear in the CLI denominator without another measured row.
 
 This is the reconstructed subset, not whole-game coverage. The automatic
-Ghidra inventory has **4,568 discovered function starts**, including **22 thunks**
+Ghidra inventory has **4,573 discovered function starts**, including **22 thunks**
 and linked runtime/library code. It is incomplete and is not a verified count
 of game-authored functions; see [inventory notes](research.md#automatic-function-inventory).
 Identified libraries are excluded from these matches with `--nolib`.
@@ -24,7 +24,8 @@ See [input controls](work-menu-input-and-model-resources.md) and
 [model draw queues](work-model-drawing.md) and
 [shadow/input configuration](work-shadow-and-configuration.md) and
 [menu background/startup supervisor](work-menu-background.md) and
-[car preview and frontend resources](work-car-preview.md).
+[car preview and frontend resources](work-car-preview.md) and
+[reverb and named factories](work-scene-reverb-and-factories.md).
 The executable still uses the temporary bootstrap and has not launched a menu.
 See [frontend integration](work-controller-frontend.md), the
 [runtime roadmap](runtime-roadmap.md), and [library identification](library-identification.md).
@@ -90,6 +91,10 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x0040b340` | `InitializeGameControllerWord` | 100.00% | Verified exact |
 | `0x0040b4e0` | `PauseDetectorUpdate` | 9.23% | Work in progress |
 | `0x0040ec90` | `Application::GetDisplaySettings` | 100.00% | Verified exact |
+| `0x0040eca0` | `GameObjectFactoryReturnZeroForFourArguments` | 100.00% | Verified exact |
+| `0x0040ecb0` | `ConstructRaceStartPosition` | 18.18% | Work in progress |
+| `0x0040ed40` | `GetRaceStartPositionBaseSize` | 100.00% | Verified exact |
+| `0x0040ed50` | `GetRaceStartPositionSize` | 100.00% | Verified exact |
 | `0x00410380` | `GetScreenPrinterSize` | 100.00% | Verified exact |
 | `0x004109c0` | `InitializeFoyerSceneNames` | 20.51% | Work in progress |
 | `0x004131e0` | `InitializeMenuInputMode3Names` | 3.39% | Work in progress |
@@ -399,10 +404,35 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x00438fa0` | `TextBoxManager::Remove` | 32.43% | Work in progress |
 | `0x004391c0` | `CarDisplayModelDestroy` | 95.65% | Reviewed near match |
 | `0x0043b8a0` | `DestroyGameObjectModelBinding` | 95.65% | Reviewed near match |
+| `0x0043ce00` | `ConstructReverbAreaObject` | 56.00% | Work in progress |
+| `0x0043ce60` | `DestroyReverbArea` | 42.86% | Work in progress |
+| `0x0043ced0` | `ConstructReverbArea` | 57.89% | Work in progress |
+| `0x0043cf40` | `ConstructReverbGateway` | 34.85% | Work in progress |
 | `0x0043d1d0` | `Vector3::Scale` | 100.00% | Verified exact |
 | `0x0043d200` | `Vector3::Add` | 100.00% | Verified exact |
 | `0x0043d230` | `Vector3::Subtract` | 100.00% | Verified exact |
+| `0x0043d290` | `DestroyReverbGateway` | 42.86% | Work in progress |
+| `0x0043d2d0` | `ReverbBoundaryPlane::IntersectSegment` | 28.65% | Work in progress |
+| `0x0043d5d0` | `ReverbBoundaryPlane::ContainsPoint` | 18.87% | Work in progress |
+| `0x0043d660` | `ReverbVolumeView::ContainsPoint` | 71.43% | Work in progress |
+| `0x0043d6c0` | `ReverbVolumeView::IntersectSegment` | 100.00% | Verified exact |
+| `0x0043d720` | `ConstructReverbManager` | 44.44% | Work in progress |
+| `0x0043d750` | `ReverbManager::Reset` | 95.00% | Work in progress |
+| `0x0043d7b0` | `ReverbManager::Configure` | 89.47% | Work in progress |
+| `0x0043d830` | `ReverbManager::CameraHasNoVolume` | 100.00% | Verified exact |
+| `0x0043d870` | `ReverbManager::HasCameraMoved` | 77.19% | Work in progress |
+| `0x0043d8d0` | `ReverbManager::Update` | 28.22% | Work in progress |
+| `0x0043dad0` | `ReverbManager::SelectCameraVolume` | 70.18% | Work in progress |
+| `0x0043db30` | `ReverbManager::ResetCameraVolume` | 70.77% | Work in progress |
+| `0x0043dba0` | `ReverbManager::DisableOutput` | 69.57% | Work in progress |
+| `0x0043dbc0` | `ReverbManager::RestoreOutput` | 100.00% | Verified exact |
+| `0x0043dbf0` | `ReverbManager::RecomputeCameraVolume` | 100.00% | Verified exact |
+| `0x0043dc30` | `MarkReverbStateDirty` | 100.00% | Verified exact |
+| `0x0043dc40` | `ReverbManager::FindVolume` | 89.47% | Work in progress |
 | `0x0043dcd0` | `GetConfiguredAudioServiceMode` | 85.71% | Work in progress |
+| `0x0043dd20` | `ConstructReverbInit` | 26.92% | Work in progress |
+| `0x0043dd60` | `InitializeReverbSettingsObject` | 84.21% | Work in progress |
+| `0x0043dda0` | `RemoveReverbSettingsObject` | 70.59% | Work in progress |
 | `0x00440720` | `InitializeCarDisplayModelPaths` | 34.88% | Work in progress |
 | `0x0044a520` | `SelectPauseTargetData` | 72.73% | Work in progress |
 | `0x0044b3b0` | `DeleteConstraint` | 78.26% | Work in progress |
@@ -674,6 +704,8 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004aa790` | `GameObject::DrawChild` | 40.00% | Work in progress |
 | `0x004aa7b0` | `GameManager::UpdateComponents` | 21.52% | Work in progress |
 | `0x004aa8e0` | `GameManager::RenderFrame` | 14.09% | Work in progress |
+| `0x004ab1c0` | `CountActiveGameCameras` | 27.69% | Work in progress |
+| `0x004ab220` | `FindActiveGameCamera` | 41.10% | Work in progress |
 | `0x004ab2a0` | `ReportFatalError` | 85.25% | Work in progress |
 | `0x004ab3b0` | `PrintDiagnostic` | 79.41% | Work in progress |
 | `0x004ab560` | `RendererVertexBufferLegacyConditionalFree` | 75.86% | Work in progress |
@@ -1031,6 +1063,10 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004bb910` | `GlobalPauseController::IsBeforeDeadline` | 60.71% | Work in progress |
 | `0x004bcd80` | `CarDisplayModelTargetDestroy` | 0.00% | Work in progress |
 | `0x004bcef0` | `CarDisplayModelRemove` | 71.43% | Work in progress |
+| `0x004bd0d0` | `GameObjectFactoryRegistry::Register` | 76.60% | Work in progress |
+| `0x004bd150` | `GameObjectFactoryRegistry::Find` | 45.33% | Work in progress |
+| `0x004bd1b0` | `GameObjectFactoryRegistry::ConstructByClassName` | 80.00% | Work in progress |
+| `0x004bd200` | `GameObjectFactoryEntry::GameObjectFactoryEntry` | 36.84% | Work in progress |
 | `0x004bd5f0` | `RendererLookupTableState::Initialize` | 51.97% | Work in progress |
 | `0x004bd6d0` | `RendererLookupTableState::ReleaseStorage` | 66.67% | Work in progress |
 | `0x004bd710` | `RendererLookupTableState::Clear` | 28.07% | Work in progress |
@@ -1106,6 +1142,8 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004c3f40` | `Terrain::GetCellVertices` | 63.61% | Work in progress |
 | `0x004c4140` | `Terrain::GetMinimumBounds` | 100.00% | Verified exact |
 | `0x004c41a0` | `Terrain::GetMaximumBounds` | 100.00% | Verified exact |
+| `0x004c4200` | `Terrain::ProjectToSurface` | 16.19% | Work in progress |
+| `0x004c4d30` | `Terrain::GetCellRange` | 15.32% | Work in progress |
 | `0x004c4eb0` | `GlobalOverlayGlyphReplacementManagerView::RegisterIcon` | 100.00% | Verified exact |
 | `0x004c4ed0` | `GlobalOverlayGlyphReplacementManagerView::SetIconTexture` | 100.00% | Verified exact |
 | `0x004c4ef0` | `GlobalOverlayGlyphReplacementManagerView::GetIconTexture` | 100.00% | Verified exact |
@@ -1445,7 +1483,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004ee7e0` | `SetAudioCommentaryGain` | 21.05% | Work in progress |
 | `0x004ee800` | `QueueAudioCommentary` | 23.08% | Work in progress |
 | `0x004ee820` | `StopAudioCommentary` | 35.71% | Work in progress |
-| `0x004ee880` | `EnqueueAudioCommentary` | 40.54% | Work in progress |
+| `0x004ee880` | `EnqueueAudioCommentary` | 43.24% | Work in progress |
 | `0x004ee900` | `PlayNextAudioCommentary` | 12.05% | Work in progress |
 | `0x004ee9b0` | `InitializeAudioPcmBuffer` | 72.62% | Work in progress |
 | `0x004eeaa0` | `ShutdownAudioPcmBuffer` | 60.61% | Work in progress |
@@ -1527,7 +1565,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004f3100` | `ControllerRecordingService::HandleDirectPlayMessage` | 45.26% | Work in progress |
 | `0x004f3550` | `ControllerRecordingService::ProcessSpecialInputCommand` | 53.99% | Work in progress |
 | `0x004f3620` | `ControllerRecordingService::RecordPeerState` | 94.34% | Work in progress |
-| `0x004f3670` | `ControllerRecordingService::ProcessValue` | 50.35% | Work in progress |
+| `0x004f3670` | `ControllerRecordingService::ProcessValue` | 49.65% | Work in progress |
 | `0x004f37d0` | `ControllerRecordingService::GetProviderKeyValue` | 100.00% | Verified exact |
 | `0x004f37f0` | `ControllerRecordingService::RemoveProviderKey` | 100.00% | Verified exact |
 | `0x004f3820` | `ControllerRecordingObjectMap::Initialize` | 19.63% | Work in progress |
@@ -1580,7 +1618,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004f4e40` | `CollisionServicePrepareQuery` | 84.21% | Work in progress |
 | `0x004f4e70` | `CollisionServiceQuerySphere` | 85.71% | Work in progress |
 | `0x004f4e90` | `CollisionServiceQuerySegment` | 85.71% | Work in progress |
-| `0x004f4eb0` | `CollisionServiceSweep` | 22.22% | Work in progress |
+| `0x004f4eb0` | `CollisionServiceSweep` | 20.00% | Work in progress |
 | `0x004f50e0` | `CollisionModelTransform::ResetIdentity` | 31.58% | Work in progress |
 | `0x004f5140` | `SpatialLinkRegistry::SpatialLinkRegistry` | 90.00% | Work in progress |
 | `0x004f5160` | `SpatialLinkRegistry::Insert` | 80.00% | Work in progress |

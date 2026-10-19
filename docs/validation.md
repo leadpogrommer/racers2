@@ -450,3 +450,15 @@ globals; the model-binding depth float is separately checked through both
 linker maps and complete original bytes. All 21 retained tooling tests pass.
 No game behavior tests, asset probes or game runs were performed. See
 [car-preview evidence](work-car-preview.md).
+
+
+## Reverb scene and named factories (2026-10-19)
+
+Both canonical SP5 builders link 370 units and agree on all 1,738 measured
+scores/statuses: 512 exact functions, twenty-one reviewed near matches and
+1,205 STUB rows. All twelve dispatch checkers pass in both PEs; the scene/model
+inventory covers 460 pointers and menu widgets cover 84. Twelve complete folded
+aliases pass. Data comparison has zero issues across 281 globals, including the
+factory registry, named registrations and shared integer reverb default. No
+game behavior tests, runtime runs or asset probes were performed. See
+[recovery evidence](work-scene-reverb-and-factories.md).

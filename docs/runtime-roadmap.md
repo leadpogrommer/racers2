@@ -269,3 +269,14 @@ menu resource ownership. Callback inventories verify 314 scene/model slots and
 84 menu slots in both builds. Named asset-class factory registration and the
 full foyer/controller path remain staged. Bootstrap remains active; no runtime
 probe was run. See [recovery evidence](work-car-preview.md).
+
+
+## Environment audio and named asset objects
+
+The 370-unit build links ReverbManager construction, camera tracking and audio
+volume transitions; terrain surface projection; the named-object registry;
+and cSurfaceManager, cRaceStartPos, cReverbArea, cReverbGateway and cReverbInit
+registrations. The raw inventory finds 76 registration callsites, so named
+asset creation is still incomplete. Controller/Foyer startup and the real
+entry/main loop remain staged. No runtime probe was run. See
+[scene/factory evidence](work-scene-reverb-and-factories.md).

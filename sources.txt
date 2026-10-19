@@ -361,3 +361,10 @@ LEGO Racers 2/src/menucarpreviewtuning.cpp
 LEGO Racers 2/src/menumanagerfrontendwidgets.cpp
 LEGO Racers 2/src/clipplanes.cpp
 LEGO Racers 2/src/menumanagerresources.cpp
+LEGO Racers 2/src/reverbmanager.cpp
+LEGO Racers 2/src/reverbgeometry.cpp
+LEGO Racers 2/src/gamecameraregistry.cpp
+LEGO Racers 2/src/terrainsurface.cpp
+LEGO Racers 2/src/gameobjectfactoryregistry.cpp
+LEGO Racers 2/src/racestartposition.cpp
+LEGO Racers 2/src/reverbobjects.cpp
