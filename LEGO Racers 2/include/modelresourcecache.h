@@ -26,6 +26,7 @@ struct ModelResourceCache {
 
 	ModelResource* Find(const LegoChar* p_path);
 	void Insert(ModelResource* p_model, const LegoChar* p_path);
+	LegoBool32 Release(ModelResource* p_model);
 	void AddReference(ModelResource* p_model);
 };
 DECOMP_SIZE_ASSERT(ModelResourceCache, 0x11004);

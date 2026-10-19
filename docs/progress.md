@@ -6,19 +6,20 @@ Reviewed semantically identical near matches (initially at least 95% raw) are
 implemented functions, counted separately from exact matches.
 
 Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-19.
-The match guard verified **467 exact functions and nineteen reviewed near
-matches**. Another 1,054 reconstructions remain `STUB`; both builders agree on
-all 1,540 measured raw scores and annotation statuses. Data comparison verifies
+The match guard verified **472 exact functions and nineteen reviewed near
+matches**. Another 1,073 reconstructions remain `STUB`; both builders agree on
+all 1,564 measured raw scores and annotation statuses. Data comparison verifies
 263 annotated globals with zero issues. Eleven genuine folded aliases also have
 complete-byte and exact linker-map verification. Unlinked inventory entries
 may appear in the CLI denominator without another measured row.
 
 This is the reconstructed subset, not whole-game coverage. The automatic
-Ghidra inventory has **4,512 discovered function starts**, including **22 thunks**
+Ghidra inventory has **4,524 discovered function starts**, including **22 thunks**
 and linked runtime/library code. It is incomplete and is not a verified count
 of game-authored functions; see [inventory notes](research.md#automatic-function-inventory).
 Identified libraries are excluded from these matches with `--nolib`.
-See [input controls and model dependencies](work-menu-input-and-model-resources.md).
+See [input controls](work-menu-input-and-model-resources.md) and
+[model geometry, collision and shadows](work-model-loading.md).
 The executable still uses the temporary bootstrap and has not launched a menu.
 See [frontend integration](work-controller-frontend.md), the
 [runtime roadmap](runtime-roadmap.md), and [library identification](library-identification.md).
@@ -513,13 +514,20 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004a79a0` | `ModelResourceCacheEntry::Assign` | 100.00% | Verified exact |
 | `0x004a79e0` | `ModelResourceCache::Find` | 71.23% | Work in progress |
 | `0x004a7a30` | `ModelResourceCache::Insert` | 100.00% | Verified exact |
+| `0x004a7a70` | `ModelResourceCache::Release` | 93.53% | Work in progress |
 | `0x004a7b20` | `ModelResourceCache::AddReference` | 100.00% | Verified exact |
 | `0x004a7b70` | `InitializeModelResourceCache` | 21.05% | Work in progress |
+| `0x004a7ba0` | `ModelResource::~ModelResource` | 80.00% | Work in progress |
 | `0x004a7c60` | `ModelTextureGroup::ReleaseStorage` | 43.37% | Work in progress |
 | `0x004a7cc0` | `ReleaseRendererDrawPacket` | 66.67% | Work in progress |
+| `0x004a7d00` | `ModelResource::SetCollisionData` | 58.33% | Work in progress |
+| `0x004a7d40` | `LoadModelResource` | 23.68% | Work in progress |
+| `0x004a80c0` | `ReadModelCollisionChunk` | 68.35% | Work in progress |
+| `0x004a8140` | `ReadModelResourceGeometry` | 18.92% | Work in progress |
 | `0x004a8e70` | `ModelPrimitiveTextureRecord::ModelPrimitiveTextureRecord` | 78.26% | Work in progress |
 | `0x004a8ec0` | `ModelTextureGroup::ModelTextureGroup` | 100.00% | Verified exact |
 | `0x004a8ed0` | `ModelBounds::ClassifyXZAspectRatio` | 64.17% | Work in progress |
+| `0x004a9020` | `FinalizeModelDrawPlans` | 83.12% | Work in progress |
 | `0x004a95b0` | `ModelResource::RemapTextureIndices` | 34.29% | Work in progress |
 | `0x004a9710` | `ModelResourceReferences::Allocate` | 61.11% | Work in progress |
 | `0x004a9750` | `ModelResourceReferences::FreeStorage` | 69.23% | Work in progress |
@@ -862,10 +870,12 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004b95e0` | `InitializeCollisionServices` | 34.25% | Work in progress |
 | `0x004b96d0` | `DestroyCollisionServiceObject` | 100.00% | Work in progress |
 | `0x004b96f0` | `CollisionContact::SwapParticipants` | 90.00% | Work in progress |
+| `0x004b97f0` | `LoadCollisionResource` | 92.31% | Work in progress |
 | `0x004b9810` | `CreateCollisionProxy` | 84.21% | Work in progress |
 | `0x004b9830` | `DetachCollisionProxy` | 92.31% | Work in progress |
 | `0x004b9850` | `AttachCollisionProxy` | 52.63% | Work in progress |
 | `0x004b9870` | `DestroyCollisionProxy` | 80.00% | Work in progress |
+| `0x004b9890` | `ReleaseCollisionResource` | 92.31% | Work in progress |
 | `0x004b9940` | `GameFloatRandom::Initialize` | 100.00% | Verified exact |
 | `0x004b9980` | `GameIntegerRandom::Initialize` | 100.00% | Verified exact |
 | `0x004b99b0` | `GetGameRandomState` | 95.83% | Reviewed equivalent near match |
@@ -903,6 +913,8 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004be320` | `RendererAuxiliaryResourceRecord::InitializeHeader` | 100.00% | Verified exact |
 | `0x004be330` | `DisplayRenderer::ShutdownResources` | 61.24% | Work in progress |
 | `0x004be460` | `BuildAnimationHueColor` | 16.10% | Work in progress |
+| `0x004be650` | `EnsureSharedShadowGeometry` | 14.06% | Work in progress |
+| `0x004be860` | `ReleaseSharedShadowGeometry` | 34.38% | Work in progress |
 | `0x004bed30` | `GameLightProperties::SetEnabled` | 48.00% | Work in progress |
 | `0x004bedb0` | `GameAmbientLight::ApplyToRenderer` | 25.93% | Work in progress |
 | `0x004beef0` | `CopyGameLightProperties` | 15.62% | Work in progress |
@@ -982,6 +994,8 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004c5700` | `GetFoyerAnimationLayerValue` | 100.00% | Verified exact |
 | `0x004c5720` | `SetFoyerAnimationBlend` | 100.00% | Verified exact |
 | `0x004c6980` | `RenderInitializedResource` | 15.09% | Work in progress |
+| `0x004c6c90` | `ReleaseModelShadowData` | 27.64% | Work in progress |
+| `0x004c6e80` | `ReadModelShadowChunk` | 22.22% | Work in progress |
 | `0x004c6fe0` | `RenderDeferredResource` | 20.66% | Work in progress |
 | `0x004cb340` | `TerrainVertexGrid::SelectEdges` | 100.00% | Verified exact |
 | `0x004cb530` | `UpdateTerrainLodMetrics` | 56.74% | Work in progress |
@@ -1290,7 +1304,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004ee7e0` | `SetAudioCommentaryGain` | 21.05% | Work in progress |
 | `0x004ee800` | `QueueAudioCommentary` | 23.08% | Work in progress |
 | `0x004ee820` | `StopAudioCommentary` | 35.71% | Work in progress |
-| `0x004ee880` | `EnqueueAudioCommentary` | 43.24% | Work in progress |
+| `0x004ee880` | `EnqueueAudioCommentary` | 40.54% | Work in progress |
 | `0x004ee900` | `PlayNextAudioCommentary` | 12.05% | Work in progress |
 | `0x004ee9b0` | `InitializeAudioPcmBuffer` | 72.62% | Work in progress |
 | `0x004eeaa0` | `ShutdownAudioPcmBuffer` | 60.61% | Work in progress |
@@ -1416,10 +1430,12 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004f4c50` | `CollisionServiceDetachAll` | 100.00% | Work in progress |
 | `0x004f4c80` | `CollisionServiceSetPrimitivePosition` | 100.00% | Work in progress |
 | `0x004f4ca0` | `CollisionServiceSetTransform` | 100.00% | Work in progress |
+| `0x004f4cc0` | `RelocateCollisionResourceData` | 100.00% | Verified exact |
 | `0x004f4cf0` | `CollisionProxyFromService` | 24.49% | Work in progress |
 | `0x004f4dc0` | `DestroyCollisionProxyFromService` | 100.00% | Work in progress |
 | `0x004f4df0` | `DetachCollisionProxyFromService` | 100.00% | Verified exact |
 | `0x004f4e00` | `AttachCollisionProxyFromService` | 100.00% | Work in progress |
+| `0x004f4e10` | `FreeCollisionResourceData` | 69.23% | Work in progress |
 | `0x004f4e40` | `CollisionServicePrepareQuery` | 84.21% | Work in progress |
 | `0x004f4e70` | `CollisionServiceQuerySphere` | 85.71% | Work in progress |
 | `0x004f4e90` | `CollisionServiceQuerySegment` | 85.71% | Work in progress |
@@ -1454,7 +1470,15 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004f9d50` | `TestCollisionGeometryAgainstBox` | 42.55% | Work in progress |
 | `0x004fa210` | `IntersectCollisionGeometrySegment` | 63.08% | Work in progress |
 | `0x004fa2b0` | `TestGeometryBoxContact` | 10.75% | Work in progress |
+| `0x004fa790` | `CollisionResourceChildren::Relocate` | 85.71% | Work in progress |
 | `0x004fa7f0` | `CollisionChildDefinitions::CreateProxies` | 68.66% | Work in progress |
+| `0x004fa8f0` | `CollisionResource::Relocate` | 100.00% | Verified exact |
+| `0x004fa930` | `CollisionGeometryStorage::Relocate` | 100.00% | Verified exact |
+| `0x004fa9a0` | `CollisionCompoundTriangles::Relocate` | 100.00% | Verified exact |
+| `0x004fa9e0` | `RemapCollisionTriangleVertices` | 34.38% | Work in progress |
+| `0x004faa50` | `CollisionTriangleMesh::RemapVertices` | 91.23% | Work in progress |
+| `0x004faa90` | `CollisionTriangleMesh::Relocate` | 59.26% | Work in progress |
+| `0x004fad30` | `CollisionSimpleTriangles::Relocate` | 100.00% | Verified exact |
 | `0x004faf60` | `IntersectTerrainCollisionSegment` | 29.06% | Work in progress |
 | `0x004fb3e0` | `TestIndexedCollisionTriangles` | 46.00% | Work in progress |
 | `0x004fb460` | `TestCollisionTriangleArray` | 67.50% | Work in progress |
@@ -1553,6 +1577,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x00508ca0` | `TryAppendBoxContact` | 55.38% | Work in progress |
 | `0x00508da0` | `CollisionTriangleCandidates::CollisionTriangleCandidates` | 31.25% | Work in progress |
 | `0x00508e10` | `ReleaseTriangleCandidates` | 60.00% | Work in progress |
+| `0x00508ee0` | `CollisionCompoundTriangles::RebuildBounds` | 17.88% | Work in progress |
 | `0x00509600` | `AppendSphereSphereContact` | 17.39% | Work in progress |
 | `0x00509760` | `IntersectRayWithCollisionSphere` | 57.24% | Work in progress |
 | `0x00509a40` | `TransformCollisionSphereRecord` | 89.47% | Work in progress |

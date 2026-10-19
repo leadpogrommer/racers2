@@ -384,3 +384,13 @@ in both PEs, including all 78 callbacks in thirteen menu-widget tables. Data
 comparison has zero issues across 263 globals. The 21 retained tooling/library
 tests pass. No game behavior tests or runtime/asset probes were added or run.
 See [recovery evidence and remaining limits](work-menu-input-and-model-resources.md).
+
+
+## Model geometry, collision and shadows (2026-10-19)
+
+Both canonical SP5 builders compile and link 344 units and agree on all 1,564
+measured scores/statuses: 472 exact functions, nineteen reviewed near matches
+and 1,073 STUB rows. All twelve dispatch verifiers pass in both PEs, alongside
+eleven complete folded aliases. Data comparison reports zero issues across
+263 globals. All 24 new function extents were reviewed. No game behavior tests
+or runtime/asset probes were added or run. See [model evidence](work-model-loading.md).

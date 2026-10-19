@@ -208,3 +208,13 @@ resource-load batching helpers also link. Large methods remain under review;
 full model loading, car preview, Foyer resource parsing and controller startup
 still need integration. Bootstrap remains active. No runtime probe was run; see
 [batch evidence](work-menu-input-and-model-resources.md).
+
+
+## Complete model-loading path
+
+The 344-unit build now links MDL geometry parsing, optional collision/skin/shadow
+chunks, deferred load completion and model/cache cleanup. Both builders agree
+on 1,564 measured functions; large model routines remain under review. Foyer
+actions/assets, car-preview object bindings and controller startup remain open.
+The temporary bootstrap is active; no runtime probe was run. See
+[model-loading evidence](work-model-loading.md).

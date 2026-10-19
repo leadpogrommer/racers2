@@ -336,3 +336,9 @@ LEGO Racers 2/src/menulabelselectorinitialize.cpp
 LEGO Racers 2/src/menutextentry.cpp
 LEGO Racers 2/src/menutextentrytuning.cpp
 LEGO Racers 2/src/rendererresourceloadmode.cpp
+LEGO Racers 2/src/collisionresource.cpp
+LEGO Racers 2/src/modelresourceparser.cpp
+LEGO Racers 2/src/modelresourceloading.cpp
+LEGO Racers 2/src/modelresourcecleanup.cpp
+LEGO Racers 2/src/modelshadow.cpp
+LEGO Racers 2/src/renderershadowshared.cpp

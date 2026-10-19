@@ -63,6 +63,8 @@ struct ModelResource {
 	Vector3 m_origin;
 	void* m_collisionData;
 	LegoU32 m_collisionDataSize;
+	~ModelResource();
+	void SetCollisionData(void* p_data, LegoU32 p_bytes);
 	void RemapTextureIndices(LegoS32 p_oldIndex, LegoS16 p_newIndex);
 };
 DECOMP_SIZE_ASSERT(ModelPrimitiveTextureSlot, 8);
