@@ -155,6 +155,7 @@ public:
 	);
 	RendererResourceRef* FindTextureReferenceById(LegoS32 p_id, LegoU32 p_type);
 	void ReleaseTextureResourceReference(LegoS32 p_id, LegoU32 p_type);
+	void SetResourceLoadMode(LegoU32 p_mode);
 	LegoBool32 InitializeResources();
 	void ShutdownResources();
 	void ReleaseAuxiliaryResource(LegoS32 p_index);

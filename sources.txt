@@ -323,3 +323,16 @@ LEGO Racers 2/src/moviefilter.cpp
 LEGO Racers 2/src/movietextureformat.cpp
 LEGO Racers 2/src/gamecontrollermovies.cpp
 LEGO Racers 2/src/heapaddresswalk.cpp
+LEGO Racers 2/src/modelresourcecache.cpp
+LEGO Racers 2/src/modelresourcereferences.cpp
+LEGO Racers 2/src/modelgeometryrecords.cpp
+LEGO Racers 2/src/vector3arithmetic.cpp
+LEGO Racers 2/src/modelbounds.cpp
+LEGO Racers 2/src/modelgroupstorage.cpp
+LEGO Racers 2/src/modelskin.cpp
+LEGO Racers 2/src/menuinputbindings.cpp
+LEGO Racers 2/src/menuinputbindinglabels.cpp
+LEGO Racers 2/src/menulabelselectorinitialize.cpp
+LEGO Racers 2/src/menutextentry.cpp
+LEGO Racers 2/src/menutextentrytuning.cpp
+LEGO Racers 2/src/rendererresourceloadmode.cpp

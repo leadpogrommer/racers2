@@ -28,4 +28,6 @@ DECOMP_STATIC_ASSERT(offsetof(RendererDrawPacketView, m_vertices) == 0x0c);
 DECOMP_STATIC_ASSERT(offsetof(RendererDrawPacketView, m_indices) == 0x10);
 DECOMP_STATIC_ASSERT(offsetof(RendererDrawPacketView, m_defaults) == 0x14);
 
+void __fastcall ReleaseRendererDrawPacket(RendererDrawPacketView* p_packet, void* p_unusedEdx);
+
 #endif // LR2_RENDERERDRAWPACKETVIEW_H

@@ -373,3 +373,14 @@ reports verify 256 globals with zero issues. All twelve static dispatch
 checkers pass, including the three movie-service slots and three game-owned
 DirectShow overrides. SDK inherited callbacks remain outside that new check.
 No runtime or game behavioral test was run. See [movie evidence](work-startup-movies.md).
+
+
+## Input controls and model dependencies (2026-10-19)
+
+The canonical Python and CMake/NMake SP5 builds compile and link 338 units.
+Both reports agree on 1,540 measured rows: 467 exact functions, nineteen
+reviewed near matches and 1,054 STUB rows. All twelve dispatch verifiers pass
+in both PEs, including all 78 callbacks in thirteen menu-widget tables. Data
+comparison has zero issues across 263 globals. The 21 retained tooling/library
+tests pass. No game behavior tests or runtime/asset probes were added or run.
+See [recovery evidence and remaining limits](work-menu-input-and-model-resources.md).

@@ -6,6 +6,7 @@
 #include "nativewindow.h"
 #include "platformfpu.h"
 #include "renderer.h"
+#include "rendererdrawpacketview.h"
 #include "startup.h"
 
 #include <string.h>
@@ -56,20 +57,20 @@ DECOMP_STATIC_ASSERT(offsetof(RendererDrawPacket, m_defaults) == 0x14);
 } // namespace
 
 // STUB: LEGORACERS2 0x004a7cc0
-void __fastcall ReleaseRendererDrawPacket(RendererDrawPacket* p_packet, void*)
+void __fastcall ReleaseRendererDrawPacket(RendererDrawPacketView* p_packet, void*)
 {
-	if (p_packet->m_heapData != NULL) {
-		GetMemoryHeap()->Free(p_packet->m_heapData);
+	if (p_packet->m_payload != NULL) {
+		GetMemoryHeap()->Free(p_packet->m_payload);
 	}
-	if (p_packet->m_releaseObject1 != NULL) {
-		void** table = *(void***) p_packet->m_releaseObject1;
+	if (p_packet->m_indices != NULL) {
+		void** table = *(void***) p_packet->m_indices;
 		ReleaseObject release = (ReleaseObject) table[0];
-		release(p_packet->m_releaseObject1, NULL);
+		release(p_packet->m_indices, NULL);
 	}
-	if (p_packet->m_releaseObject0 != NULL) {
-		void** table = *(void***) p_packet->m_releaseObject0;
+	if (p_packet->m_vertices != NULL) {
+		void** table = *(void***) p_packet->m_vertices;
 		ReleaseObject release = (ReleaseObject) table[0];
-		release(p_packet->m_releaseObject0, NULL);
+		release(p_packet->m_vertices, NULL);
 	}
 }
 
@@ -453,6 +454,6 @@ LegoBool32 DisplayRenderer::Initialize()
 	if (m_createDeviceBuffers == 1) {
 		CreateVertexBuffers();
 	}
-	ReleaseRendererDrawPacket(&packet, NULL);
+	ReleaseRendererDrawPacket((RendererDrawPacketView*) &packet, NULL);
 	return TRUE;
 }

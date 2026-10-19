@@ -197,3 +197,14 @@ startup movie sequence and display/heap preparation. Both builders agree on
 frontend widget construction, Foyer loading and GameController startup still
 need integration before replacing bootstrap. No runtime probe was run. See
 [movie integration and remaining review](work-startup-movies.md).
+
+
+## Input editor, text entry and model-resource dependencies
+
+The 338-unit build links the binding editor, its label initializer and text-entry
+keyboard. All 78 callbacks in thirteen widget tables pass static pointer checks.
+Model-cache, texture/material-reference, geometry-record, bounds, skin-file and
+resource-load batching helpers also link. Large methods remain under review;
+full model loading, car preview, Foyer resource parsing and controller startup
+still need integration. Bootstrap remains active. No runtime probe was run; see
+[batch evidence](work-menu-input-and-model-resources.md).

@@ -13,6 +13,18 @@ struct MenuLabelSelector : MenuWidgetBase {
 	LegoU32 m_unk0xa4;
 	LegoFloat m_minimumWidth;
 	MenuLabelSelector(); // Inlined into 41c890 in retail.
+	void Initialize(
+		LegoS32 p_initialValue,
+		const LegoFloat* p_position,
+		const LegoS32* p_stringIndices,
+		LegoS32 p_count,
+		LegoS32 p_selection,
+		const LegoS32* p_numbers,
+		LegoBool32 p_alignLeft,
+		LegoFloat p_scale,
+		LegoFloat p_minimumWidth,
+		LegoU32 p_wrap
+	);
 	void SelectLabel(LegoS32);
 	void Reset();
 	LegoU32 HandleInput(LegoU32*, const LegoU32*);

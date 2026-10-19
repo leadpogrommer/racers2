@@ -65,3 +65,15 @@ network,08,00479030,MenuNetworkStatusBareReturnBridge
 network,0c,00425d70,MenuNetworkStatusResetBridge
 network,10,00425dc0,MenuNetworkStatusHandleInputBridge
 network,14,00419a00,MenuNetworkStatusBaseSetClipBridge
+input_bindings,00,00416130,MenuInputBindingsUpdateBoundsBridge
+input_bindings,04,004157f0,MenuInputBindingsSetFontBridge
+input_bindings,08,004158b0,MenuInputBindingsDestroySelectorsBridge
+input_bindings,0c,00415a60,MenuInputBindingsResetBridge
+input_bindings,10,00415ae0,MenuInputBindingsHandleInputBridge
+input_bindings,14,00416090,MenuInputBindingsSetClipBridge
+text_entry,00,00425610,MenuTextEntryUpdateBoundsBridge
+text_entry,04,00416b80,SetMenuWidgetFont
+text_entry,08,00479030,MenuWidgetDerivedNoOp
+text_entry,0c,00424b10,MenuTextEntryResetBridge
+text_entry,10,00424d70,MenuTextEntryInputBridge
+text_entry,14,00425560,MenuTextEntryClipBridge

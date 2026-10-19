@@ -12,6 +12,11 @@ public:
 	LegoFloat m_y; // 0x04
 	LegoFloat m_z; // 0x08
 
+	Vector3* SetValues(LegoFloat p_x, LegoFloat p_y, LegoFloat p_z);
+	LegoFloat Dot(const Vector3* p_other) const;
+	Vector3* Scale(LegoFloat p_scale);
+	Vector3* Add(const Vector3* p_other);
+	Vector3* Subtract(const Vector3* p_other);
 	LegoFloat Normalize();
 	void Cross(const Vector3* p_first, const Vector3* p_second);
 	void FUN_004a4ce0(const Vector3* p_first, const Vector3* p_second, LegoFloat p_factor);
