@@ -316,3 +316,10 @@ LEGO Racers 2/src/menuwidgetarrows.cpp
 LEGO Racers 2/src/characterpreviewidle.cpp
 LEGO Racers 2/src/menucharacterpreviewinitialize.cpp
 LEGO Racers 2/src/foyersceneevents.cpp
+LEGO Racers 2/src/movieplayer.cpp
+LEGO Racers 2/src/moviedirectshow.cpp
+LEGO Racers 2/src/moviefactoryglue.cpp
+LEGO Racers 2/src/moviefilter.cpp
+LEGO Racers 2/src/movietextureformat.cpp
+LEGO Racers 2/src/gamecontrollermovies.cpp
+LEGO Racers 2/src/heapaddresswalk.cpp

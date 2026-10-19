@@ -1,8 +1,10 @@
 address,symbol,bytes,name
 00403930,?OnApplicationDiagnostic@@YGXPBD@Z,c20400,OnApplicationDiagnostic
+004047a0,?IsCollisionSweepPositionClear@@YGIPAVCollisionProxy@@@Z,33c0c20400,IsCollisionSweepPositionClear
 0040b340,?InitializeGameControllerWord@@YIXPAIPAX@Z,c70100000000c3,InitializeGameControllerWord
 00416b80,?SetMenuWidgetFont@@YIXPAUMenuWidgetBase@@PAXPAVBitmapFont@@@Z,8b442404894118c20400,SetMenuWidgetFont
 00419720,?SetFont@MenuWidgetBase@@QAEXPAVBitmapFont@@@Z,8b442404894118c20400,MenuWidgetBase::SetFont
+0049a3d0,?MoviePlayerStaticDestructor@@YAXXZ,c3,MoviePlayerStaticDestructor
 004a3f20,?DestroyMemoryHeapAtExit@@YAXXZ,c3,DestroyMemoryHeapAtExit
 004ab5e0,?GetPositionOffset@RendererVertexBuffer@@QAEIXZ,8b4108c3,RendererVertexBuffer::GetPositionOffset
 004ab600,?GetTextureOffset@RendererVertexBuffer@@QAEIXZ,8b4114c3,RendererVertexBuffer::GetTextureOffset

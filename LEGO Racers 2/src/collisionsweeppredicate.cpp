@@ -1,6 +1,6 @@
 #include "collisionqueries.h"
 
-// STUB: LEGORACERS2 0x004047a0
+// FUNCTION: LEGORACERS2 0x004047a0 FOLDED
 LegoBool32 __stdcall IsCollisionSweepPositionClear(CollisionProxy*)
 {
 	// The supplied executable contains this literal return-zero/RET 4 leaf.

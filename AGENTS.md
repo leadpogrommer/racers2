@@ -22,7 +22,9 @@ From this repository, with reccmp installed in the active Python environment:
 
 ```sh
 python tools/setup.py --fetch-toolchain
-python tools/directx8.py --mode wine --output-dir build-dx8-config
+python tools/directx8.py --mode wine --output-dir build-dx8-config \
+  --d3dx8-library /path/to/DirectX8/Lib/d3dx8.lib \
+  --directshow-sdk-root /path/to/DirectX8
 python tools/build.py --directx8-config build-dx8-config/directx8-config.json
 python tools/compare.py
 python tools/compare.py --address 0x0045de00
@@ -36,7 +38,10 @@ SHFOLDER_LIB or the SDK LIB path. CMake also accepts LR2_SHFOLDER_LIBRARY.
 For a local genuine SDK, generate the configuration with
 `python tools/directx8.py --mode sdk --sdk-root <path>`. CMake reads the same
 JSON path from `LR2_DIRECTX8_CONFIG`. Use `util/directx8.h` for the real
-SDK/Wine interfaces; never define replacement COM tables.
+SDK/Wine interfaces; never define replacement COM tables. Startup movie rendering
+uses the VC6-compatible SDK DirectShow BaseClasses headers and genuine
+STRMBASE.LIB; see `docs/work-directshow.md`. Both builders must put project
+headers before the external SDK paths so `util/d3dx8.h` is selected.
 
 The build manifest is `sources.txt`; add new compilation units there. Keep the
 flags in CMake and `tools/build.py` aligned. `bootstrap.cpp` is temporary entry

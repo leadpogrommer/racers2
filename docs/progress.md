@@ -6,15 +6,15 @@ Reviewed semantically identical near matches (initially at least 95% raw) are
 implemented functions, counted separately from exact matches.
 
 Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-19.
-The match guard verified **442 exact functions and nineteen reviewed near
-matches**. Another 1,000 reconstructions remain `STUB`; both builders agree on
-all 1,461 measured raw scores and annotation statuses. Data comparison verifies
-254 annotated globals with zero issues. Nine genuine folded aliases also have
+The match guard verified **445 exact functions and nineteen reviewed near
+matches**. Another 1,011 reconstructions remain `STUB`; both builders agree on
+all 1,475 measured raw scores and annotation statuses. Data comparison verifies
+256 annotated globals with zero issues. Eleven genuine folded aliases also have
 complete-byte and exact linker-map verification. Unlinked inventory entries
 may appear in the CLI denominator without another measured row.
 
 This is the reconstructed subset, not whole-game coverage. The automatic
-Ghidra inventory has **4,501 discovered function starts**, including **22 thunks**
+Ghidra inventory has **4,511 discovered function starts**, including **22 thunks**
 and linked runtime/library code. It is incomplete and is not a verified count
 of game-authored functions; see [inventory notes](research.md#automatic-function-inventory).
 Identified libraries are excluded from these matches with `--nolib`.
@@ -27,7 +27,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x00403380` | `LoadDefaultPlayerCar` | 63.83% | Work in progress |
 | `0x00403910` | `IsApplicationDevelopmentMode` | 100.00% | Verified exact |
 | `0x00403930` | `OnApplicationDiagnostic` | 100.00% | Verified exact |
-| `0x004047a0` | `GameObjectBaseZeroOneArgument` | 100.00% | Work in progress |
+| `0x004047a0` | `IsCollisionSweepPositionClear` | 100.00% | Verified exact |
 | `0x00406f90` | `InitializeGameLocalizationPath` | 22.22% | Work in progress |
 | `0x004071a0` | `GameControllerScore::Initialize` | 100.00% | Verified exact |
 | `0x004071f0` | `GameControllerPairGroups::Initialize` | 22.64% | Work in progress |
@@ -38,6 +38,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x0040a230` | `ApplyControllerFonts` | 100.00% | Verified exact |
 | `0x0040a290` | `StartControllerMusic` | 57.14% | Work in progress |
 | `0x0040a3d0` | `InitializeLocalizedPlayerNames` | 42.42% | Work in progress |
+| `0x0040a440` | `GameController::PlayStartupMovies` | 64.43% | Work in progress |
 | `0x0040a540` | `AccessGameLanguagePreference` | 53.12% | Work in progress |
 | `0x0040a600` | `GetRegistryMediaPath` | 55.93% | Work in progress |
 | `0x0040a6d0` | `HasCdLanguageExport` | 65.31% | Work in progress |
@@ -309,6 +310,17 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x00494f40` | `ApplicationCharacterQueue::QueueCharacter` | 100.00% | Verified exact |
 | `0x00495100` | `NetworkLobbyStateView::GetLobbyText` | 100.00% | Verified exact |
 | `0x00495130` | `NetworkLobbyStateView::GetLobbyStatus` | 100.00% | Verified exact |
+| `0x00499500` | `PlayMpegMovie` | 34.81% | Work in progress |
+| `0x00499920` | `MovieTextureRenderer::MovieTextureRenderer` | 23.85% | Work in progress |
+| `0x00499a00` | `MovieTextureRenderer::~MovieTextureRenderer` | 31.11% | Work in progress |
+| `0x00499a70` | `MovieTextureRenderer::CheckMediaType` | 30.00% | Work in progress |
+| `0x00499ac0` | `MovieTextureRenderer::SetMediaType` | 14.52% | Work in progress |
+| `0x00499d30` | `MovieTextureRenderer::DoRenderSample` | 7.32% | Work in progress |
+| `0x0049a1e0` | `IsMoviePlaybackIncomplete` | 61.11% | Work in progress |
+| `0x0049a210` | `ClearMovieTextures` | 24.49% | Work in progress |
+| `0x0049a390` | `GetMoviePlayer` | 92.31% | Work in progress |
+| `0x0049a3d0` | `MoviePlayerStaticDestructor` | 100.00% | Verified exact |
+| `0x0049a3e0` | `MoviePlayerPlay` | 41.38% | Work in progress |
 | `0x0049a610` | `Application::Application` | 90.91% | Work in progress |
 | `0x0049a6a0` | `Application::GetUnknownFlag` | 100.00% | Verified exact |
 | `0x0049a760` | `GetApplication` | 57.14% | Work in progress |
@@ -375,7 +387,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004a3a20` | `IsGameObjectFlagSelected` | 64.52% | Work in progress |
 | `0x004a3aa0` | `AdvanceGameFrame` | 54.72% | Work in progress |
 | `0x004a3ca0` | `ShutdownGameManager` | 100.00% | Verified exact |
-| `0x004a3ed0` | `GetMemoryHeap` | 60.00% | Work in progress |
+| `0x004a3ed0` | `GetMemoryHeap` | 56.00% | Work in progress |
 | `0x004a3f20` | `DestroyMemoryHeapAtExit` | 100.00% | Verified exact |
 | `0x004a3f30` | `MemoryHeap::EnterOperation` | 85.71% | Work in progress |
 | `0x004a3f60` | `MemoryHeap::LeaveOperation` | 100.00% | Verified exact |
@@ -392,6 +404,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004a44c0` | `MemoryHeap::FindForward` | 73.68% | Work in progress |
 | `0x004a44f0` | `MemoryHeap::FindBackward` | 100.00% | Verified exact |
 | `0x004a4510` | `MemoryHeap::InitializeBlock` | 100.00% | Verified exact |
+| `0x004a4530` | `WalkHeapAddressRange` | 11.11% | Work in progress |
 | `0x004a4570` | `WinFile::OpenPath` | 80.31% | Work in progress |
 | `0x004a4620` | `WinFile::CreateAlways` | 100.00% | Verified exact |
 | `0x004a46a0` | `WinFile::OpenOrCreate` | 100.00% | Verified exact |
@@ -450,7 +463,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004a6f00` | `PhysicalLifecycleState::GetParentVelocityAtOffset` | 84.62% | Work in progress |
 | `0x004a74b0` | `IsLookupPointWithinRadius` | 45.45% | Work in progress |
 | `0x004a7510` | `ApplyLookupResourceState` | 18.70% | Work in progress |
-| `0x004a7cc0` | `?ReleaseRendererDrawPacket@@YIXPAURendererDrawPacket@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\applicationdispatch.h1931228264@@PAX@Z` | 66.67% | Work in progress |
+| `0x004a7cc0` | `?ReleaseRendererDrawPacket@@YIXPAURendererDrawPacket@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\applicationdispatch.h548320691@@PAX@Z` | 66.67% | Work in progress |
 | `0x004a95b0` | `ModelResource::RemapTextureIndices` | 34.29% | Work in progress |
 | `0x004a9d20` | `GetLookupResourceOrigin` | 91.30% | Work in progress |
 | `0x004a9d90` | `GameObjectChildGeometry::SetPosition` | 16.00% | Work in progress |
@@ -982,7 +995,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004da500` | `RendererTextureRecord::UnlockPrimarySurface` | 80.85% | Work in progress |
 | `0x004da540` | `RendererTextureRecord::UploadBitmapImage` | 34.86% | Work in progress |
 | `0x004da5e0` | `DisplayRenderer::BuildMipSidecar` | 34.70% | Work in progress |
-| `0x004da9f0` | `?ReadBitmapInfoSettings@@YAIPBDPAUBitmapInfoSettings@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\bitmapimage.h1767227018@@@Z` | 2.29% | Work in progress |
+| `0x004da9f0` | `?ReadBitmapInfoSettings@@YAIPBDPAUBitmapInfoSettings@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\bitmapimage.h2084915424@@@Z` | 2.29% | Work in progress |
 | `0x004dabe0` | `ParseBitmapInfoValue` | 40.31% | Work in progress |
 | `0x004dac90` | `GenerateBitmapMipLevel` | 17.20% | Work in progress |
 | `0x004db5c0` | `FindClosestPaletteColor` | 30.09% | Work in progress |
@@ -994,6 +1007,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004dbbe0` | `DisplayRenderer::RefreshTextureFormats` | 13.39% | Work in progress |
 | `0x004dbfb0` | `RendererTextureRecord::ReleaseTexture` | 66.67% | Work in progress |
 | `0x004dc000` | `DisplayRenderer::RestoreDeviceResources` | 37.88% | Work in progress |
+| `0x004dc210` | `DisplayRenderer::IsTextureFormatSupported` | 100.00% | Verified exact |
 | `0x004dc250` | `DisplayRenderer::AdvanceDeviceFallback` | 41.45% | Work in progress |
 | `0x004dc4c0` | `DisplayRenderer::ShouldUseHighResolutionTextures` | 98.11% | Reviewed near match |
 | `0x004dc510` | `DisplayRenderer::SetTextureQuality` | 97.14% | Reviewed near match |
@@ -1291,7 +1305,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004f3100` | `ControllerRecordingService::HandleDirectPlayMessage` | 45.26% | Work in progress |
 | `0x004f3550` | `ControllerRecordingService::ProcessSpecialInputCommand` | 53.99% | Work in progress |
 | `0x004f3620` | `ControllerRecordingService::RecordPeerState` | 94.34% | Work in progress |
-| `0x004f3670` | `ControllerRecordingService::ProcessValue` | 50.35% | Work in progress |
+| `0x004f3670` | `ControllerRecordingService::ProcessValue` | 49.65% | Work in progress |
 | `0x004f37d0` | `ControllerRecordingService::GetProviderKeyValue` | 100.00% | Verified exact |
 | `0x004f37f0` | `ControllerRecordingService::RemoveProviderKey` | 100.00% | Verified exact |
 | `0x004f3820` | `ControllerRecordingObjectMap::Initialize` | 19.63% | Work in progress |
@@ -1342,7 +1356,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004f4e40` | `CollisionServicePrepareQuery` | 84.21% | Work in progress |
 | `0x004f4e70` | `CollisionServiceQuerySphere` | 85.71% | Work in progress |
 | `0x004f4e90` | `CollisionServiceQuerySegment` | 85.71% | Work in progress |
-| `0x004f4eb0` | `CollisionServiceSweep` | 22.22% | Work in progress |
+| `0x004f4eb0` | `CollisionServiceSweep` | 20.00% | Work in progress |
 | `0x004f50e0` | `CollisionModelTransform::ResetIdentity` | 31.58% | Work in progress |
 | `0x004f5140` | `SpatialLinkRegistry::SpatialLinkRegistry` | 90.00% | Work in progress |
 | `0x004f5160` | `SpatialLinkRegistry::Insert` | 80.00% | Work in progress |

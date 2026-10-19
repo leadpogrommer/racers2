@@ -142,7 +142,9 @@ function(lr2_configure_directx8 target)
     list(APPEND _libraries "${_resolved_library}")
   endforeach()
 
-  target_include_directories("${target}" BEFORE PRIVATE ${_include_dirs})
+  # Match build.py: project /I paths precede the configured SDK directories.
+  # Otherwise the SDK d3dx8.h shadows util/d3dx8.h and bypasses its VC6 bridge.
+  target_include_directories("${target}" PRIVATE ${_include_dirs})
   target_compile_definitions("${target}" PRIVATE ${_defines})
   target_link_directories("${target}" PRIVATE ${_library_dirs})
   target_link_libraries("${target}" PRIVATE ${_libraries})

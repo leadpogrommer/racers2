@@ -188,3 +188,12 @@ setup and seven foyer event callbacks now link in the 318-unit build. Eight new
 helpers match exactly. Resource parsing, remaining controls, startup movies and
 controller startup still need integration before replacing bootstrap. No runtime
 probe was executed. See [evidence and corrections](work-foyer-events.md).
+
+## Startup movie graph and renderer integration
+
+The 325-unit build now links the MPEG graph, SDK-based texture renderer,
+startup movie sequence and display/heap preparation. Both builders agree on
+1,475 measured functions; inherited DirectShow library code is reused. Full
+frontend widget construction, Foyer loading and GameController startup still
+need integration before replacing bootstrap. No runtime probe was run. See
+[movie integration and remaining review](work-startup-movies.md).

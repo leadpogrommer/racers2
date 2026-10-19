@@ -363,3 +363,13 @@ bodies. All 461 claims and nine complete folded aliases pass. Both data reports
 verify 254 globals with zero issues; all eleven dispatch inventories and the
 existing 21 tooling/library tests pass. No game or incremental runtime probe
 was executed. See [batch evidence](work-foyer-events.md).
+
+## Startup movie integration
+
+Both 325-unit builds pass and agree on all 1,475 measured scores/statuses:
+445 exact FUNCTION claims, nineteen reviewed near matches and 1,011 STUB
+bodies. All 464 claims and eleven complete folded aliases pass. Both data
+reports verify 256 globals with zero issues. All twelve static dispatch
+checkers pass, including the three movie-service slots and three game-owned
+DirectShow overrides. SDK inherited callbacks remain outside that new check.
+No runtime or game behavioral test was run. See [movie evidence](work-startup-movies.md).

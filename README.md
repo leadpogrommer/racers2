@@ -14,8 +14,8 @@ Verified reconstructions include character predicates, line classification,
 fixed string buffers, file operations, window geometry, command-line parsing,
 startup helpers, bitmap scanning, terrain lookup, spline helpers, and
 foundational renderer/input operations.
-The current checkpoint has **442 exact function matches**, **nineteen reviewed
-near matches**, and 1,000 unfinished implementations across 1,461 measured
+The current checkpoint has **445 exact function matches**, **nineteen reviewed
+near matches**, and 1,011 unfinished implementations across 1,475 measured
 functions. See
 [current progress](docs/progress.md) for the measured function list and
 remaining work. The application singleton and its two complete 38-slot
@@ -34,6 +34,7 @@ Controller defaults, player car setup, bodypart lists, shared menu sprites,
 key-icon/string replacement, ScreenPrinter and HUD/pause/builder textures now
 have linked source. The recording service, pause detector, nested textbox, track/network controls
 and character-preview callbacks now link. Character preview initialization and foyer animation/event callbacks now link.
+Startup movie playback now links against genuine DirectShow base classes.
 Foyer resource loading and remaining frontend closures are still being integrated; see [frontend notes](docs/work-controller-frontend.md).
 Earlier runtime checks exercised config,
 archive metadata, and selected asset reads. The executable still has a
@@ -41,7 +42,7 @@ temporary entry point and does not reach a window, rendered menu, or gameplay.
 No game or probe was run for the current renderer/input implementation batch;
 future runtime checks are reserved for significant milestones expected to
 reach a rendered menu or gameplay. Whole-game coverage is not established.
-Ghidra currently discovers 4,501 function starts,
+Ghidra currently discovers 4,511 function starts,
 including 22 thunks and linked libraries; this is a provisional inventory,
 not a count of game-authored functions. See the
 [inventory notes](docs/research.md#automatic-function-inventory).
@@ -99,7 +100,8 @@ For Linux with Wine, generate it once and pass it to the builder:
 
 ```sh
 python tools/directx8.py --mode wine --output-dir build-dx8-config \
-  --d3dx8-library /path/to/DirectX8/Lib/d3dx8.lib
+  --d3dx8-library /path/to/DirectX8/Lib/d3dx8.lib \
+  --directshow-sdk-root /path/to/DirectX8
 python tools/build.py --directx8-config build-dx8-config/directx8-config.json
 python tools/compare.py
 python tools/compare.py --address 0x0045de00
@@ -110,7 +112,7 @@ Texture conversion needs the genuine retail static D3DX8 library; see the
 `--mode sdk --sdk-root <path>` instead (it finds D3DX8 in the SDK library
 directory). CMake
 reads the same JSON path from `LR2_DIRECTX8_CONFIG`; see
-[DirectX setup](docs/work-directx8.md).
+[DirectX setup](docs/work-directx8.md) and [DirectShow setup](docs/work-directshow.md).
 
 The builder uses MSVC natively on Windows and Wine on Linux, emits an x86 PE
 and PDB, and writes `build/reccmp-build.yml` using paths for the host running
