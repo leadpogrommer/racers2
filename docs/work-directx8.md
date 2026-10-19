@@ -146,3 +146,7 @@ surface conversion. `util/d3dx8.h` declares just the two verified APIs with
 actual DirectX interface types. See [exact library evidence](work-d3dx8.md)
 for the pinned artifact and relocation-masked retail matches. SDK artifacts
 remain external, ignored build inputs.
+
+Startup movie support also needs the VC6-compatible DirectShow BaseClasses
+headers and genuine STRMBASE static library. Add `--directshow-sdk-root` when
+generating the same configuration; see [setup and artifact identities](work-directshow.md).

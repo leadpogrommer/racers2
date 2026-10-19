@@ -70,7 +70,23 @@ def _sdk_paths(sdk_root):
     return include_dir.resolve(), library_dir
 
 
-def configure(mode, output_dir, toolchain, sdk_root=None, wine_include=None, wine_lib=None, d3dx8_library=None):
+def _directshow_paths(sdk_root):
+    sdk_root = Path(sdk_root).expanduser().resolve()
+    include_dir = _find_case_insensitive(sdk_root, "include")
+    if include_dir is None:
+        raise ValueError(f"DirectShow SDK include directory not found under {sdk_root}")
+    _require_files(include_dir, ("dshow.h", "strmif.h"), "DirectShow SDK headers")
+    baseclasses = sdk_root
+    for component in ("samples", "multimedia", "directshow", "baseclasses"):
+        baseclasses = _find_case_insensitive(baseclasses, component)
+        if baseclasses is None:
+            raise ValueError(f"DirectShow BaseClasses sample directory not found under {sdk_root}")
+    _require_files(baseclasses, ("streams.h",), "DirectShow BaseClasses headers")
+    return baseclasses.resolve(), include_dir.resolve()
+
+
+def configure(mode, output_dir, toolchain, sdk_root=None, wine_include=None, wine_lib=None, d3dx8_library=None,
+              directshow_sdk_root=None):
     toolchain = Path(toolchain).expanduser().resolve()
     vc_include = toolchain / "VC98" / "Include"
     vc_lib = toolchain / "VC98" / "Lib"
@@ -123,6 +139,23 @@ def configure(mode, output_dir, toolchain, sdk_root=None, wine_include=None, win
             config["library_dirs"].insert(0, directory)
         config["libraries"].append(d3dx8_library.name)
 
+    # Movie rendering derives from the genuine SDK CBaseVideoRenderer. Keep
+    # Wine's selected DX8 declarations first, then the matching BaseClasses
+    # sample/SDK headers, and finally the VC6 platform headers.
+    if directshow_sdk_root is not None:
+        baseclasses, directshow_include = _directshow_paths(directshow_sdk_root)
+        strmbase = _find_case_insensitive(vc_lib, "strmbase.lib")
+        if strmbase is None:
+            raise ValueError(f"VC6 DirectShow static base-class library not found under {vc_lib}")
+        insert_at = 1 if mode == "wine" else 0
+        for directory in (str(baseclasses), str(directshow_include)):
+            if directory in config["include_dirs"]:
+                config["include_dirs"].remove(directory)
+            config["include_dirs"].insert(insert_at, directory)
+            insert_at += 1
+        config["libraries"].append(strmbase.name)
+        config["directshow_sdk_root"] = str(Path(directshow_sdk_root).expanduser().resolve())
+
     config_path = output_dir / "directx8-config.json"
     output_dir.mkdir(parents=True, exist_ok=True)
     config_path.write_text(json.dumps(config, indent=2) + "\n", encoding="utf-8")
@@ -138,11 +171,13 @@ def main():
     parser.add_argument("--wine-include", type=Path, help="Wine Windows header directory")
     parser.add_argument("--wine-lib", type=Path, help="Wine PE/i386 import archive directory")
     parser.add_argument("--d3dx8-library", type=Path, help="Genuine DirectX 8 SDK retail static d3dx8.lib")
+    parser.add_argument("--directshow-sdk-root", type=Path,
+                        help="VC6-compatible DirectX SDK with the DirectShow BaseClasses sample")
     args = parser.parse_args()
     try:
         path, config = configure(
             args.mode, args.output_dir, args.toolchain, args.sdk_root, args.wine_include, args.wine_lib,
-            args.d3dx8_library
+            args.d3dx8_library, args.directshow_sdk_root
         )
     except (OSError, ValueError) as error:
         parser.exit(1, f"DirectX configuration failed: {error}\n")
