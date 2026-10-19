@@ -9,6 +9,7 @@ from check_renderer_resource_dispatch import verify
 from toolchain import ROOT
 
 TABLES = {
+    "car": (0x00530640, 6, "g_menuCarPreviewSelectorDispatch"),
     "input_bindings": (0x0052fae4, 6, "g_menuInputBindingWidgetDispatch"),
     "text_entry": (0x00530400, 6, "g_menuTextEntryDispatch"),
     "character": (0x00530670, 6, "g_menuCharacterPreviewSelectorDispatch"),
@@ -35,7 +36,7 @@ def main():
                ROOT / "reccmp" / "menu-dispatch.csv", TABLES)
     except (KeyError, OSError, ValueError, struct.error) as error:
         parser.exit(1, f"Menu dispatch verification failed: {error}\n")
-    print("Verified thirteen menu widget tables: 78/78 retail targets and rebuilt callback pointers.")
+    print("Verified fourteen menu widget tables: 84/84 retail targets and rebuilt callback pointers.")
     print("Callback behavior and instruction accuracy are separate checks.")
 
 

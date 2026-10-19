@@ -354,3 +354,10 @@ LEGO Racers 2/src/secondarymanagerbindings.cpp
 LEGO Racers 2/src/controllerbackgroundtextures.cpp
 LEGO Racers 2/src/menubackground.cpp
 LEGO Racers 2/src/killspheresupervisor.cpp
+LEGO Racers 2/src/cardisplay.cpp
+LEGO Racers 2/src/gameobjectmodelbinding.cpp
+LEGO Racers 2/src/menucarpreviewselector.cpp
+LEGO Racers 2/src/menucarpreviewtuning.cpp
+LEGO Racers 2/src/menumanagerfrontendwidgets.cpp
+LEGO Racers 2/src/clipplanes.cpp
+LEGO Racers 2/src/menumanagerresources.cpp

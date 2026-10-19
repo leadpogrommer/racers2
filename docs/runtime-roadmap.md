@@ -259,3 +259,13 @@ construction, initialization, removal and its complete 21-slot table now link.
 The backdrop manager still needs the full Secondary Manager lifecycle to call
 it, and GameController startup remains staged. Bootstrap remains active.
 No runtime probe was run; see [recovery and validation](work-menu-background.md).
+
+
+## Car preview and frontend resource ownership
+
+The 363-unit build links the car selector, preview model/name objects, shared
+model binding lifecycle, clip configuration, all frontend widget creation and
+menu resource ownership. Callback inventories verify 314 scene/model slots and
+84 menu slots in both builds. Named asset-class factory registration and the
+full foyer/controller path remain staged. Bootstrap remains active; no runtime
+probe was run. See [recovery evidence](work-car-preview.md).

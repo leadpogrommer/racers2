@@ -14,8 +14,8 @@ Verified reconstructions include character predicates, line classification,
 fixed string buffers, file operations, window geometry, command-line parsing,
 startup helpers, bitmap scanning, terrain lookup, spline helpers, and
 foundational renderer/input operations.
-The current checkpoint has **487 exact function matches**, **nineteen reviewed
-near matches**, and 1,110 unfinished implementations across 1,616 measured
+The current checkpoint has **504 exact function matches**, **twenty-one reviewed
+near matches**, and 1,176 unfinished implementations across 1,701 measured
 functions. See
 [current progress](docs/progress.md) for the measured function list and
 remaining work. The application singleton and its two complete 38-slot
@@ -38,6 +38,8 @@ Startup movie playback now links against genuine DirectShow base classes.
 Input-binding and text-entry controls now link, along with model cache, reference,
 bounds and skin-reading dependencies. Full model geometry, collision relocation
 and shared shadow loading now link; see [model recovery](docs/work-model-loading.md).
+Car preview, shared model bindings and frontend widget/resource creation now link;
+see [car-preview recovery](docs/work-car-preview.md).
 Menu backdrop transitions and the KillSphere startup lifecycle now link; see
 [backdrop and supervisor recovery](docs/work-menu-background.md).
 Generated shadow geometry and menu display/input configuration now link; see
@@ -53,7 +55,7 @@ temporary entry point and does not reach a window, rendered menu, or gameplay.
 No game or probe was run for the current renderer/input implementation batch;
 future runtime checks are reserved for significant milestones expected to
 reach a rendered menu or gameplay. Whole-game coverage is not established.
-Ghidra currently discovers 4,564 function starts,
+Ghidra currently discovers 4,568 function starts,
 including 22 thunks and linked libraries; this is a provisional inventory,
 not a count of game-authored functions. See the
 [inventory notes](docs/research.md#automatic-function-inventory).

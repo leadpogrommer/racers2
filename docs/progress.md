@@ -6,15 +6,15 @@ Reviewed semantically identical near matches (initially at least 95% raw) are
 implemented functions, counted separately from exact matches.
 
 Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-19.
-The match guard verified **487 exact functions and nineteen reviewed near
-matches**. Another 1,110 reconstructions remain `STUB`; both builders agree on
-all 1,616 measured raw scores and annotation statuses. Data comparison verifies
-267 annotated globals with zero issues. Twelve genuine folded aliases also have
+The match guard verified **504 exact functions and twenty-one reviewed near
+matches**. Another 1,176 reconstructions remain `STUB`; both builders agree on
+all 1,701 measured raw scores and annotation statuses. Data comparison verifies
+272 annotated globals with zero issues. Twelve genuine folded aliases also have
 complete-byte and exact linker-map verification. Unlinked inventory entries
 may appear in the CLI denominator without another measured row.
 
 This is the reconstructed subset, not whole-game coverage. The automatic
-Ghidra inventory has **4,564 discovered function starts**, including **22 thunks**
+Ghidra inventory has **4,568 discovered function starts**, including **22 thunks**
 and linked runtime/library code. It is incomplete and is not a verified count
 of game-authored functions; see [inventory notes](research.md#automatic-function-inventory).
 Identified libraries are excluded from these matches with `--nolib`.
@@ -23,7 +23,8 @@ See [input controls](work-menu-input-and-model-resources.md) and
 [loading-screen recovery](work-loading-progress.md) and
 [model draw queues](work-model-drawing.md) and
 [shadow/input configuration](work-shadow-and-configuration.md) and
-[menu background/startup supervisor](work-menu-background.md).
+[menu background/startup supervisor](work-menu-background.md) and
+[car preview and frontend resources](work-car-preview.md).
 The executable still uses the temporary bootstrap and has not launched a menu.
 See [frontend integration](work-controller-frontend.md), the
 [runtime roadmap](runtime-roadmap.md), and [library identification](library-identification.md).
@@ -31,10 +32,31 @@ See [frontend integration](work-controller-frontend.md), the
 | Original VA | Function | Instruction accuracy | Status |
 | --- | --- | ---: | --- |
 | `0x00403380` | `LoadDefaultPlayerCar` | 63.83% | Work in progress |
+| `0x004037b0` | `AssignCarDisplayModelResource` | 100.00% | Verified exact |
+| `0x00403890` | `ConstructCarDisplayNameObject` | 55.17% | Work in progress |
 | `0x00403910` | `IsApplicationDevelopmentMode` | 100.00% | Verified exact |
 | `0x00403930` | `OnApplicationDiagnostic` | 100.00% | Verified exact |
+| `0x00403940` | `CarDisplayLifecycleGetPosition` | 100.00% | Verified exact |
+| `0x00403950` | `CarDisplayLifecycleGetAuxiliaryVector` | 100.00% | Verified exact |
+| `0x00403960` | `CarDisplayLifecycleGetRotation` | 100.00% | Verified exact |
+| `0x00403980` | `CarDisplayNameDestroy` | 80.00% | Work in progress |
+| `0x004039c0` | `CarDisplayNameInitialize` | 50.00% | Work in progress |
+| `0x00403a30` | `CarDisplayNameRemove` | 92.31% | Work in progress |
+| `0x00403a50` | `CarDisplayNameUpdate` | 58.82% | Work in progress |
+| `0x00403bf0` | `CarDisplayNameDraw` | 19.91% | Work in progress |
+| `0x00403d10` | `PrepareCarDisplayObject` | 48.65% | Work in progress |
+| `0x00403d50` | `MarkCarDisplayObjectForRemoval` | 0.00% | Work in progress |
+| `0x00403db0` | `UpdateCarDisplayRemovalState` | 40.91% | Work in progress |
+| `0x00403fa0` | `CarDisplayNameTargetDestroy` | 0.00% | Work in progress |
+| `0x00403fd0` | `CreateCarDisplayNameObject` | 21.25% | Work in progress |
 | `0x00404100` | `Vector3::SetValues` | 100.00% | Verified exact |
+| `0x00404120` | `PreviewVectorAndWord::Copy` | 40.00% | Work in progress |
+| `0x00404150` | `PreviewTemplateFlags::Pack` | 9.30% | Work in progress |
+| `0x004041e0` | `CarDisplayTemplateBase::Initialize` | 39.02% | Work in progress |
+| `0x00404210` | `CarDisplayTemplateTransform::Initialize` | 20.69% | Work in progress |
+| `0x00404260` | `CarDisplayPartTemplate::Assemble` | 14.41% | Work in progress |
 | `0x004047a0` | `IsCollisionSweepPositionClear` | 100.00% | Verified exact |
+| `0x00404fd0` | `FindCarDisplayModelResource` | 100.00% | Verified exact |
 | `0x00406f90` | `InitializeGameLocalizationPath` | 22.22% | Work in progress |
 | `0x004071a0` | `GameControllerScore::Initialize` | 100.00% | Verified exact |
 | `0x004071f0` | `GameControllerPairGroups::Initialize` | 22.64% | Work in progress |
@@ -181,9 +203,15 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x0041c420` | `MenuManager::~MenuManager` | 50.00% | Work in progress |
 | `0x0041c430` | `MenuManager::Initialize` | 22.58% | Work in progress |
 | `0x0041c4d0` | `MenuManager::Remove` | 100.00% | Work in progress |
+| `0x0041c500` | `LoadMenuManagerResources` | 12.68% | Work in progress |
+| `0x0041c680` | `ReleaseMenuManagerResources` | 69.57% | Work in progress |
 | `0x0041c6d0` | `MenuManager::ApplyFonts` | 71.70% | Work in progress |
+| `0x0041c710` | `CreateMenuManagerWidgets` | 81.82% | Work in progress |
+| `0x0041c730` | `DestroyMenuManagerWidgets` | 81.82% | Work in progress |
 | `0x0041c750` | `CreateCommonMenuWidgets` | 39.29% | Work in progress |
 | `0x0041c810` | `DestroyCommonMenuWidgets` | 80.00% | Work in progress |
+| `0x0041c890` | `CreateFrontendMenuWidgets` | 31.50% | Work in progress |
+| `0x0041cab0` | `DestroyFrontendMenuWidgets` | 90.57% | Work in progress |
 | `0x00423090` | `MenuManager::GetPanelRectangle` | 100.00% | Verified exact |
 | `0x004230d0` | `MenuManager::GetSecondaryPanelRectangle` | 100.00% | Verified exact |
 | `0x00423100` | `MeasureLocalizedTrackLabelWidth` | 52.17% | Work in progress |
@@ -259,6 +287,34 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x0042b2b0` | `SecondaryManagerMediaState::GetSlot` | 100.00% | Verified exact |
 | `0x0042b2c0` | `SecondaryManagerMediaState::HasActiveSlot` | 77.42% | Work in progress |
 | `0x0042b300` | `PauseConditionSlotIsSet` | 81.25% | Work in progress |
+| `0x0042b3b0` | `InitializeMenuCarPreviewCameraDistance` | 33.33% | Work in progress |
+| `0x0042b3d0` | `InitializeMenuCarPreviewSize` | 100.00% | Verified exact |
+| `0x0042b400` | `InitializeMenuCarPreviewVehicleParameters` | 100.00% | Verified exact |
+| `0x0042b430` | `InitializeMenuCarPreviewCameraPosition` | 100.00% | Verified exact |
+| `0x0042b460` | `InitializeMenuCarPreviewTargetOffset` | 100.00% | Verified exact |
+| `0x0042b490` | `InitializeMenuCarPreviewAmbientColor` | 100.00% | Verified exact |
+| `0x0042b4c0` | `InitializeMenuCarPreviewFirstAmbient` | 36.36% | Work in progress |
+| `0x0042b500` | `InitializeMenuCarPreviewFirstDiffuse` | 18.18% | Work in progress |
+| `0x0042b540` | `InitializeMenuCarPreviewFirstSpecular` | 36.36% | Work in progress |
+| `0x0042b580` | `InitializeMenuCarPreviewFirstDirection` | 100.00% | Verified exact |
+| `0x0042b5b0` | `InitializeMenuCarPreviewSecondAmbient` | 36.36% | Work in progress |
+| `0x0042b5f0` | `InitializeMenuCarPreviewSecondDiffuse` | 18.18% | Work in progress |
+| `0x0042b630` | `InitializeMenuCarPreviewSecondSpecular` | 36.36% | Work in progress |
+| `0x0042b670` | `InitializeMenuCarPreviewSecondDirection` | 100.00% | Verified exact |
+| `0x0042b690` | `MenuCarPreviewSelector::MenuCarPreviewSelector` | 21.43% | Work in progress |
+| `0x0042b710` | `MenuCarPreviewSelector::SetFont` | 61.22% | Work in progress |
+| `0x0042b770` | `MenuCarPreviewSelector::ReleaseResources` | 66.67% | Work in progress |
+| `0x0042b7c0` | `MenuCarPreviewSelector::Initialize` | 61.71% | Work in progress |
+| `0x0042b900` | `MenuCarPreviewSelector::AddChoice` | 100.00% | Verified exact |
+| `0x0042b920` | `MenuCarPreviewSelector::SelectChoice` | 41.18% | Work in progress |
+| `0x0042b990` | `MenuCarPreviewSelector::HandleInput` | 50.38% | Work in progress |
+| `0x0042baa0` | `MenuCarPreviewSelector::Reset` | 80.00% | Work in progress |
+| `0x0042bb00` | `MenuCarPreviewSelector::SetClipRectangle` | 54.12% | Work in progress |
+| `0x0042bb90` | `MenuCarPreviewSelector::UpdateBounds` | 66.67% | Work in progress |
+| `0x0042bc90` | `MenuCarPreviewSelector::GetChoice` | 100.00% | Verified exact |
+| `0x0042bcb0` | `MenuCarPreviewSelector::InitializeLighting` | 20.56% | Work in progress |
+| `0x0042bea0` | `MenuCarPreviewSelector::ReleaseLighting` | 56.25% | Work in progress |
+| `0x0042bf00` | `MenuCarPreviewSelector::ConfigureViewport` | 19.82% | Work in progress |
 | `0x0042c150` | `InitializeCharacterPreviewSize` | 100.00% | Verified exact |
 | `0x0042c180` | `InitializeCharacterPreviewPosition` | 100.00% | Verified exact |
 | `0x0042c1b0` | `InitializeCharacterPreviewCameraPosition` | 100.00% | Verified exact |
@@ -341,10 +397,13 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x00438e90` | `TextBoxManagerDestroy` | 72.00% | Work in progress |
 | `0x00438ec0` | `TextBoxManager::Initialize` | 27.48% | Work in progress |
 | `0x00438fa0` | `TextBoxManager::Remove` | 32.43% | Work in progress |
+| `0x004391c0` | `CarDisplayModelDestroy` | 95.65% | Reviewed near match |
+| `0x0043b8a0` | `DestroyGameObjectModelBinding` | 95.65% | Reviewed near match |
 | `0x0043d1d0` | `Vector3::Scale` | 100.00% | Verified exact |
 | `0x0043d200` | `Vector3::Add` | 100.00% | Verified exact |
 | `0x0043d230` | `Vector3::Subtract` | 100.00% | Verified exact |
 | `0x0043dcd0` | `GetConfiguredAudioServiceMode` | 85.71% | Work in progress |
+| `0x00440720` | `InitializeCarDisplayModelPaths` | 34.88% | Work in progress |
 | `0x0044a520` | `SelectPauseTargetData` | 72.73% | Work in progress |
 | `0x0044b3b0` | `DeleteConstraint` | 78.26% | Work in progress |
 | `0x0044cd00` | `BodypartManagerInitialize` | 8.00% | Work in progress |
@@ -359,6 +418,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x0044f690` | `CharacterVisual::SetFaceGroup` | 69.39% | Work in progress |
 | `0x00450c10` | `CharacterVisual::EnterHiddenMode` | 100.00% | Verified exact |
 | `0x00450c30` | `CharacterVisual::EnterIdlePreviewMode` | 72.11% | Work in progress |
+| `0x00451600` | `DestroyCarDisplayBaseTransform` | 91.67% | Work in progress |
 | `0x00452a40` | `GameAnimatedObject::UpdateFacing` | 62.50% | Work in progress |
 | `0x004534e0` | `GameObjectBaseDestroy` | 100.00% | Work in progress |
 | `0x0045dcb0` | `FUN_0045dcb0` | 100.00% | Verified exact |
@@ -377,6 +437,11 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x00466470` | `InitializeCharacterPartPresets` | 1.47% | Work in progress |
 | `0x00467380` | `CharacterPartPreset::Set` | 100.00% | Verified exact |
 | `0x004673e0` | `CharacterPartPreset::Clear` | 53.85% | Work in progress |
+| `0x0046a2e0` | `InitializeCarDisplay` | 32.32% | Work in progress |
+| `0x0046a4a0` | `ReleaseCarDisplay` | 44.74% | Work in progress |
+| `0x0046a500` | `UpdateCarDisplayChoice` | 11.38% | Work in progress |
+| `0x0046a880` | `ResetCarDisplay` | 25.35% | Work in progress |
+| `0x0046a8e0` | `ApplyCarDisplayChoice` | 88.89% | Work in progress |
 | `0x00478bf0` | `SecondaryFxState::EnsureSprite` | 13.21% | Work in progress |
 | `0x00478d00` | `SecondaryFxState::ReleaseSprite` | 100.00% | Verified exact |
 | `0x00478d20` | `SecondaryFxState::Update` | 92.86% | Work in progress |
@@ -464,6 +529,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004a3040` | `GameObject::SetParent` | 33.77% | Work in progress |
 | `0x004a3090` | `GameObject::ClearParent` | 42.25% | Work in progress |
 | `0x004a30e0` | `GameObject::UpdateRegion` | 74.42% | Work in progress |
+| `0x004a3120` | `SetFoyerSceneTargetAnimation` | 80.00% | Work in progress |
 | `0x004a3150` | `GameObjectTemplate::NormalizeDevelopmentFlags` | 66.67% | Work in progress |
 | `0x004a3170` | `GameManager::ResizeObjectRegistry` | 23.75% | Work in progress |
 | `0x004a3290` | `GameManager::RegisterObject` | 45.31% | Work in progress |
@@ -480,6 +546,9 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004a3a20` | `IsGameObjectFlagSelected` | 64.52% | Work in progress |
 | `0x004a3aa0` | `AdvanceGameFrame` | 54.72% | Work in progress |
 | `0x004a3ca0` | `ShutdownGameManager` | 100.00% | Verified exact |
+| `0x004a3cd0` | `ConstructCarDisplayModelObject` | 23.03% | Work in progress |
+| `0x004a3db0` | `DestructCarDisplayModelObject` | 50.00% | Work in progress |
+| `0x004a3de0` | `CarDisplayModelInitialize` | 94.12% | Work in progress |
 | `0x004a3ed0` | `GetMemoryHeap` | 56.00% | Work in progress |
 | `0x004a3f20` | `DestroyMemoryHeapAtExit` | 100.00% | Verified exact |
 | `0x004a3f30` | `MemoryHeap::EnterOperation` | 85.71% | Work in progress |
@@ -547,6 +616,9 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004a5f80` | `InitializeMaximumAngularSpeedSquared` | 100.00% | Verified exact |
 | `0x004a5fb0` | `InitializeMaximumLinearSpeedSquared` | 33.33% | Work in progress |
 | `0x004a6190` | `ResetGameObjectInitializationValue` | 63.16% | Work in progress |
+| `0x004a63b0` | `CarDisplayLifecycleSetPosition` | 73.91% | Work in progress |
+| `0x004a63f0` | `CarDisplayLifecycleSetRotation` | 42.42% | Work in progress |
+| `0x004a6460` | `CarDisplayLifecycleCopyTargetData` | 61.54% | Work in progress |
 | `0x004a6480` | `PhysicalLifecycleState::RebuildInverseInertiaTensor` | 100.00% | Verified exact |
 | `0x004a64c0` | `PhysicalLifecycleState::UpdateAndClampVelocities` | 52.25% | Work in progress |
 | `0x004a6a60` | `PhysicalLifecycleState::UpdateSleepState` | 77.38% | Work in progress |
@@ -586,10 +658,17 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004a97f0` | `ModelResourceReferences::GetMaterial` | 100.00% | Verified exact |
 | `0x004a9810` | `ModelResourceReferences::SetTexture` | 100.00% | Verified exact |
 | `0x004a9830` | `ModelResourceReferences::SetMaterial` | 100.00% | Verified exact |
+| `0x004a9870` | `ResetGameObjectModelBindingDispatch` | 50.00% | Work in progress |
+| `0x004a9880` | `InitializeGameObjectModelBinding` | 14.29% | Work in progress |
+| `0x004a9b40` | `ReleaseGameObjectModelBindingResources` | 65.91% | Work in progress |
+| `0x004a9bd0` | `UpdateGameObjectModelBinding` | 15.15% | Work in progress |
 | `0x004a9d20` | `GetLookupResourceOrigin` | 91.30% | Work in progress |
 | `0x004a9d90` | `GameObjectChildGeometry::SetPosition` | 16.00% | Work in progress |
 | `0x004a9ff0` | `GameObjectChildGeometry::SetRotation` | 0.00% | Work in progress |
+| `0x004aa360` | `SetClipPlanesForFoyerTarget` | 100.00% | Verified exact |
 | `0x004aa3c0` | `SetRenderProjectionRatio` | 100.00% | Work in progress |
+| `0x004aa410` | `ConstructGameObjectModelBinding` | 22.97% | Work in progress |
+| `0x004aa530` | `DestroyGameObjectModelBindingForOwner` | 80.00% | Work in progress |
 | `0x004aa540` | `GameObject::IsVisible` | 41.27% | Work in progress |
 | `0x004aa730` | `IsPointWithinGameObjectView` | 36.36% | Work in progress |
 | `0x004aa790` | `GameObject::DrawChild` | 40.00% | Work in progress |
@@ -950,6 +1029,8 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004bb850` | `GlobalPauseController::Update` | 45.36% | Work in progress |
 | `0x004bb8f0` | `GlobalPauseController::SetDeadline` | 100.00% | Work in progress |
 | `0x004bb910` | `GlobalPauseController::IsBeforeDeadline` | 60.71% | Work in progress |
+| `0x004bcd80` | `CarDisplayModelTargetDestroy` | 0.00% | Work in progress |
+| `0x004bcef0` | `CarDisplayModelRemove` | 71.43% | Work in progress |
 | `0x004bd5f0` | `RendererLookupTableState::Initialize` | 51.97% | Work in progress |
 | `0x004bd6d0` | `RendererLookupTableState::ReleaseStorage` | 66.67% | Work in progress |
 | `0x004bd710` | `RendererLookupTableState::Clear` | 28.07% | Work in progress |
@@ -1129,7 +1210,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004da500` | `RendererTextureRecord::UnlockPrimarySurface` | 80.85% | Work in progress |
 | `0x004da540` | `RendererTextureRecord::UploadBitmapImage` | 34.86% | Work in progress |
 | `0x004da5e0` | `DisplayRenderer::BuildMipSidecar` | 34.70% | Work in progress |
-| `0x004da9f0` | `?ReadBitmapInfoSettings@@YAIPBDPAUBitmapInfoSettings@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\bitmapimage.h1674514700@@@Z` | 2.29% | Work in progress |
+| `0x004da9f0` | `ReadBitmapInfoSettings` | 2.29% | Work in progress |
 | `0x004dabe0` | `ParseBitmapInfoValue` | 40.31% | Work in progress |
 | `0x004dac90` | `GenerateBitmapMipLevel` | 17.20% | Work in progress |
 | `0x004db5c0` | `FindClosestPaletteColor` | 30.09% | Work in progress |
@@ -1250,6 +1331,11 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004e7b50` | `ShowDiagnosticDialog` | 100.00% | Verified exact |
 | `0x004e7b90` | `AllocateAlignedMemory` | 100.00% | Verified exact |
 | `0x004e7bb0` | `DecompressGtcBlock` | 9.78% | Work in progress |
+| `0x004e7de0` | `GetCarDisplayIndexedRecord` | 100.00% | Verified exact |
+| `0x004e7e20` | `ConstructCarDisplayIndexedRecordOwner` | 50.63% | Work in progress |
+| `0x004e7e80` | `GetCarDisplayIndexedRecordOwnerSize` | 100.00% | Verified exact |
+| `0x004e7e90` | `CarDisplayIndexedRecordOwnerDestroy` | 92.31% | Work in progress |
+| `0x004e7ec0` | `NormalizeCarDisplayIndexedRecords` | 58.33% | Work in progress |
 | `0x004e7f10` | `ModelSkin::ModelSkin` | 65.05% | Work in progress |
 | `0x004e8030` | `ModelSkin::ReleaseStorage` | 42.11% | Work in progress |
 | `0x004e8830` | `FinishFrameAudioState` | 62.96% | Work in progress |

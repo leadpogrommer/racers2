@@ -437,3 +437,16 @@ expanded to 167 pointers. Twelve folded aliases and 267 annotated globals with
 zero data issues pass. The backdrop fade constant also matches retail bytes
 through an independent map/PE check. All 21 existing tooling tests pass. No game
 behavior tests or runtime probes were added or run. See [batch evidence](work-menu-background.md).
+
+
+## Car preview and frontend resources (2026-10-19)
+
+Both canonical SP5 builders link 363 units and agree on all 1,701 measured
+scores/statuses: 504 exact functions, twenty-one reviewed near matches and
+1,176 STUB rows. All twelve dispatch checkers pass in both builds; scene/model
+inventory now covers 314 pointers and menu widgets cover 84 pointers. Twelve
+complete folded aliases pass. Data comparison has zero issues across 272
+globals; the model-binding depth float is separately checked through both
+linker maps and complete original bytes. All 21 retained tooling tests pass.
+No game behavior tests, asset probes or game runs were performed. See
+[car-preview evidence](work-car-preview.md).

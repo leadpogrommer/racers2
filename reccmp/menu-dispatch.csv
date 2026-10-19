@@ -77,3 +77,9 @@ text_entry,08,00479030,MenuWidgetDerivedNoOp
 text_entry,0c,00424b10,MenuTextEntryResetBridge
 text_entry,10,00424d70,MenuTextEntryInputBridge
 text_entry,14,00425560,MenuTextEntryClipBridge
+car,00,0042bb90,CarPreviewUpdateBounds
+car,04,0042b710,CarPreviewSetFont
+car,08,0042b770,CarPreviewRelease
+car,0c,0042baa0,CarPreviewReset
+car,10,0042b990,CarPreviewInput
+car,14,0042bb00,CarPreviewClip

@@ -12,6 +12,14 @@ from folded_functions import code_bytes
 from toolchain import ROOT
 
 TABLES = {
+    "car_records_base": (0x00536d64, 22, "g_carDisplayIndexedRecordOwnerBaseDispatch"),
+    "car_name_transform": (0x0052f318, 20, "g_carDisplayNameTransformDispatch"),
+    "car_model_transform": (0x0053529c, 20, "g_carDisplayTransformDispatch"),
+    "car_base_transform": (0x00531c3c, 20, "g_carDisplayBaseTransformDispatch"),
+    "car_name": (0x0052f368, 20, "g_carDisplayNameObjectDispatch"),
+    "car_model": (0x005352ec, 20, "g_carDisplayModelObjectDispatch"),
+    "car_records": (0x00536d08, 23, "g_carDisplayIndexedRecordOwnerDispatch"),
+    "model_binding": (0x00530f98, 2, "g_gameObjectModelBindingDispatch"),
     "kill_sphere": (0x00535d18, 21, "g_killSphereSupervisorDispatch"),
     "secondary_fx": (0x00533024, 20, "g_secondaryFxManagerDispatch"),
     "bodypart": (0x0052f584, 21, "g_bodypartManagerDispatch"),

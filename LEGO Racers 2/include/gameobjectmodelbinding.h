@@ -50,6 +50,9 @@ DECOMP_STATIC_ASSERT(offsetof(GameObjectModelBinding, m_bounds) == 0xd0);
 
 extern const GameObjectModelBindingDispatch g_gameObjectModelBindingDispatch;
 void __fastcall ResetGameObjectModelBindingDispatch(GameObjectModelBinding*, void*);
+void __fastcall InitializeGameObjectModelBinding(GameObjectModelBinding*, void*);
+void __fastcall ReleaseGameObjectModelBindingResources(GameObjectModelBinding*, void*);
+void __fastcall DestroyGameObjectModelBindingForOwner(GameObject*, void*);
 void __fastcall UpdateGameObjectModelBinding(GameObjectModelBinding*, void*);
 GameObjectModelBinding* __fastcall DestroyGameObjectModelBinding(GameObjectModelBinding*, void*, LegoU32 p_flags);
 void __fastcall ConstructGameObjectModelBinding(
