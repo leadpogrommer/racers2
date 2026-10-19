@@ -129,6 +129,25 @@ void __fastcall UpdateGameObjectModelBinding(GameObjectModelBinding* p_binding, 
 	DrawModelResource(model, NULL, p_binding);
 }
 
+// STUB: LEGORACERS2 0x004a9cb0
+void __fastcall UpdateGameObjectModelBindingVisibility(GameObjectModelBinding* p_binding, void*)
+{
+	ModelResource* model = (ModelResource*) p_binding->m_model;
+	if (model != NULL) {
+		RendererMainDispatch* renderer = (RendererMainDispatch*) g_displayRenderer->m_vtable;
+		LegoFloat depth = renderer->m_scaleProjectionCoordinate(
+			g_displayRenderer,
+			NULL,
+			*(LegoFloat*) &model->m_unk0x08,
+			p_binding->m_unk0xB8
+		);
+		p_binding->m_unk0xBC = depth;
+		if ((p_binding->m_flags & 2) == 2 && depth > g_modelBindingDepthThreshold) {
+			UpdateModelResourceVisibility(model, NULL, p_binding);
+		}
+	}
+}
+
 // STUB: LEGORACERS2 0x004aa410
 void __fastcall ConstructGameObjectModelBinding(
 	GameObject* p_owner,

@@ -644,6 +644,19 @@ LegoFloat __fastcall GetGameObjectViewDepth(void* p_camera, void*, const Vector3
 	return depth;
 }
 
+// STUB: LEGORACERS2 0x004bcf30
+LegoBool32 __fastcall UpdateFoyerModelRenderRegion(GameObject* p_object, void*, void* p_region)
+{
+	GameObjectChildBuffer* child = (GameObjectChildBuffer*) p_object->m_unk0x48;
+	return TestGameObjectRegion(
+		(GameObjectRegion*) p_region,
+		NULL,
+		&child->m_position,
+		p_object->m_unk0x50,
+		(GameObjectRegionKey*) &p_object->m_unk0x4c
+	);
+}
+
 // STUB: LEGORACERS2 0x004d40a0
 static LegoBool32 __fastcall TestGameObjectRegion(
 	GameObjectRegion* p_region,

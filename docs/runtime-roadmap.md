@@ -337,3 +337,13 @@ integration. Next is replacing the staged partial Foyer model tables and wiring
 actual embedded physical state into Foyer/character and Secondary preview owners.
 The rebuilt menu still has not launched; no incremental runtime probe was run.
 See [physical construction evidence](work-physical-construction.md).
+
+
+## Complete Foyer model base and preview drawing
+
+The 382-unit build now links the full physical/object callback tables for the
+shared Foyer model base, real embedded-state construction, region-key update,
+preview drawing and visibility fallback. Staged derived Foyer/character tables
+still need their real callbacks and layout fixes; Secondary render-owner recovery
+is next. The rebuilt menu has not launched and no runtime probe was run. See
+[Foyer model evidence](work-foyer-model-base.md).

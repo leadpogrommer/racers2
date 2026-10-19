@@ -524,3 +524,13 @@ Both data comparisons report zero issues across 297 globals. Twelve dispatch
 verifiers, seventeen complete folded aliases and twenty-one tooling tests pass.
 No runtime or asset probes were performed. See
 [physical construction evidence](work-physical-construction.md).
+
+
+## Foyer model base and drawing (2026-10-20)
+
+Both SP5 builders link 382 units and agree on 1,846 measured scores/statuses:
+532 exact functions, twenty-seven reviewed near matches and 1,287 STUB rows.
+Both data comparisons report zero issues across 297 globals. Twelve dispatch
+verifiers (including 562 scene pointers), seventeen complete folded aliases and
+twenty-one tooling tests pass. No runtime or asset probes were performed. See
+[Foyer model evidence](work-foyer-model-base.md).

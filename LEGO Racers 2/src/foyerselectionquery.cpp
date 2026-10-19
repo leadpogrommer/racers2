@@ -4,13 +4,7 @@
 #include "gamecontroller.h"
 #include "gamecontrollersession.h"
 
-struct FoyerProgressThreshold {
-	LegoU32 m_tracks;
-	LegoU32 m_tracksAndBonuses;
-	LegoU32 m_modes;
-};
 DECOMP_SIZE_ASSERT(FoyerProgressThreshold, 0x0c);
-extern const FoyerProgressThreshold g_foyerProgressThresholds[5];
 // GLOBAL: LEGORACERS2 0x0052f9d0
 const FoyerProgressThreshold g_foyerProgressThresholds[5] = {{0, 0, 0}, {4, 9, 0}, {4, 4, 0}, {4, 8, 0}, {4, 16, 3}};
 namespace
@@ -34,7 +28,7 @@ LegoU32 HasFoyerTrackProgress(const LegoU32* p_progress, LegoU32 p_world, LegoU3
 LegoU32 HasFoyerBonusProgress(const LegoU32* p_progress, LegoU32 p_world, LegoU32 p_bonus)
 {
 	LegoU32 bit = p_bonus + p_world * 3;
-	return (p_progress[0] >> (bit & 31)) & 1;
+	return (p_progress[1] >> (bit & 31)) & 1;
 }
 
 LegoS32 MapFoyerProgressIndex(LegoU32 p_index)

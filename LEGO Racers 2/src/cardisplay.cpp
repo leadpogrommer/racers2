@@ -196,7 +196,7 @@ static void __fastcall CarDisplayNameRemove(GameObject*, void*);
 static void __fastcall CarDisplayNameDraw(GameObject*, void*);
 static GameObject* __fastcall CarDisplayModelDestroy(GameObject*, void*, LegoU32);
 static void __fastcall CarDisplayModelInitialize(GameObject*, void*);
-static void __fastcall CarDisplayModelRemove(GameObject*, void*);
+void __fastcall CarDisplayModelRemove(GameObject*, void*);
 static CarDisplayModelObject* __fastcall ConstructCarDisplayModelObject(
 	CarDisplayModelObject*,
 	void*,
@@ -1190,7 +1190,7 @@ static GameObject* __fastcall CarDisplayModelTargetDestroy(void* p_target, void*
 }
 
 // STUB: LEGORACERS2 0x004bcef0
-static void __fastcall CarDisplayModelRemove(GameObject* p_object, void*)
+void __fastcall CarDisplayModelRemove(GameObject* p_object, void*)
 {
 	p_object->Remove();
 	ReleaseGameObjectModelBindingResources((GameObjectModelBinding*) p_object->m_unk0x48, NULL);

@@ -12,6 +12,7 @@ struct CarDisplayTransformFunctionTable;
 extern const CarDisplayTransformFunctionTable g_carDisplayBaseTransformDispatch;
 void __fastcall CarDisplayLifecycleCopyTargetData(void*, void*, LegoU32*, LegoU32, LegoU32);
 void* __fastcall DestroyCarDisplayBaseTransform(void*, void*, LegoU32);
+void __fastcall CarDisplayModelRemove(GameObject*, void*);
 
 GameObject* __fastcall ConstructCarDisplayIndexedRecordOwner(void*, void*, LegoU32, GameObjectTemplate*);
 

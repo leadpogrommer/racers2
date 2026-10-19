@@ -54,6 +54,7 @@ void __fastcall InitializeGameObjectModelBinding(GameObjectModelBinding*, void*)
 void __fastcall ReleaseGameObjectModelBindingResources(GameObjectModelBinding*, void*);
 void __fastcall DestroyGameObjectModelBindingForOwner(GameObject*, void*);
 void __fastcall UpdateGameObjectModelBinding(GameObjectModelBinding*, void*);
+void __fastcall UpdateGameObjectModelBindingVisibility(GameObjectModelBinding*, void*);
 GameObjectModelBinding* __fastcall DestroyGameObjectModelBinding(GameObjectModelBinding*, void*, LegoU32 p_flags);
 void __fastcall ConstructGameObjectModelBinding(
 	GameObject* p_owner,
