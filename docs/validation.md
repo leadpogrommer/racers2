@@ -475,3 +475,12 @@ and twelve complete folded aliases pass. Data comparison has zero issues across
 unchanged and passed in the preceding reverb/factory checkpoint. No game behavior
 tests, runtime runs or asset probes were added or performed. See
 [selection recovery](work-foyer-selection.md).
+
+
+## Menu actions (2026-10-19)
+
+Both SP5 builders link 374 units and agree on 1,780 measured scores/statuses:
+513 exact functions, twenty-two reviewed near matches and 1,245 STUB rows.
+All twelve dispatch checks and twelve folded aliases pass; both data comparisons
+report zero issues across 282 globals. No runtime or asset probes were run.
+See [menu action evidence](work-menu-actions.md).

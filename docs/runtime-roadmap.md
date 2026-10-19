@@ -289,3 +289,12 @@ selection gates, proximity/transition predicates and NPC text cleanup. Review
 corrected the manager-state receiver and special-mode query. Full Foyer manager
 transitions, controller feedback resources and startup remain staged. Bootstrap
 is still active; no runtime probe was run. See [selection evidence](work-foyer-selection.md).
+
+
+## Menu action settings and choice resources
+
+The 374-unit build links action-stack updates, localized choice labels and hover,
+settings queries, display fallback, language selection and graphics quality.
+SecondaryManager lifecycle and the remaining Foyer/controller closures are next.
+The temporary bootstrap remains active; no runtime probe was run. See
+[menu action evidence](work-menu-actions.md).
