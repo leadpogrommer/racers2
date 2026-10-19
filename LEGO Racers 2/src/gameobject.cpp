@@ -145,7 +145,7 @@ struct GameObjectRenderPlane {
 };
 DECOMP_SIZE_ASSERT(GameObjectRenderPlane, 0x18);
 
-static LegoFloat __fastcall GetGameObjectViewDepth(void* p_camera, void*, const Vector3* p_point);
+LegoFloat __fastcall GetGameObjectViewDepth(void* p_camera, void*, const Vector3* p_point);
 static LegoBool32 __fastcall IsPointWithinGameObjectView(
 	void* p_volume,
 	void*,
@@ -633,7 +633,7 @@ void GameObject::DrawChild()
 }
 
 // STUB: LEGORACERS2 0x004ba370
-static LegoFloat __fastcall GetGameObjectViewDepth(void* p_camera, void*, const Vector3* p_point)
+LegoFloat __fastcall GetGameObjectViewDepth(void* p_camera, void*, const Vector3* p_point)
 {
 	GameObjectVisibilityContext* context = (GameObjectVisibilityContext*) ((LegoU8*) p_camera + 0x58);
 	const Vector3* origin = context->m_vtable->m_getPosition(context, NULL);

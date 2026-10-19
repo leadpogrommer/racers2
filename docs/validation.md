@@ -404,3 +404,13 @@ twelve dispatch verifiers pass in both PEs, with the scene check expanded to
 146 pointers. Twelve complete folded aliases and 264 data globals with zero
 issues pass. The 21 existing tooling/library tests pass. No game behavior tests
 or runtime probes were added or run. See [loading-screen evidence](work-loading-progress.md).
+
+
+## Model draw queues (2026-10-19)
+
+Both 350-unit SP5 builds pass and agree on all 1,595 measured scores/statuses:
+482 exact functions, nineteen reviewed near matches and 1,094 STUB rows. All
+twelve dispatch checks and twelve complete folded aliases pass in both PEs.
+Data comparison reports zero issues across 265 globals. The frontend widget
+factory compiles separately but awaits car-preview linking. No runtime probe
+was run. See [model-drawing evidence](work-model-drawing.md).

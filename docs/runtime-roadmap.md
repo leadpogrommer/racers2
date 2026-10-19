@@ -229,3 +229,13 @@ classification also follows the corrected original comparison direction. These
 are startup dependencies; controller/frontend construction and foyer/car asset
 closures remain open. Bootstrap remains active. No runtime probe was run; see
 [loading-screen recovery](work-loading-progress.md).
+
+
+## Model draw queues
+
+The 350-unit build connects model primitives to real renderer lookup queues,
+adds depth keys and shadow visibility submission, and corrects frustum-loop
+and owner-pointer errors in the existing immediate path. Its large routines
+remain under review. Frontend widget creation compiles separately; car-preview
+object dependencies, complete shadow generation and controller/foyer startup
+remain open. Bootstrap remains active. See [model-drawing evidence](work-model-drawing.md).

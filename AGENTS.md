@@ -134,6 +134,10 @@ perfect matching must not block progress toward a playable game.
   methods, `// GLOBAL:` for variable storage, and `// VTABLE:` for vtables.
 - The colon is required. Globals identify the variable, not a pointed-to string.
 - Order functions by ascending original address within each compilation unit.
+- `VTABLE` annotations require a C++ class with compiler-emitted virtual methods.
+  For explicit ABI structs containing function pointers, leave the table's
+  retail VA in a plain comment and verify its complete CSV inventory against
+  both PEs and linker maps. A `VTABLE` marker on such a struct is invalid.
 - Keep genuine folded functions marked `FOLDED`; never add artificial global
   writes or assembly blobs to make an implemented function appear matched.
 - Record proven function lengths in `reccmp/function-sizes.csv` (decimal bytes).

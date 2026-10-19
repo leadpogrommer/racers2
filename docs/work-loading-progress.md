@@ -64,5 +64,5 @@ on all 1,591 measured scores and statuses: 481 exact functions, nineteen reviewe
 near matches and 1,091 STUB rows. All twelve dispatch verifiers pass in both PEs;
 the scene check now covers 146 pointers. Twelve complete folded aliases pass,
 and data comparison reports zero issues across 264 globals. The 21 retained
-identification/match-tooling tests pass. These checks do not execute the game. Full controller/menu
-construction, foyer actions/assets and car-preview bindings remain open.
+identification/match-tooling tests pass. These checks do not execute the game.
+Full controller/menu construction, foyer actions/assets and car-preview bindings remain open.

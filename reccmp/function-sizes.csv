@@ -494,6 +494,7 @@ address,type,size
 004a6c30,function,462
 004a6ec0,function,51
 004a6f00,function,226
+004a7250,function,597
 004a74b0,function,83
 004a7510,function,999
 004a7900,function,145
@@ -515,6 +516,7 @@ address,type,size
 004a8ed0,function,321
 004a9020,function,80
 004a95b0,function,126
+004a9680,function,136
 004a9710,function,57
 004a9750,function,32
 004a9770,function,86
@@ -796,6 +798,8 @@ address,type,size
 004bd8c0,function,61
 004bd900,function,278
 004bda20,function,1215
+004bdf00,function,34
+004bdf30,function,70
 004be0a0,function,589
 004be2f0,function,37
 004be320,function,14

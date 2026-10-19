@@ -6,21 +6,22 @@ Reviewed semantically identical near matches (initially at least 95% raw) are
 implemented functions, counted separately from exact matches.
 
 Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-19.
-The match guard verified **481 exact functions and nineteen reviewed near
-matches**. Another 1,091 reconstructions remain `STUB`; both builders agree on
-all 1,591 measured raw scores and annotation statuses. Data comparison verifies
-264 annotated globals with zero issues. Twelve genuine folded aliases also have
+The match guard verified **482 exact functions and nineteen reviewed near
+matches**. Another 1,094 reconstructions remain `STUB`; both builders agree on
+all 1,595 measured raw scores and annotation statuses. Data comparison verifies
+265 annotated globals with zero issues. Twelve genuine folded aliases also have
 complete-byte and exact linker-map verification. Unlinked inventory entries
 may appear in the CLI denominator without another measured row.
 
 This is the reconstructed subset, not whole-game coverage. The automatic
-Ghidra inventory has **4,533 discovered function starts**, including **22 thunks**
+Ghidra inventory has **4,542 discovered function starts**, including **22 thunks**
 and linked runtime/library code. It is incomplete and is not a verified count
 of game-authored functions; see [inventory notes](research.md#automatic-function-inventory).
 Identified libraries are excluded from these matches with `--nolib`.
 See [input controls](work-menu-input-and-model-resources.md) and
 [model geometry, collision and shadows](work-model-loading.md), and
-[loading-screen recovery](work-loading-progress.md).
+[loading-screen recovery](work-loading-progress.md) and
+[model draw queues](work-model-drawing.md).
 The executable still uses the temporary bootstrap and has not launched a menu.
 See [frontend integration](work-controller-frontend.md), the
 [runtime roadmap](runtime-roadmap.md), and [library identification](library-identification.md).
@@ -535,8 +536,9 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004a6c30` | `ClearLifecycleParent` | 51.52% | Work in progress |
 | `0x004a6ec0` | `PhysicalLifecycleState::GetWorldParentOffset` | 87.80% | Work in progress |
 | `0x004a6f00` | `PhysicalLifecycleState::GetParentVelocityAtOffset` | 84.62% | Work in progress |
-| `0x004a74b0` | `IsLookupPointWithinRadius` | 45.45% | Work in progress |
-| `0x004a7510` | `ApplyLookupResourceState` | 18.70% | Work in progress |
+| `0x004a7250` | `DrawModelResource` | 44.39% | Work in progress |
+| `0x004a74b0` | `IsLookupPointWithinRadius` | 100.00% | Verified exact |
+| `0x004a7510` | `ApplyLookupResourceState` | 19.47% | Work in progress |
 | `0x004a7900` | `ModelResourceCacheEntry::MatchesPath` | 94.96% | Work in progress |
 | `0x004a79a0` | `ModelResourceCacheEntry::Assign` | 100.00% | Verified exact |
 | `0x004a79e0` | `ModelResourceCache::Find` | 71.23% | Work in progress |
@@ -556,6 +558,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004a8ed0` | `ModelBounds::ClassifyXZAspectRatio` | 64.17% | Work in progress |
 | `0x004a9020` | `FinalizeModelDrawPlans` | 83.12% | Work in progress |
 | `0x004a95b0` | `ModelResource::RemapTextureIndices` | 34.29% | Work in progress |
+| `0x004a9680` | `UpdateModelResourceVisibility` | 59.34% | Work in progress |
 | `0x004a9710` | `ModelResourceReferences::Allocate` | 61.11% | Work in progress |
 | `0x004a9750` | `ModelResourceReferences::FreeStorage` | 69.23% | Work in progress |
 | `0x004a9770` | `ModelResourceReferences::ReleaseRendererReferences` | 100.00% | Verified exact |
@@ -935,6 +938,8 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004bd8c0` | `RendererLookupTableState::FlushBucketedEntries` | 81.48% | Work in progress |
 | `0x004bd900` | `RendererLookupTableState::FlushDeferredDrawResources` | 33.50% | Work in progress |
 | `0x004bda20` | `DisplayRenderer::DrawLookupEntry` | 12.55% | Work in progress |
+| `0x004bdf00` | `GetModelPointSortKey` | 81.48% | Work in progress |
+| `0x004bdf30` | `GetModelDepthSortKey` | 80.77% | Work in progress |
 | `0x004be0a0` | `DisplayRenderer::InitializeResources` | 50.16% | Work in progress |
 | `0x004be2f0` | `RendererResourceCacheEntry::RendererResourceCacheEntry` | 27.27% | Work in progress |
 | `0x004be320` | `RendererAuxiliaryResourceRecord::InitializeHeader` | 100.00% | Verified exact |

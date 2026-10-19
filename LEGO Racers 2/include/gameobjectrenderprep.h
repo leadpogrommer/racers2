@@ -8,6 +8,7 @@ class Vector3;
 // Receiver-only projections of rendering helpers observed on game objects.
 void __cdecl SetRenderProjectionRatio(LegoFloat p_scale, LegoFloat p_limit);
 void __fastcall PrepareGameObjectForRendering(void* p_object, void*);
+LegoFloat __fastcall GetGameObjectViewDepth(void* p_camera, void*, const Vector3* p_point);
 void __fastcall UpdateGameObjectRenderGeometry(void* p_object, void*);
 LegoBool32 __fastcall SetGameObjectLookAt(
 	void* p_object,

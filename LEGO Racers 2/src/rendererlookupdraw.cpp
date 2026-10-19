@@ -1,22 +1,13 @@
 #include "renderer.h"
 #include "rendererconstructiondispatch.h"
 #include "rendererdrawpacketview.h"
+#include "rendererlookupstate.h"
 #include "rendererstageplan.h"
 
 #include <stdlib.h>
 #include <string.h>
 
 extern void __fastcall ApplyLookupResourceState(void* p_owner, void*, void* p_resource);
-
-struct RendererLookupGlobals {
-	LegoU32 m_mode;
-	LegoU32 m_unk0x04;
-	LegoU8 m_selectionOriginInitialized;
-	LegoU8 m_padding[7];
-	LegoFloat m_selectionOrigin[3];
-};
-
-DECOMP_SIZE_ASSERT(RendererLookupGlobals, 0x1c);
 
 // GLOBAL: LEGORACERS2 0x0058a170
 RendererLookupGlobals g_unk0x0058a170;
@@ -38,14 +29,14 @@ struct LookupProfileRecordView {
 	LegoU8* m_items;
 };
 
-// STUB: LEGORACERS2 0x004a74b0
+// FUNCTION: LEGORACERS2 0x004a74b0
 LegoBool32 __fastcall IsLookupPointWithinRadius(void* p_context, void*, const LegoFloat* p_point, LegoFloat p_radius)
 {
 	LegoU8* context = (LegoU8*) p_context;
 	LegoU8* end = *(LegoU8**) (context + 0x90);
-	for (LegoU8* entry = context + 0x50; entry < end; entry += 0x0c) {
-		const LegoFloat* center = (const LegoFloat*) (entry - 8);
-		const LegoFloat* scale = (const LegoFloat*) (entry - 0x50);
+	for (LegoU8* normal = context; normal < end; normal += 0x0c) {
+		const LegoFloat* center = (const LegoFloat*) (normal + 0x48);
+		const LegoFloat* scale = (const LegoFloat*) normal;
 		LegoFloat distance = (p_point[0] - center[0]) * scale[0];
 		distance += (p_point[1] - center[1]) * scale[1];
 		distance += (p_point[2] - center[2]) * scale[2];
@@ -73,8 +64,8 @@ void __fastcall ApplyLookupResourceState(void* p_owner, void*, void* p_resource)
 		(const LegoFloat*) (resource + 0x9c),
 		*(LegoFloat*) (owner + 8)
 	);
-	LegoS32 profileIndex = !(*(LegoFloat*) (resource + 0xbc) >= 0.2f);
-	if (g_unk0x0058a170.m_mode == 1 && !(*(LegoFloat*) (owner + 8) > 25.0f)) {
+	LegoS32 profileIndex = *(LegoFloat*) (resource + 0xbc) < g_modelLodDepthThreshold ? 1 : 0;
+	if (g_unk0x0058a170.m_mode == 1 && *(LegoFloat*) (owner + 8) > 25.0f) {
 		profileIndex = 0;
 	}
 	LegoS32 profileCount = *(LegoS32*) (owner + 0x20);
@@ -88,7 +79,7 @@ void __fastcall ApplyLookupResourceState(void* p_owner, void*, void* p_resource)
 	}
 
 	RendererMainDispatch* rendererDispatch = (RendererMainDispatch*) g_displayRenderer->m_vtable;
-	LegoU8* ownerPart = *(LegoU8**) (owner + 4);
+	LegoU8* ownerPart = *(LegoU8**) (resource + 4);
 	typedef void(__fastcall * OwnerPartAction)(void*, void*);
 	((OwnerPartAction) (*(void***) ownerPart)[0x2c / 4])(ownerPart, NULL);
 	g_displayRenderer->m_unk0x4cc = p_resource;
