@@ -70,5 +70,5 @@ that the inventory is incomplete. It must not be used as a whole-game
 completion denominator. Source reconstruction and instruction matches are
 listed separately in [progress](progress.md).
 
-The frontend preview support export currently lists **4,626 starts**, including
+The frontend preview support export currently lists **4,631 starts**, including
 26 thunks; this remains a provisional inventory including linked libraries.

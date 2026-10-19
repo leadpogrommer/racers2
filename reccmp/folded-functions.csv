@@ -16,3 +16,4 @@ address,symbol,bytes,name
 004a70b0,?LifecycleWorldOrientationExit@@YAXXZ,c3,LifecycleWorldOrientationExit
 00409190,?Initialize@GameControllerItem@@QAEPAU1@XZ,8bc1c3,GameControllerItem::Initialize
 00460680,?ConstructFoyerSkeletonRecord@@YIPAUFoyerSkeletonRecord@@PAU1@PAX@Z,8bc1c3,ConstructFoyerSkeletonRecord
+0040ec90,?GetDisplaySettings@Application@@QAEPAUApplicationDisplaySettings@@XZ,8d4104c3,Application::GetDisplaySettings

@@ -347,3 +347,15 @@ preview drawing and visibility fallback. Staged derived Foyer/character tables
 still need their real callbacks and layout fixes; Secondary render-owner recovery
 is next. The rebuilt menu has not launched and no runtime probe was run. See
 [Foyer model evidence](work-foyer-model-base.md).
+
+
+## Secondary preview owner and complete camera dispatch
+
+The 383-unit build now links the full 0x350-byte preview owner with twenty
+physical slots and twenty-seven object slots, viewport initialization and all
+five camera modes. Foyer mesh/update callbacks and character constructors link
+in an isolated build; root is completing Foyer animation and auditing controller
+startup before combined integration. Network actions used only after confirmation
+input are tracked separately from the initial menu construction path. The real
+WinMain remains unwired and no menu has launched. No runtime probe was run.
+See [preview owner evidence](work-secondary-render-owner.md).

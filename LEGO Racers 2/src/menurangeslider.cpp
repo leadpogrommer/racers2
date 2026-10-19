@@ -26,7 +26,7 @@ const MenuWidgetDispatch g_menuRangeSliderDispatch =
 	{&RangeUpdateBounds, &SetMenuWidgetFont, &MenuWidgetDerivedNoOp, &RangeReset, &RangeInput, &RangeClip};
 
 // GLOBAL: LEGORACERS2 0x00561208
-static LegoFloat g_menuRangeMarkerSize[2];
+LegoFloat g_menuRangeMarkerSize[2];
 
 // FUNCTION: LEGORACERS2 0x0041a2d0
 void InitializeMenuRangeMarkerSize()

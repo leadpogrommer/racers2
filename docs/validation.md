@@ -534,3 +534,13 @@ Both data comparisons report zero issues across 297 globals. Twelve dispatch
 verifiers (including 562 scene pointers), seventeen complete folded aliases and
 twenty-one tooling tests pass. No runtime or asset probes were performed. See
 [Foyer model evidence](work-foyer-model-base.md).
+
+
+## Secondary preview owner and camera modes (2026-10-20)
+
+Both SP5 builders link 383 units and agree on 1,869 measured scores/statuses:
+538 exact functions, twenty-eight reviewed near matches and 1,303 STUB rows.
+Both data comparisons report zero issues across 298 globals. Twelve dispatch
+verifiers (including 609 scene pointers), eighteen complete folded aliases and
+twenty-one tooling tests pass. No runtime or asset probes were performed. See
+[preview owner evidence](work-secondary-render-owner.md).

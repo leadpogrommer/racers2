@@ -12,6 +12,8 @@ from folded_functions import code_bytes
 from toolchain import ROOT
 
 TABLES = {
+    "secondary_render_lifecycle": (0x00536000, 20, "g_secondaryRenderPhysicalDispatch"),
+    "secondary_render": (0x00536050, 27, "g_secondaryRenderOwnerDispatch"),
     "foyer_model_lifecycle": (0x00536264, 20, "g_foyerModelLifecycleDispatch"),
     "foyer_model": (0x005362b4, 21, "g_foyerModelRenderDispatch"),
     "physical": (0x00535398, 20, "g_physicalLifecycleDispatch"),

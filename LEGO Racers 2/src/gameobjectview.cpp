@@ -127,10 +127,10 @@ void __fastcall UpdateGameObjectRenderGeometry(void* p_object, void*)
 		}
 	}
 	else {
-		view->m_frustumNormals[0].m_x = 0.0f;
-		view->m_frustumNormals[0].m_y = 0.0f;
-		view->m_frustumNormals[0].m_z = 1.0f;
 		for (LegoU32 i = 0; i < 4; ++i) {
+			view->m_frustumNormals[i].m_x = 0.0f;
+			view->m_frustumNormals[i].m_y = 0.0f;
+			view->m_frustumNormals[i].m_z = 1.0f;
 			view->m_frustumPoints[i].m_x = 0.0f;
 			view->m_frustumPoints[i].m_y = 0.0f;
 			view->m_frustumPoints[i].m_z = view->m_nearPlane;

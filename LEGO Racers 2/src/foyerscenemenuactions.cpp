@@ -150,8 +150,8 @@ void __fastcall BeginMenuManagerMode(MenuManager* p_manager, void*, LegoU32 p_ac
 void __fastcall BeginMenuManagerChoice(
 	MenuManager* p_manager,
 	void*,
-	LegoU32 p_selection,
 	const LegoFloat* p_position,
+	LegoU32 p_selection,
 	LegoU32 p_mode,
 	LegoU32 p_left,
 	LegoU32 p_right,
@@ -195,8 +195,8 @@ void __fastcall EnterSecondaryManagerMode(GameObject* p_object, void*, LegoU32 p
 void __fastcall SelectSecondaryManagerChoice(
 	GameObject* p_object,
 	void*,
-	LegoU32 p_selection,
 	const LegoFloat* p_position,
+	LegoU32 p_selection,
 	LegoU32 p_mode,
 	LegoU32 p_left,
 	LegoU32 p_right,
@@ -208,8 +208,8 @@ void __fastcall SelectSecondaryManagerChoice(
 	BeginMenuManagerChoice(
 		(MenuManager*) g_gameController.m_menuManager,
 		NULL,
-		p_selection,
 		p_position,
+		p_selection,
 		p_mode,
 		p_left,
 		p_right,

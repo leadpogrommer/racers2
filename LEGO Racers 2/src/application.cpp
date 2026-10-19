@@ -30,7 +30,7 @@ static DisplayConfigRecord g_savedDisplayConfig;
 
 static void OnSavedDisplayConfigExit();
 
-// FUNCTION: LEGORACERS2 0x0040ec90
+// FUNCTION: LEGORACERS2 0x0040ec90 FOLDED
 ApplicationDisplaySettings* Application::GetDisplaySettings()
 {
 	return &m_display;

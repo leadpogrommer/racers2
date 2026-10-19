@@ -6,15 +6,15 @@ Reviewed semantically identical near matches (initially at least 95% raw) are
 implemented functions, counted separately from exact matches.
 
 Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-20.
-The match guard verified **532 exact functions and twenty-seven reviewed near
-matches**. Another 1,287 reconstructions remain `STUB`; both builders agree on
-all 1,846 measured raw scores and annotation statuses. Data comparison verifies
-297 annotated globals with zero issues. Seventeen genuine folded aliases also have
+The match guard verified **538 exact functions and twenty-eight reviewed near
+matches**. Another 1,303 reconstructions remain `STUB`; both builders agree on
+all 1,869 measured raw scores and annotation statuses. Data comparison verifies
+298 annotated globals with zero issues. Eighteen genuine folded aliases also have
 complete-byte and exact linker-map verification. Unlinked inventory entries
 may appear in the CLI denominator without another measured row.
 
 This is the reconstructed subset, not whole-game coverage. The automatic
-Ghidra inventory has **4,626 discovered function starts**, including **26 thunks**
+Ghidra inventory has **4,631 discovered function starts**, including **26 thunks**
 and linked runtime/library code. It is incomplete and is not a verified count
 of game-authored functions; see [inventory notes](research.md#automatic-function-inventory).
 Identified libraries are excluded from these matches with `--nolib`.
@@ -32,7 +32,8 @@ See [input controls](work-menu-input-and-model-resources.md) and
 [skeleton and catalogue recovery](work-skeleton-and-catalogue.md) and
 [physical transforms](work-physical-transforms.md) and
 [physical construction](work-physical-construction.md) and
-[Foyer model construction](work-foyer-model-base.md).
+[Foyer model construction](work-foyer-model-base.md) and
+[preview owner construction](work-secondary-render-owner.md).
 The executable still uses the temporary bootstrap and has not launched a menu.
 See [frontend integration](work-controller-frontend.md), the
 [runtime roadmap](runtime-roadmap.md), and [library identification](library-identification.md).
@@ -246,11 +247,12 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x0041c890` | `CreateFrontendMenuWidgets` | 31.50% | Work in progress |
 | `0x0041cab0` | `DestroyFrontendMenuWidgets` | 90.57% | Work in progress |
 | `0x0041dbf0` | `PushMenuManagerActionState` | 6.90% | Work in progress |
+| `0x0041dd50` | `BeginMenuManagerMode` | 84.21% | Work in progress |
 | `0x00422710` | `UpdateMenuManagerCurrentAction` | 29.19% | Work in progress |
 | `0x00423090` | `MenuManager::GetPanelRectangle` | 100.00% | Verified exact |
 | `0x004230d0` | `MenuManager::GetSecondaryPanelRectangle` | 100.00% | Verified exact |
 | `0x00423100` | `MeasureLocalizedTrackLabelWidth` | 52.17% | Work in progress |
-| `0x00423640` | `BeginMenuManagerChoice` | 87.27% | Work in progress |
+| `0x00423640` | `BeginMenuManagerChoice` | 94.55% | Work in progress |
 | `0x004236a0` | `MenuManager::SetPanelClipRectangle` | 77.42% | Work in progress |
 | `0x00423710` | `MenuManager::SetSecondaryPanelClipRectangle` | 93.51% | Work in progress |
 | `0x00423770` | `GetMenuManagerFloatValue` | 18.18% | Work in progress |
@@ -314,7 +316,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004278d0` | `ReleaseSecondaryManagerAudioResources` | 79.25% | Work in progress |
 | `0x00427910` | `ApplySavedAudioLevels` | 40.00% | Work in progress |
 | `0x00427970` | `ApplySavedAudioQuality` | 76.92% | Work in progress |
-| `0x00427d90` | `EnterSecondaryManagerMode` | 82.61% | Work in progress |
+| `0x00427d90` | `EnterSecondaryManagerMode` | 86.96% | Work in progress |
 | `0x00427e40` | `SelectSecondaryManagerChoice` | 86.96% | Work in progress |
 | `0x004290b0` | `AcquireMenuPreviewCamera` | 69.84% | Work in progress |
 | `0x00429130` | `ReleaseMenuPreviewCamera` | 90.00% | Work in progress |
@@ -745,7 +747,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004a6f00` | `PhysicalLifecycleState::GetParentVelocityAtOffset` | 84.62% | Work in progress |
 | `0x004a6ff0` | `PhysicalLifecycleState::GetWorldRotation` | 95.00% | Reviewed near match |
 | `0x004a7030` | `LifecycleWorldRotationExit` | 100.00% | Verified exact |
-| `0x004a7040` | `PhysicalLifecycleState::GetWorldOrientation` | 95.08% | Reviewed near match |
+| `0x004a7040` | `PhysicalLifecycleState::GetWorldOrientation` | 98.36% | Reviewed near match |
 | `0x004a70b0` | `LifecycleWorldOrientationExit` | 100.00% | Verified exact |
 | `0x004a70c0` | `PhysicalLifecycleState::SetWorldPosition` | 57.50% | Work in progress |
 | `0x004a7130` | `PhysicalLifecycleState::SetWorldOrientation` | 52.31% | Work in progress |
@@ -1137,11 +1139,32 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004b9940` | `GameFloatRandom::Initialize` | 100.00% | Verified exact |
 | `0x004b9980` | `GameIntegerRandom::Initialize` | 100.00% | Verified exact |
 | `0x004b99b0` | `GetGameRandomState` | 95.83% | Reviewed near match |
+| `0x004b9d50` | `InitializeSecondaryRenderParameters` | 6.25% | Work in progress |
+| `0x004b9e40` | `ConstructSecondaryRenderOwner` | 36.20% | Work in progress |
+| `0x004ba100` | `GetSecondaryRenderOwnerSize` | 100.00% | Verified exact |
+| `0x004ba110` | `GetSecondaryRenderOwnerCategory` | 100.00% | Verified exact |
+| `0x004ba120` | `GetSecondaryRenderFollowMode` | 85.71% | Work in progress |
+| `0x004ba130` | `GetSecondaryRenderZero` | 100.00% | Verified exact |
+| `0x004ba140` | `DestroySecondaryRenderOwner` | 95.65% | Reviewed near match |
+| `0x004ba160` | `RemoveSecondaryRenderOwner` | 66.67% | Work in progress |
+| `0x004ba1c0` | `InitializeSecondaryRenderOwner` | 57.83% | Work in progress |
+| `0x004ba270` | `ReleaseSecondaryRenderOwner` | 100.00% | Verified exact |
 | `0x004ba280` | `PrepareGameObjectForRendering` | 33.08% | Work in progress |
 | `0x004ba370` | `GetGameObjectViewDepth` | 92.68% | Work in progress |
-| `0x004ba3b0` | `UpdateGameObjectRenderGeometry` | 19.95% | Work in progress |
+| `0x004ba3b0` | `UpdateGameObjectRenderGeometry` | 17.65% | Work in progress |
 | `0x004ba810` | `SetGameObjectViewport` | 33.33% | Work in progress |
+| `0x004ba870` | `ApplySecondaryRenderOwnerTransform` | 33.68% | Work in progress |
+| `0x004ba930` | `UpdateSecondaryRenderOwner` | 70.00% | Work in progress |
+| `0x004baa90` | `AttachSecondaryRenderOwner` | 28.17% | Work in progress |
+| `0x004bab40` | `GetSecondaryFollowOffsets` | 100.00% | Verified exact |
+| `0x004bab60` | `FollowSecondaryRenderOwner` | 17.22% | Work in progress |
+| `0x004bac60` | `GetSecondaryChaseOffsets` | 100.00% | Verified exact |
+| `0x004bac80` | `ChaseSecondaryRenderOwner` | 17.39% | Work in progress |
+| `0x004bade0` | `FlySecondaryRenderOwner` | 23.64% | Work in progress |
+| `0x004baf90` | `TrackSecondaryRenderOwner` | 24.90% | Work in progress |
 | `0x004bb120` | `SetGameObjectLookAt` | 70.89% | Work in progress |
+| `0x004bb190` | `UpdateSecondaryRenderLifecycle` | 40.00% | Work in progress |
+| `0x004bb1a0` | `DestroySecondaryRenderLifecycle` | 0.00% | Work in progress |
 | `0x004bb1f0` | `SetScreenshotDirectory` | 100.00% | Verified exact |
 | `0x004bb210` | `CaptureScreenshot` | 38.59% | Work in progress |
 | `0x004bb670` | `InitializeGlobalPauseController` | 37.33% | Work in progress |
@@ -1409,7 +1432,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004de160` | `DisplayRenderer::SetViewTransform` | 13.58% | Work in progress |
 | `0x004de2e0` | `DisplayRenderer::SetProjection` | 41.45% | Work in progress |
 | `0x004de460` | `DisplayRenderer::BuildBumpMapVectors` | 9.51% | Work in progress |
-| `0x004de990` | `ApplySpecialDrawPacketEffect` | 20.03% | Work in progress |
+| `0x004de990` | `ApplySpecialDrawPacketEffect` | 20.36% | Work in progress |
 | `0x004dee20` | `DisplayRenderer::SetStencilBufferEnabled` | 40.00% | Work in progress |
 | `0x004dee90` | `DisplayRenderer::ResetStencilOperations` | 81.63% | Work in progress |
 | `0x004deed0` | `DisplayRenderer::SetStencilFunction` | 13.51% | Work in progress |
@@ -1575,7 +1598,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004ee0c0` | `JoystickInputDevice::Acquire` | 100.00% | Verified exact |
 | `0x004ee110` | `JoystickInputDevice::Unacquire` | 100.00% | Verified exact |
 | `0x004ee160` | `JoystickInputDevice::ResetForceFeedback` | 100.00% | Verified exact |
-| `0x004ee190` | `JoystickInputDevice::InitializeEffects` | 76.92% | Work in progress |
+| `0x004ee190` | `JoystickInputDevice::InitializeEffects` | 72.44% | Work in progress |
 | `0x004ee3d0` | `JoystickInputDevice::SetConstantForce` | 32.00% | Work in progress |
 | `0x004ee430` | `JoystickInputDevice::SetSpring` | 100.00% | Verified exact |
 | `0x004ee450` | `JoystickInputDevice::SetFriction` | 100.00% | Verified exact |
@@ -1751,6 +1774,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004f59c0` | `BitmapImage::ReleaseStorage` | 95.24% | Reviewed near match |
 | `0x004f5a10` | `WriteBitmapTgaFile` | 30.77% | Work in progress |
 | `0x004f60f0` | `BindFoyerSkeletonRecord` | 35.79% | Work in progress |
+| `0x004f61a0` | `RebuildFoyerSkeletonRecordTransform` | 40.00% | Work in progress |
 | `0x004f6310` | `InitializePlatformServices` | 70.83% | Work in progress |
 | `0x004f6360` | `ShutdownPlatformServices` | 88.89% | Work in progress |
 | `0x004f8470` | `IntersectTerrainTriangle` | 18.18% | Work in progress |

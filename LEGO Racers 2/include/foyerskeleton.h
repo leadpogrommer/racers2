@@ -31,4 +31,6 @@ FoyerSkeletonRecord* __fastcall ConstructFoyerSkeletonRecord(FoyerSkeletonRecord
 void __fastcall BindFoyerSkeletonRecord(FoyerSkeletonRecord*, void*, const FoyerSkeletonDefinition*, GameObject*);
 void __fastcall RebuildFoyerSkeletonTransforms(GameObject*, void*);
 
+void __fastcall RebuildFoyerSkeletonRecordTransform(FoyerSkeletonRecord*, void*);
+
 #endif

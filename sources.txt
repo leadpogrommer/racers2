@@ -380,3 +380,4 @@ LEGO Racers 2/src/physicallifecycletransforms.cpp
 LEGO Racers 2/src/physicallifecycleconstruction.cpp
 LEGO Racers 2/src/physicallifecycleintegration.cpp
 LEGO Racers 2/src/foyermodelrender.cpp
+LEGO Racers 2/src/secondaryrenderowner.cpp
