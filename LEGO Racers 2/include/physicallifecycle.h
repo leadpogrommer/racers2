@@ -8,6 +8,39 @@
 
 struct PhysicalLifecycleState;
 
+struct PhysicalLifecycleParameters {
+	Vector3 m_position;          // 0x00
+	Quaternion m_orientation;    // 0x0c
+	LegoFloat m_contactFriction; // 0x1c
+	LegoFloat m_contactResponse; // 0x20
+	LegoU32 m_propertyIndex;     // 0x24
+	LegoFloat m_mass;            // 0x28
+	Vector3 m_inertia;           // 0x2c
+};
+DECOMP_SIZE_ASSERT(PhysicalLifecycleParameters, 0x38);
+DECOMP_STATIC_ASSERT(offsetof(PhysicalLifecycleParameters, m_mass) == 0x28);
+
+// The complete retail ABI table is inventoried in scene-dispatch.csv.
+struct PhysicalLifecycleDispatch {
+	void(__cdecl* m_slots[20])();
+};
+DECOMP_SIZE_ASSERT(PhysicalLifecycleDispatch, 0x50);
+extern const PhysicalLifecycleDispatch g_physicalLifecycleDispatch;
+
+PhysicalLifecycleState* __fastcall ConstructPhysicalLifecycleState(
+	PhysicalLifecycleState*,
+	void*,
+	GameObject*,
+	const PhysicalLifecycleParameters*
+);
+void __fastcall ResetPhysicalLifecycleState(PhysicalLifecycleState*, void*, GameObject*);
+void AdvancePhysicalLifecycleParentValue();
+extern LegoFloat g_physicalLifecycleStep;
+extern LegoFloat g_physicalLifecycleNormalizedStep;
+LegoU32 __fastcall ApplyPhysicalLifecycleDampingAndGravity(PhysicalLifecycleState*, void*);
+void __fastcall ApplyPhysicalLifecycleSleepFlag(PhysicalLifecycleState*, void*);
+LegoU32 __fastcall IntegratePhysicalLifecycleMotion(PhysicalLifecycleState*, void*);
+
 struct LifecycleTransformDispatch {
 	typedef LegoBool32(__fastcall* Predicate)(PhysicalLifecycleState*, void*, LegoU32);
 	typedef LegoU32(__fastcall* Value)(PhysicalLifecycleState*, void*);
@@ -52,13 +85,13 @@ struct PhysicalLifecycleState {
 	LegoFloat m_contactFriction; // 0x50
 	LegoFloat m_contactResponse; // 0x54; multiplied across contact participants
 	LegoU32 m_unk0x58;
-	Vector3 m_savedPosition;        // 0x5c
-	Quaternion m_savedOrientation;  // 0x68
-	const void* m_parameters;       // 0x78
-	Vector3 m_parentOffset;         // 0x7c
-	Quaternion m_parentOrientation; // 0x88
-	LegoU32 m_savedParentValue;     // 0x98
-	LegoU32 m_parentValue;          // 0x9c
+	Vector3 m_savedPosition;                         // 0x5c
+	Quaternion m_savedOrientation;                   // 0x68
+	const PhysicalLifecycleParameters* m_parameters; // 0x78
+	Vector3 m_parentOffset;                          // 0x7c
+	Quaternion m_parentOrientation;                  // 0x88
+	LegoU32 m_savedParentValue;                      // 0x98
+	LegoU32 m_parentValue;                           // 0x9c
 	LegoU32 m_unk0xa0;
 	PhysicalLifecycleState* m_parent; // 0xa4
 	Vector3 m_linearMomentum;         // 0xa8

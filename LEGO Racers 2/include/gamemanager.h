@@ -29,6 +29,8 @@ struct GameLifecycleDispatchView {
 	Action m_prepare; // 0x40
 };
 
+extern LegoU32 g_gameObjectInitializationValue;
+
 struct GameLifecycleComponent {
 	const GameLifecycleDispatchView* m_vtable;
 	GameObject* m_owner;              // 0x04

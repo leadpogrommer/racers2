@@ -2,6 +2,7 @@ address,type,size
 0052f2d0,float,4
 0052f2d4,float,4
 0052f2f0,float,4
+0052f3bc,float,4
 0052f408,float,4
 0052f440,float,4
 0052f49c,float,4
@@ -24,6 +25,7 @@ address,type,size
 00535364,float,4
 00535368,float,4
 0053537c,float,4
+005353e8,float,4
 0053545c,float,4
 00535470,float,4
 0053590c,float,4

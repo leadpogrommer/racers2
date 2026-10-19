@@ -4,7 +4,7 @@
 #include "memoryheap.h"
 
 // GLOBAL: LEGORACERS2 0x00549bb0
-static LegoU32 g_gameObjectInitializationValue = 100;
+LegoU32 g_gameObjectInitializationValue = 100;
 
 void ResetGameObjectInitializationValue();
 static void InitializeSecondaryStaticSubsystems();

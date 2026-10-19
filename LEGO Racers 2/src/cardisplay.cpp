@@ -179,7 +179,7 @@ static const LegoFloat* __fastcall CarDisplayLifecycleGetAuxiliaryVector(void*, 
 static const LegoFloat* __fastcall CarDisplayLifecycleGetRotation(void*, void*);
 static void __fastcall CarDisplayLifecycleSetPosition(void*, void*, const Vector3*);
 static void __fastcall CarDisplayLifecycleSetRotation(void*, void*, const LegoFloat*);
-static void __fastcall CarDisplayLifecycleCopyTargetData(void*, void*, LegoU32*, LegoU32, LegoU32);
+void __fastcall CarDisplayLifecycleCopyTargetData(void*, void*, LegoU32*, LegoU32, LegoU32);
 static const LegoU32* __fastcall GetCarDisplayIndexedRecord(CarDisplayIndexedRecordOwner*, void*, LegoU32);
 GameObject* __fastcall ConstructCarDisplayIndexedRecordOwner(void*, void*, LegoU32, GameObjectTemplate*);
 static GameObject* __fastcall CarDisplayIndexedRecordOwnerDestroy(GameObject*, void*, LegoU32);
@@ -204,7 +204,7 @@ static CarDisplayModelObject* __fastcall ConstructCarDisplayModelObject(
 	GameObjectTemplate*
 );
 static void __fastcall DestructCarDisplayModelObject(GameObject*, void*);
-static void* __fastcall DestroyCarDisplayBaseTransform(void*, void*, LegoU32);
+void* __fastcall DestroyCarDisplayBaseTransform(void*, void*, LegoU32);
 namespace
 {
 void MarkCarDisplayObjectForRemoval(GameObject* p_object);
@@ -871,7 +871,7 @@ void DeleteCarDisplayObject(GameObject* p_object)
 } // namespace
 
 // STUB: LEGORACERS2 0x00451600
-static void* __fastcall DestroyCarDisplayBaseTransform(void* p_target, void*, LegoU32 p_flags)
+void* __fastcall DestroyCarDisplayBaseTransform(void* p_target, void*, LegoU32 p_flags)
 {
 	((CarDisplayTransformTarget*) p_target)->m_dispatch =
 		(const GameTemplateInstanceTargetDispatch*) &g_carDisplayBaseTransformDispatch;
@@ -1173,7 +1173,7 @@ static void __fastcall CarDisplayLifecycleSetRotation(void* p_target, void*, con
 }
 
 // STUB: LEGORACERS2 0x004a6460
-static void __fastcall CarDisplayLifecycleCopyTargetData(void* p_target, void*, LegoU32* p_output, LegoU32, LegoU32)
+void __fastcall CarDisplayLifecycleCopyTargetData(void* p_target, void*, LegoU32* p_output, LegoU32, LegoU32)
 {
 	const LegoU32 index = *(const LegoU32*) ((const LegoU8*) p_target + 0x58);
 	typedef const LegoU32*(__fastcall * GetRecord)(CarDisplayIndexedRecordOwner*, void*, LegoU32);

@@ -12,6 +12,7 @@ from folded_functions import code_bytes
 from toolchain import ROOT
 
 TABLES = {
+    "physical": (0x00535398, 20, "g_physicalLifecycleDispatch"),
     "scene_feedback": (0x005331f0, 20, "g_controllerSceneObjectDispatch"),
     "circle_pool": (0x0053632c, 21, "g_foyerSceneCirclePoolDispatch"),
     "reverb_area": (0x00531188, 20, "g_reverbAreaObjectDispatch"),

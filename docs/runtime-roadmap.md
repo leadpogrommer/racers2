@@ -327,3 +327,13 @@ Generic physical/model construction and menu render-owner dispatch wiring are
 next; remaining Foyer, character visual and SecondaryManager code is staged.
 The menu has not launched and no runtime probe was run. See
 [physical transform evidence](work-physical-transforms.md).
+
+
+## Generic physical construction and update callbacks
+
+The 381-unit build now links the real physical constructor/reset, complete
+physical callback table, damping/gravity, sleep-flag propagation and motion
+integration. Next is replacing the staged partial Foyer model tables and wiring
+actual embedded physical state into Foyer/character and Secondary preview owners.
+The rebuilt menu still has not launched; no incremental runtime probe was run.
+See [physical construction evidence](work-physical-construction.md).

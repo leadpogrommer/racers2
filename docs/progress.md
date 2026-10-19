@@ -6,15 +6,15 @@ Reviewed semantically identical near matches (initially at least 95% raw) are
 implemented functions, counted separately from exact matches.
 
 Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-19.
-The match guard verified **531 exact functions and twenty-six reviewed near
-matches**. Another 1,272 reconstructions remain `STUB`; both builders agree on
-all 1,829 measured raw scores and annotation statuses. Data comparison verifies
-296 annotated globals with zero issues. Seventeen genuine folded aliases also have
+The match guard verified **532 exact functions and twenty-six reviewed near
+matches**. Another 1,277 reconstructions remain `STUB`; both builders agree on
+all 1,835 measured raw scores and annotation statuses. Data comparison verifies
+297 annotated globals with zero issues. Seventeen genuine folded aliases also have
 complete-byte and exact linker-map verification. Unlinked inventory entries
 may appear in the CLI denominator without another measured row.
 
 This is the reconstructed subset, not whole-game coverage. The automatic
-Ghidra inventory has **4,605 discovered function starts**, including **26 thunks**
+Ghidra inventory has **4,606 discovered function starts**, including **26 thunks**
 and linked runtime/library code. It is incomplete and is not a verified count
 of game-authored functions; see [inventory notes](research.md#automatic-function-inventory).
 Identified libraries are excluded from these matches with `--nolib`.
@@ -30,7 +30,8 @@ See [input controls](work-menu-input-and-model-resources.md) and
 [menu action recovery](work-menu-actions.md) and
 [scene feedback](work-scene-feedback.md) and
 [skeleton and catalogue recovery](work-skeleton-and-catalogue.md) and
-[physical transforms](work-physical-transforms.md).
+[physical transforms](work-physical-transforms.md) and
+[physical construction](work-physical-construction.md).
 The executable still uses the temporary bootstrap and has not launched a menu.
 See [frontend integration](work-controller-frontend.md), the
 [runtime roadmap](runtime-roadmap.md), and [library identification](library-identification.md).
@@ -48,11 +49,11 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x00403980` | `CarDisplayNameDestroy` | 80.00% | Work in progress |
 | `0x004039c0` | `CarDisplayNameInitialize` | 50.00% | Work in progress |
 | `0x00403a30` | `CarDisplayNameRemove` | 92.31% | Work in progress |
-| `0x00403a50` | `CarDisplayNameUpdate` | 58.82% | Work in progress |
+| `0x00403a50` | `CarDisplayNameUpdate` | 59.80% | Work in progress |
 | `0x00403bf0` | `CarDisplayNameDraw` | 19.91% | Work in progress |
-| `0x00403d10` | `?PrepareCarDisplayObject@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\cardisplay.h788725429@@YAXPAUGameObject@@@Z` | 48.65% | Work in progress |
-| `0x00403d50` | `?MarkCarDisplayObjectForRemoval@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\cardisplay.h788725429@@YAXPAUGameObject@@@Z` | 0.00% | Work in progress |
-| `0x00403db0` | `?UpdateCarDisplayRemovalState@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\cardisplay.h788725429@@YAXPAUGameObject@@@Z` | 40.91% | Work in progress |
+| `0x00403d10` | `?PrepareCarDisplayObject@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\cardisplay.h2591431845@@YAXPAUGameObject@@@Z` | 48.65% | Work in progress |
+| `0x00403d50` | `?MarkCarDisplayObjectForRemoval@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\cardisplay.h2591431845@@YAXPAUGameObject@@@Z` | 0.00% | Work in progress |
+| `0x00403db0` | `?UpdateCarDisplayRemovalState@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\cardisplay.h2591431845@@YAXPAUGameObject@@@Z` | 40.91% | Work in progress |
 | `0x00403fa0` | `CarDisplayNameTargetDestroy` | 0.00% | Work in progress |
 | `0x00403fd0` | `CreateCarDisplayNameObject` | 21.25% | Work in progress |
 | `0x00404100` | `Vector3::SetValues` | 100.00% | Verified exact |
@@ -164,7 +165,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x00418280` | `MenuPanel::Update` | 52.59% | Work in progress |
 | `0x004187f0` | `MenuPanel::UpdateClipping` | 36.36% | Work in progress |
 | `0x004189a0` | `MenuPanel::ResetGeometry` | 48.65% | Work in progress |
-| `0x00418a10` | `MenuPanel::SetTransitionVelocity` | 28.40% | Work in progress |
+| `0x00418a10` | `MenuPanel::SetTransitionVelocity` | 30.77% | Work in progress |
 | `0x00418ba0` | `MenuPanel::UpdateSpriteGeometry` | 15.33% | Work in progress |
 | `0x00418fd0` | `MenuPanel::QuerySelection` | 88.89% | Work in progress |
 | `0x00419090` | `MenuPanel::QueryTargetGeometry` | 23.18% | Work in progress |
@@ -244,6 +245,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x0041c890` | `CreateFrontendMenuWidgets` | 31.50% | Work in progress |
 | `0x0041cab0` | `DestroyFrontendMenuWidgets` | 90.57% | Work in progress |
 | `0x0041dbf0` | `PushMenuManagerActionState` | 6.90% | Work in progress |
+| `0x0041dd50` | `BeginMenuManagerMode` | 84.21% | Work in progress |
 | `0x00422710` | `UpdateMenuManagerCurrentAction` | 29.19% | Work in progress |
 | `0x00423090` | `MenuManager::GetPanelRectangle` | 100.00% | Verified exact |
 | `0x004230d0` | `MenuManager::GetSecondaryPanelRectangle` | 100.00% | Verified exact |
@@ -312,7 +314,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004278d0` | `ReleaseSecondaryManagerAudioResources` | 79.25% | Work in progress |
 | `0x00427910` | `ApplySavedAudioLevels` | 40.00% | Work in progress |
 | `0x00427970` | `ApplySavedAudioQuality` | 76.92% | Work in progress |
-| `0x00427d90` | `EnterSecondaryManagerMode` | 82.61% | Work in progress |
+| `0x00427d90` | `EnterSecondaryManagerMode` | 86.96% | Work in progress |
 | `0x00427e40` | `SelectSecondaryManagerChoice` | 86.96% | Work in progress |
 | `0x004290b0` | `AcquireMenuPreviewCamera` | 69.84% | Work in progress |
 | `0x00429130` | `ReleaseMenuPreviewCamera` | 90.00% | Work in progress |
@@ -418,7 +420,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004338f0` | `InitializeControllerSelectionProgress` | 37.62% | Work in progress |
 | `0x004339a0` | `FinalizeControllerSelectionProgress` | 91.67% | Work in progress |
 | `0x004339e0` | `UpdateControllerSelectionProgress` | 67.83% | Work in progress |
-| `0x00433aa0` | `AdvanceControllerLoadingEqualizer` | 54.88% | Work in progress |
+| `0x00433aa0` | `AdvanceControllerLoadingEqualizer` | 55.81% | Work in progress |
 | `0x00433c50` | `CreateControllerLoadingSprites` | 15.31% | Work in progress |
 | `0x00433fc0` | `UpdateControllerLoadingSprites` | 66.67% | Work in progress |
 | `0x00434060` | `UpdateControllerLoadingEqualizerBar` | 36.36% | Work in progress |
@@ -442,7 +444,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x00437a20` | `NestedTextBoxManagerDestructor` | 0.00% | Work in progress |
 | `0x00437a30` | `NestedTextBoxManagerInitialize` | 76.92% | Work in progress |
 | `0x00437a50` | `NestedTextBoxManagerRemove` | 18.60% | Work in progress |
-| `0x00437ac0` | `NestedTextBoxManagerUpdate` | 30.73% | Work in progress |
+| `0x00437ac0` | `NestedTextBoxManagerUpdate` | 30.29% | Work in progress |
 | `0x00438540` | `ClearTextBoxManagerResources` | 38.81% | Work in progress |
 | `0x00438be0` | `HasActiveTextBoxPauseTarget` | 49.35% | Work in progress |
 | `0x00438c90` | `ReleaseTextBoxManagerResource` | 86.96% | Work in progress |
@@ -527,7 +529,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x0046a500` | `UpdateCarDisplayChoice` | 11.38% | Work in progress |
 | `0x0046a880` | `ResetCarDisplay` | 25.35% | Work in progress |
 | `0x0046a8e0` | `ApplyCarDisplayChoice` | 88.89% | Work in progress |
-| `0x00470430` | `AddFoyerSceneSecondaryFxCircle` | 17.65% | Work in progress |
+| `0x00470430` | `AddFoyerSceneSecondaryFxCircle` | 18.49% | Work in progress |
 | `0x00478bf0` | `SecondaryFxState::EnsureSprite` | 13.21% | Work in progress |
 | `0x00478d00` | `SecondaryFxState::ReleaseSprite` | 100.00% | Verified exact |
 | `0x00478d20` | `SecondaryFxState::Update` | 92.86% | Work in progress |
@@ -718,12 +720,18 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004a5f80` | `InitializeMaximumAngularSpeedSquared` | 100.00% | Verified exact |
 | `0x004a5fb0` | `InitializeMaximumLinearSpeedSquared` | 33.33% | Work in progress |
 | `0x004a6020` | `SetPhysicalLifecycleStep` | 66.67% | Work in progress |
+| `0x004a6070` | `ConstructPhysicalLifecycleState` | 90.71% | Work in progress |
 | `0x004a6190` | `ResetGameObjectInitializationValue` | 63.16% | Work in progress |
+| `0x004a61b0` | `AdvancePhysicalLifecycleParentValue` | 100.00% | Verified exact |
+| `0x004a61d0` | `ResetPhysicalLifecycleState` | 38.52% | Work in progress |
 | `0x004a63b0` | `CarDisplayLifecycleSetPosition` | 73.91% | Work in progress |
 | `0x004a63f0` | `CarDisplayLifecycleSetRotation` | 42.42% | Work in progress |
 | `0x004a6460` | `CarDisplayLifecycleCopyTargetData` | 61.54% | Work in progress |
 | `0x004a6480` | `PhysicalLifecycleState::RebuildInverseInertiaTensor` | 100.00% | Verified exact |
 | `0x004a64c0` | `PhysicalLifecycleState::UpdateAndClampVelocities` | 52.25% | Work in progress |
+| `0x004a6620` | `ApplyPhysicalLifecycleDampingAndGravity` | 46.73% | Work in progress |
+| `0x004a6710` | `ApplyPhysicalLifecycleSleepFlag` | 84.11% | Work in progress |
+| `0x004a67b0` | `IntegratePhysicalLifecycleMotion` | 57.14% | Work in progress |
 | `0x004a6a60` | `PhysicalLifecycleState::UpdateSleepState` | 77.38% | Work in progress |
 | `0x004a6bb0` | `SetLifecycleParent` | 65.17% | Work in progress |
 | `0x004a6c30` | `ClearLifecycleParent` | 51.52% | Work in progress |
@@ -1296,7 +1304,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004d1a20` | `SplinePath::FUN_004d1a20` | 100.00% | Verified exact |
 | `0x004d1a70` | `SplinePath::FUN_004d1a70` | 100.00% | Verified exact |
 | `0x004d1aa0` | `SplinePath::FUN_004d1aa0` | 39.73% | Work in progress |
-| `0x004d1d90` | `SplinePath::FUN_004d1d90` | 48.32% | Work in progress |
+| `0x004d1d90` | `SplinePath::FUN_004d1d90` | 48.93% | Work in progress |
 | `0x004d3a60` | `UpdateTerrainRegionVisibility` | 9.56% | Work in progress |
 | `0x004d3e10` | `FindTerrainRegionCellData` | 35.29% | Work in progress |
 | `0x004d3e60` | `IsTerrainRegionRayCell` | 29.27% | Work in progress |
@@ -1837,12 +1845,11 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x00508290` | `CollectXAxisCandidates` | 8.33% | Work in progress |
 | `0x00508330` | `SpatialAxisIndex::InsertFirst` | 4.82% | Work in progress |
 | `0x005083e0` | `SpatialAxisIndex::InsertSecond` | 4.82% | Work in progress |
-| `0x005084b0` | `SpatialGridCell::Initialize` | 40.00% | Work in progress |
 | `0x005084c0` | `SpatialGridCell::Insert` | 100.00% | Verified exact |
 | `0x005084e0` | `SpatialGridCell::Remove` | 100.00% | Verified exact |
 | `0x00508500` | `StaticSpatialGrid::GetCell` | 94.12% | Work in progress |
 | `0x00508520` | `CollectGridCollisionCandidates` | 18.11% | Work in progress |
-| `0x00508690` | `StaticSpatialGrid::StaticSpatialGrid` | 71.07% | Work in progress |
+| `0x00508690` | `StaticSpatialGrid::StaticSpatialGrid` | 69.42% | Work in progress |
 | `0x00508740` | `StaticSpatialGrid::Insert` | 28.26% | Work in progress |
 | `0x00508840` | `StaticSpatialGrid::Remove` | 88.89% | Work in progress |
 | `0x00508890` | `StaticSpatialGrid::Update` | 100.00% | Verified exact |

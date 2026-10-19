@@ -514,3 +514,13 @@ Both data comparisons report zero issues across 296 globals. Twelve dispatch
 verifiers, seventeen complete folded aliases and twenty-one tooling tests pass.
 No runtime or asset probes were performed. See
 [physical transform evidence](work-physical-transforms.md).
+
+
+## Physical construction and motion (2026-10-20)
+
+Both SP5 builders link 381 units and agree on 1,835 measured scores/statuses:
+532 exact functions, twenty-six reviewed near matches and 1,277 STUB rows.
+Both data comparisons report zero issues across 297 globals. Twelve dispatch
+verifiers, seventeen complete folded aliases and twenty-one tooling tests pass.
+No runtime or asset probes were performed. See
+[physical construction evidence](work-physical-construction.md).
