@@ -206,6 +206,10 @@ address,type,size
 00429280,function,23
 004292a0,function,118
 00429320,function,77
+0042a870,function,581
+0042ab00,function,306
+0042af70,function,608
+0042b1e0,function,18
 0042b200,function,24
 0042b220,function,131
 0042b2b0,function,14
@@ -516,6 +520,7 @@ address,type,size
 004a8ed0,function,321
 004a9020,function,80
 004a95b0,function,126
+004a9630,function,79
 004a9680,function,136
 004a9710,function,57
 004a9750,function,32
@@ -875,6 +880,7 @@ address,type,size
 004c56e0,function,21
 004c5700,function,17
 004c5720,function,35
+004c5bb0,function,3535
 004c6980,function,773
 004c6c90,function,193
 004c6e80,function,350

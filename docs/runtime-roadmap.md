@@ -239,3 +239,13 @@ and owner-pointer errors in the existing immediate path. Its large routines
 remain under review. Frontend widget creation compiles separately; car-preview
 object dependencies, complete shadow generation and controller/foyer startup
 remain open. Bootstrap remains active. See [model-drawing evidence](work-model-drawing.md).
+
+
+## Generated shadows and menu configuration
+
+The 353-unit build adds generated shadow adjacency, welding/retry and reference
+ownership, the sorted display-mode list, keyboard-layout language detection and
+menu input bindings. The full algorithms now link, but remain under review below
+the near-match threshold. Car-preview lifecycle and foyer/controller startup
+closures remain open. Bootstrap remains active; no menu run was attempted.
+See [evidence and limits](work-shadow-and-configuration.md).

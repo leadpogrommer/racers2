@@ -414,3 +414,15 @@ twelve dispatch checks and twelve complete folded aliases pass in both PEs.
 Data comparison reports zero issues across 265 globals. The frontend widget
 factory compiles separately but awaits car-preview linking. No runtime probe
 was run. See [model-drawing evidence](work-model-drawing.md).
+
+
+## Shadow generation and menu configuration (2026-10-19)
+
+Both canonical SP5 builders compile and link 353 units and agree on all 1,601
+measured scores/statuses: 482 exact functions, nineteen reviewed near matches
+and 1,100 STUB rows. All twelve dispatch inventories and twelve complete folded
+aliases pass in both PEs. Data comparison reports zero issues across 267 globals,
+including both recovered input-control tables. All six new function extents were
+reviewed against the original code. No tooling logic changed; the 21 retained
+tooling tests passed in the preceding loading-screen batch. No game behavior
+tests or runtime probes were added or run. See [batch evidence](work-shadow-and-configuration.md).

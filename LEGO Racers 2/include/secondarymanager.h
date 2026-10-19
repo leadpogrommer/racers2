@@ -16,6 +16,13 @@ DECOMP_STATIC_ASSERT(offsetof(SecondaryManagerDispatchView, m_getAllocationSize)
 void __fastcall ApplySavedAudioLevels(void* p_receiver, void* p_edx);
 void __fastcall ApplySavedAudioQuality(void* p_receiver, void* p_edx);
 
+struct SecondaryDisplayMode {
+	LegoU32 m_width;
+	LegoU32 m_height;
+	LegoU32 m_depth;
+};
+DECOMP_SIZE_ASSERT(SecondaryDisplayMode, 0x0c);
+
 struct SecondaryManager : GameObject {
 	LegoU32 m_state; // 0x58
 	LegoU32 m_unk0x5c;
@@ -53,7 +60,7 @@ struct SecondaryManager : GameObject {
 	LegoU32 m_unk0x258;
 	LegoU32 m_unk0x25c;
 	LegoU32 m_unk0x260;
-	undefined m_unk0x264[0x258];
+	SecondaryDisplayMode m_displayModes[50]; // 0x264, sorted width/height/depth
 	LegoU32 m_unk0x4bc;
 	LegoU32 m_unk0x4c0;
 	void* m_splashOverlays[2]; // 0x4c4
@@ -70,6 +77,8 @@ struct SecondaryManager : GameObject {
 	void ApplySavedAudioQuality() { ::ApplySavedAudioQuality(this, 0); }
 	LegoBool32 PrepareSplash(LegoU32 p_enable);
 	void BeginStartup();
+	void EnumerateDisplayModes();
+	void DetectKeyboardLanguage();
 };
 
 void __fastcall LoadSecondaryManagerAudioResources(SecondaryManager* p_manager, void* p_edx, LegoU32 p_loadMode);
@@ -86,6 +95,8 @@ struct SecondaryManagerMediaState {
 	LegoU32 m_enabledSlots;
 	SecondaryManagerMediaSlot m_slots[4];
 	LegoU32 m_currentSlot;
+	void InitializeBindings();
+	void EnableSlot(LegoU32 p_index);
 	LegoBool32 IsSlotEnabled(LegoU32 p_index);
 	LegoBool32 HasActiveSlot();
 	SecondaryManagerMediaSlot* GetSlot(LegoU32 p_index);
@@ -99,6 +110,7 @@ DECOMP_SIZE_ASSERT(SecondaryManager, 0x4f8);
 DECOMP_STATIC_ASSERT(offsetof(SecondaryManager, m_state) == 0x58);
 DECOMP_STATIC_ASSERT(offsetof(SecondaryManager, m_startupPath) == 0x90);
 DECOMP_STATIC_ASSERT(offsetof(SecondaryManager, m_secondaryData) == 0x180);
+DECOMP_STATIC_ASSERT(offsetof(SecondaryManager, m_displayModes) == 0x264);
 DECOMP_STATIC_ASSERT(offsetof(SecondaryManager, m_unk0x4bc) == 0x4bc);
 DECOMP_STATIC_ASSERT(offsetof(SecondaryManager, m_splashOverlays) == 0x4c4);
 

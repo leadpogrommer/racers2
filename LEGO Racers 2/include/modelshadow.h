@@ -34,5 +34,7 @@ DECOMP_STATIC_ASSERT(offsetof(ModelShadowData, m_geometryReferenceMask) == 0x30)
 DECOMP_STATIC_ASSERT(offsetof(ModelShadowData, m_referenceCount) == 0x34);
 
 void __fastcall ReleaseModelShadowData(ModelResource* p_model, void* p_unusedEdx);
+void __fastcall ConfigureModelShadow(ModelResource*, void*, LegoU32, const LegoChar*, LegoU32);
+void __fastcall GenerateModelShadowData(ModelResource*, void*, LegoU32, const LegoChar*);
 
 #endif // LR2_MODELSHADOW_H

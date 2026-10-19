@@ -7,21 +7,22 @@ implemented functions, counted separately from exact matches.
 
 Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-19.
 The match guard verified **482 exact functions and nineteen reviewed near
-matches**. Another 1,094 reconstructions remain `STUB`; both builders agree on
-all 1,595 measured raw scores and annotation statuses. Data comparison verifies
-265 annotated globals with zero issues. Twelve genuine folded aliases also have
+matches**. Another 1,100 reconstructions remain `STUB`; both builders agree on
+all 1,601 measured raw scores and annotation statuses. Data comparison verifies
+267 annotated globals with zero issues. Twelve genuine folded aliases also have
 complete-byte and exact linker-map verification. Unlinked inventory entries
 may appear in the CLI denominator without another measured row.
 
 This is the reconstructed subset, not whole-game coverage. The automatic
-Ghidra inventory has **4,542 discovered function starts**, including **22 thunks**
+Ghidra inventory has **4,557 discovered function starts**, including **22 thunks**
 and linked runtime/library code. It is incomplete and is not a verified count
 of game-authored functions; see [inventory notes](research.md#automatic-function-inventory).
 Identified libraries are excluded from these matches with `--nolib`.
 See [input controls](work-menu-input-and-model-resources.md) and
 [model geometry, collision and shadows](work-model-loading.md), and
 [loading-screen recovery](work-loading-progress.md) and
-[model draw queues](work-model-drawing.md).
+[model draw queues](work-model-drawing.md) and
+[shadow/input configuration](work-shadow-and-configuration.md).
 The executable still uses the temporary bootstrap and has not launched a menu.
 See [frontend integration](work-controller-frontend.md), the
 [runtime roadmap](runtime-roadmap.md), and [library identification](library-identification.md).
@@ -239,6 +240,10 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x00429280` | `ReleaseMenuPreviewAmbient` | 100.00% | Verified exact |
 | `0x004292a0` | `AcquireMenuPreviewLight` | 69.84% | Work in progress |
 | `0x00429320` | `ReleaseMenuPreviewLight` | 95.45% | Reviewed equivalent near match |
+| `0x0042a870` | `SecondaryManager::EnumerateDisplayModes` | 37.43% | Work in progress |
+| `0x0042ab00` | `SecondaryManager::DetectKeyboardLanguage` | 48.54% | Work in progress |
+| `0x0042af70` | `SecondaryManagerMediaState::InitializeBindings` | 44.80% | Work in progress |
+| `0x0042b1e0` | `SecondaryManagerMediaState::EnableSlot` | 92.31% | Work in progress |
 | `0x0042b200` | `SecondaryManagerMediaState::IsSlotEnabled` | 94.74% | Work in progress |
 | `0x0042b220` | `SecondaryManagerMediaState::Refresh` | 50.49% | Work in progress |
 | `0x0042b2b0` | `SecondaryManagerMediaState::GetSlot` | 100.00% | Verified exact |
@@ -558,6 +563,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004a8ed0` | `ModelBounds::ClassifyXZAspectRatio` | 64.17% | Work in progress |
 | `0x004a9020` | `FinalizeModelDrawPlans` | 83.12% | Work in progress |
 | `0x004a95b0` | `ModelResource::RemapTextureIndices` | 34.29% | Work in progress |
+| `0x004a9630` | `ConfigureModelShadow` | 76.67% | Work in progress |
 | `0x004a9680` | `UpdateModelResourceVisibility` | 59.34% | Work in progress |
 | `0x004a9710` | `ModelResourceReferences::Allocate` | 61.11% | Work in progress |
 | `0x004a9750` | `ModelResourceReferences::FreeStorage` | 69.23% | Work in progress |
@@ -1025,6 +1031,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004c56e0` | `SetFoyerAnimationLayerValueReordered` | 100.00% | Verified exact |
 | `0x004c5700` | `GetFoyerAnimationLayerValue` | 100.00% | Verified exact |
 | `0x004c5720` | `SetFoyerAnimationBlend` | 100.00% | Verified exact |
+| `0x004c5bb0` | `GenerateModelShadowData` | 9.38% | Work in progress |
 | `0x004c6980` | `RenderInitializedResource` | 15.09% | Work in progress |
 | `0x004c6c90` | `ReleaseModelShadowData` | 27.64% | Work in progress |
 | `0x004c6e80` | `ReadModelShadowChunk` | 22.22% | Work in progress |

@@ -348,3 +348,6 @@ LEGO Racers 2/src/controllerloadingtuning.cpp
 LEGO Racers 2/src/secondaryfxmanager.cpp
 LEGO Racers 2/src/modelrendering.cpp
 LEGO Racers 2/src/rendererdepthkeys.cpp
+LEGO Racers 2/src/modelshadowgeneration.cpp
+LEGO Racers 2/src/secondarymanagerconfiguration.cpp
+LEGO Racers 2/src/secondarymanagerbindings.cpp
