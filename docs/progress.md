@@ -6,10 +6,10 @@ Reviewed semantically identical near matches (initially at least 95% raw) are
 implemented functions, counted separately from exact matches.
 
 Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-19.
-The match guard verified **513 exact functions and twenty-two reviewed near
-matches**. Another 1,245 reconstructions remain `STUB`; both builders agree on
-all 1,780 measured raw scores and annotation statuses. Data comparison verifies
-282 annotated globals with zero issues. Twelve genuine folded aliases also have
+The match guard verified **517 exact functions and twenty-four reviewed near
+matches**. Another 1,262 reconstructions remain `STUB`; both builders agree on
+all 1,803 measured raw scores and annotation statuses. Data comparison verifies
+287 annotated globals with zero issues. Twelve genuine folded aliases also have
 complete-byte and exact linker-map verification. Unlinked inventory entries
 may appear in the CLI denominator without another measured row.
 
@@ -27,7 +27,8 @@ See [input controls](work-menu-input-and-model-resources.md) and
 [car preview and frontend resources](work-car-preview.md) and
 [reverb and named factories](work-scene-reverb-and-factories.md) and
 [Foyer selection queries](work-foyer-selection.md) and
-[menu action recovery](work-menu-actions.md).
+[menu action recovery](work-menu-actions.md) and
+[scene feedback](work-scene-feedback.md).
 The executable still uses the temporary bootstrap and has not launched a menu.
 See [frontend integration](work-controller-frontend.md), the
 [runtime roadmap](runtime-roadmap.md), and [library identification](library-identification.md).
@@ -442,6 +443,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x00438fa0` | `TextBoxManager::Remove` | 32.43% | Work in progress |
 | `0x004391c0` | `CarDisplayModelDestroy` | 95.65% | Reviewed near match |
 | `0x0043b8a0` | `DestroyGameObjectModelBinding` | 95.65% | Reviewed near match |
+| `0x0043bcb0` | `GetFoyerSceneRandomUnit` | 31.58% | Work in progress |
 | `0x0043c330` | `GetFoyerObjectSelection` | 68.75% | Work in progress |
 | `0x0043ce00` | `ConstructReverbAreaObject` | 56.00% | Work in progress |
 | `0x0043ce60` | `DestroyReverbArea` | 42.86% | Work in progress |
@@ -512,6 +514,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x0046a500` | `UpdateCarDisplayChoice` | 11.38% | Work in progress |
 | `0x0046a880` | `ResetCarDisplay` | 25.35% | Work in progress |
 | `0x0046a8e0` | `ApplyCarDisplayChoice` | 88.89% | Work in progress |
+| `0x00470430` | `AddFoyerSceneSecondaryFxCircle` | 17.65% | Work in progress |
 | `0x00478bf0` | `SecondaryFxState::EnsureSprite` | 13.21% | Work in progress |
 | `0x00478d00` | `SecondaryFxState::ReleaseSprite` | 100.00% | Verified exact |
 | `0x00478d20` | `SecondaryFxState::Update` | 92.86% | Work in progress |
@@ -524,12 +527,24 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x00479010` | `SecondaryFxManagerUpdate` | 100.00% | Verified exact |
 | `0x00479030` | `SecondaryFxManagerDraw` | 100.00% | Verified exact |
 | `0x00479490` | `RendererDefaultRecord::RendererDefaultRecord` | 45.71% | Work in progress |
+| `0x0047b400` | `GenerateFoyerSceneRandomVector` | 9.17% | Work in progress |
 | `0x0047c040` | `InitializeFoyerAnimationTiming` | 33.33% | Work in progress |
 | `0x0047c060` | `InitializeFoyerSceneEvent` | 57.14% | Work in progress |
 | `0x0047c260` | `SetFoyerSceneEventTarget` | 100.00% | Verified exact |
 | `0x0047c270` | `SetFoyerSceneEventReady` | 100.00% | Verified exact |
 | `0x0047c3d0` | `UpdateFoyerSceneEntry` | 22.78% | Work in progress |
 | `0x0047c780` | `SetFoyerSceneEventAnimation` | 38.93% | Work in progress |
+| `0x0047e140` | `InitializeControllerSceneAngularFrequency` | 75.00% | Work in progress |
+| `0x0047e160` | `InitializeControllerSceneSoundTemplate` | 48.15% | Work in progress |
+| `0x0047e290` | `InitializeControllerSceneObjectTemplate` | 59.57% | Work in progress |
+| `0x0047e2f0` | `ControllerSceneObject::ControllerSceneObject` | 66.67% | Work in progress |
+| `0x0047e330` | `DestroyControllerSceneObject` | 95.65% | Reviewed near match |
+| `0x0047e350` | `DestructControllerSceneObject` | 50.00% | Work in progress |
+| `0x0047e360` | `GetControllerSceneObject` | 40.00% | Work in progress |
+| `0x0047e3b0` | `ResetControllerInputState` | 64.29% | Work in progress |
+| `0x0047e3e0` | `InitializeControllerSceneObject` | 25.48% | Work in progress |
+| `0x0047e620` | `RemoveControllerSceneObject` | 92.31% | Work in progress |
+| `0x0047e680` | `UpdateControllerSceneObject` | 33.93% | Work in progress |
 | `0x0047f6a0` | `UpdateFoyerSceneHold` | 83.33% | Work in progress |
 | `0x0047fe00` | `UpdateFoyerSceneEvents` | 89.80% | Work in progress |
 | `0x004801c0` | `IsFoyerSceneTransitionComplete` | 45.45% | Work in progress |
@@ -1109,6 +1124,16 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004bd150` | `GameObjectFactoryRegistry::Find` | 45.33% | Work in progress |
 | `0x004bd1b0` | `GameObjectFactoryRegistry::ConstructByClassName` | 80.00% | Work in progress |
 | `0x004bd200` | `GameObjectFactoryEntry::GameObjectFactoryEntry` | 36.84% | Work in progress |
+| `0x004bd280` | `FoyerSceneCirclePool::FoyerSceneCirclePool` | 33.33% | Work in progress |
+| `0x004bd2e0` | `FoyerSceneCirclePool::Initialize` | 14.74% | Work in progress |
+| `0x004bd380` | `FoyerSceneCirclePool::Remove` | 100.00% | Verified exact |
+| `0x004bd3b0` | `FoyerSceneCirclePool::GetAllocationSize` | 100.00% | Verified exact |
+| `0x004bd3c0` | `FoyerSceneCirclePool::UpdateRecords` | 77.55% | Work in progress |
+| `0x004bd3f0` | `FoyerSceneCirclePool::DrawRecords` | 34.34% | Work in progress |
+| `0x004bd480` | `FoyerSceneCirclePool::AddObject` | 100.00% | Verified exact |
+| `0x004bd4a0` | `FoyerSceneCirclePool::RemoveObject` | 100.00% | Verified exact |
+| `0x004bd4f0` | `FoyerSceneCirclePool::AllocateRecord` | 34.67% | Work in progress |
+| `0x004bd590` | `FoyerSceneCirclePool::FreeRecord` | 95.00% | Reviewed near match |
 | `0x004bd5f0` | `RendererLookupTableState::Initialize` | 51.97% | Work in progress |
 | `0x004bd6d0` | `RendererLookupTableState::ReleaseStorage` | 66.67% | Work in progress |
 | `0x004bd710` | `RendererLookupTableState::Clear` | 28.07% | Work in progress |
@@ -1526,7 +1551,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004ee7e0` | `SetAudioCommentaryGain` | 21.05% | Work in progress |
 | `0x004ee800` | `QueueAudioCommentary` | 23.08% | Work in progress |
 | `0x004ee820` | `StopAudioCommentary` | 35.71% | Work in progress |
-| `0x004ee880` | `EnqueueAudioCommentary` | 43.24% | Work in progress |
+| `0x004ee880` | `EnqueueAudioCommentary` | 40.54% | Work in progress |
 | `0x004ee900` | `PlayNextAudioCommentary` | 12.05% | Work in progress |
 | `0x004ee9b0` | `InitializeAudioPcmBuffer` | 72.62% | Work in progress |
 | `0x004eeaa0` | `ShutdownAudioPcmBuffer` | 60.61% | Work in progress |
@@ -1785,12 +1810,11 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x00508290` | `CollectXAxisCandidates` | 8.33% | Work in progress |
 | `0x00508330` | `SpatialAxisIndex::InsertFirst` | 4.82% | Work in progress |
 | `0x005083e0` | `SpatialAxisIndex::InsertSecond` | 4.82% | Work in progress |
-| `0x005084b0` | `SpatialGridCell::Initialize` | 40.00% | Work in progress |
 | `0x005084c0` | `SpatialGridCell::Insert` | 100.00% | Verified exact |
 | `0x005084e0` | `SpatialGridCell::Remove` | 100.00% | Verified exact |
 | `0x00508500` | `StaticSpatialGrid::GetCell` | 94.12% | Work in progress |
 | `0x00508520` | `CollectGridCollisionCandidates` | 18.11% | Work in progress |
-| `0x00508690` | `StaticSpatialGrid::StaticSpatialGrid` | 71.07% | Work in progress |
+| `0x00508690` | `StaticSpatialGrid::StaticSpatialGrid` | 69.42% | Work in progress |
 | `0x00508740` | `StaticSpatialGrid::Insert` | 28.26% | Work in progress |
 | `0x00508840` | `StaticSpatialGrid::Remove` | 88.89% | Work in progress |
 | `0x00508890` | `StaticSpatialGrid::Update` | 100.00% | Verified exact |

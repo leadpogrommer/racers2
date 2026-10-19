@@ -12,6 +12,8 @@ from folded_functions import code_bytes
 from toolchain import ROOT
 
 TABLES = {
+    "scene_feedback": (0x005331f0, 20, "g_controllerSceneObjectDispatch"),
+    "circle_pool": (0x0053632c, 21, "g_foyerSceneCirclePoolDispatch"),
     "reverb_area": (0x00531188, 20, "g_reverbAreaObjectDispatch"),
     "reverb_gateway": (0x005311f8, 20, "g_reverbGatewayObjectDispatch"),
     "reverb_init": (0x005312a8, 20, "g_reverbInitObjectDispatch"),

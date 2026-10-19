@@ -298,3 +298,12 @@ settings queries, display fallback, language selection and graphics quality.
 SecondaryManager lifecycle and the remaining Foyer/controller closures are next.
 The temporary bootstrap remains active; no runtime probe was run. See
 [menu action evidence](work-menu-actions.md).
+
+
+## Controller feedback resources and scene pools
+
+The 376-unit build links the feedback singleton's sprites, looping sound and
+texture record, pulse update, and the scene effect pool lifecycle. Foyer manager
+transitions and SecondaryManager initialization/update remain open before the
+real controller entry path can run. No runtime probe was run. See
+[scene feedback evidence](work-scene-feedback.md).

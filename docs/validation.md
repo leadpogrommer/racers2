@@ -484,3 +484,13 @@ Both SP5 builders link 374 units and agree on 1,780 measured scores/statuses:
 All twelve dispatch checks and twelve folded aliases pass; both data comparisons
 report zero issues across 282 globals. No runtime or asset probes were run.
 See [menu action evidence](work-menu-actions.md).
+
+
+## Controller feedback and pooled effects (2026-10-19)
+
+Both SP5 builders link 376 units and agree on 1,803 measured scores/statuses:
+517 exact functions, twenty-four reviewed near matches and 1,262 STUB rows.
+Data comparison reports zero issues across 287 globals. All twelve dispatch
+verifiers, twelve folded aliases and twenty-one tooling tests pass. The scene
+inventory now checks 501 pointers. No runtime or asset probes were performed.
+See [scene feedback evidence](work-scene-feedback.md).

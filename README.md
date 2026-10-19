@@ -14,8 +14,8 @@ Verified reconstructions include character predicates, line classification,
 fixed string buffers, file operations, window geometry, command-line parsing,
 startup helpers, bitmap scanning, terrain lookup, spline helpers, and
 foundational renderer/input operations.
-The current checkpoint has **513 exact function matches**, **twenty-two reviewed
-near matches**, and 1,245 unfinished implementations across 1,780 measured
+The current checkpoint has **517 exact function matches**, **twenty-four reviewed
+near matches**, and 1,262 unfinished implementations across 1,803 measured
 functions. See
 [current progress](docs/progress.md) for the measured function list and
 remaining work. The application singleton and its two complete 38-slot
@@ -38,6 +38,8 @@ Startup movie playback now links against genuine DirectShow base classes.
 Input-binding and text-entry controls now link, along with model cache, reference,
 bounds and skin-reading dependencies. Full model geometry, collision relocation
 and shared shadow loading now link; see [model recovery](docs/work-model-loading.md).
+Controller feedback sprites/audio and pooled scene effects now link; see
+[scene feedback recovery](docs/work-scene-feedback.md).
 Menu settings actions, display fallback and localized choice setup now link; see
 [menu action recovery](docs/work-menu-actions.md).
 Foyer progress queries and scene-selection gates now link; see

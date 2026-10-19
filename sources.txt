@@ -372,3 +372,5 @@ LEGO Racers 2/src/foyerselectionquery.cpp
 LEGO Racers 2/src/foyerselectionhelpers.cpp
 LEGO Racers 2/src/menumanagercurrentaction.cpp
 LEGO Racers 2/src/foyerscenemenuactions.cpp
+LEGO Racers 2/src/foyerscenecirclepool.cpp
+LEGO Racers 2/src/controllersceneobject.cpp
