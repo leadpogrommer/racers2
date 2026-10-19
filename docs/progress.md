@@ -6,15 +6,15 @@ Reviewed semantically identical near matches (initially at least 95% raw) are
 implemented functions, counted separately from exact matches.
 
 Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-19.
-The match guard verified **512 exact functions and twenty-one reviewed near
-matches**. Another 1,205 reconstructions remain `STUB`; both builders agree on
-all 1,738 measured raw scores and annotation statuses. Data comparison verifies
-281 annotated globals with zero issues. Twelve genuine folded aliases also have
+The match guard verified **512 exact functions and twenty-two reviewed near
+matches**. Another 1,224 reconstructions remain `STUB`; both builders agree on
+all 1,758 measured raw scores and annotation statuses. Data comparison verifies
+282 annotated globals with zero issues. Twelve genuine folded aliases also have
 complete-byte and exact linker-map verification. Unlinked inventory entries
 may appear in the CLI denominator without another measured row.
 
 This is the reconstructed subset, not whole-game coverage. The automatic
-Ghidra inventory has **4,573 discovered function starts**, including **22 thunks**
+Ghidra inventory has **4,576 discovered function starts**, including **22 thunks**
 and linked runtime/library code. It is incomplete and is not a verified count
 of game-authored functions; see [inventory notes](research.md#automatic-function-inventory).
 Identified libraries are excluded from these matches with `--nolib`.
@@ -25,7 +25,8 @@ See [input controls](work-menu-input-and-model-resources.md) and
 [shadow/input configuration](work-shadow-and-configuration.md) and
 [menu background/startup supervisor](work-menu-background.md) and
 [car preview and frontend resources](work-car-preview.md) and
-[reverb and named factories](work-scene-reverb-and-factories.md).
+[reverb and named factories](work-scene-reverb-and-factories.md) and
+[Foyer selection queries](work-foyer-selection.md).
 The executable still uses the temporary bootstrap and has not launched a menu.
 See [frontend integration](work-controller-frontend.md), the
 [runtime roadmap](runtime-roadmap.md), and [library identification](library-identification.md).
@@ -85,6 +86,8 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x0040b0a0` | `GameControllerSelection::UnlockWorld` | 50.00% | Work in progress |
 | `0x0040b0d0` | `GameControllerSelection::UnlockTrack` | 94.74% | Work in progress |
 | `0x0040b0f0` | `GameControllerSelection::IsTrackUnlocked` | 96.00% | Reviewed near match |
+| `0x0040b120` | `SetFoyerModeUnlocked` | 15.38% | Work in progress |
+| `0x0040b140` | `IsFoyerModeUnlocked` | 12.50% | Work in progress |
 | `0x0040b160` | `GameControllerSelection::UnlockReward` | 24.00% | Work in progress |
 | `0x0040b1b0` | `GameControllerSelection::HasReward` | 96.00% | Reviewed near match |
 | `0x0040b2c0` | `GameControllerSelection::UnlockDefaults` | 87.93% | Work in progress |
@@ -97,6 +100,20 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x0040ed50` | `GetRaceStartPositionSize` | 100.00% | Verified exact |
 | `0x00410380` | `GetScreenPrinterSize` | 100.00% | Verified exact |
 | `0x004109c0` | `InitializeFoyerSceneNames` | 20.51% | Work in progress |
+| `0x00410cb0` | `CountFoyerTrackAndBonusProgress` | 58.33% | Work in progress |
+| `0x00410cd0` | `CountFoyerTrackProgress` | 6.25% | Work in progress |
+| `0x00410d10` | `CountFoyerBonusProgress` | 6.45% | Work in progress |
+| `0x00410d70` | `IsFoyerTrackProgressSet` | 23.53% | Work in progress |
+| `0x00410dc0` | `IsFoyerBonusProgressSet` | 11.11% | Work in progress |
+| `0x00410de0` | `GetFoyerProgressModeIndex` | 10.53% | Work in progress |
+| `0x00410e70` | `IsFoyerModeProgressSet` | 28.57% | Work in progress |
+| `0x00410eb0` | `IsFoyerModeProgressMapped` | 62.50% | Work in progress |
+| `0x00410ee0` | `CountFoyerModeProgress` | 30.77% | Work in progress |
+| `0x00410f50` | `GetFoyerModeProgressValue` | 80.00% | Work in progress |
+| `0x00410f70` | `GetFoyerModeProgressFraction` | 55.32% | Work in progress |
+| `0x00411a30` | `GetFoyerSceneIndex` | 32.70% | Work in progress |
+| `0x00411c80` | `IsFoyerModeSelected` | 96.00% | Reviewed near match |
+| `0x00411cb0` | `GetFoyerSelectedObjectIndex` | 78.10% | Work in progress |
 | `0x004131e0` | `InitializeMenuInputMode3Names` | 3.39% | Work in progress |
 | `0x00413310` | `InitializeMenuInputMode1Names` | 0.36% | Work in progress |
 | `0x00414b00` | `InitializeMenuInputTranslations` | 55.31% | Work in progress |
@@ -404,6 +421,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x00438fa0` | `TextBoxManager::Remove` | 32.43% | Work in progress |
 | `0x004391c0` | `CarDisplayModelDestroy` | 95.65% | Reviewed near match |
 | `0x0043b8a0` | `DestroyGameObjectModelBinding` | 95.65% | Reviewed near match |
+| `0x0043c330` | `GetFoyerObjectSelection` | 68.75% | Work in progress |
 | `0x0043ce00` | `ConstructReverbAreaObject` | 56.00% | Work in progress |
 | `0x0043ce60` | `DestroyReverbArea` | 42.86% | Work in progress |
 | `0x0043ced0` | `ConstructReverbArea` | 57.89% | Work in progress |
@@ -464,6 +482,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x0045f8d0` | `ScreenPrinter::ApplyFont` | 87.18% | Work in progress |
 | `0x0045f900` | `ScreenPrinter::SetText` | 43.48% | Work in progress |
 | `0x0045f930` | `ScreenPrinter::ClearText` | 100.00% | Verified exact |
+| `0x00460070` | `ClearFoyerNpcText` | 77.42% | Work in progress |
 | `0x00466470` | `InitializeCharacterPartPresets` | 1.47% | Work in progress |
 | `0x00467380` | `CharacterPartPreset::Set` | 100.00% | Verified exact |
 | `0x004673e0` | `CharacterPartPreset::Clear` | 53.85% | Work in progress |
@@ -492,6 +511,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x0047c780` | `SetFoyerSceneEventAnimation` | 38.93% | Work in progress |
 | `0x0047f6a0` | `UpdateFoyerSceneHold` | 83.33% | Work in progress |
 | `0x0047fe00` | `UpdateFoyerSceneEvents` | 89.80% | Work in progress |
+| `0x004801c0` | `IsFoyerSceneTransitionComplete` | 45.45% | Work in progress |
 | `0x0048e510` | `KillSphereSupervisorAllocationSize` | 100.00% | Verified exact |
 | `0x00493550` | `FilterApplicationWindowMessage` | 100.00% | Verified exact |
 | `0x00494cd0` | `NetworkApplicationMenuView::GetProviderLabel` | 32.26% | Work in progress |
@@ -1565,7 +1585,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004f3100` | `ControllerRecordingService::HandleDirectPlayMessage` | 45.26% | Work in progress |
 | `0x004f3550` | `ControllerRecordingService::ProcessSpecialInputCommand` | 53.99% | Work in progress |
 | `0x004f3620` | `ControllerRecordingService::RecordPeerState` | 94.34% | Work in progress |
-| `0x004f3670` | `ControllerRecordingService::ProcessValue` | 49.65% | Work in progress |
+| `0x004f3670` | `ControllerRecordingService::ProcessValue` | 50.35% | Work in progress |
 | `0x004f37d0` | `ControllerRecordingService::GetProviderKeyValue` | 100.00% | Verified exact |
 | `0x004f37f0` | `ControllerRecordingService::RemoveProviderKey` | 100.00% | Verified exact |
 | `0x004f3820` | `ControllerRecordingObjectMap::Initialize` | 19.63% | Work in progress |
@@ -1618,7 +1638,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004f4e40` | `CollisionServicePrepareQuery` | 84.21% | Work in progress |
 | `0x004f4e70` | `CollisionServiceQuerySphere` | 85.71% | Work in progress |
 | `0x004f4e90` | `CollisionServiceQuerySegment` | 85.71% | Work in progress |
-| `0x004f4eb0` | `CollisionServiceSweep` | 20.00% | Work in progress |
+| `0x004f4eb0` | `CollisionServiceSweep` | 22.22% | Work in progress |
 | `0x004f50e0` | `CollisionModelTransform::ResetIdentity` | 31.58% | Work in progress |
 | `0x004f5140` | `SpatialLinkRegistry::SpatialLinkRegistry` | 90.00% | Work in progress |
 | `0x004f5160` | `SpatialLinkRegistry::Insert` | 80.00% | Work in progress |
@@ -1742,11 +1762,12 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x00508290` | `CollectXAxisCandidates` | 8.33% | Work in progress |
 | `0x00508330` | `SpatialAxisIndex::InsertFirst` | 4.82% | Work in progress |
 | `0x005083e0` | `SpatialAxisIndex::InsertSecond` | 4.82% | Work in progress |
+| `0x005084b0` | `SpatialGridCell::Initialize` | 40.00% | Work in progress |
 | `0x005084c0` | `SpatialGridCell::Insert` | 100.00% | Verified exact |
 | `0x005084e0` | `SpatialGridCell::Remove` | 100.00% | Verified exact |
 | `0x00508500` | `StaticSpatialGrid::GetCell` | 94.12% | Work in progress |
 | `0x00508520` | `CollectGridCollisionCandidates` | 18.11% | Work in progress |
-| `0x00508690` | `StaticSpatialGrid::StaticSpatialGrid` | 69.42% | Work in progress |
+| `0x00508690` | `StaticSpatialGrid::StaticSpatialGrid` | 71.07% | Work in progress |
 | `0x00508740` | `StaticSpatialGrid::Insert` | 28.26% | Work in progress |
 | `0x00508840` | `StaticSpatialGrid::Remove` | 88.89% | Work in progress |
 | `0x00508890` | `StaticSpatialGrid::Update` | 100.00% | Verified exact |

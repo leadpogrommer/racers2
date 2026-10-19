@@ -462,3 +462,16 @@ aliases pass. Data comparison has zero issues across 281 globals, including the
 factory registry, named registrations and shared integer reverb default. No
 game behavior tests, runtime runs or asset probes were performed. See
 [recovery evidence](work-scene-reverb-and-factories.md).
+
+
+## Foyer selection queries (2026-10-19)
+
+Both SP5 builders link 372 units and agree on all 1,758 measured scores/statuses:
+512 exact functions, twenty-two reviewed near matches and 1,224 STUB rows.
+Nineteen new function extents were checked; an existing spatial-grid initializer
+also becomes measurable after linker folding changes. All twelve dispatch checks
+and twelve complete folded aliases pass. Data comparison has zero issues across
+282 globals, including all five progress threshold rows. Tooling tests were
+unchanged and passed in the preceding reverb/factory checkpoint. No game behavior
+tests, runtime runs or asset probes were added or performed. See
+[selection recovery](work-foyer-selection.md).

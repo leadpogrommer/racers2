@@ -368,3 +368,5 @@ LEGO Racers 2/src/terrainsurface.cpp
 LEGO Racers 2/src/gameobjectfactoryregistry.cpp
 LEGO Racers 2/src/racestartposition.cpp
 LEGO Racers 2/src/reverbobjects.cpp
+LEGO Racers 2/src/foyerselectionquery.cpp
+LEGO Racers 2/src/foyerselectionhelpers.cpp

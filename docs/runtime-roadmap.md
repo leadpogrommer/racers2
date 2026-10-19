@@ -280,3 +280,12 @@ registrations. The raw inventory finds 76 registration callsites, so named
 asset creation is still incomplete. Controller/Foyer startup and the real
 entry/main loop remain staged. No runtime probe was run. See
 [scene/factory evidence](work-scene-reverb-and-factories.md).
+
+
+## Foyer progress and selection queries
+
+The 372-unit build links progress masks/counters, five threshold triplets, scene
+selection gates, proximity/transition predicates and NPC text cleanup. Review
+corrected the manager-state receiver and special-mode query. Full Foyer manager
+transitions, controller feedback resources and startup remain staged. Bootstrap
+is still active; no runtime probe was run. See [selection evidence](work-foyer-selection.md).
