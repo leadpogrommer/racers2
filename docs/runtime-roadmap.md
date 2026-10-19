@@ -317,3 +317,13 @@ model/preview code still requires rebuilt transforms and template storage;
 SecondaryManager initialize/update now have staged source with open callees.
 The menu has not launched and no runtime probe was run. See
 [skeleton/catalogue evidence](work-skeleton-and-catalogue.md).
+
+
+## Shared physical transforms and preview animation timing
+
+The 379-unit build links world/parent position and orientation conversion,
+transform capture and physical step storage, plus the preview frame-rate scale.
+Generic physical/model construction and menu render-owner dispatch wiring are
+next; remaining Foyer, character visual and SecondaryManager code is staged.
+The menu has not launched and no runtime probe was run. See
+[physical transform evidence](work-physical-transforms.md).

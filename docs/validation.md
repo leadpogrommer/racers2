@@ -504,3 +504,13 @@ All twelve dispatch verifiers and twelve folded aliases pass; both data checks
 report zero issues across 287 globals, including all 46 catalogue entries.
 No runtime or asset probes were performed. See
 [skeleton/catalogue evidence](work-skeleton-and-catalogue.md).
+
+
+## Physical transforms and preview timing (2026-10-19)
+
+Both SP5 builders link 379 units and agree on 1,829 measured scores/statuses:
+531 exact functions, twenty-six reviewed near matches and 1,272 STUB rows.
+Both data comparisons report zero issues across 296 globals. Twelve dispatch
+verifiers, seventeen complete folded aliases and twenty-one tooling tests pass.
+No runtime or asset probes were performed. See
+[physical transform evidence](work-physical-transforms.md).

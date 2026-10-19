@@ -11,3 +11,8 @@ address,symbol,bytes,name
 004b13d0,?GetAudioServiceShutdownStatus@@YIIPAVAudioService@@PAX@Z,8b4108c3,GetAudioServiceShutdownStatus
 004f2590,?IsReading@CommentaryAudioStream@@QAEIXZ,8b4114c3,CommentaryAudioStream::IsReading
 00479030,?SecondaryFxManagerDraw@@YIXPAUGameObject@@PAX@Z,c3,SecondaryFxManagerDraw
+004a6eb0,?LifecycleWorldPositionExit@@YAXXZ,c3,LifecycleWorldPositionExit
+004a7030,?LifecycleWorldRotationExit@@YAXXZ,c3,LifecycleWorldRotationExit
+004a70b0,?LifecycleWorldOrientationExit@@YAXXZ,c3,LifecycleWorldOrientationExit
+00409190,?Initialize@GameControllerItem@@QAEPAU1@XZ,8bc1c3,GameControllerItem::Initialize
+00460680,?ConstructFoyerSkeletonRecord@@YIPAUFoyerSkeletonRecord@@PAU1@PAX@Z,8bc1c3,ConstructFoyerSkeletonRecord

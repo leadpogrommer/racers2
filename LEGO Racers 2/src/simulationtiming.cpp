@@ -30,6 +30,15 @@ void InitializeSimulationStepMilliseconds()
 	g_simulationStepMilliseconds = 1000.0f / (LegoS32) g_simulationFrameRate;
 }
 
+// GLOBAL: LEGORACERS2 0x00579128
+LegoFloat g_simulationFrameRateScale;
+
+// FUNCTION: LEGORACERS2 0x004a5f20
+void InitializeSimulationFrameRateScale()
+{
+	g_simulationFrameRateScale = 30.0f / (LegoS32) g_simulationFrameRate;
+}
+
 namespace
 {
 struct SimulationTimingStartup {
@@ -38,6 +47,7 @@ struct SimulationTimingStartup {
 		InitializeSimulationFrameRate();
 		InitializeSimulationStepSeconds();
 		InitializeSimulationStepMilliseconds();
+		InitializeSimulationFrameRateScale();
 	}
 } g_simulationTimingStartup;
 } // namespace

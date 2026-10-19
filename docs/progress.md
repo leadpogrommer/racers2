@@ -6,15 +6,15 @@ Reviewed semantically identical near matches (initially at least 95% raw) are
 implemented functions, counted separately from exact matches.
 
 Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-19.
-The match guard verified **517 exact functions and twenty-four reviewed near
-matches**. Another 1,265 reconstructions remain `STUB`; both builders agree on
-all 1,806 measured raw scores and annotation statuses. Data comparison verifies
-287 annotated globals with zero issues. Twelve genuine folded aliases also have
+The match guard verified **531 exact functions and twenty-six reviewed near
+matches**. Another 1,272 reconstructions remain `STUB`; both builders agree on
+all 1,829 measured raw scores and annotation statuses. Data comparison verifies
+296 annotated globals with zero issues. Seventeen genuine folded aliases also have
 complete-byte and exact linker-map verification. Unlinked inventory entries
 may appear in the CLI denominator without another measured row.
 
 This is the reconstructed subset, not whole-game coverage. The automatic
-Ghidra inventory has **4,595 discovered function starts**, including **26 thunks**
+Ghidra inventory has **4,605 discovered function starts**, including **26 thunks**
 and linked runtime/library code. It is incomplete and is not a verified count
 of game-authored functions; see [inventory notes](research.md#automatic-function-inventory).
 Identified libraries are excluded from these matches with `--nolib`.
@@ -29,7 +29,8 @@ See [input controls](work-menu-input-and-model-resources.md) and
 [Foyer selection queries](work-foyer-selection.md) and
 [menu action recovery](work-menu-actions.md) and
 [scene feedback](work-scene-feedback.md) and
-[skeleton and catalogue recovery](work-skeleton-and-catalogue.md).
+[skeleton and catalogue recovery](work-skeleton-and-catalogue.md) and
+[physical transforms](work-physical-transforms.md).
 The executable still uses the temporary bootstrap and has not launched a menu.
 See [frontend integration](work-controller-frontend.md), the
 [runtime roadmap](runtime-roadmap.md), and [library identification](library-identification.md).
@@ -391,6 +392,16 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x0042ce80` | `BitmapFontSet::~BitmapFontSet` | 0.00% | Work in progress |
 | `0x0042cef0` | `BitmapFontSet::Initialize` | 23.08% | Work in progress |
 | `0x0042d020` | `BitmapFontSet::Release` | 18.39% | Work in progress |
+| `0x0042f190` | `CaptureLifecycleTransform` | 88.46% | Work in progress |
+| `0x0042f1d0` | `GetCapturedLifecycleTransform` | 100.00% | Verified exact |
+| `0x0042f210` | `IsLifecycleActive` | 100.00% | Verified exact |
+| `0x0042f230` | `GetLifecycleParentValue` | 100.00% | Verified exact |
+| `0x0042f240` | `ClearLifecycleMotion` | 9.09% | Work in progress |
+| `0x0042f2b0` | `GetLifecyclePosition` | 100.00% | Verified exact |
+| `0x0042f2d0` | `GetLifecycleRotation` | 100.00% | Verified exact |
+| `0x0042f2f0` | `GetLifecycleOrientation` | 100.00% | Verified exact |
+| `0x0042f310` | `SetLifecyclePosition` | 100.00% | Verified exact |
+| `0x0042f350` | `SetLifecycleOrientation` | 100.00% | Verified exact |
 | `0x00431ef0` | `Vector3::Dot` | 100.00% | Verified exact |
 | `0x004334c0` | `GlobalOverlayGlyphReplacementManagerView::Initialize` | 39.20% | Work in progress |
 | `0x00433640` | `GlobalOverlayGlyphReplacementManagerView::Release` | 76.47% | Work in progress |
@@ -431,7 +442,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x00437a20` | `NestedTextBoxManagerDestructor` | 0.00% | Work in progress |
 | `0x00437a30` | `NestedTextBoxManagerInitialize` | 76.92% | Work in progress |
 | `0x00437a50` | `NestedTextBoxManagerRemove` | 18.60% | Work in progress |
-| `0x00437ac0` | `NestedTextBoxManagerUpdate` | 30.29% | Work in progress |
+| `0x00437ac0` | `NestedTextBoxManagerUpdate` | 30.73% | Work in progress |
 | `0x00438540` | `ClearTextBoxManagerResources` | 38.81% | Work in progress |
 | `0x00438be0` | `HasActiveTextBoxPauseTarget` | 49.35% | Work in progress |
 | `0x00438c90` | `ReleaseTextBoxManagerResource` | 86.96% | Work in progress |
@@ -507,6 +518,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x0045f900` | `ScreenPrinter::SetText` | 43.48% | Work in progress |
 | `0x0045f930` | `ScreenPrinter::ClearText` | 100.00% | Verified exact |
 | `0x00460070` | `ClearFoyerNpcText` | 77.42% | Work in progress |
+| `0x00460680` | `ConstructFoyerSkeletonRecord` | 100.00% | Verified exact |
 | `0x00466470` | `InitializeCharacterPartPresets` | 1.47% | Work in progress |
 | `0x00467380` | `CharacterPartPreset::Set` | 100.00% | Verified exact |
 | `0x004673e0` | `CharacterPartPreset::Clear` | 53.85% | Work in progress |
@@ -555,6 +567,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x00494f40` | `ApplicationCharacterQueue::QueueCharacter` | 100.00% | Verified exact |
 | `0x00495100` | `NetworkLobbyStateView::GetLobbyText` | 100.00% | Verified exact |
 | `0x00495130` | `NetworkLobbyStateView::GetLobbyStatus` | 100.00% | Verified exact |
+| `0x00496120` | `GetLifecycleParent` | 100.00% | Verified exact |
 | `0x00499500` | `PlayMpegMovie` | 34.81% | Work in progress |
 | `0x00499920` | `MovieTextureRenderer::MovieTextureRenderer` | 23.85% | Work in progress |
 | `0x00499a00` | `MovieTextureRenderer::~MovieTextureRenderer` | 31.11% | Work in progress |
@@ -700,9 +713,11 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004a5e90` | `InitializeSimulationFrameRate` | 53.33% | Work in progress |
 | `0x004a5ec0` | `InitializeSimulationStepSeconds` | 100.00% | Verified exact |
 | `0x004a5ef0` | `InitializeSimulationStepMilliseconds` | 100.00% | Verified exact |
+| `0x004a5f20` | `InitializeSimulationFrameRateScale` | 100.00% | Verified exact |
 | `0x004a5f50` | `InitializeMaximumAngularSpeed` | 33.33% | Work in progress |
 | `0x004a5f80` | `InitializeMaximumAngularSpeedSquared` | 100.00% | Verified exact |
 | `0x004a5fb0` | `InitializeMaximumLinearSpeedSquared` | 33.33% | Work in progress |
+| `0x004a6020` | `SetPhysicalLifecycleStep` | 66.67% | Work in progress |
 | `0x004a6190` | `ResetGameObjectInitializationValue` | 63.16% | Work in progress |
 | `0x004a63b0` | `CarDisplayLifecycleSetPosition` | 73.91% | Work in progress |
 | `0x004a63f0` | `CarDisplayLifecycleSetRotation` | 42.42% | Work in progress |
@@ -712,8 +727,16 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004a6a60` | `PhysicalLifecycleState::UpdateSleepState` | 77.38% | Work in progress |
 | `0x004a6bb0` | `SetLifecycleParent` | 65.17% | Work in progress |
 | `0x004a6c30` | `ClearLifecycleParent` | 51.52% | Work in progress |
+| `0x004a6e00` | `PhysicalLifecycleState::GetWorldPosition` | 91.84% | Work in progress |
+| `0x004a6eb0` | `LifecycleWorldPositionExit` | 100.00% | Verified exact |
 | `0x004a6ec0` | `PhysicalLifecycleState::GetWorldParentOffset` | 87.80% | Work in progress |
 | `0x004a6f00` | `PhysicalLifecycleState::GetParentVelocityAtOffset` | 84.62% | Work in progress |
+| `0x004a6ff0` | `PhysicalLifecycleState::GetWorldRotation` | 95.00% | Reviewed near match |
+| `0x004a7030` | `LifecycleWorldRotationExit` | 100.00% | Verified exact |
+| `0x004a7040` | `PhysicalLifecycleState::GetWorldOrientation` | 95.08% | Reviewed near match |
+| `0x004a70b0` | `LifecycleWorldOrientationExit` | 100.00% | Verified exact |
+| `0x004a70c0` | `PhysicalLifecycleState::SetWorldPosition` | 57.50% | Work in progress |
+| `0x004a7130` | `PhysicalLifecycleState::SetWorldOrientation` | 52.31% | Work in progress |
 | `0x004a7250` | `DrawModelResource` | 44.39% | Work in progress |
 | `0x004a74b0` | `IsLookupPointWithinRadius` | 100.00% | Verified exact |
 | `0x004a7510` | `ApplyLookupResourceState` | 19.47% | Work in progress |
@@ -1003,7 +1026,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004b33b0` | `GlobalOverlayManager::AllocateSprite` | 100.00% | Verified exact |
 | `0x004b33f0` | `GlobalOverlayManager::MoveSprite` | 86.27% | Work in progress |
 | `0x004b3470` | `GlobalOverlayManager::AllocateRecord` | 50.00% | Work in progress |
-| `0x004b34b0` | `GlobalOverlayManager::MoveRecord` | 80.77% | Work in progress |
+| `0x004b34b0` | `GlobalOverlayManager::MoveRecord` | 81.55% | Work in progress |
 | `0x004b3540` | `RenderGlobalOverlayPass` | 21.35% | Work in progress |
 | `0x004b3880` | `GlobalOverlayManager::SetLocalizedStrings` | 100.00% | Verified exact |
 | `0x004b38b0` | `GlobalOverlayManager::SetGlyphReplacementManager` | 100.00% | Verified exact |
@@ -1554,7 +1577,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004ee7e0` | `SetAudioCommentaryGain` | 21.05% | Work in progress |
 | `0x004ee800` | `QueueAudioCommentary` | 23.08% | Work in progress |
 | `0x004ee820` | `StopAudioCommentary` | 35.71% | Work in progress |
-| `0x004ee880` | `EnqueueAudioCommentary` | 40.54% | Work in progress |
+| `0x004ee880` | `EnqueueAudioCommentary` | 43.24% | Work in progress |
 | `0x004ee900` | `PlayNextAudioCommentary` | 12.05% | Work in progress |
 | `0x004ee9b0` | `InitializeAudioPcmBuffer` | 72.62% | Work in progress |
 | `0x004eeaa0` | `ShutdownAudioPcmBuffer` | 60.61% | Work in progress |
@@ -1814,11 +1837,12 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x00508290` | `CollectXAxisCandidates` | 8.33% | Work in progress |
 | `0x00508330` | `SpatialAxisIndex::InsertFirst` | 4.82% | Work in progress |
 | `0x005083e0` | `SpatialAxisIndex::InsertSecond` | 4.82% | Work in progress |
+| `0x005084b0` | `SpatialGridCell::Initialize` | 40.00% | Work in progress |
 | `0x005084c0` | `SpatialGridCell::Insert` | 100.00% | Verified exact |
 | `0x005084e0` | `SpatialGridCell::Remove` | 100.00% | Verified exact |
 | `0x00508500` | `StaticSpatialGrid::GetCell` | 94.12% | Work in progress |
 | `0x00508520` | `CollectGridCollisionCandidates` | 18.11% | Work in progress |
-| `0x00508690` | `StaticSpatialGrid::StaticSpatialGrid` | 69.42% | Work in progress |
+| `0x00508690` | `StaticSpatialGrid::StaticSpatialGrid` | 71.07% | Work in progress |
 | `0x00508740` | `StaticSpatialGrid::Insert` | 28.26% | Work in progress |
 | `0x00508840` | `StaticSpatialGrid::Remove` | 88.89% | Work in progress |
 | `0x00508890` | `StaticSpatialGrid::Update` | 100.00% | Verified exact |

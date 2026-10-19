@@ -2,7 +2,7 @@
 
 #include "matrix3.h"
 
-// STUB: LEGORACERS2 0x00460680
+// FUNCTION: LEGORACERS2 0x00460680 FOLDED
 FoyerSkeletonRecord* __fastcall ConstructFoyerSkeletonRecord(FoyerSkeletonRecord* p_record, void*)
 {
 	return p_record;

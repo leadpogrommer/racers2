@@ -26,7 +26,7 @@ void GameControllerPairGroups::Initialize()
 	}
 }
 
-// FUNCTION: LEGORACERS2 0x00409190
+// FUNCTION: LEGORACERS2 0x00409190 FOLDED
 GameControllerItem* GameControllerItem::Initialize()
 {
 	return this;

@@ -33,6 +33,11 @@ struct PhysicalLifecycleState {
 	void RebuildInverseInertiaTensor();
 	void UpdateSleepState();
 	void GetWorldParentOffset(Vector3* p_result);
+	const Vector3* GetWorldPosition();
+	const Matrix3* GetWorldRotation();
+	const Quaternion* GetWorldOrientation();
+	void SetWorldPosition(const Vector3* p_position);
+	void SetWorldOrientation(const Quaternion* p_orientation);
 	void UpdateAndClampVelocities();
 	void GetParentVelocityAtOffset(const Vector3* p_offset, Vector3* p_result);
 	const LifecycleTransformDispatch* GetTransformDispatch() const
@@ -46,7 +51,10 @@ struct PhysicalLifecycleState {
 	Matrix3 m_rotation;          // 0x2c
 	LegoFloat m_contactFriction; // 0x50
 	LegoFloat m_contactResponse; // 0x54; multiplied across contact participants
-	undefined m_unk0x58[0x7c - 0x58];
+	LegoU32 m_unk0x58;
+	Vector3 m_savedPosition;        // 0x5c
+	Quaternion m_savedOrientation;  // 0x68
+	const void* m_parameters;       // 0x78
 	Vector3 m_parentOffset;         // 0x7c
 	Quaternion m_parentOrientation; // 0x88
 	LegoU32 m_savedParentValue;     // 0x98
@@ -65,6 +73,23 @@ struct PhysicalLifecycleState {
 	LegoFloat m_inverseMass;          // 0x124
 };
 DECOMP_SIZE_ASSERT(PhysicalLifecycleState, 0x128);
+DECOMP_STATIC_ASSERT(offsetof(PhysicalLifecycleState, m_savedPosition) == 0x5c);
+DECOMP_STATIC_ASSERT(offsetof(PhysicalLifecycleState, m_savedOrientation) == 0x68);
+DECOMP_STATIC_ASSERT(offsetof(PhysicalLifecycleState, m_parameters) == 0x78);
+
+void SetPhysicalLifecycleStep(LegoFloat p_step);
+
+void __fastcall CaptureLifecycleTransform(PhysicalLifecycleState*, void*);
+LegoU32 __fastcall GetCapturedLifecycleTransform(PhysicalLifecycleState*, void*, Vector3*, Quaternion*);
+LegoBool32 __fastcall IsLifecycleActive(PhysicalLifecycleState*, void*, LegoU32);
+LegoU32 __fastcall GetLifecycleParentValue(PhysicalLifecycleState*, void*);
+void __fastcall ClearLifecycleMotion(PhysicalLifecycleState*, void*);
+const Vector3* __fastcall GetLifecyclePosition(PhysicalLifecycleState*, void*);
+const Matrix3* __fastcall GetLifecycleRotation(PhysicalLifecycleState*, void*);
+const Quaternion* __fastcall GetLifecycleOrientation(PhysicalLifecycleState*, void*);
+void __fastcall SetLifecyclePosition(PhysicalLifecycleState*, void*, const Vector3*);
+void __fastcall SetLifecycleOrientation(PhysicalLifecycleState*, void*, const Quaternion*);
+PhysicalLifecycleState* __fastcall GetLifecycleParent(PhysicalLifecycleState*, void*);
 
 void __fastcall ClearLifecycleParent(GameLifecycleComponent* p_lifecycle, void*, LegoU32 p_flag);
 
