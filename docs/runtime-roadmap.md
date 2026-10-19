@@ -218,3 +218,14 @@ on 1,564 measured functions; large model routines remain under review. Foyer
 actions/assets, car-preview object bindings and controller startup remain open.
 The temporary bootstrap is active; no runtime probe was run. See
 [model-loading evidence](work-model-loading.md).
+
+
+## Loading screen and fade controller
+
+The 348-unit build links the scene-loading textures, eighteen sprites, timed
+progress/equalizer updates and SecondaryFX fade-manager lifecycle. Its full
+twenty-slot table passes static pointer checks. Transformed preview bounds
+classification also follows the corrected original comparison direction. These
+are startup dependencies; controller/frontend construction and foyer/car asset
+closures remain open. Bootstrap remains active. No runtime probe was run; see
+[loading-screen recovery](work-loading-progress.md).

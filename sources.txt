@@ -342,3 +342,7 @@ LEGO Racers 2/src/modelresourceloading.cpp
 LEGO Racers 2/src/modelresourcecleanup.cpp
 LEGO Racers 2/src/modelshadow.cpp
 LEGO Racers 2/src/renderershadowshared.cpp
+LEGO Racers 2/src/controllerloadingprogress.cpp
+LEGO Racers 2/src/controllerloadingtextures.cpp
+LEGO Racers 2/src/controllerloadingtuning.cpp
+LEGO Racers 2/src/secondaryfxmanager.cpp

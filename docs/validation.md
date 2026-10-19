@@ -394,3 +394,13 @@ and 1,073 STUB rows. All twelve dispatch verifiers pass in both PEs, alongside
 eleven complete folded aliases. Data comparison reports zero issues across
 263 globals. All 24 new function extents were reviewed. No game behavior tests
 or runtime/asset probes were added or run. See [model evidence](work-model-loading.md).
+
+
+## Loading screen and fade controller (2026-10-19)
+
+Both 348-unit SP5 builds pass and agree on all 1,591 measured scores/statuses:
+481 exact functions, nineteen reviewed near matches and 1,091 STUB rows. All
+twelve dispatch verifiers pass in both PEs, with the scene check expanded to
+146 pointers. Twelve complete folded aliases and 264 data globals with zero
+issues pass. The 21 existing tooling/library tests pass. No game behavior tests
+or runtime probes were added or run. See [loading-screen evidence](work-loading-progress.md).

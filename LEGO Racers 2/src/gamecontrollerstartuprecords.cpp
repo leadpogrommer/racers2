@@ -1,31 +1,17 @@
 #include "controllereventrecords.h"
+#include "controllerloadingprogress.h"
 #include "gamecontrollerinitialization.h"
-
-namespace
-{
-struct ControllerSelectionState {
-	LegoU32 m_count;
-	LegoS32 m_index;
-	LegoU32 m_unk0x08;
-	LegoU32 m_unk0x0c;
-	undefined m_unk0x10[0x50 - 0x10];
-	LegoU32 m_slots[18];
-};
-DECOMP_STATIC_ASSERT(offsetof(ControllerSelectionState, m_slots) == 0x50);
-DECOMP_SIZE_ASSERT(ControllerSelectionState, 0x98);
-
-} // namespace
 
 // FUNCTION: LEGORACERS2 0x004338c0
 void* __fastcall ConstructControllerSelectionState(void* p_storage, void*)
 {
-	ControllerSelectionState* state = (ControllerSelectionState*) p_storage;
-	state->m_count = 0;
-	state->m_index = -1;
-	state->m_unk0x08 = 0;
-	state->m_unk0x0c = 0;
+	ControllerLoadingProgress* state = (ControllerLoadingProgress*) p_storage;
+	state->m_active = 0;
+	state->m_mode = -1;
+	state->m_progress = 0.0f;
+	state->m_elapsed = 0.0f;
 	for (LegoU32 i = 0; i < 18; ++i) {
-		state->m_slots[i] = 0;
+		state->m_sprites[i] = NULL;
 	}
 	return state;
 }

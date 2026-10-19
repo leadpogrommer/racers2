@@ -6,20 +6,21 @@ Reviewed semantically identical near matches (initially at least 95% raw) are
 implemented functions, counted separately from exact matches.
 
 Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-19.
-The match guard verified **472 exact functions and nineteen reviewed near
-matches**. Another 1,073 reconstructions remain `STUB`; both builders agree on
-all 1,564 measured raw scores and annotation statuses. Data comparison verifies
-263 annotated globals with zero issues. Eleven genuine folded aliases also have
+The match guard verified **481 exact functions and nineteen reviewed near
+matches**. Another 1,091 reconstructions remain `STUB`; both builders agree on
+all 1,591 measured raw scores and annotation statuses. Data comparison verifies
+264 annotated globals with zero issues. Twelve genuine folded aliases also have
 complete-byte and exact linker-map verification. Unlinked inventory entries
 may appear in the CLI denominator without another measured row.
 
 This is the reconstructed subset, not whole-game coverage. The automatic
-Ghidra inventory has **4,524 discovered function starts**, including **22 thunks**
+Ghidra inventory has **4,533 discovered function starts**, including **22 thunks**
 and linked runtime/library code. It is incomplete and is not a verified count
 of game-authored functions; see [inventory notes](research.md#automatic-function-inventory).
 Identified libraries are excluded from these matches with `--nolib`.
 See [input controls](work-menu-input-and-model-resources.md) and
-[model geometry, collision and shadows](work-model-loading.md).
+[model geometry, collision and shadows](work-model-loading.md), and
+[loading-screen recovery](work-loading-progress.md).
 The executable still uses the temporary bootstrap and has not launched a menu.
 See [frontend integration](work-controller-frontend.md), the
 [runtime roadmap](runtime-roadmap.md), and [library identification](library-identification.md).
@@ -279,7 +280,20 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x00433680` | `GlobalOverlayGlyphReplacementManagerView::LoadIconTextures` | 100.00% | Verified exact |
 | `0x00433700` | `GlobalOverlayGlyphReplacementManagerView::ReleaseIconTextures` | 100.00% | Verified exact |
 | `0x00433750` | `GlobalOverlayGlyphReplacementManagerView::SetPlayerName` | 100.00% | Verified exact |
+| `0x004337c0` | `InitializeControllerLoadingPhasePeriod` | 33.33% | Work in progress |
+| `0x004337e0` | `InitializeControllerLoadingProgressOrigin` | 50.00% | Work in progress |
+| `0x00433810` | `InitializeControllerLoadingProgressSize` | 100.00% | Verified exact |
+| `0x00433840` | `InitializeControllerLoadingEqualizerOrigin` | 50.00% | Work in progress |
+| `0x00433870` | `InitializeControllerLoadingEqualizerSize` | 100.00% | Verified exact |
+| `0x004338a0` | `InitializeControllerLoadingWordSize` | 100.00% | Verified exact |
 | `0x004338c0` | `ConstructControllerSelectionState` | 100.00% | Verified exact |
+| `0x004338f0` | `InitializeControllerSelectionProgress` | 37.62% | Work in progress |
+| `0x004339a0` | `FinalizeControllerSelectionProgress` | 91.67% | Work in progress |
+| `0x004339e0` | `UpdateControllerSelectionProgress` | 67.83% | Work in progress |
+| `0x00433aa0` | `AdvanceControllerLoadingEqualizer` | 54.88% | Work in progress |
+| `0x00433c50` | `CreateControllerLoadingSprites` | 15.31% | Work in progress |
+| `0x00433fc0` | `UpdateControllerLoadingSprites` | 66.67% | Work in progress |
+| `0x00434060` | `UpdateControllerLoadingEqualizerBar` | 36.36% | Work in progress |
 | `0x00434150` | `ReadSignedClockSeconds` | 47.06% | Work in progress |
 | `0x00434240` | `ConstructControllerEventRecords` | 18.18% | Work in progress |
 | `0x00434bc0` | `LoadControllerHudTextures` | 77.53% | Work in progress |
@@ -290,6 +304,8 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x00436070` | `ReleaseControllerPauseMenuTextures` | 100.00% | Verified exact |
 | `0x004360d0` | `LoadControllerBuilderTextures` | 13.85% | Work in progress |
 | `0x00436af0` | `ReleaseControllerBuilderTextures` | 15.14% | Work in progress |
+| `0x00437430` | `LoadControllerLoadingTextures` | 29.79% | Work in progress |
+| `0x00437770` | `ReleaseControllerLoadingTextures` | 100.00% | Verified exact |
 | `0x00437970` | `NestedTextBoxManagerPrefix::NestedTextBoxManagerPrefix` | 36.11% | Work in progress |
 | `0x004379f0` | `NestedTextBoxManagerGetObjectSize` | 100.00% | Verified exact |
 | `0x00437a00` | `NestedTextBoxManagerDestroy` | 95.65% | Reviewed equivalent near match |
@@ -343,6 +359,17 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x00466470` | `InitializeCharacterPartPresets` | 1.47% | Work in progress |
 | `0x00467380` | `CharacterPartPreset::Set` | 100.00% | Verified exact |
 | `0x004673e0` | `CharacterPartPreset::Clear` | 53.85% | Work in progress |
+| `0x00478bf0` | `SecondaryFxState::EnsureSprite` | 13.21% | Work in progress |
+| `0x00478d00` | `SecondaryFxState::ReleaseSprite` | 100.00% | Verified exact |
+| `0x00478d20` | `SecondaryFxState::Update` | 92.86% | Work in progress |
+| `0x00478dd0` | `SecondaryFxState::SetMode` | 47.14% | Work in progress |
+| `0x00478f30` | `SecondaryFxManager::SecondaryFxManager` | 61.54% | Work in progress |
+| `0x00478f60` | `SecondaryFxManagerDestroy` | 100.00% | Verified exact |
+| `0x00478f80` | `SecondaryFxManager::~SecondaryFxManager` | 50.00% | Work in progress |
+| `0x00478f90` | `SecondaryFxManager::Initialize` | 50.00% | Work in progress |
+| `0x00478fe0` | `SecondaryFxManager::Remove` | 92.86% | Work in progress |
+| `0x00479010` | `SecondaryFxManagerUpdate` | 100.00% | Verified exact |
+| `0x00479030` | `SecondaryFxManagerDraw` | 100.00% | Verified exact |
 | `0x00479490` | `RendererDefaultRecord::RendererDefaultRecord` | 45.71% | Work in progress |
 | `0x0047c040` | `InitializeFoyerAnimationTiming` | 33.33% | Work in progress |
 | `0x0047c060` | `InitializeFoyerSceneEvent` | 57.14% | Work in progress |
@@ -1304,7 +1331,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004ee7e0` | `SetAudioCommentaryGain` | 21.05% | Work in progress |
 | `0x004ee800` | `QueueAudioCommentary` | 23.08% | Work in progress |
 | `0x004ee820` | `StopAudioCommentary` | 35.71% | Work in progress |
-| `0x004ee880` | `EnqueueAudioCommentary` | 40.54% | Work in progress |
+| `0x004ee880` | `EnqueueAudioCommentary` | 43.24% | Work in progress |
 | `0x004ee900` | `PlayNextAudioCommentary` | 12.05% | Work in progress |
 | `0x004ee9b0` | `InitializeAudioPcmBuffer` | 72.62% | Work in progress |
 | `0x004eeaa0` | `ShutdownAudioPcmBuffer` | 60.61% | Work in progress |
@@ -1505,6 +1532,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004fc530` | `ComputeContactSeparationWeights` | 100.00% | Verified exact |
 | `0x004fc580` | `SeparateContactBodies` | 71.08% | Work in progress |
 | `0x004fc680` | `SeparateContactFromStaticBody` | 32.81% | Work in progress |
+| `0x00502a10` | `SetControllerSelectionProgressValue` | 100.00% | Verified exact |
 | `0x00502d10` | `ParseAiffAudioData` | 28.57% | Work in progress |
 | `0x00502f00` | `SwapBigEndianDword` | 8.33% | Work in progress |
 | `0x00502f20` | `SwapBigEndianWord` | 14.29% | Work in progress |

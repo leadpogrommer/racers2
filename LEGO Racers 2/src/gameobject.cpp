@@ -256,11 +256,11 @@ static void RefreshChildGeometry(GameObjectChildBuffer* p_child)
 	LegoFloat xRange = maxX - minX;
 	LegoFloat zRange = maxZ - minZ;
 	if (zRange <= xRange) {
-		if (xRange > 0.0f && zRange / xRange < 0.5f) {
+		if (xRange > 0.0f && zRange / xRange > 0.5f) {
 			output->m_usable = 0;
 		}
 	}
-	else if (zRange > 0.0f && xRange / zRange < 0.5f) {
+	else if (zRange > 0.0f && xRange / zRange > 0.5f) {
 		output->m_usable = 0;
 	}
 }
