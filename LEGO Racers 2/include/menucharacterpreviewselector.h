@@ -27,6 +27,14 @@ struct MenuCharacterPreviewSelector : MenuWidgetBase {
 	LegoFloat m_position[2];                  // +0x124
 
 	MenuCharacterPreviewSelector();
+	void Initialize(
+		LegoS32 p_initialValue,
+		const LegoFloat* p_position,
+		LegoFloat p_scale,
+		LegoU32 p_disabled,
+		LegoBool32 p_lighting,
+		LegoU32 p_wrap
+	);
 	void ReleasePreviewResources();
 	void AddChoice(const MenuCharacterPreviewChoice*);
 	void SelectChoice(LegoS32);

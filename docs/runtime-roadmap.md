@@ -180,3 +180,11 @@ preview camera/light ownership and character hiding now link. Complete widget
 initialization, remaining frontend controls, Foyer events, startup movies and
 controller startup still need integration before replacing bootstrap.
 No runtime probe was executed. See [batch evidence](work-frontend-preview.md).
+
+## Character preview initialization and foyer event updates
+
+The full character-preview initializer, arrow ownership, idle animation/collision
+setup and seven foyer event callbacks now link in the 318-unit build. Eight new
+helpers match exactly. Resource parsing, remaining controls, startup movies and
+controller startup still need integration before replacing bootstrap. No runtime
+probe was executed. See [evidence and corrections](work-foyer-events.md).

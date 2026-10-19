@@ -6,15 +6,15 @@ Reviewed semantically identical near matches (initially at least 95% raw) are
 implemented functions, counted separately from exact matches.
 
 Latest combined Python/SP5/Wine and CMake/NMake verification: 2026-10-19.
-The match guard verified **434 exact functions and nineteen reviewed near
-matches**. Another 988 reconstructions remain `STUB`; both builders agree on
-all 1,441 measured raw scores and annotation statuses. Data comparison verifies
-252 annotated globals with zero issues. Nine genuine folded aliases also have
+The match guard verified **442 exact functions and nineteen reviewed near
+matches**. Another 1,000 reconstructions remain `STUB`; both builders agree on
+all 1,461 measured raw scores and annotation statuses. Data comparison verifies
+254 annotated globals with zero issues. Nine genuine folded aliases also have
 complete-byte and exact linker-map verification. Unlinked inventory entries
 may appear in the CLI denominator without another measured row.
 
 This is the reconstructed subset, not whole-game coverage. The automatic
-Ghidra inventory has **4,491 discovered function starts**, including **22 thunks**
+Ghidra inventory has **4,501 discovered function starts**, including **22 thunks**
 and linked runtime/library code. It is incomplete and is not a verified count
 of game-authored functions; see [inventory notes](research.md#automatic-function-inventory).
 Identified libraries are excluded from these matches with `--nolib`.
@@ -99,6 +99,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x00419730` | `MenuWidgetBase::RestoreBaseDispatch` | 50.00% | Work in progress |
 | `0x00419740` | `MenuWidgetBase::BeginState` | 100.00% | Verified exact |
 | `0x00419760` | `MenuWidgetBase::ResetState` | 100.00% | Verified exact |
+| `0x00419780` | `MenuWidgetBase::CreateChildSprites` | 39.18% | Work in progress |
 | `0x00419910` | `MenuWidgetBase::ReleaseChildSprites` | 100.00% | Verified exact |
 | `0x00419940` | `MenuWidgetBase::GetNavigationDirection` | 21.79% | Work in progress |
 | `0x00419a00` | `MenuWidgetBase::SetChildClipRectangle` | 100.00% | Verified exact |
@@ -212,6 +213,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x0042c3f0` | `InitializeCharacterPreviewSecondDirection` | 100.00% | Verified exact |
 | `0x0042c410` | `MenuCharacterPreviewSelector::MenuCharacterPreviewSelector` | 32.88% | Work in progress |
 | `0x0042c4b0` | `MenuCharacterPreviewSelector::ReleasePreviewResources` | 59.26% | Work in progress |
+| `0x0042c510` | `MenuCharacterPreviewSelector::Initialize` | 56.44% | Work in progress |
 | `0x0042c670` | `MenuCharacterPreviewSelector::AddChoice` | 100.00% | Verified exact |
 | `0x0042c6b0` | `MenuCharacterPreviewSelector::SelectChoice` | 100.00% | Verified exact |
 | `0x0042c6d0` | `MenuCharacterPreviewSelector::HandleInput` | 54.41% | Work in progress |
@@ -274,6 +276,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x0044f650` | `CharacterVisual::SetFaceVariant` | 71.11% | Work in progress |
 | `0x0044f690` | `CharacterVisual::SetFaceGroup` | 69.39% | Work in progress |
 | `0x00450c10` | `CharacterVisual::EnterHiddenMode` | 100.00% | Verified exact |
+| `0x00450c30` | `CharacterVisual::EnterIdlePreviewMode` | 72.11% | Work in progress |
 | `0x00452a40` | `GameAnimatedObject::UpdateFacing` | 62.50% | Work in progress |
 | `0x004534e0` | `GameObjectBaseDestroy` | 100.00% | Work in progress |
 | `0x0045dcb0` | `FUN_0045dcb0` | 100.00% | Verified exact |
@@ -293,6 +296,14 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x00467380` | `CharacterPartPreset::Set` | 100.00% | Verified exact |
 | `0x004673e0` | `CharacterPartPreset::Clear` | 53.85% | Work in progress |
 | `0x00479490` | `RendererDefaultRecord::RendererDefaultRecord` | 45.71% | Work in progress |
+| `0x0047c040` | `InitializeFoyerAnimationTiming` | 33.33% | Work in progress |
+| `0x0047c060` | `InitializeFoyerSceneEvent` | 57.14% | Work in progress |
+| `0x0047c260` | `SetFoyerSceneEventTarget` | 100.00% | Verified exact |
+| `0x0047c270` | `SetFoyerSceneEventReady` | 100.00% | Verified exact |
+| `0x0047c3d0` | `UpdateFoyerSceneEntry` | 22.78% | Work in progress |
+| `0x0047c780` | `SetFoyerSceneEventAnimation` | 38.93% | Work in progress |
+| `0x0047f6a0` | `UpdateFoyerSceneHold` | 83.33% | Work in progress |
+| `0x0047fe00` | `UpdateFoyerSceneEvents` | 89.80% | Work in progress |
 | `0x00493550` | `FilterApplicationWindowMessage` | 100.00% | Verified exact |
 | `0x00494cd0` | `NetworkApplicationMenuView::GetProviderLabel` | 32.26% | Work in progress |
 | `0x00494f40` | `ApplicationCharacterQueue::QueueCharacter` | 100.00% | Verified exact |
@@ -439,7 +450,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004a6f00` | `PhysicalLifecycleState::GetParentVelocityAtOffset` | 84.62% | Work in progress |
 | `0x004a74b0` | `IsLookupPointWithinRadius` | 45.45% | Work in progress |
 | `0x004a7510` | `ApplyLookupResourceState` | 18.70% | Work in progress |
-| `0x004a7cc0` | `?ReleaseRendererDrawPacket@@YIXPAURendererDrawPacket@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\applicationdispatch.h948427425@@PAX@Z` | 66.67% | Work in progress |
+| `0x004a7cc0` | `?ReleaseRendererDrawPacket@@YIXPAURendererDrawPacket@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\applicationdispatch.h1931228264@@PAX@Z` | 66.67% | Work in progress |
 | `0x004a95b0` | `ModelResource::RemapTextureIndices` | 34.29% | Work in progress |
 | `0x004a9d20` | `GetLookupResourceOrigin` | 91.30% | Work in progress |
 | `0x004a9d90` | `GameObjectChildGeometry::SetPosition` | 16.00% | Work in progress |
@@ -883,6 +894,15 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004c50b0` | `FindOverlayGlyphSequence` | 54.79% | Work in progress |
 | `0x004c5100` | `GlobalOverlayGlyphReplacementManagerView::GetIconKeyword` | 100.00% | Verified exact |
 | `0x004c5110` | `ExpandOverlayGlyphSequence` | 42.86% | Work in progress |
+| `0x004c5560` | `FindFoyerAnimationTrack` | 37.25% | Work in progress |
+| `0x004c55f0` | `StartFoyerAnimation` | 24.39% | Work in progress |
+| `0x004c5640` | `ApplyFoyerAnimationTrack` | 58.33% | Work in progress |
+| `0x004c5680` | `ResetFoyerAnimationLayer` | 100.00% | Verified exact |
+| `0x004c56a0` | `SetFoyerAnimationLayerValues` | 100.00% | Verified exact |
+| `0x004c56c0` | `SetFoyerAnimationLayerValue` | 100.00% | Verified exact |
+| `0x004c56e0` | `SetFoyerAnimationLayerValueReordered` | 100.00% | Verified exact |
+| `0x004c5700` | `GetFoyerAnimationLayerValue` | 100.00% | Verified exact |
+| `0x004c5720` | `SetFoyerAnimationBlend` | 100.00% | Verified exact |
 | `0x004c6980` | `RenderInitializedResource` | 15.09% | Work in progress |
 | `0x004c6fe0` | `RenderDeferredResource` | 20.66% | Work in progress |
 | `0x004cb340` | `TerrainVertexGrid::SelectEdges` | 100.00% | Verified exact |
@@ -962,7 +982,7 @@ See [frontend integration](work-controller-frontend.md), the
 | `0x004da500` | `RendererTextureRecord::UnlockPrimarySurface` | 80.85% | Work in progress |
 | `0x004da540` | `RendererTextureRecord::UploadBitmapImage` | 34.86% | Work in progress |
 | `0x004da5e0` | `DisplayRenderer::BuildMipSidecar` | 34.70% | Work in progress |
-| `0x004da9f0` | `?ReadBitmapInfoSettings@@YAIPBDPAUBitmapInfoSettings@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\bitmapimage.h600427851@@@Z` | 2.29% | Work in progress |
+| `0x004da9f0` | `?ReadBitmapInfoSettings@@YAIPBDPAUBitmapInfoSettings@?%Z:\home\ilya\work\lr2_decomp\racers2\LEGO Racers 2\include\bitmapimage.h1767227018@@@Z` | 2.29% | Work in progress |
 | `0x004dabe0` | `ParseBitmapInfoValue` | 40.31% | Work in progress |
 | `0x004dac90` | `GenerateBitmapMipLevel` | 17.20% | Work in progress |
 | `0x004db5c0` | `FindClosestPaletteColor` | 30.09% | Work in progress |

@@ -69,6 +69,7 @@ struct MenuWidgetBase {
 	void RestoreBaseDispatch();
 	void BeginState();
 	void ResetState();
+	void CreateChildSprites(const LegoFloat* p_center, LegoFloat p_halfWidth, LegoS32 p_listId, LegoFloat p_scale);
 	void ReleaseChildSprites();
 	void SetChildClipRectangle(const LegoFloat* p_topLeft, const LegoFloat* p_bottomRight);
 	void UpdateBounds();

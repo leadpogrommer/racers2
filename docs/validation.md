@@ -354,3 +354,12 @@ verifies 252 globals with zero issues in each build. All eleven dispatch
 inventories pass, including eleven widget tables (66 slots), along with nine
 complete folded aliases and the existing 21 tooling/library tests.
 No runtime probe was executed. See [batch evidence](work-frontend-preview.md).
+
+## Character preview initialization and foyer event updates
+
+Both 318-unit builds agree on all 1,461 measured raw scores and statuses:
+442 exact FUNCTION claims, nineteen reviewed near matches and 1,000 STUB
+bodies. All 461 claims and nine complete folded aliases pass. Both data reports
+verify 254 globals with zero issues; all eleven dispatch inventories and the
+existing 21 tooling/library tests pass. No game or incremental runtime probe
+was executed. See [batch evidence](work-foyer-events.md).

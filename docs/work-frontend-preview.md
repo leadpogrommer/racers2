@@ -32,8 +32,8 @@ The character's fixed hidden-preview call inlines the complete effect of
 44f6e0(5): freeze body/head, clear the embedded transform bit, enter state5 and
 detach collision. This helper has no retail-address claim and does not pretend
 to reconstruct the generic racing-mode dispatcher. Release also disables the
-animation transform through the real 4c26e0 path. Startup idle preparation and
-full widget initialization remain open for the next integration batch.
+animation transform through the real 4c26e0 path. Startup idle preparation and full widget initialization were subsequently linked;
+see [foyer event and initialization notes](work-foyer-events.md).
 
 ReleaseMenuPreviewLight (429320, 95.45%) is a reviewed equivalent: retail checks
 index<3 a second time after a matching element was found in the bounded 0..2

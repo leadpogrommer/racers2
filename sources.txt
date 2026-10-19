@@ -311,3 +311,8 @@ LEGO Racers 2/src/characterpreviewhidden.cpp
 LEGO Racers 2/src/menucharacterpreviewselector.cpp
 LEGO Racers 2/src/menunetworkstatus.cpp
 LEGO Racers 2/src/menulayouttuning.cpp
+LEGO Racers 2/src/foyeranimation.cpp
+LEGO Racers 2/src/menuwidgetarrows.cpp
+LEGO Racers 2/src/characterpreviewidle.cpp
+LEGO Racers 2/src/menucharacterpreviewinitialize.cpp
+LEGO Racers 2/src/foyersceneevents.cpp

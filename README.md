@@ -14,8 +14,8 @@ Verified reconstructions include character predicates, line classification,
 fixed string buffers, file operations, window geometry, command-line parsing,
 startup helpers, bitmap scanning, terrain lookup, spline helpers, and
 foundational renderer/input operations.
-The current checkpoint has **434 exact function matches**, **nineteen reviewed
-near matches**, and 988 unfinished implementations across 1,441 measured
+The current checkpoint has **442 exact function matches**, **nineteen reviewed
+near matches**, and 1,000 unfinished implementations across 1,461 measured
 functions. See
 [current progress](docs/progress.md) for the measured function list and
 remaining work. The application singleton and its two complete 38-slot
@@ -33,15 +33,15 @@ large bodies still require semantic review. Device reset/resource restoration, s
 Controller defaults, player car setup, bodypart lists, shared menu sprites,
 key-icon/string replacement, ScreenPrinter and HUD/pause/builder textures now
 have linked source. The recording service, pause detector, nested textbox, track/network controls
-and character-preview callbacks now link. Foyer and remaining frontend closures
-are still being integrated; see [frontend notes](docs/work-controller-frontend.md).
+and character-preview callbacks now link. Character preview initialization and foyer animation/event callbacks now link.
+Foyer resource loading and remaining frontend closures are still being integrated; see [frontend notes](docs/work-controller-frontend.md).
 Earlier runtime checks exercised config,
 archive metadata, and selected asset reads. The executable still has a
 temporary entry point and does not reach a window, rendered menu, or gameplay.
 No game or probe was run for the current renderer/input implementation batch;
 future runtime checks are reserved for significant milestones expected to
 reach a rendered menu or gameplay. Whole-game coverage is not established.
-Ghidra currently discovers 4,491 function starts,
+Ghidra currently discovers 4,501 function starts,
 including 22 thunks and linked libraries; this is a provisional inventory,
 not a count of game-authored functions. See the
 [inventory notes](docs/research.md#automatic-function-inventory).
