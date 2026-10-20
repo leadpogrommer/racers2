@@ -28,8 +28,8 @@ static void __fastcall ReleaseGamePauseObserver(GamePauseObserver*, void*);
 static void __fastcall UpdateGamePauseObserver(GamePauseObserver*, void*, LegoFloat);
 static void __fastcall EnterGamePauseObserver(GamePauseObserver*, void*, LegoU32);
 static void __fastcall LeaveGamePauseObserver(GamePauseObserver*, void*);
-static void __fastcall RegisterGamePauseObserver(GamePauseObserver*, void*);
-static void __fastcall ClearGamePauseObserver(GamePauseObserver*, void*);
+static void __fastcall RegisterGamePauseObserver(GamePauseObserver*);
+static void __fastcall ClearGamePauseObserver(GamePauseObserver*);
 static void __fastcall SetGamePauseObserverMode(GamePauseObserver*, void*, LegoU32);
 static void __stdcall AdvancePauseOverlays(LegoU32);
 // Retail52f5d8 completefive-callbackobserverinterface.
@@ -40,6 +40,8 @@ extern const GamePauseObserverDispatch g_gamePauseObserverDispatch = {
 	&LeaveGamePauseObserver,
 	&UpdateGamePauseObserver
 };
+
+extern LegoU32 g_globalPauseStorage[sizeof(GlobalPauseController) / sizeof(LegoU32)];
 
 // Inlined allocation in GameController::Initialize407250.
 void* ConstructGamePauseObserver(void* p_storage)
@@ -54,10 +56,10 @@ void* ConstructGamePauseObserver(void* p_storage)
 	return observer;
 }
 
-// STUB: LEGORACERS2 0x0040b670
+// FUNCTION: LEGORACERS2 0x0040b670
 static void __fastcall InitializeGamePauseObserver(GamePauseObserver* p_observer, void*)
 {
-	RegisterGamePauseObserver(p_observer, NULL);
+	RegisterGamePauseObserver(p_observer);
 }
 // STUB: LEGORACERS2 0x0040b680
 static void __fastcall ReleaseGamePauseObserver(GamePauseObserver* p_observer, void*)
@@ -66,7 +68,7 @@ static void __fastcall ReleaseGamePauseObserver(GamePauseObserver* p_observer, v
 		p_observer->m_cover->Release();
 		p_observer->m_cover = NULL;
 	}
-	ClearGamePauseObserver(p_observer, NULL);
+	ClearGamePauseObserver(p_observer);
 }
 // STUB: LEGORACERS2 0x0040b6a0
 static void __fastcall UpdateGamePauseObserver(GamePauseObserver*, void*, LegoFloat p_delta)
@@ -142,17 +144,17 @@ static void __fastcall LeaveGamePauseObserver(GamePauseObserver* p_observer, voi
 	g_inputControllerManager->m_unk0x68 = culling;
 	p_observer->m_mode = 0;
 }
-// STUB: LEGORACERS2 0x004bb980
-static void __fastcall RegisterGamePauseObserver(GamePauseObserver* p_observer, void*)
+// FUNCTION: LEGORACERS2 0x004bb980
+static void __fastcall RegisterGamePauseObserver(GamePauseObserver* p_observer)
 {
-	g_globalPauseController.SetObserver(p_observer);
+	((GlobalPauseController*) g_globalPauseStorage)->SetObserver(p_observer);
 }
-// STUB: LEGORACERS2 0x004bb990
-static void __fastcall ClearGamePauseObserver(GamePauseObserver*, void*)
+// FUNCTION: LEGORACERS2 0x004bb990
+static void __fastcall ClearGamePauseObserver(GamePauseObserver* p_observer)
 {
-	g_globalPauseController.ClearObserver();
+	((GlobalPauseController*) g_globalPauseStorage)->ClearObserver(p_observer);
 }
-// STUB: LEGORACERS2 0x004bb9a0
+// FUNCTION: LEGORACERS2 0x004bb9a0
 static void __fastcall SetGamePauseObserverMode(GamePauseObserver* p_observer, void*, LegoU32 p_mode)
 {
 	p_observer->m_mode = p_mode;

@@ -220,12 +220,12 @@ void GameController::Initialize()
 	GameObject::Initialize();
 }
 
-// STUB: LEGORACERS2 0x0042af30
+// FUNCTION: LEGORACERS2 0x0042af30
 LegoBool32 IsRunningFromOpticalMedia()
 {
 	if (GetDriveType(NULL) == DRIVE_CDROM) {
-		extern void FUN_0042a860();
-		FUN_0042a860();
+		extern void RequestDeferredWindowDestruction();
+		RequestDeferredWindowDestruction();
 		return TRUE;
 	}
 	return FALSE;

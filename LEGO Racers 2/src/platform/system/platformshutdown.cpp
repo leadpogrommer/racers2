@@ -6,7 +6,7 @@
 #include "platform/system/platformservices.h"
 #include "render/core/renderer.h"
 
-// STUB: LEGORACERS2 0x004f6360
+// FUNCTION: LEGORACERS2 0x004f6360
 void ShutdownPlatformServices()
 {
 	GetMemoryHeap()->SetUnknownFlag();

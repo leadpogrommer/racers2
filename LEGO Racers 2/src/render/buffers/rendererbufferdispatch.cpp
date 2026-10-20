@@ -35,7 +35,7 @@ RendererVertexBuffer::RendererVertexBuffer()
 	m_flags &= 0xffffffcc;
 }
 
-// STUB: LEGORACERS2 0x004abe30
+// FUNCTION: LEGORACERS2 0x004abe30
 RendererIndexBuffer::RendererIndexBuffer()
 {
 	m_unk0x08 = 0;
@@ -360,6 +360,7 @@ IDirect3DIndexBuffer8* __fastcall RendererIndexBufferDispatchGetDeviceBuffer(Ren
 	return p_buffer->GetDeviceBuffer();
 }
 
+// GLOBAL: LEGORACERS2 0x00535488
 const RendererVertexBufferDispatch g_rendererVertexBufferDispatch = {
 	RendererVertexBufferDispatchRelease,
 	RendererVertexBufferDispatchLock,
@@ -407,6 +408,7 @@ const RendererVertexBufferDispatch g_rendererVertexBufferDispatch = {
 	_purecall,
 };
 
+// GLOBAL: LEGORACERS2 0x00535538
 const RendererIndexBufferDispatch g_rendererIndexBufferDispatch = {
 	RendererIndexBufferDispatchRelease,
 	RendererIndexBufferDispatchLock,

@@ -163,7 +163,7 @@ void __fastcall InitializeGameTemplateInstance(GameObject* p_object, void*)
 	}
 }
 
-// STUB: LEGORACERS2 0x004d6e30
+// FUNCTION: LEGORACERS2 0x004d6e30
 LegoU32 __fastcall UpdateGameTemplateInstance(GameObject* p_object, void*, LegoFloat p_elapsedSeconds)
 {
 	GameTemplateInstance* instance = (GameTemplateInstance*) p_object;

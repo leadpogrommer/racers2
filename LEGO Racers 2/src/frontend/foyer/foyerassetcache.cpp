@@ -203,7 +203,7 @@ FoyerAssetCache* __cdecl GetFoyerAssetCache()
 	return &g_foyerAssetCache;
 }
 
-// STUB: LEGORACERS2 0x0047b5d0
+// FUNCTION: LEGORACERS2 0x0047b5d0 FOLDED
 void __cdecl FoyerAssetCacheExitCallback()
 {
 }

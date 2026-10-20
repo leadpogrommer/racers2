@@ -266,7 +266,7 @@ public:
 	void SetVolumes(LegoFloat p_volumeA, LegoFloat p_volumeB);
 	void GetVolumes(LegoFloat* p_volumeA, LegoFloat* p_volumeB);
 	void SetMusicEnabled(LegoU32 p_enabled);
-	void SetDigitalAudioPath(LPCSTR p_path);
+	void SetDigitalAudioPath(LPCSTR p_path, LegoU32 p_unused);
 	void SetCdPlayerMode(LegoU32 p_mode);
 	void SetMixerVolume(LegoFloat p_volume, LegoU32 p_unused);
 	void GetMixerVolume(LegoFloat* p_volumeA, LegoFloat* p_volumeB);

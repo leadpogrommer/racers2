@@ -59,8 +59,8 @@ void __fastcall ParseFoyerSceneActorBlock(FoyerSceneResource* p_resource, void*)
 			words[2] = (LegoU32) ((LegoU8*) p_resource->m_eventStorage + eventIndex * 0x94);
 			FUN_0045de20(&g_foyerSceneParserCursor, g_foyerSceneParserEnd, g_foyerSceneParserToken, FALSE, TRUE, TRUE);
 			new ((CharBuffer24*) (words + 3)) CharBuffer24(g_foyerSceneParserToken);
-			words[9] = FloatBits(ParseFoyerSceneNumber(p_resource, NULL));
-			words[10] = FloatBits(ParseFoyerSceneNumber(p_resource, NULL));
+			words[9] = FloatBits(ParseFoyerSceneNumber(p_resource));
+			words[10] = FloatBits(ParseFoyerSceneNumber(p_resource));
 			AppendAllocatedAction(p_resource, 0x34, words, InitializeFoyerSceneAction3);
 			break;
 		}
@@ -70,7 +70,7 @@ void __fastcall ParseFoyerSceneActorBlock(FoyerSceneResource* p_resource, void*)
 			words[1] = *(LegoU32*) &g_foyerSceneParserTime;
 			words[2] = (LegoU32) ((LegoU8*) p_resource->m_eventStorage + eventIndex * 0x94);
 			words[3] = ParseFoyerSceneAssetType(p_resource, NULL, 4);
-			words[4] = FloatBits(ParseFoyerSceneNumber(p_resource, NULL));
+			words[4] = FloatBits(ParseFoyerSceneNumber(p_resource));
 			AppendAllocatedAction(p_resource, 0x1c, words, InitializeFoyerSceneAction4);
 			break;
 		case 0x19:
@@ -135,11 +135,11 @@ void __fastcall ParseFoyerSceneCinematicBlock(FoyerSceneResource* p_resource, vo
 		case 7:
 			words[3] = ParseFoyerSceneAssetType(p_resource, NULL, 2);
 			if (words[3] == 6 || words[3] == 8) {
-				words[5] = FloatBits(ParseFoyerSceneNumber(p_resource, NULL));
+				words[5] = FloatBits(ParseFoyerSceneNumber(p_resource));
 			}
 			break;
 		case 8:
-			words[6] = FloatBits(ParseFoyerSceneNumber(p_resource, NULL));
+			words[6] = FloatBits(ParseFoyerSceneNumber(p_resource));
 			break;
 		case 11:
 			words[7] = 9;
@@ -152,7 +152,7 @@ void __fastcall ParseFoyerSceneCinematicBlock(FoyerSceneResource* p_resource, vo
 			ParseFoyerSceneVector3(p_resource, NULL, (LegoFloat*) (words + 15));
 			break;
 		case 0x23:
-			words[18] = FloatBits(ParseFoyerSceneNumber(p_resource, NULL));
+			words[18] = FloatBits(ParseFoyerSceneNumber(p_resource));
 			break;
 		default:
 			SkipFoyerSceneDirective(p_resource, NULL);
@@ -170,7 +170,7 @@ void __fastcall ParseFoyerSceneGlobalBlock(FoyerSceneResource* p_resource, void*
 		LegoU32 directive = GetFoyerSceneTokenId(p_resource, NULL, 1);
 		switch (directive) {
 		case 8:
-			*(LegoFloat*) (bytes + 0x9c0) = ParseFoyerSceneNumber(p_resource, NULL);
+			*(LegoFloat*) (bytes + 0x9c0) = ParseFoyerSceneNumber(p_resource);
 			break;
 		case 9: {
 			GameObject* car = ParseFoyerSceneObjectReference(p_resource, NULL, 1);
@@ -259,7 +259,7 @@ void __fastcall ParseFoyerSceneSubtitleBlock(FoyerSceneResource* p_resource, voi
 	words[2] = ParseFoyerSceneAssetType(p_resource, NULL, 0);
 	FUN_0045de20(&g_foyerSceneParserCursor, g_foyerSceneParserEnd, g_foyerSceneParserToken, FALSE, TRUE, TRUE);
 	new ((CharBuffer24*) (words + 3)) CharBuffer24(g_foyerSceneParserToken);
-	words[9] = FloatBits(ParseFoyerSceneNumber(p_resource, NULL));
+	words[9] = FloatBits(ParseFoyerSceneNumber(p_resource));
 	AppendAllocatedAction(p_resource, 0x30, words, InitializeFoyerSceneAction2);
 }
 
@@ -295,7 +295,7 @@ void __fastcall ParseFoyerSceneEffectBlock(FoyerSceneResource* p_resource, void*
 {
 	LegoU32 words[6] = {(LegoU32) p_resource, *(LegoU32*) &g_foyerSceneParserTime, 0, 0, 0, 0};
 	words[2] = (LegoU32) ParseFoyerSceneObjectReference(p_resource, NULL, 1);
-	words[3] = FloatBits(ParseFoyerSceneNumber(p_resource, NULL));
+	words[3] = FloatBits(ParseFoyerSceneNumber(p_resource));
 	AppendAllocatedAction(p_resource, 0x18, words, InitializeFoyerSceneAction12);
 }
 
@@ -321,7 +321,7 @@ void __fastcall ParseFoyerSceneMobileBlock(FoyerSceneResource* p_resource, void*
 			words[3] = firstValue;
 			words[4] = (LegoU32) ParseFoyerSceneObjectReference(p_resource, NULL, 1);
 			words[5] = ParseFoyerSceneInteger(p_resource, NULL);
-			words[6] = FloatBits(ParseFoyerSceneNumber(p_resource, NULL));
+			words[6] = FloatBits(ParseFoyerSceneNumber(p_resource));
 			AppendAllocatedAction(p_resource, 0x24, words, InitializeFoyerSceneAction14);
 		}
 		else if (directive == 0x1e) {

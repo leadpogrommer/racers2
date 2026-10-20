@@ -202,7 +202,7 @@ void __fastcall UpdateFoyerTemplateLookOrientation(GameObject* p_object, void*, 
 	object->m_lookOrientation = candidate;
 }
 
-// STUB: LEGORACERS2 0x004c8150
+// FUNCTION: LEGORACERS2 0x004c8150 FOLDED
 LegoU32 __fastcall GetFoyerTemplateObjectCategory(GameObject*, void*)
 {
 	return 2;

@@ -141,7 +141,7 @@ void __fastcall InitializeSecondarySpriteSet(
 	}
 }
 
-// STUB: LEGORACERS2 0x004608a0
+// FUNCTION: LEGORACERS2 0x004608a0
 void __fastcall ShowSecondarySpriteSet(void* p_object, void*)
 {
 	SecondarySpriteSet* set = (SecondarySpriteSet*) p_object;
@@ -150,7 +150,7 @@ void __fastcall ShowSecondarySpriteSet(void* p_object, void*)
 	}
 }
 
-// STUB: LEGORACERS2 0x004608d0
+// FUNCTION: LEGORACERS2 0x004608d0
 void __fastcall HideSecondarySpriteSet(void* p_object, void*)
 {
 	SecondarySpriteSet* set = (SecondarySpriteSet*) p_object;
@@ -174,7 +174,7 @@ void __fastcall ReleaseSecondarySpriteSet(void* p_object, void*)
 	set->m_count = 0;
 }
 
-// STUB: LEGORACERS2 0x00460970
+// FUNCTION: LEGORACERS2 0x00460970
 GlobalOverlaySprite* __fastcall FindSecondarySprite(void* p_object, void*, const LegoChar* p_name)
 {
 	SecondarySpriteSet* set = (SecondarySpriteSet*) p_object;
@@ -395,7 +395,7 @@ void __fastcall ReleaseSecondarySelectionGrid(void* p_object, void*)
 	GetMemoryHeap()->Free(grid->m_entries);
 }
 
-// STUB: LEGORACERS2 0x004621b0
+// FUNCTION: LEGORACERS2 0x004621b0
 static SelectionGridEntry* __fastcall AllocateSelectionGridEntry(SelectionGrid* p_grid, void*)
 {
 	return &p_grid->m_entries[p_grid->m_entryCount++];
@@ -484,7 +484,7 @@ void __cdecl MeasureSelectionGridModel(ModelResource* p_model, SelectionGridEntr
 	p_entry->m_offset.m_y = (minimum.m_y + maximum.m_y) * -0.5f;
 	p_entry->m_offset.m_z = (minimum.m_z + maximum.m_z) * -0.5f;
 }
-// STUB: LEGORACERS2 0x004b3950
+// FUNCTION: LEGORACERS2 0x004b3950
 static void __fastcall SetSelectionGridTextVisible(GlobalOverlayRecord* p_record, void*, LegoU32 p_visible)
 {
 	if (p_visible == 1) {

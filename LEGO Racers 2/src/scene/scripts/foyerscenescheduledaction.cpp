@@ -83,7 +83,7 @@ void __fastcall UpdateFoyerSceneScheduledActionProgress(FoyerSceneScheduledActio
 // Retail 0x0045cbe0 is byte-identical to InputZeroAxis at 0x004aeff0.
 // Both ignore their inputs and return float zero with RET 4.
 
-// STUB: LEGORACERS2 0x0045cbf0
+// FUNCTION: LEGORACERS2 0x0045cbf0
 LegoFloat __fastcall ProgressCurrentValue(FoyerSceneScheduledAction* p_action, void*, LegoFloat)
 {
 	return p_action->m_output;
@@ -152,7 +152,7 @@ LegoFloat __fastcall ProgressAngle(FoyerSceneScheduledAction* p_action, void*, L
 	return atanf(p_action->m_referenceDistance / p_argument) * (180.0f / 3.1415927410125732f) * 6.0f;
 }
 
-// STUB: LEGORACERS2 0x0045cdb0
+// FUNCTION: LEGORACERS2 0x0045cdb0
 LegoFloat __fastcall ProgressElapsed(FoyerSceneScheduledAction* p_action, void*, LegoFloat)
 {
 	return p_action->m_valueAt0x28;
@@ -284,7 +284,7 @@ LegoU32 __fastcall InterpolateSceneTargetPosition(FoyerSceneScheduledAction* p_a
 	return UpdateScheduledActionState(p_action, NULL, p_elapsed);
 }
 
-// STUB: LEGORACERS2 0x0045d270
+// FUNCTION: LEGORACERS2 0x0045d270
 LegoU32 __fastcall GetFinalSceneActionState(FoyerSceneScheduledAction*, void*, LegoFloat)
 {
 	return 2;

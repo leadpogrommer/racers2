@@ -133,7 +133,7 @@ static LegoBool32 __fastcall IsCharacterCollisionParticleActive(
 	return p_record != NULL;
 }
 
-// STUB: LEGORACERS2 0x00470bb0
+// FUNCTION: LEGORACERS2 0x00470bb0
 static LegoU32 __fastcall RemoveCharacterCollisionParticle(
 	CharacterCollisionParticleManager* p_manager,
 	void*,

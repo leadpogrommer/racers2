@@ -185,9 +185,9 @@ static void __fastcall InvokeAppendAudioPcmData(AudioService* p_service, void*, 
 	AppendAudioPcmData(p_service, NULL, p_data, p_bytes);
 }
 
-static void __fastcall SetDigitalAudioPath(AudioService* p_service, void*, LPCSTR p_path, LegoU32)
+static void __fastcall SetDigitalAudioPath(AudioService* p_service, void*, LPCSTR p_path, LegoU32 p_unused)
 {
-	p_service->SetDigitalAudioPath(p_path);
+	p_service->SetDigitalAudioPath(p_path, p_unused);
 }
 
 static void __fastcall SetMixerVolume(AudioService* p_service, void*, LegoFloat p_volume, LegoU32 p_unused)

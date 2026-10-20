@@ -14,6 +14,7 @@
 #include "scene/terrain/terrain.h"
 
 #include <math.h>
+#include <new.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
@@ -497,31 +498,31 @@ static CharBuffer24 g_characterBonusVortexEventName;
 // STUB: LEGORACERS2 0x00491830
 static void InitializeCharacterSurfaceEventName()
 {
-	g_characterSurfaceEventName = CharBuffer24("PIT SURFACE CONTACT");
+	new (&g_characterSurfaceEventName) CharBuffer24("PIT SURFACE CONTACT");
 }
 
 // STUB: LEGORACERS2 0x00491850
 static void InitializeCharacterPickupEventName()
 {
-	g_characterPickupEventName = CharBuffer24("HIT A PICKUP");
+	new (&g_characterPickupEventName) CharBuffer24("HIT A PICKUP");
 }
 
 // STUB: LEGORACERS2 0x00491870
 static void InitializeCharacterGoldenBrickEventName()
 {
-	g_characterGoldenBrickEventName = CharBuffer24("HIT A GOLDEN BRICK");
+	new (&g_characterGoldenBrickEventName) CharBuffer24("HIT A GOLDEN BRICK");
 }
 
 // STUB: LEGORACERS2 0x00491890
 static void InitializeCharacterBonusVortexEventName()
 {
-	g_characterBonusVortexEventName = CharBuffer24("HIT A BONUS VORTEX");
+	new (&g_characterBonusVortexEventName) CharBuffer24("HIT A BONUS VORTEX");
 }
 
 // STUB: LEGORACERS2 0x00491990
 static void InitializeCharacterRacerEventName()
 {
-	g_characterRacerEventName = CharBuffer24("HIT A RACER");
+	new (&g_characterRacerEventName) CharBuffer24("HIT A RACER");
 }
 
 static void EnsureCharacterBodyEventNames()

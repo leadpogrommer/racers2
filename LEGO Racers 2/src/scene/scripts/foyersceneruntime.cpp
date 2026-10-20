@@ -15,7 +15,7 @@
 
 LegoU32 __fastcall GetFoyerInputMask(SecondaryManagerMediaState* p_mediaState, void* p_unusedEdx);
 void __fastcall ResetFoyerSceneSelection(GameObject*, void*);
-void __fastcall ResetFoyerSceneEventResetObject(GameObject*, void*);
+void __fastcall ResetFoyerSceneEventResetObject(GameObject*);
 void __fastcall ResetFoyerSceneEventResetTarget(void*, void*);
 
 extern LegoU32 g_unk0x00572f94;
@@ -94,10 +94,10 @@ void __fastcall ResetFoyerSceneEvent(FoyerSceneEventResetView* p_event, void*)
 	}
 }
 
-// STUB: LEGORACERS2 0x0047c930
+// FUNCTION: LEGORACERS2 0x0047c930
 void __fastcall ResetFoyerSceneEventResetTarget(void* p_event, void*)
 {
-	ResetFoyerSceneEventResetObject(*(GameObject**) ((LegoU8*) p_event + 0x7c), NULL);
+	ResetFoyerSceneEventResetObject(*(GameObject**) ((LegoU8*) p_event + 0x7c));
 }
 
 // STUB: LEGORACERS2 0x0047f630
@@ -236,7 +236,7 @@ void __fastcall ResetFoyerSceneSelection(GameObject* p_object, void*)
 }
 
 // STUB: LEGORACERS2 0x004d65a0
-void __fastcall ResetFoyerSceneEventResetObject(GameObject* p_object, void*)
+void __fastcall ResetFoyerSceneEventResetObject(GameObject* p_object)
 {
 	LegoU8* bytes = (LegoU8*) p_object;
 	if (*(LegoU32*) (bytes + 0x8c) != 0 && *(LegoU32*) (bytes + 0x88) != 0) {

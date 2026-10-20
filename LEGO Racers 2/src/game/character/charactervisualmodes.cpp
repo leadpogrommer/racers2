@@ -631,7 +631,7 @@ static void __fastcall UpdateCharacterLookTarget(CharacterVisual* p_visual, void
 	}
 }
 
-// STUB: LEGORACERS2 0x004ef550
+// FUNCTION: LEGORACERS2 0x004ef550 FOLDED
 void __fastcall UpdateCharacterPassiveAnimation(CharacterVisual*, void*, LegoFloat)
 {
 }

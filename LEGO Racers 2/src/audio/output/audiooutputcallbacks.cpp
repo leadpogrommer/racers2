@@ -122,7 +122,7 @@ void __fastcall ReleaseStereoSourceBuffer(AudioBackendStateView* p_provider, voi
 	}
 }
 
-// STUB: LEGORACERS2 0x004f06f0
+// FUNCTION: LEGORACERS2 0x004f06f0
 static LegoBool32 __fastcall CanStopStereoAudioBuffer(
 	AudioBackendStateView* p_provider,
 	void*,

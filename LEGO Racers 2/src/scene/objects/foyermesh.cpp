@@ -55,13 +55,15 @@ FoyerMeshUpdateService* __fastcall DestroyFoyerMeshUpdateService(FoyerMeshUpdate
 LegoBool32 __fastcall UpdateFoyerMeshAndUpload(FoyerMeshUpdateService*, void*, FoyerMeshAttachment*);
 static void OnFoyerMeshUpdateServiceExit();
 
-// Retail ABI function-pointer tables: 0x0053709c and 0x005370a4.
+// Retail ABI function-pointer tables verified by check_scene_dispatch.py.
 extern const FoyerMeshUpdateServiceDispatch g_foyerMeshUpdateServiceDispatch;
 extern const FoyerMeshUpdateServiceDispatch g_foyerMeshUpdateServiceBaseDispatch;
+// GLOBAL: LEGORACERS2 0x0053709c
 const FoyerMeshUpdateServiceDispatch g_foyerMeshUpdateServiceDispatch = {
 	&DestroyFoyerMeshUpdateService,
 	&UpdateFoyerMeshAndUpload
 };
+// GLOBAL: LEGORACERS2 0x005370a4
 const FoyerMeshUpdateServiceDispatch g_foyerMeshUpdateServiceBaseDispatch = {
 	&DestroyFoyerMeshUpdateService,
 	(LegoBool32(__fastcall*)(FoyerMeshUpdateService*, void*, FoyerMeshAttachment*)) & GameObjectBaseZeroOneArgument
@@ -187,7 +189,7 @@ FoyerMeshUpdateService* GetFoyerMeshUpdateService()
 	return &g_foyerMeshUpdateService;
 }
 
-// STUB: LEGORACERS2 0x004f5da0
+// FUNCTION: LEGORACERS2 0x004f5da0
 FoyerMeshUpdateService* __fastcall DestroyFoyerMeshUpdateService(
 	FoyerMeshUpdateService* p_service,
 	void*,
@@ -201,7 +203,7 @@ FoyerMeshUpdateService* __fastcall DestroyFoyerMeshUpdateService(
 	return p_service;
 }
 
-// STUB: LEGORACERS2 0x004f5dc0
+// FUNCTION: LEGORACERS2 0x004f5dc0
 static void OnFoyerMeshUpdateServiceExit()
 {
 	g_foyerMeshUpdateService.m_dispatch = &g_foyerMeshUpdateServiceBaseDispatch;

@@ -169,13 +169,13 @@ LegoBool32 __fastcall IsSecondaryCarUnlockFlagSet(const LegoU32* p_flags, void*,
 	return TRUE;
 }
 
-// STUB: LEGORACERS2 0x0041c110
+// FUNCTION: LEGORACERS2 0x0041c110
 static void InitializeMenuActionDefaultPosition()
 {
 	g_menuActionDefaultPosition[0] = 0.7f;
 	g_menuActionDefaultPosition[1] = 0.5f;
 }
-// STUB: LEGORACERS2 0x0041c140
+// FUNCTION: LEGORACERS2 0x0041c140
 static void InitializeMenuActionPausePosition()
 {
 	g_menuActionPausePosition[0] = 0.5f;
@@ -186,7 +186,7 @@ static void InitializeMenuActionHeaderOffset()
 {
 	g_menuActionHeaderOffset = -(0.06f * 2.5f + 0.06f * 0.5f);
 }
-// STUB: LEGORACERS2 0x0041c1b0
+// FUNCTION: LEGORACERS2 0x0041c1b0
 static void InitializeMenuActionFooterPosition()
 {
 	g_menuActionFooterPosition[0] = 0.5f;
@@ -198,7 +198,7 @@ static void InitializeMenuActionHeaderColors()
 	g_menuActionHeaderColors[0] = 0xffffffff;
 	g_menuActionHeaderColors[1] = 0xff1478d2;
 }
-// STUB: LEGORACERS2 0x0041c2f0
+// FUNCTION: LEGORACERS2 0x0041c2f0
 static void InitializeMenuActionNoticePosition()
 {
 	g_menuActionNoticePosition[0] = 0.3f;
@@ -1111,7 +1111,7 @@ void __fastcall BuildMenuManagerAction(MenuManager* p_menu, void*, LegoU32 p_act
 	ResetMenuSelectionWidgets(p_menu, NULL, 1);
 }
 
-// STUB: LEGORACERS2 0x00420bd0
+// FUNCTION: LEGORACERS2 0x00420bd0 FOLDED
 static void ReleaseMenuResolutionNames()
 {
 }
@@ -1152,7 +1152,7 @@ MenuWidgetBase* __fastcall GetInactiveMenuWidget(MenuManager* p_menu, void*, Leg
 	return NULL;
 }
 
-// STUB: LEGORACERS2 0x00422fd0
+// FUNCTION: LEGORACERS2 0x00422fd0
 void __fastcall SetMenuActionInputMask(MenuManager* p_menu, void*, LegoU32 p_mask)
 {
 	MenuActionField<LegoU32>(p_menu, 0x54 + p_menu->m_unk0x198 * 0x14) = p_mask;
@@ -1270,7 +1270,7 @@ void __fastcall BeginMenuNetworkHostSetup(GameObject* p_object, void*)
 	ReleaseSecondaryObject8c(((SecondaryManager*) g_gameController.m_secondaryManager)->m_unk0x8c, NULL);
 }
 
-// STUB: LEGORACERS2 0x00493990
+// FUNCTION: LEGORACERS2 0x00493990
 void __fastcall RefreshMenuDiscoveredNetworkSessions(GameObject* p_object, void*)
 {
 	LegoS32* count = (LegoS32*) ((LegoU8*) p_object + 0xb58);
@@ -1279,7 +1279,7 @@ void __fastcall RefreshMenuDiscoveredNetworkSessions(GameObject* p_object, void*
 		->m_copySessionRecords(g_controllerRecordingService, NULL, (LegoU8*) p_object + 0x89c, count);
 }
 
-// STUB: LEGORACERS2 0x004b9280
+// FUNCTION: LEGORACERS2 0x004b9280
 static LegoBool32 __fastcall AreMenuControllersReady(InputControllerManager* p_manager, void*)
 {
 	LegoBool32 ready = TRUE;

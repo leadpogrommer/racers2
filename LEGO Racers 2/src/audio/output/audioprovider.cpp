@@ -76,20 +76,20 @@ LegoBool32 InitializeDirectSoundOutput(
 	return TRUE;
 }
 
-// STUB: LEGORACERS2 0x004efdd0
+// FUNCTION: LEGORACERS2 0x004efdd0
 LegoU32 __fastcall GetWaveSampleRate(AudioBackendStateView*, void*, const void* p_source, LegoU32)
 {
 	WAVEFORMATEX* format = NULL;
 	const LegoU8* sampleData = NULL;
 	LegoU32 sampleByteCount = 0;
 	if (ParseWaveOrAiffAudioData(p_source, &format, &sampleData, &sampleByteCount, NULL) && format != NULL &&
-		sampleData != NULL && sampleByteCount != 0) {
+		sampleData != NULL && (LegoS32) sampleByteCount > 0) {
 		return format->nSamplesPerSec;
 	}
 	return 0;
 }
 
-// STUB: LEGORACERS2 0x004efe40
+// FUNCTION: LEGORACERS2 0x004efe40
 LegoBool32 __stdcall StopAudioPlaybackObject(AudioPlaybackObjectView* p_object)
 {
 	if (p_object == NULL) {
@@ -105,7 +105,7 @@ LegoBool32 __stdcall StopAudioPlaybackObject(AudioPlaybackObjectView* p_object)
 	return TRUE;
 }
 
-// STUB: LEGORACERS2 0x004f0690
+// FUNCTION: LEGORACERS2 0x004f0690
 void __fastcall ReleaseDirectSoundOutputInterfaces(DirectSoundOutputProviderPrefix* p_provider, void*)
 {
 	if (p_provider->m_primaryBuffer != NULL) {
@@ -140,7 +140,7 @@ void MonoDirectSoundProvider::Initialize(HWND p_window)
 	InitializeDirectSoundOutput(&m_device, &m_primaryBuffer, &m_initializationStatus, p_window, TRUE);
 }
 
-// STUB: LEGORACERS2 0x004f0e30
+// FUNCTION: LEGORACERS2 0x004f0e30
 void MonoDirectSoundProvider::ReleasePlaybackObject(AudioPlaybackObjectView** p_object)
 {
 	if (*p_object != NULL) {
@@ -161,7 +161,7 @@ void MonoDirectSoundProvider::ReleaseSourcePlaybackBuffer(AudioSourceRecord* p_s
 	}
 }
 
-// STUB: LEGORACERS2 0x004f0ed0
+// FUNCTION: LEGORACERS2 0x004f0ed0
 LegoBool32 __stdcall StartAudioPlaybackObject(AudioPlaybackObjectView* p_object, LegoU32 p_loop)
 {
 	if (p_object == NULL) {
@@ -175,7 +175,7 @@ LegoBool32 __stdcall StartAudioPlaybackObject(AudioPlaybackObjectView* p_object,
 	return TRUE;
 }
 
-// STUB: LEGORACERS2 0x004f0f20
+// FUNCTION: LEGORACERS2 0x004f0f20
 LegoBool32 __stdcall IsAudioPlaybackObjectActive(AudioPlaybackObjectView* p_object)
 {
 	if (p_object == NULL) {
@@ -215,7 +215,7 @@ LegoBool32 __stdcall SetAudioPlaybackFrequency(AudioPlaybackObjectView* p_object
 	return TRUE;
 }
 
-// STUB: LEGORACERS2 0x004f0fb0
+// FUNCTION: LEGORACERS2 0x004f0fb0
 LegoBool32 __stdcall ResetAudioPlaybackPosition(AudioPlaybackObjectView* p_object)
 {
 	if (p_object == NULL) {

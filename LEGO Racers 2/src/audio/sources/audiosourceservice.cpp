@@ -52,7 +52,6 @@ static LegoU32 IsSameSourceName(const LegoChar* p_first, const LegoChar* p_secon
 }
 
 // The channel cache is implemented in the adjacent source-file helper unit.
-extern void __fastcall DisposeAudioSourceRecord(AudioSourceRecord* p_source, void* p_edx);
 extern void __fastcall ReleaseAudioChannelRecordBuffer(AudioChannelRecord* p_channel, void* p_edx);
 extern AudioChannelRecord* __fastcall FindOrCreateAudioChannel(
 	AudioService* p_service,
@@ -156,7 +155,7 @@ void __fastcall RemoveAudioSource(AudioService* p_service, void*, LegoU32 p_sour
 	for (LegoU32 i = 0; i < 512; ++i) {
 		AudioSourceRecord* source = &p_service->m_sources[i];
 		if (source->m_unk0x44 == p_sourceId) {
-			DisposeAudioSourceRecord(source, NULL);
+			ReleaseAudioSourceRecordResources(source, NULL);
 		}
 	}
 }

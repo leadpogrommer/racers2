@@ -60,14 +60,14 @@ GameObject* __fastcall ConfigureNpcTextBox(
 	return (GameObject*) nested;
 }
 
-// STUB: LEGORACERS2 0x00439050
+// FUNCTION: LEGORACERS2 0x00439050
 static void __fastcall SetNpcTextCharacterInterval(GameObject* p_object, void*, LegoFloat p_interval)
 {
 	GameObject* nested = ((TextBoxManager*) p_object)->m_nestedManager;
 	*(LegoFloat*) ((LegoU8*) nested + 0x18dc) = p_interval;
 }
 
-// STUB: LEGORACERS2 0x00439060
+// FUNCTION: LEGORACERS2 0x00439060
 LegoFloat __fastcall GetNpcTextCharacterInterval(GameObject*, void*)
 {
 	return g_npcTextCharacterInterval;
@@ -82,6 +82,7 @@ static LegoU32 __fastcall GetNpcTextManagerSize(GameObject*, void*);
 static void __fastcall InitializeNpcTextManager(GameObject*, void*);
 static LegoU32 __fastcall UpdateNpcTextManager(GameObject*, void*, LegoU32);
 // Retail object table0x00532628, complete21slotinventory.
+// GLOBAL: LEGORACERS2 0x00532628
 extern const NpcTextManagerDispatch g_npcTextManagerDispatch = {
 	{&DestroyNpcTextManager,      &GameObjectBaseApplyChildTransform,
 	 &GameObjectBaseNoOp,         &GameObjectBaseNoOp,
@@ -117,7 +118,7 @@ static GameObject* __fastcall DestroyNpcTextManager(GameObject* p_object, void*,
 	}
 	return p_object;
 }
-// STUB: LEGORACERS2 0x0045fa50
+// FUNCTION: LEGORACERS2 0x0045fa50
 NpcTextManager::~NpcTextManager()
 {
 	m_vtable = &g_npcTextManagerDispatch.m_object;

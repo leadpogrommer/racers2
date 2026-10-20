@@ -58,7 +58,7 @@ ContactCacheController::ContactCacheController() : GameObject(0xe00, NULL, NULL)
 	m_vtable = &g_contactCacheDispatch.m_base;
 }
 
-// STUB: LEGORACERS2 0x004e6730
+// FUNCTION: LEGORACERS2 0x004e6730
 static LegoU32 __fastcall ContactCacheAllocationSize(GameObject*, void*)
 {
 	return 0x665c;
@@ -74,7 +74,7 @@ static GameObject* __fastcall DeleteContactCacheController(GameObject* p_object,
 	return p_object;
 }
 
-// STUB: LEGORACERS2 0x004fbe50
+// FUNCTION: LEGORACERS2 0x004fbe50
 void ContactCacheController::ResetContacts()
 {
 	m_count = 0;

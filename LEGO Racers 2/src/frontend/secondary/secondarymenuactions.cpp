@@ -1105,7 +1105,7 @@ LegoS32 __fastcall GetMenuParentAction(MenuManager* p_menu, void*)
 	return *(LegoS32*) (stack + 0x30);
 }
 
-// STUB: LEGORACERS2 0x00423230
+// FUNCTION: LEGORACERS2 0x00423230
 LegoS32 __fastcall GetSecondaryPendingMenuAction(MenuManager* p_menu, void*)
 {
 	LegoS32 depth = p_menu->m_unk0x198;

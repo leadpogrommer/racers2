@@ -54,6 +54,7 @@ GameObject* __fastcall DestroyControllerSceneObject(GameObject*, void*, LegoU32)
 namespace
 {
 
+// GLOBAL: LEGORACERS2 0x005331e4
 const LegoFloat kControllerScenePi = 3.1415927410125732f;
 const LegoFloat kControllerSceneQuarter = 0.25f;
 const LegoFloat kControllerScenePulseAmplitude = 0.05f;
@@ -112,7 +113,8 @@ LegoFloat AdvanceControllerScenePulse(ControllerSceneObject* p_object, LegoFloat
 }
 } // namespace
 
-// Retail dispatch table at 0x005331f0 (20 slots).
+// Retail dispatch table with 20 slots.
+// GLOBAL: LEGORACERS2 0x005331f0
 const ControllerSceneDispatch g_controllerSceneObjectDispatch = {
 	(GameObject * (__fastcall*) (GameObject*, void*, LegoU32)) & DestroyControllerSceneObject,
 	(void(__fastcall*)(GameObject*, void*, LegoU32, LegoU32)) & GameObjectBaseApplyChildTransform,
@@ -136,7 +138,7 @@ const ControllerSceneDispatch g_controllerSceneObjectDispatch = {
 	&GameObjectBaseNoOpOneArgument,
 };
 
-// STUB: LEGORACERS2 0x0047e140
+// FUNCTION: LEGORACERS2 0x0047e140
 void __cdecl InitializeControllerSceneAngularFrequency()
 {
 	g_controllerSceneAngularFrequency = kControllerScenePi * 2.0f;
@@ -205,7 +207,7 @@ GameObject* __fastcall DestroyControllerSceneObject(GameObject* p_object, void*,
 	return p_object;
 }
 
-// STUB: LEGORACERS2 0x0047e350
+// FUNCTION: LEGORACERS2 0x0047e350
 void __fastcall DestructControllerSceneObject(GameObject* p_object, void*)
 {
 	p_object->m_vtable = (const GameObjectDispatchView*) &g_controllerSceneObjectDispatch;

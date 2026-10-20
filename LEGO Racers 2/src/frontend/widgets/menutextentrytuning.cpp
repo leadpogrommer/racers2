@@ -16,10 +16,10 @@ void InitializeMenuTextEntryRowSpacing()
 	g_menuTextEntryTuning[3] = 0.06f;
 }
 
-// STUB: LEGORACERS2 0x00424300
+// FUNCTION: LEGORACERS2 0x00424300
 void InitializeMenuTextEntrySpriteSpacingX()
 {
-	g_menuTextEntryTuning[4] = g_menuTextEntryTuning[2] * 2.0f;
+	g_menuTextEntryTuning[4] = g_menuTextEntryTuning[2] * 3.0f;
 }
 
 // STUB: LEGORACERS2 0x00424330

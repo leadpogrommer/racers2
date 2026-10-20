@@ -22,6 +22,7 @@ struct BattleManagerDispatch {
 	GameObjectDispatchView::Value m_size;
 };
 // Retail52f444, complete21-slotinterface.
+// GLOBAL: LEGORACERS2 0x0052f444
 extern const BattleManagerDispatch g_battleManagerDispatch = {
 	{&DestroyBattleManager,       &GameObjectBaseApplyChildTransform,
 	 &GameObjectBaseNoOp,         &GameObjectBaseNoOp,
@@ -46,12 +47,12 @@ GameObject* __fastcall ConstructBattleManager(void* p_storage, void*, GameObject
 {
 	return new (p_storage) BattleManager(p_template);
 }
-// STUB: LEGORACERS2 0x00406070
+// FUNCTION: LEGORACERS2 0x00406070
 static LegoU32 __fastcall GetBattleManagerSize(GameObject*, void*)
 {
 	return 0xc4;
 }
-// STUB: LEGORACERS2 0x00406080
+// FUNCTION: LEGORACERS2 0x00406080
 static GameObject* __fastcall DestroyBattleManager(GameObject* p_object, void*, LegoU32 p_flags)
 {
 	((BattleManager*) p_object)->~BattleManager();
@@ -60,7 +61,7 @@ static GameObject* __fastcall DestroyBattleManager(GameObject* p_object, void*, 
 	}
 	return p_object;
 }
-// STUB: LEGORACERS2 0x004060a0
+// FUNCTION: LEGORACERS2 0x004060a0
 BattleManager::~BattleManager()
 {
 	m_vtable = &g_battleManagerDispatch.m_object;

@@ -26,16 +26,16 @@ void ConstructGameController()
 	new (g_gameControllerStorage) GameController(&g_gameControllerTemplate);
 }
 
-// STUB: LEGORACERS2 0x00406f60
+// FUNCTION: LEGORACERS2 0x00406f60
 void RegisterGameControllerExit()
 {
 	atexit(DestroyGameControllerAtExit);
 }
 
-// STUB: LEGORACERS2 0x00406f70
+// FUNCTION: LEGORACERS2 0x00406f70
 static void DestroyGameControllerAtExit()
 {
-	g_gameController.~GameController();
+	((GameController*) g_gameControllerStorage)->~GameController();
 }
 
 // STUB: LEGORACERS2 0x00406fa0
@@ -112,7 +112,7 @@ GameController::GameController(GameObjectTemplate* p_template) : GameObject(0x90
 	m_unk0xec = 0;
 }
 
-// STUB: LEGORACERS2 0x00407240
+// FUNCTION: LEGORACERS2 0x00407240
 GameController::~GameController()
 {
 	m_vtable = &g_gameControllerDispatch.m_base;

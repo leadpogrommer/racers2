@@ -265,7 +265,7 @@ static void RefreshChildGeometry(GameObjectChildBuffer* p_child)
 	}
 }
 
-// STUB: LEGORACERS2 0x004534e0
+// FUNCTION: LEGORACERS2 0x004534e0
 GameObject* __fastcall GameObjectBaseDestroy(GameObject* p_object, void*, LegoU32 p_flags)
 {
 	p_object->~GameObject();
@@ -457,7 +457,7 @@ GameObject* __fastcall FindRegisteredGameObjectByName(
 	return NULL;
 }
 
-// STUB: LEGORACERS2 0x004a37f0
+// FUNCTION: LEGORACERS2 0x004a37f0
 GameObject* __cdecl FindGameObjectByName(const LegoChar* p_name, LegoU32 p_unused, const LegoU32* p_typeMask)
 {
 	return FindRegisteredGameObjectByName(GetGameManager(), NULL, p_name, p_unused, p_typeMask);
@@ -632,13 +632,13 @@ void GameObject::DrawChild()
 	}
 }
 
-// FUNCTION: LEGORACERS2 0x004ba270
+// FUNCTION: LEGORACERS2 0x004ba270 FOLDED
 void __fastcall GameObjectBaseRemove(GameObject* p_object, void*)
 {
 	p_object->Remove();
 }
 
-// STUB: LEGORACERS2 0x004ba370
+// FUNCTION: LEGORACERS2 0x004ba370
 LegoFloat __fastcall GetGameObjectViewDepth(void* p_camera, void*, const Vector3* p_point)
 {
 	GameObjectVisibilityContext* context = (GameObjectVisibilityContext*) ((LegoU8*) p_camera + 0x58);

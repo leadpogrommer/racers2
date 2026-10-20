@@ -11,6 +11,11 @@ been verified. The working-menu checkpoint is `204d683`. See
 [menu validation](docs/work-menu-startup.md), [current progress](docs/progress.md)
 and [remaining work](docs/runtime-roadmap.md).
 
+Matching work is paused at the user's request. The latest parallel batches
+promoted 213 stubs and recovered one additional helper; both builders pass the
+reccmp guard with 784 exact and 49 reviewed near matches. No game was run for
+these batches. See [matching validation and pause notes](docs/work-small-core-matches.md).
+
 The compiler is **Visual C++ 6.0 SP5**: CL **12.00.8804**, with the
 **12.00.8966 code generator**. See [compiler evidence](docs/compiler.md).
 Matching remains secondary to getting the game running. Reports use an original
@@ -121,7 +126,7 @@ check requires 100% raw matches.
 The console, JSON, HTML and SVG use the tracked
 [`reccmp/function-inventory.csv`](reccmp/function-inventory.csv) for their total,
 including original functions with no source annotation. The current summary is
-**619 / 6,612 implemented (9.36%)**, **99.83% accuracy**, **9.35% progress**.
+**833 / 6,612 implemented (12.60%)**, **99.80% accuracy**, **12.57% progress**.
 Verified folded bodies contribute before the summary is printed. Known libraries
 are excluded from implemented comparisons with `--nolib`; they remain in the
 whole-binary denominator and can be compared explicitly. This inventory includes

@@ -226,7 +226,7 @@ void __fastcall InitializeFoyerSceneAction14(void* p_action, void*, const LegoU3
 	memcpy(words + 4, p_words + 2, 5 * sizeof(LegoU32));
 }
 
-// STUB: LEGORACERS2 0x00480db0
+// FUNCTION: LEGORACERS2 0x00480db0
 void __fastcall ScaleFoyerSceneAction14(void* p_action, void*, LegoFloat p_scale)
 {
 	*(LegoFloat*) ((LegoU8*) p_action + 0x20) /= p_scale;

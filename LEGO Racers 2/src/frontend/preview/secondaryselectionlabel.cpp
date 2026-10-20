@@ -2,7 +2,7 @@
 
 #include "frontend/overlay/globaloverlaymanager.h"
 
-// STUB: LEGORACERS2 0x00463870
+// FUNCTION: LEGORACERS2 0x00463870
 void* __fastcall ConstructSecondarySelectionLabel(void* p_object, void*)
 {
 	SecondarySelectionLabel* label = (SecondarySelectionLabel*) p_object;
@@ -33,7 +33,7 @@ void __fastcall LoadSecondarySelectionLabel(void* p_object, void*)
 	label->m_width = 0.0f;
 }
 
-// STUB: LEGORACERS2 0x00463900
+// FUNCTION: LEGORACERS2 0x00463900
 void __fastcall ReleaseSecondarySelectionLabel(void* p_object, void*)
 {
 	SecondarySelectionLabel* label = (SecondarySelectionLabel*) p_object;
@@ -43,7 +43,7 @@ void __fastcall ReleaseSecondarySelectionLabel(void* p_object, void*)
 	}
 }
 
-// STUB: LEGORACERS2 0x004639a0
+// FUNCTION: LEGORACERS2 0x004639a0
 void __fastcall SetSecondarySelectionLabelFont(void* p_object, void*, BitmapFont* p_font, LegoFloat p_scale)
 {
 	SecondarySelectionLabel* label = (SecondarySelectionLabel*) p_object;

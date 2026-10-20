@@ -57,7 +57,7 @@ GameObject* __fastcall ConstructRaceManager(void*, void*, GameObjectTemplate*); 
 GameObject* __cdecl FindGameObjectByName(const LegoChar*, LegoU32, const LegoU32*);
 void __fastcall FUN_00411110(void*, void*);
 void __fastcall FUN_0040eb40(GameObject*, void*);
-void FUN_0042a860();
+void RequestDeferredWindowDestruction();
 
 struct ControllerFoyerModeView : GameObject {
 	undefined m_prefix[0xe8 - 0x58];
@@ -147,7 +147,7 @@ void __fastcall PrepareControllerSelection(GameController* p_controller, void*)
 	void* selectionProgress = g_gameController.m_unk0xd4;
 	InitializeControllerSelectionProgress(selectionProgress, NULL, 0);
 	if (rendererDispatch->m_setDeviceResourceMode(g_displayRenderer, NULL, 2) == 0) {
-		FUN_0042a860();
+		RequestDeferredWindowDestruction();
 	}
 	UpdateControllerSelectionProgress(selectionProgress, NULL, 1);
 	rendererDispatch->m_setDeviceResourceMode(g_displayRenderer, NULL, 1);
@@ -286,7 +286,7 @@ void __fastcall PrepareFoyerControllerScene(GameController* p_controller, void*)
 
 	const RendererMainDispatch* rendererDispatch = (const RendererMainDispatch*) g_displayRenderer->m_vtable;
 	if (rendererDispatch->m_setDeviceResourceMode(g_displayRenderer, NULL, 2) == 0) {
-		FUN_0042a860();
+		RequestDeferredWindowDestruction();
 	}
 	UpdateControllerScene(p_controller, NULL);
 	g_gameController.m_unk0x348 = g_displayRenderer->m_vtable->m_textureQuality(g_displayRenderer, NULL);
@@ -432,7 +432,7 @@ void __fastcall PrepareSelectedGameModeScene(GameController* p_controller, void*
 	FinalizeControllerSelectionProgress(selectionProgress, NULL);
 	const RendererMainDispatch* rendererDispatch = (const RendererMainDispatch*) g_displayRenderer->m_vtable;
 	if (rendererDispatch->m_setDeviceResourceMode(g_displayRenderer, NULL, 2) == 0) {
-		FUN_0042a860();
+		RequestDeferredWindowDestruction();
 	}
 	UpdateControllerScene(p_controller, NULL);
 	g_gameController.m_unk0x348 = g_displayRenderer->m_vtable->m_textureQuality(g_displayRenderer, NULL);

@@ -100,7 +100,7 @@ void GameManager::MoveObjects(LegoFloat p_stepSeconds)
 	// Retail's corresponding 0x00489970(frame, 20) is also a no-effect call.
 }
 
-// STUB: LEGORACERS2 0x004e6aa0
+// FUNCTION: LEGORACERS2 0x004e6aa0
 void GameManager::RefreshCollisionStates()
 {
 	GameObject** current = g_gameObjectsWithActiveComponents;

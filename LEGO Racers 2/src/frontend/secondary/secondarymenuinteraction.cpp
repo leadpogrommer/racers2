@@ -487,7 +487,7 @@ void __fastcall HighlightMenuOption(MenuManager* p_menu, void*, LegoS32 p_option
 	}
 }
 
-// STUB: LEGORACERS2 0x00423a00
+// FUNCTION: LEGORACERS2 0x00423a00
 void __fastcall ReleaseSecondaryObject8c(void* p_object, void*)
 {
 	GlobalOverlayRecord** records = (GlobalOverlayRecord**) p_object;
@@ -499,7 +499,7 @@ void __fastcall ReleaseSecondaryObject8c(void* p_object, void*)
 	}
 }
 
-// STUB: LEGORACERS2 0x004b9370
+// FUNCTION: LEGORACERS2 0x004b9370
 void __fastcall MergeSecondaryMediaSlot(
 	SecondaryManagerMediaSlot* p_destination,
 	void*,

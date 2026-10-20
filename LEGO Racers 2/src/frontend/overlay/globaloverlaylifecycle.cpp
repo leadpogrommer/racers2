@@ -12,7 +12,7 @@ DECOMP_STATIC_ASSERT(sizeof(g_globalOverlayManagerStorage) == sizeof(GlobalOverl
 
 static void DestroyGlobalOverlayManager();
 
-// STUB: LEGORACERS2 0x004b2d30
+// FUNCTION: LEGORACERS2 0x004b2d30
 void InitializeGlobalOverlayManagerAndRegisterExit()
 {
 	InitializeGlobalOverlayManager();
@@ -31,7 +31,7 @@ void InitializeGlobalOverlayManager()
 	new (g_globalOverlayManagerStorage) GlobalOverlayManager(&parameters);
 }
 
-// STUB: LEGORACERS2 0x004b2da0
+// FUNCTION: LEGORACERS2 0x004b2da0
 void RegisterGlobalOverlayManagerExit()
 {
 	atexit(DestroyGlobalOverlayManager);

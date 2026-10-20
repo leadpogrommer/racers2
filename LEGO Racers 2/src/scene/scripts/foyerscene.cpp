@@ -250,7 +250,7 @@ void __fastcall FoyerSceneResourceInitialize(GameObject* p_object, void*)
 	resource->GameObject::Initialize();
 }
 
-// STUB: LEGORACERS2 0x0047f320
+// FUNCTION: LEGORACERS2 0x0047f320 FOLDED
 void __cdecl FoyerSceneResourceExitCallback()
 {
 }

@@ -272,6 +272,7 @@ static void __fastcall InitializeSecondaryRenderOwner(GameObject* p_object, void
 	}
 }
 // The shared base-remove bridge at retail 0x004ba270.
+// FUNCTION: LEGORACERS2 0x004ba270 FOLDED
 void __fastcall ReleaseSecondaryRenderOwner(GameObject* p_object, void*)
 {
 	p_object->Remove();

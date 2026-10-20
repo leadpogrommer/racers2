@@ -23,8 +23,8 @@ void AudioService::SetCdPlayerMode(LegoU32 p_mode)
 	mciSendCommandA(m_mciOpenParameters.wDeviceID, MCI_CLOSE, 0, 0);
 }
 
-// STUB: LEGORACERS2 0x004ef360
-void AudioService::SetDigitalAudioPath(LPCSTR p_path)
+// FUNCTION: LEGORACERS2 0x004ef360
+void AudioService::SetDigitalAudioPath(LPCSTR p_path, LegoU32)
 {
 	if (m_initializationFailed != 0 || m_shutdown != 0) {
 		return;

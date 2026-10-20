@@ -40,7 +40,7 @@ static const LegoChar* g_selectionGridActiveArrowPath = "Game Data\\Frontend\\Ch
 // GLOBAL: LEGORACERS2 0x00570c60
 static LegoFloat g_selectionGridArrowSize[2];
 
-// STUB: LEGORACERS2 0x00462190
+// FUNCTION: LEGORACERS2 0x00462190
 static void InitializeSelectionGridArrowSize()
 {
 	g_selectionGridArrowSize[0] = 0.053700000047683716f;
@@ -160,7 +160,7 @@ void __fastcall InitializeSelectionGridNavigationArrows(void* p_object, void*)
 	}
 }
 
-// STUB: LEGORACERS2 0x004637a0
+// FUNCTION: LEGORACERS2 0x004637a0
 void __fastcall ReleaseSelectionGridNavigationArrows(void* p_object, void*)
 {
 	SelectionGridVisualStorage* grid = (SelectionGridVisualStorage*) p_object;

@@ -22,6 +22,7 @@ extern const LegoFloat* __fastcall GetLookupResourceOrigin(LegoU8*, void*);
 // GLOBAL: LEGORACERS2 0x00535470
 LegoFloat g_modelBindingDepthThreshold = 0.0266666673f;
 
+// GLOBAL: LEGORACERS2 0x00530f98
 const GameObjectModelBindingDispatch g_gameObjectModelBindingDispatch = {
 	&DestroyGameObjectModelBinding,
 	&UpdateGameObjectModelBinding,
@@ -41,7 +42,7 @@ GameObjectModelBinding* __fastcall DestroyGameObjectModelBinding(
 	return p_binding;
 }
 
-// STUB: LEGORACERS2 0x004a9870
+// FUNCTION: LEGORACERS2 0x004a9870
 void __fastcall ResetGameObjectModelBindingDispatch(GameObjectModelBinding* p_binding, void*)
 {
 	p_binding->m_vtable = &g_gameObjectModelBindingDispatch;

@@ -894,7 +894,7 @@ static void InitializeSecondaryCarPanelSprites()
 	DefineSecondaryCarPanelSprites(17, threeDNames, 0.615f, 0.36f, 0.365f, 0.455f, threeDBorderX, threeDBorderY);
 }
 
-// STUB: LEGORACERS2 0x00467520
+// FUNCTION: LEGORACERS2 0x00467520
 static void InitializeSecondaryBuilderGridDimensions()
 {
 	g_secondaryBuilderGridDimensions[0] = 10;
@@ -902,7 +902,7 @@ static void InitializeSecondaryBuilderGridDimensions()
 	g_secondaryBuilderGridDimensions[2] = 17;
 }
 
-// STUB: LEGORACERS2 0x00467550
+// FUNCTION: LEGORACERS2 0x00467550
 static void InitializeSecondaryBuilderCellDimensions()
 {
 	g_secondaryBuilderCellDimensions[0] = 5;
@@ -965,7 +965,7 @@ void __fastcall LoadSecondaryCarSelector(void* p_object, void*, BitmapFont* p_fo
 			->CreateTextureResource("Game Data\\Frontend\\Ch Builder Bits\\blue_peg_tile.tga", 0, -1, 1, 1);
 }
 
-// STUB: LEGORACERS2 0x00467da0
+// FUNCTION: LEGORACERS2 0x00467da0
 static LegoU32 __fastcall GetSecondaryBrickBuilderSize(GameObject*, void*)
 {
 	return 0x550;
@@ -1234,7 +1234,7 @@ static void __cdecl DefineSecondaryBrickSelectionItem(
 	}
 }
 
-// STUB: LEGORACERS2 0x0046a200
+// FUNCTION: LEGORACERS2 0x0046a200
 static LegoS32 __stdcall FindSecondaryChassisTag(const CharBuffer128* p_path)
 {
 	for (LegoS32 index = 0; index < 41; ++index) {

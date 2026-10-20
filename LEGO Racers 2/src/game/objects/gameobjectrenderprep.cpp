@@ -47,7 +47,7 @@ LegoFloat g_renderProjectionRatio = 1.0f;
 // GLOBAL: LEGORACERS2 0x0067bafc
 void* g_unk0x0067bafc = NULL;
 
-// STUB: LEGORACERS2 0x004aa3c0
+// FUNCTION: LEGORACERS2 0x004aa3c0
 void __cdecl SetRenderProjectionRatio(LegoFloat p_scale, LegoFloat p_limit)
 {
 	if (!(p_scale >= p_limit)) {

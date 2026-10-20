@@ -18,7 +18,7 @@ GameObject* __fastcall ParseFoyerSceneObjectReference(
 	void* p_unusedEdx,
 	LegoU32 p_mode
 );
-LegoFloat __fastcall ParseFoyerSceneNumber(FoyerSceneResource* p_resource, void* p_unusedEdx);
+LegoFloat __fastcall ParseFoyerSceneNumber(FoyerSceneResource* p_resource);
 LegoS32 __fastcall ParseFoyerSceneInteger(FoyerSceneResource* p_resource, void* p_unusedEdx);
 LegoU32 __fastcall ParseFoyerSceneAssetType(FoyerSceneResource* p_resource, void* p_unusedEdx, LegoU32 p_table);
 void __fastcall ParseFoyerSceneVector3(FoyerSceneResource* p_resource, void* p_unusedEdx, LegoFloat* p_vector);

@@ -144,7 +144,6 @@ static CharacterVisualTemplate g_rocketRacerCharacterVisualTemplate;
 static CharacterVisualTemplate g_rigelCharacterVisualTemplate;
 
 static LegoU32 g_characterVisualTemplateInitialized;
-static LegoU32 g_foyerDefaultBodypartNameInitialized;
 static CharBuffer24* GetFoyerDefaultBodypartName();
 static void InitializeFoyerDefaultBodypartName();
 static void InitializeSparkyCharacterVisualTemplate();
@@ -777,7 +776,7 @@ static GameObject* __fastcall DestroyCharacterVisual(GameObject* p_object, void*
 	return p_object;
 }
 
-// STUB: LEGORACERS2 0x00450e40
+// FUNCTION: LEGORACERS2 0x00450e40
 static LegoU32 __fastcall CharacterVisualApplyAnimation(GameObject* p_object, void*, LegoU32 p_first, LegoU32 p_second)
 {
 	UpdateControllerFollowCamera(
@@ -1095,10 +1094,7 @@ static void __fastcall SetCharacterVisualBindingAssociationValue(
 // STUB: LEGORACERS2 0x0047b520
 static void InitializeFoyerDefaultBodypartName()
 {
-	if (g_foyerDefaultBodypartNameInitialized == 0) {
-		new (g_foyerDefaultBodypartNameStorage) CharBuffer24("noname");
-		g_foyerDefaultBodypartNameInitialized = 1;
-	}
+	new (g_foyerDefaultBodypartNameStorage) CharBuffer24("noname");
 }
 
 static CharBuffer24* GetFoyerDefaultBodypartName()

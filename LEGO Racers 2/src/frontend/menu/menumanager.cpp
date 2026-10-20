@@ -9,6 +9,7 @@ static void __fastcall MenuManagerInitializeBridge(GameObject* p_object, void*);
 static void __fastcall MenuManagerRemoveBridge(GameObject* p_object, void*);
 static LegoU32 __fastcall MenuManagerAllocationSizeBridge(GameObject*, void*);
 
+// GLOBAL: LEGORACERS2 0x005302fc
 const MenuManagerDispatchView g_menuManagerDispatch = {
 	{
 		&MenuManagerDestroyBridge,
@@ -52,13 +53,13 @@ MenuManager::MenuManager(GameObjectTemplate* p_template)
 	m_vtable = (const GameObjectDispatchView*) &g_menuManagerDispatch;
 }
 
-// STUB: LEGORACERS2 0x0041c3f0
+// FUNCTION: LEGORACERS2 0x0041c3f0
 static LegoU32 __fastcall MenuManagerAllocationSizeBridge(GameObject*, void*)
 {
 	return 0x2b4;
 }
 
-// STUB: LEGORACERS2 0x0041c400
+// FUNCTION: LEGORACERS2 0x0041c400
 static GameObject* __fastcall MenuManagerDestroyBridge(GameObject* p_object, void*, LegoU32 p_flags)
 {
 	MenuManager* manager = (MenuManager*) p_object;
@@ -69,7 +70,7 @@ static GameObject* __fastcall MenuManagerDestroyBridge(GameObject* p_object, voi
 	return p_object;
 }
 
-// STUB: LEGORACERS2 0x0041c420
+// FUNCTION: LEGORACERS2 0x0041c420
 MenuManager::~MenuManager()
 {
 	m_vtable = (const GameObjectDispatchView*) &g_menuManagerDispatch;
@@ -103,7 +104,7 @@ void MenuManager::Initialize()
 	}
 }
 
-// STUB: LEGORACERS2 0x0041c4d0
+// FUNCTION: LEGORACERS2 0x0041c4d0
 void MenuManager::Remove()
 {
 	for (LegoU32 i = 14; i != 0; --i) {

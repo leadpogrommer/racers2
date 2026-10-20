@@ -27,7 +27,7 @@ public:
 	void LeavePause();
 	void Update();
 	void SetObserver(PauseObserver* p_observer);
-	void ClearObserver();
+	void ClearObserver(PauseObserver* p_observer);
 	void SetDeadline(LegoFloat p_seconds);
 	LegoBool32 IsBeforeDeadline();
 

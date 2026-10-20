@@ -19,7 +19,7 @@ SpatialPairList* SpatialPairList::Initialize(LegoU32 p_capacity, SpatialLinkRegi
 	return this;
 }
 
-// STUB: LEGORACERS2 0x00507be0
+// FUNCTION: LEGORACERS2 0x00507be0
 SpatialAxisIndex* SpatialAxisIndex::InitializeFirst(SpatialLinkRegistry* p_registry, SpatialSlotAllocator* p_allocator)
 {
 	((SpatialLinkRegistry*) this)->InitializeList(p_allocator, NULL);
@@ -28,7 +28,7 @@ SpatialAxisIndex* SpatialAxisIndex::InitializeFirst(SpatialLinkRegistry* p_regis
 	return this;
 }
 
-// STUB: LEGORACERS2 0x00507cb0
+// FUNCTION: LEGORACERS2 0x00507cb0
 SpatialAxisIndex* SpatialAxisIndex::InitializeSecond(SpatialLinkRegistry* p_registry, SpatialSlotAllocator* p_allocator)
 {
 	((SpatialLinkRegistry*) this)->InitializeList(p_allocator, NULL);

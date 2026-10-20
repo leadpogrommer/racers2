@@ -12,7 +12,7 @@ LegoU32 g_messageLoopActive;
 // GLOBAL: LEGORACERS2 0x0067a500
 LegoU32 g_deferredWindowDestruction;
 
-// STUB: LEGORACERS2 0x004c3020
+// FUNCTION: LEGORACERS2 0x004c3020
 LegoU32 StopNativeGame()
 {
 	g_messageLoopActive = 0;

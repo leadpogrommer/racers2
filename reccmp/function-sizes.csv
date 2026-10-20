@@ -1902,7 +1902,7 @@ address,type,size
 004bb6e0,function,10
 004bb6f0,function,70
 004bb740,function,10
-004bb750,function,8
+004bb750,function,10
 004bb760,function,17
 004bb780,function,17
 004bb7a0,function,80
@@ -2673,6 +2673,7 @@ address,type,size
 00507470,function,64
 005074b0,function,64
 005074f0,function,29
+00507510,function,15
 00507520,function,15
 00507530,function,28
 00507550,function,70

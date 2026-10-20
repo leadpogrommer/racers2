@@ -363,7 +363,7 @@ const ControllerRecordingServiceDispatchView g_controllerRecordingServiceDispatc
 	ServiceSetRequestedInputValue
 };
 
-// STUB: LEGORACERS2 0x004b1400
+// FUNCTION: LEGORACERS2 0x004b1400
 static void InitializeStaticControllerRecordingService()
 {
 	InitializeControllerRecordingServiceStorage();

@@ -12,12 +12,14 @@ void __fastcall UpdateSpatialList(SpatialLinkRegistry* p_this, void*, SpatialSlo
 
 // Both retail tables contain the same two callbacks; following words are data.
 // Retail table: 0x00537084; verified separately from method-body annotations.
+// GLOBAL: LEGORACERS2 0x00537084
 extern const SpatialListDispatch g_spatialRegistryDispatch = {InsertSpatialList, UpdateSpatialList};
 
 // Retail table: 0x00537528; verified separately from method-body annotations.
+// GLOBAL: LEGORACERS2 0x00537528
 extern const SpatialListDispatch g_spatialListDispatch = {InsertSpatialList, UpdateSpatialList};
 
-// STUB: LEGORACERS2 0x004f5140
+// FUNCTION: LEGORACERS2 0x004f5140
 SpatialLinkRegistry::SpatialLinkRegistry(SpatialSlotAllocator* p_allocator)
 {
 	InitializeList(p_allocator, NULL);

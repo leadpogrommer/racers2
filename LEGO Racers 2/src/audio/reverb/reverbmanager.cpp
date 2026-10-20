@@ -50,7 +50,7 @@ GameObject* __fastcall ConstructReverbManager(void* p_storage, void*, GameObject
 	return manager;
 }
 
-// STUB: LEGORACERS2 0x0043d750
+// FUNCTION: LEGORACERS2 0x0043d750
 void ReverbManager::Reset()
 {
 	m_volumeCount = 0;

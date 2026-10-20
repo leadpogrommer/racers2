@@ -70,7 +70,19 @@ to open and correctly render the menu. Do not run incremental startup or asset
 probes between small recovery batches. Ordinary build, matching and data-layout
 checks read the original and emit PE/PDB/report files without running the game.
 
-## Primary objective: a playable game
+## Current matching goal
+
+Paused at the user's request on 2026-10-20. Do not resume decompilation until
+the user resumes; a later explicit resume supersedes this pause. See
+`docs/work-small-core-matches.md` for the validated checkpoint and retained stubs.
+
+The current user goal is to convert as many STUBs as possible into exact or
+reviewed equivalent near matches, starting with the smallest and easiest
+functions. Work in parallel batches with separate ownership. Use reccmp and the
+match guard as quality gates. **Do not run the game for this goal.** The gameplay
+objective below provides context; it does not override this matching-only task.
+
+## Gameplay objective
 
 The user's top priority is to get the rebuilt game running with the supplied
 installation assets. Prioritize the real startup path, application lifecycle,
@@ -147,9 +159,9 @@ perfect matching must not block progress toward a playable game.
 - The colon is required. Globals identify the variable, not a pointed-to string.
 - Order functions by ascending original address within each compilation unit.
 - `VTABLE` annotations require a C++ class with compiler-emitted virtual methods.
-  For explicit ABI structs containing function pointers, leave the table's
-  retail VA in a plain comment and verify its complete CSV inventory against
-  both PEs and linker maps. A `VTABLE` marker on such a struct is invalid.
+  For explicit ABI structs containing function pointers, a verified `GLOBAL`
+  annotation can map the table's data address. Verify its complete CSV inventory
+  against both PEs and linker maps. A `VTABLE` marker on such a struct is invalid.
 - Keep genuine folded functions marked `FOLDED`; never add artificial global
   writes or assembly blobs to make an implemented function appear matched.
 - Record proven function lengths in `reccmp/function-sizes.csv` (decimal bytes).

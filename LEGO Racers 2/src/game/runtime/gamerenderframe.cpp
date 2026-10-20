@@ -16,7 +16,7 @@ DECOMP_STATIC_ASSERT(offsetof(ChildGeometryOwnerView, m_childGeometry) == 0x48);
 
 } // namespace
 
-// STUB: LEGORACERS2 0x004e9390
+// FUNCTION: LEGORACERS2 0x004e9390
 void __fastcall ForwardPositionToChildGeometry(void* p_owner, void*, const LegoFloat* p_position)
 {
 	ChildGeometryOwnerView* owner = (ChildGeometryOwnerView*) p_owner;

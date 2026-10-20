@@ -136,7 +136,7 @@ BOOL FileManager::FindArchiveEntry(LPCSTR p_path, BOOL* p_found, WinFile* p_file
 	return TRUE;
 }
 
-// STUB: LEGORACERS2 0x004a2ba0
+// FUNCTION: LEGORACERS2 0x004a2ba0
 BOOL FileManager::Read(WinFile* p_file, LPVOID p_buffer, DWORD p_bytes, DWORD p_flags)
 {
 	DWORD sourceOffset = p_file->m_archiveOffset + p_file->m_position;

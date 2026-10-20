@@ -14,10 +14,10 @@
 #include <math.h>
 
 void __fastcall BeginSecondaryManagerFallback(SecondaryManager* p_manager, void*);
-void FUN_0042a860();
+void RequestDeferredWindowDestruction();
 
 void __fastcall BeginSecondaryManagerFallback(SecondaryManager* p_manager, void*);
-void FUN_0042a860();
+void RequestDeferredWindowDestruction();
 
 // STUB: LEGORACERS2 0x004279b0
 void SecondaryManager::BeginStartup()
@@ -47,7 +47,7 @@ void __fastcall BeginSecondaryManagerFallback(SecondaryManager* p_manager, void*
 	((GlobalOverlayGlyphReplacementManagerView*) g_gameController.m_unk0xb4)->LoadIconTextures();
 	UpdateGameObjectRenderGeometry(p_manager->m_unk0x110, NULL);
 	if (dispatch->m_setDeviceResourceMode(renderer, NULL, 2) == FALSE) {
-		FUN_0042a860();
+		RequestDeferredWindowDestruction();
 	}
 }
 
@@ -59,8 +59,8 @@ void SecondaryManager::RestoreStartupRendering()
 	g_gameController.m_fontSet->Release(2);
 }
 
-// STUB: LEGORACERS2 0x0042a860
-void FUN_0042a860()
+// FUNCTION: LEGORACERS2 0x0042a860
+void RequestDeferredWindowDestruction()
 {
 	g_deferredWindowDestruction = 1;
 }

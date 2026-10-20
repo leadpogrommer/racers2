@@ -113,7 +113,7 @@ FoyerSceneAudioTarget::FoyerSceneAudioTarget(FoyerSceneTargetTemplate* p_templat
 	m_flags |= 2;
 }
 
-// STUB: LEGORACERS2 0x0045b3c0
+// FUNCTION: LEGORACERS2 0x0045b3c0
 static LegoU32 __fastcall HasFoyerSceneTargetTrack(GameObject* p_object, void*)
 {
 	return ((FoyerSceneAudioTarget*) p_object)->m_track != NULL;
@@ -146,7 +146,7 @@ static void __fastcall InitializeFoyerSceneAudioTarget(GameObject* p_object, voi
 	target->GameObject::Initialize();
 }
 
-// STUB: LEGORACERS2 0x0045b4a0
+// FUNCTION: LEGORACERS2 0x0045b4a0
 static void __fastcall RemoveFoyerSceneAudioTarget(GameObject* p_object, void*)
 {
 	FoyerSceneAudioTarget* target = (FoyerSceneAudioTarget*) p_object;
@@ -181,7 +181,7 @@ static void __fastcall BindFoyerSceneTargetSpline(FoyerSceneAudioTarget* p_targe
 	BindFoyerActionPath(p_target->m_splineContext, NULL, p_path);
 }
 
-// STUB: LEGORACERS2 0x0045b5c0
+// FUNCTION: LEGORACERS2 0x0045b5c0
 void* __fastcall GetFoyerSceneTargetSpline(GameObject* p_object, void*)
 {
 	return ((FoyerSceneAudioTarget*) p_object)->m_splineContext;
@@ -200,7 +200,7 @@ static void __fastcall BindFoyerSceneTargetTrack(FoyerSceneAudioTarget* p_target
 }
 
 // STUB: LEGORACERS2 0x0045b780
-static FoyerSceneAudioTarget* __fastcall ConstructDefaultFoyerSceneAudioTarget(FoyerSceneAudioTarget* p_target, void*)
+static FoyerSceneAudioTarget* __fastcall ConstructDefaultFoyerSceneAudioTarget(FoyerSceneAudioTarget* p_target)
 {
 	FoyerSceneTargetTemplate objectTemplate;
 	objectTemplate.m_flags = 0;
@@ -220,29 +220,29 @@ static void ConstructStaticFoyerSceneAudioTarget();
 static void RegisterStaticFoyerSceneAudioTargetExit();
 static void DestroyStaticFoyerSceneAudioTarget();
 
-// STUB: LEGORACERS2 0x0045b850
+// FUNCTION: LEGORACERS2 0x0045b850
 static void InitializeStaticFoyerSceneAudioTarget()
 {
 	ConstructStaticFoyerSceneAudioTarget();
 	RegisterStaticFoyerSceneAudioTargetExit();
 }
 
-// STUB: LEGORACERS2 0x0045b860
+// FUNCTION: LEGORACERS2 0x0045b860
 static void ConstructStaticFoyerSceneAudioTarget()
 {
-	ConstructDefaultFoyerSceneAudioTarget((FoyerSceneAudioTarget*) g_foyerSceneAudioTargetStorage, NULL);
+	ConstructDefaultFoyerSceneAudioTarget((FoyerSceneAudioTarget*) g_foyerSceneAudioTargetStorage);
 }
 
-// STUB: LEGORACERS2 0x0045b870
+// FUNCTION: LEGORACERS2 0x0045b870
 static void RegisterStaticFoyerSceneAudioTargetExit()
 {
 	atexit(DestroyStaticFoyerSceneAudioTarget);
 }
 
-// STUB: LEGORACERS2 0x0045b880
+// FUNCTION: LEGORACERS2 0x0045b880
 static void DestroyStaticFoyerSceneAudioTarget()
 {
-	((FoyerSceneAudioTarget*) g_foyerSceneAudioTargetStorage)->~FoyerSceneAudioTarget();
+	((FoyerSceneAudioTarget*) g_foyerSceneAudioTargetStorage)->GameObject::~GameObject();
 }
 
 // STUB: LEGORACERS2 0x0045bb60
@@ -259,7 +259,7 @@ static void __fastcall RegisterControllerFoyerSceneTarget(void* p_manager, void*
 	}
 }
 
-// STUB: LEGORACERS2 0x0049a640
+// FUNCTION: LEGORACERS2 0x0049a640 FOLDED
 static LegoU32 __fastcall AcceptFoyerSceneTargetPosition(GameObject*, void*, const Vector3*)
 {
 	return 1;

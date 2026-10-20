@@ -25,7 +25,7 @@ void __fastcall ReleaseControllerPollMutex(InputControllerManager* p_manager, vo
 const ControllerManagerDispatch g_controllerManagerDispatch =
 	{InitializeControllerPolling, StopControllerPolling, AcquireControllerPollMutex, ReleaseControllerPollMutex};
 
-// STUB: LEGORACERS2 0x004b94c0
+// FUNCTION: LEGORACERS2 0x004b94c0
 HANDLE InputControllerManager::AcquirePollMutex()
 {
 	return g_multimediaTimerService->AcquireNamedMutex("ATDControlInterfacePollMutex", FALSE);

@@ -23,6 +23,8 @@ TABLES = {
     'secondary_manager': (0x005304e0, 21, 'g_secondaryManagerDispatch'),
     'network': (0x005342bc, 21, 'g_networkAppLayerDispatch'),
     'battle': (0x0052f444, 21, 'g_battleManagerDispatch'),
+    'game_controller': (0x0052f528, 21, 'g_gameControllerDispatch'),
+    'menu_manager': (0x005302fc, 21, 'g_menuManagerDispatch'),
     'attract_timer': (0x0052f4c0, 20, 'g_controllerStartupSceneDispatch'),
     'pause_observer': (0x0052f5d8, 5, 'g_gamePauseObserverDispatch'),
     'global_pause': (0x005360d0, 20, 'g_globalPauseDispatch'),

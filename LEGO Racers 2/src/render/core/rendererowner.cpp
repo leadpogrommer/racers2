@@ -22,7 +22,7 @@ static void ConstructStaticDisplayRenderer();
 static void RegisterStaticDisplayRendererExit();
 static void DestroyStaticDisplayRenderer();
 
-// STUB: LEGORACERS2 0x004ab440
+// FUNCTION: LEGORACERS2 0x004ab440
 static void InitializeStaticDisplayRenderer()
 {
 	ConstructStaticDisplayRenderer();
@@ -35,7 +35,7 @@ static void ConstructStaticDisplayRenderer()
 	new (g_rendererStorage) DisplayRenderer;
 }
 
-// STUB: LEGORACERS2 0x004ab460
+// FUNCTION: LEGORACERS2 0x004ab460
 static void RegisterStaticDisplayRendererExit()
 {
 	atexit(DestroyStaticDisplayRenderer);

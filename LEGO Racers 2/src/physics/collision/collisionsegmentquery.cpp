@@ -158,7 +158,7 @@ static StaticSpatialGrid* g_collisionSegmentGrid;
 
 static LegoBool32 __cdecl VisitCollisionSegmentCell(LegoS32, LegoS32);
 
-// STUB: LEGORACERS2 0x005088f0
+// FUNCTION: LEGORACERS2 0x005088f0
 LegoBool32 StaticSpatialGrid::IntersectSegment(
 	const CollisionQueryBounds* p_bounds,
 	const Vector3* p_start,
@@ -189,7 +189,7 @@ LegoBool32 StaticSpatialGrid::IntersectSegment(
 	return g_collisionSegmentHit;
 }
 
-// STUB: LEGORACERS2 0x00508970
+// FUNCTION: LEGORACERS2 0x00508970
 static LegoBool32 __cdecl VisitCollisionSegmentCell(LegoS32 p_x, LegoS32 p_z)
 {
 	for (SpatialSlotNode* node = g_collisionSegmentGrid->GetCell(p_x, p_z)->m_head; node != NULL; node = node->m_next) {

@@ -17,7 +17,7 @@ void __fastcall BindFoyerActionPath(void*, void*, SplinePath*);
 
 void __cdecl InitializeFoyerSceneActionDefaultsAtStartup();
 void __cdecl InitializeFoyerSceneActionDefaults();
-void __fastcall InitializeFoyerSceneActionDefaultRecord(LegoU32* p_words, void*);
+void __fastcall InitializeFoyerSceneActionDefaultRecord(LegoU32* p_words);
 void __fastcall SetFoyerSceneEventFaceState(void* p_event, void*, LegoU32 p_faceState, LegoFloat p_duration);
 void __fastcall SetFoyerSceneEventPosition(void* p_event, void*, const LegoFloat* p_position);
 void __fastcall SetFoyerSceneEventOrientation(void* p_event, void*, const LegoFloat* p_orientation);

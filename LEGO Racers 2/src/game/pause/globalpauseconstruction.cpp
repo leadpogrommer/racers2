@@ -27,16 +27,16 @@ void InitializeGlobalPauseController()
 	new (g_globalPauseStorage) GlobalPauseController(&parameters);
 }
 
-// STUB: LEGORACERS2 0x004bb6d0
+// FUNCTION: LEGORACERS2 0x004bb6d0
 void RegisterGlobalPauseControllerExit()
 {
 	atexit(DestroyGlobalPauseController);
 }
 
-// STUB: LEGORACERS2 0x004bb6e0
+// FUNCTION: LEGORACERS2 0x004bb6e0
 static void DestroyGlobalPauseController()
 {
-	g_globalPauseController.GameObject::~GameObject();
+	((GlobalPauseController*) g_globalPauseStorage)->GameObject::~GameObject();
 }
 
 // STUB: LEGORACERS2 0x004bb6f0

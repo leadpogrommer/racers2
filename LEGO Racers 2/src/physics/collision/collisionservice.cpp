@@ -135,7 +135,7 @@ void InitializeCollisionServices()
 	}
 }
 
-// STUB: LEGORACERS2 0x004b96d0
+// FUNCTION: LEGORACERS2 0x004b96d0
 CollisionServiceObject* __fastcall DestroyCollisionServiceObject(
 	CollisionServiceObject* p_service,
 	void*,
@@ -177,7 +177,7 @@ LegoU32 __cdecl DestroyCollisionProxy(CollisionProxy** p_proxy)
 	return DestroyCollisionProxyFromService(g_collisionProxyService, NULL, p_proxy);
 }
 
-// STUB: LEGORACERS2 0x004f4c50
+// FUNCTION: LEGORACERS2 0x004f4c50
 void __fastcall CollisionServiceDetachAll(void*, void*)
 {
 	struct RegistryEntryView {
@@ -194,7 +194,7 @@ void __fastcall CollisionServiceDetachAll(void*, void*)
 	}
 }
 
-// STUB: LEGORACERS2 0x004f4c80
+// FUNCTION: LEGORACERS2 0x004f4c80
 void __fastcall CollisionServiceSetPrimitivePosition(
 	void*,
 	void*,
@@ -209,7 +209,7 @@ void __fastcall CollisionServiceSetPrimitivePosition(
 	}
 }
 
-// STUB: LEGORACERS2 0x004f4ca0
+// FUNCTION: LEGORACERS2 0x004f4ca0
 void __fastcall CollisionServiceSetTransform(
 	void*,
 	void*,
@@ -243,7 +243,7 @@ CollisionProxy* __fastcall CollisionProxyFromService(
 	return new (storage) CollisionProxy(p_model, p_tag);
 }
 
-// STUB: LEGORACERS2 0x004f4dc0
+// FUNCTION: LEGORACERS2 0x004f4dc0
 LegoU32 __fastcall DestroyCollisionProxyFromService(CollisionServiceObject*, void*, CollisionProxy** p_proxy)
 {
 	CollisionProxy* proxy = *p_proxy;
@@ -263,7 +263,7 @@ void __fastcall DetachCollisionProxyFromService(CollisionServiceObject*, void*, 
 	}
 }
 
-// STUB: LEGORACERS2 0x004f4e00
+// FUNCTION: LEGORACERS2 0x004f4e00
 void __fastcall AttachCollisionProxyFromService(CollisionServiceObject*, void*, CollisionProxy* p_proxy)
 {
 	if (p_proxy != NULL) {
@@ -346,7 +346,7 @@ LegoFloat __fastcall CollisionServiceSweep(
 	return distance;
 }
 
-// STUB: LEGORACERS2 0x004f5370
+// FUNCTION: LEGORACERS2 0x004f5370
 void __fastcall PrepareCollisionSpatialQueries(CollisionSpatialIndex* p_index, void*)
 {
 	g_collisionServiceState->m_currentLinkCount = 0;

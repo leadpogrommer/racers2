@@ -27,7 +27,7 @@ CollisionSpatialIndex::CollisionSpatialIndex(
 	m_dynamicIndex = memory == NULL ? NULL : new (memory) DynamicSpatialIndex(512, m_allocator, m_registry);
 }
 
-// STUB: LEGORACERS2 0x004f5260
+// FUNCTION: LEGORACERS2 0x004f5260
 LegoS32 CollisionSpatialIndex::InsertStatic(SpatialIndexLink* p_link)
 {
 	LegoS32 index = m_registry->Insert(p_link);
@@ -37,7 +37,7 @@ LegoS32 CollisionSpatialIndex::InsertStatic(SpatialIndexLink* p_link)
 	return index;
 }
 
-// STUB: LEGORACERS2 0x004f5290
+// FUNCTION: LEGORACERS2 0x004f5290
 LegoS32 CollisionSpatialIndex::InsertDynamic(SpatialIndexLink* p_link)
 {
 	LegoS32 index = m_registry->Insert(p_link);
@@ -49,14 +49,14 @@ LegoS32 CollisionSpatialIndex::InsertDynamic(SpatialIndexLink* p_link)
 	return index;
 }
 
-// STUB: LEGORACERS2 0x004f52d0
+// FUNCTION: LEGORACERS2 0x004f52d0
 LegoS32 CollisionSpatialIndex::RemoveStatic(SpatialIndexLink* p_link)
 {
 	m_staticGrid->Remove(p_link);
 	return m_registry->Remove(p_link);
 }
 
-// STUB: LEGORACERS2 0x004f52f0
+// FUNCTION: LEGORACERS2 0x004f52f0
 LegoS32 CollisionSpatialIndex::RemoveDynamic(SpatialIndexLink* p_link)
 {
 	DynamicSpatialIndex* dynamicIndex = m_dynamicIndex;
@@ -69,7 +69,7 @@ LegoS32 CollisionSpatialIndex::RemoveDynamic(SpatialIndexLink* p_link)
 	return m_registry->Remove(p_link);
 }
 
-// STUB: LEGORACERS2 0x004f5330
+// FUNCTION: LEGORACERS2 0x004f5330
 void CollisionSpatialIndex::UpdateStatic(SpatialIndexLink* p_link)
 {
 	m_staticGrid->Update(p_link);
@@ -110,7 +110,7 @@ void SpatialIndexLink::RefreshBounds()
 	m_maxZ = m_proxy->m_position.m_z + m_proxy->m_model->m_radius;
 }
 
-// STUB: LEGORACERS2 0x004fb710
+// FUNCTION: LEGORACERS2 0x004fb710
 void SpatialIndexLink::Attach()
 {
 	if (m_index == -1) {
@@ -135,7 +135,7 @@ void SpatialIndexLink::SetFilter(const LegoS32* p_filter)
 	m_filter = *p_filter;
 }
 
-// STUB: LEGORACERS2 0x004fb7a0
+// FUNCTION: LEGORACERS2 0x004fb7a0
 void SpatialIndexLink::Update()
 {
 	if (m_index != -1) {

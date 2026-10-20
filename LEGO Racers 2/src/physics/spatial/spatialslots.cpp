@@ -123,10 +123,16 @@ LegoS32 SpatialSlotAllocator::GetNodeIndex(SpatialSlotNode* p_node)
 	return (LegoS32) ((LegoU32) p_node - (LegoU32) m_nodes) / (LegoS32) sizeof(SpatialSlotNode);
 }
 
-// STUB: LEGORACERS2 0x00507520
+// FUNCTION: LEGORACERS2 0x00507510
+SpatialSlotNode* SpatialSlotAllocator::GetNodeAtIndex(LegoS32 p_index)
+{
+	return &m_nodes[p_index];
+}
+
+// FUNCTION: LEGORACERS2 0x00507520
 void* SpatialSlotAllocator::GetNodeValue(LegoS32 p_index)
 {
-	return m_nodes[p_index].m_value;
+	return GetNodeAtIndex(p_index)->m_value;
 }
 
 // FUNCTION: LEGORACERS2 0x00507530

@@ -71,14 +71,14 @@ void __cdecl InitializeFoyerSceneActionDefaultsAtStartup()
 	InitializeFoyerSceneActionDefaults();
 }
 
-// STUB: LEGORACERS2 0x0045c630
+// FUNCTION: LEGORACERS2 0x0045c630
 void __cdecl InitializeFoyerSceneActionDefaults()
 {
-	InitializeFoyerSceneActionDefaultRecord(g_foyerSceneActionDefaults, NULL);
+	InitializeFoyerSceneActionDefaultRecord(g_foyerSceneActionDefaults);
 }
 
 // STUB: LEGORACERS2 0x0045c660
-void __fastcall InitializeFoyerSceneActionDefaultRecord(LegoU32* p_words, void*)
+void __fastcall InitializeFoyerSceneActionDefaultRecord(LegoU32* p_words)
 {
 	p_words[0] = 0;
 	p_words[2] = 0;
@@ -101,7 +101,7 @@ void __fastcall InitializeFoyerSceneActionDefaultRecord(LegoU32* p_words, void*)
 	p_words[20] = 0;
 }
 
-// STUB: LEGORACERS2 0x0045dc40
+// FUNCTION: LEGORACERS2 0x0045dc40
 void __fastcall BindFoyerActionPath(void* p_context, void*, SplinePath* p_path)
 {
 	*(SplinePath**) p_context = p_path;
@@ -251,7 +251,7 @@ static void __fastcall ScaleFoyerActionTimes(
 	} while (index < (LegoS32) p_scene->m_unk0x9b8);
 }
 
-// STUB: LEGORACERS2 0x00480300
+// FUNCTION: LEGORACERS2 0x00480300
 static LegoS32 __fastcall FindFoyerActionAtOrAfter(FoyerSceneResource* p_scene, void*, LegoFloat p_start)
 {
 	for (LegoS32 index = 0; index < (LegoS32) p_scene->m_unk0x9b8; ++index) {

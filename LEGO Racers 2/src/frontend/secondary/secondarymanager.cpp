@@ -9,6 +9,7 @@ static LegoU32 __fastcall SecondaryManagerUpdateBridge(GameObject* p_object, voi
 static void __fastcall SecondaryManagerRemoveBridge(GameObject* p_object, void*);
 static LegoU32 __fastcall SecondaryManagerAllocationSizeBridge(GameObject*, void*);
 
+// GLOBAL: LEGORACERS2 0x005304e0
 const SecondaryManagerDispatchView g_secondaryManagerDispatch = {
 	{
 		&SecondaryManagerDestroyBridge,
@@ -62,13 +63,13 @@ SecondaryManager::SecondaryManager(GameObjectTemplate* p_template)
 	m_vtable = (const GameObjectDispatchView*) &g_secondaryManagerDispatch;
 }
 
-// STUB: LEGORACERS2 0x00427060
+// FUNCTION: LEGORACERS2 0x00427060
 static LegoU32 __fastcall SecondaryManagerAllocationSizeBridge(GameObject*, void*)
 {
 	return 0x4f8;
 }
 
-// STUB: LEGORACERS2 0x00427070
+// FUNCTION: LEGORACERS2 0x00427070
 static GameObject* __fastcall SecondaryManagerDestroyBridge(GameObject* p_object, void*, LegoU32 p_flags)
 {
 	SecondaryManager* manager = (SecondaryManager*) p_object;
@@ -79,7 +80,7 @@ static GameObject* __fastcall SecondaryManagerDestroyBridge(GameObject* p_object
 	return p_object;
 }
 
-// STUB: LEGORACERS2 0x00427090
+// FUNCTION: LEGORACERS2 0x00427090
 SecondaryManager::~SecondaryManager()
 {
 	m_vtable = (const GameObjectDispatchView*) &g_secondaryManagerDispatch;

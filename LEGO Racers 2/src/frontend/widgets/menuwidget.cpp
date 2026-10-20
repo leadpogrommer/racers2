@@ -27,6 +27,7 @@ static void __fastcall MenuWidgetClipBridge(
 	const LegoFloat* p_bottomRight
 );
 
+// GLOBAL: LEGORACERS2 0x00530200
 const MenuWidgetDispatch g_menuWidgetBaseDispatch = {
 	&MenuWidgetUpdateBoundsBridge,
 	&MenuWidgetSetFontBridge,
@@ -42,7 +43,7 @@ void __fastcall SetMenuWidgetFont(MenuWidgetBase* p_widget, void*, BitmapFont* p
 	p_widget->m_font = p_font;
 }
 
-// STUB: LEGORACERS2 0x004196f0
+// FUNCTION: LEGORACERS2 0x004196f0
 MenuWidgetBase::MenuWidgetBase(LegoS32 p_initialValue)
 {
 	m_state = 0;
@@ -62,7 +63,7 @@ void MenuWidgetBase::SetFont(BitmapFont* p_font)
 	m_font = p_font;
 }
 
-// STUB: LEGORACERS2 0x00419730
+// FUNCTION: LEGORACERS2 0x00419730
 void MenuWidgetBase::RestoreBaseDispatch()
 {
 	m_vtable = &g_menuWidgetBaseDispatch;

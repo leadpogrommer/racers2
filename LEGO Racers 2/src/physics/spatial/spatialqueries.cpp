@@ -129,7 +129,7 @@ static LegoU32 __cdecl IntersectCollisionCandidateArrays(
 LegoU32 __fastcall CollectXAxisCandidates(SpatialAxisIndex*, void*, const CollisionQueryBounds*, LegoU32*, LegoU32);
 LegoU32 __fastcall CollectZAxisCandidates(SpatialAxisIndex*, void*, const CollisionQueryBounds*, LegoU32*, LegoU32);
 
-// STUB: LEGORACERS2 0x00507e10
+// FUNCTION: LEGORACERS2 0x00507e10
 LegoU32 DynamicSpatialIndex::CollectCandidates(const CollisionQueryBounds* p_bounds, LegoU32* p_tags)
 {
 	LegoU32 capacity = p_tags[0];

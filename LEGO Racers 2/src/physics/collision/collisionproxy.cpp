@@ -32,7 +32,7 @@ CollisionProxy::CollisionProxy(CollisionModelView* p_model, LegoU32 p_tag)
 	}
 }
 
-// STUB: LEGORACERS2 0x004d7fa0
+// FUNCTION: LEGORACERS2 0x004d7fa0
 CollisionProxy::~CollisionProxy()
 {
 	if (m_children != NULL) {
@@ -77,7 +77,7 @@ void CollisionProxy::SetChildTransform(
 	m_indexLink.Update();
 }
 
-// STUB: LEGORACERS2 0x004d8110
+// FUNCTION: LEGORACERS2 0x004d8110
 void CollisionProxy::DetachFromIndex()
 {
 	m_indexLink.Detach();
@@ -86,7 +86,7 @@ void CollisionProxy::DetachFromIndex()
 	}
 }
 
-// STUB: LEGORACERS2 0x004d8150
+// FUNCTION: LEGORACERS2 0x004d8150
 void CollisionProxy::AttachToIndex()
 {
 	m_indexLink.Attach();
@@ -95,7 +95,7 @@ void CollisionProxy::AttachToIndex()
 	}
 }
 
-// STUB: LEGORACERS2 0x004d8300
+// FUNCTION: LEGORACERS2 0x004d8300
 void CollisionProxy::SetPrimitivePosition(LegoS32 p_index, const Vector3* p_position, LegoU32 p_unused)
 {
 	// Preserve the retail inclusive upper bound (JG, rather than JGE).
@@ -176,7 +176,7 @@ SpatialIndexLink* SpatialIndexLink::Initialize(CollisionProxy* p_proxy)
 	return this;
 }
 
-// STUB: LEGORACERS2 0x004fb680
+// FUNCTION: LEGORACERS2 0x004fb680
 void SpatialIndexLink::Destroy()
 {
 	Detach();

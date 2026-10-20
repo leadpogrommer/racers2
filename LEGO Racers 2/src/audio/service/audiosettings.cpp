@@ -1,10 +1,11 @@
 #include "audio/service/audiosettings.h"
 
+#include "audio/reverb/reverbmanager.h"
 #include "game/controller/gamecontroller.h"
 
 extern LegoU32 g_gameControllerStorage[sizeof(GameController) / sizeof(LegoU32)];
 
-// STUB: LEGORACERS2 0x0043dcd0
+// FUNCTION: LEGORACERS2 0x0043dcd0
 LegoU32 GetConfiguredAudioServiceMode()
 {
 	GameController* controller = (GameController*) g_gameControllerStorage;
@@ -12,5 +13,5 @@ LegoU32 GetConfiguredAudioServiceMode()
 	if (context != NULL) {
 		return context->m_audioServiceMode;
 	}
-	return 1;
+	return g_reverbDefaultState;
 }

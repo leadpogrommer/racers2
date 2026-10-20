@@ -83,7 +83,7 @@ GameObject* __fastcall ConstructControllerStartupScene(void* p_storage, void*)
 {
 	return new (p_storage) ControllerStartupScene;
 }
-// STUB: LEGORACERS2 0x00406b00
+// FUNCTION: LEGORACERS2 0x00406b00
 static GameObject* __fastcall DestroyControllerStartupScene(GameObject* p_object, void*, LegoU32 p_flags)
 {
 	((ControllerStartupScene*) p_object)->~ControllerStartupScene();
@@ -159,7 +159,7 @@ static LegoU32 __fastcall UpdateControllerAttractNotice(ControllerStartupScene* 
 	}
 	return 1;
 }
-// STUB: LEGORACERS2 0x00406cd0
+// FUNCTION: LEGORACERS2 0x00406cd0 FOLDED
 LegoBool32 __stdcall IsMenuPlayerAvailable(LegoU32)
 {
 	return TRUE;

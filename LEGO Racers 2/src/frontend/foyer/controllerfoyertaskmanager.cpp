@@ -539,7 +539,7 @@ static LegoU32 __fastcall PrepareControllerTaskSource(
 
 static void InitializeControllerTaskRecord(LegoU32* p_record)
 {
-	InitializeFoyerSceneActionDefaultRecord(p_record, NULL);
+	InitializeFoyerSceneActionDefaultRecord(p_record);
 }
 
 // STUB: LEGORACERS2 0x0045c6b0

@@ -667,6 +667,7 @@ static void __fastcall SecondaryContentArchiveThreeArguments(
 	LegoU32
 );
 
+// GLOBAL: LEGORACERS2 0x005364c0
 extern const SecondaryContentArchiveDispatch g_secondaryContentArchiveBaseDispatch = {
 	&DestroySecondaryContentArchiveManager,
 	(SecondaryContentArchiveDispatch::OneArgument) &_purecall,
@@ -690,6 +691,7 @@ extern const SecondaryContentArchiveDispatch g_secondaryContentArchiveBaseDispat
 	(SecondaryContentArchiveDispatch::OneArgument) &_purecall,
 	(SecondaryContentArchiveDispatch::Action) &_purecall
 };
+// GLOBAL: LEGORACERS2 0x0053648c
 extern const SecondaryContentArchiveDispatch g_secondaryContentArchiveDispatch = {
 	&DestroySecondaryContentArchiveManager,
 	(SecondaryContentArchiveDispatch::OneArgument) &GameObjectBaseNoOpOneArgument,
@@ -975,7 +977,7 @@ const LegoChar* __fastcall GetSecondaryBrickPath(
 	return p_pool->m_entries[p_index].m_path.m_data;
 }
 
-// STUB: LEGORACERS2 0x00404870
+// FUNCTION: LEGORACERS2 0x00404870
 static LegoS32 __fastcall FindSecondaryBrickPath(SecondaryCarResourcePool* p_pool, void*, const LegoChar* p_path)
 {
 	for (LegoS32 index = 0; index < p_pool->m_entryCount; ++index) {
@@ -1577,7 +1579,7 @@ void __fastcall ResetSecondaryInactivityTimer(void* p_timer, void*)
 	*(LegoFloat*) ((LegoU8*) p_timer + 0x60) = 45.0f;
 }
 
-// STUB: LEGORACERS2 0x0040b020
+// FUNCTION: LEGORACERS2 0x0040b020
 static void __fastcall UnlockAllSecondaryWorlds(GameControllerSelection* p_selection, void*)
 {
 	p_selection->m_values[0] = -1;
@@ -1599,7 +1601,7 @@ static void __fastcall UnlockAllSecondaryRewards(GameControllerSelection* p_sele
 	}
 }
 
-// STUB: LEGORACERS2 0x0040b250
+// FUNCTION: LEGORACERS2 0x0040b250
 static void __fastcall MergeSecondarySelection(
 	GameControllerSelection* p_destination,
 	void*,
@@ -1628,13 +1630,13 @@ static void __fastcall MergeSecondarySelection(
 	}
 }
 
-// STUB: LEGORACERS2 0x0040b350
+// FUNCTION: LEGORACERS2 0x0040b350
 static void __fastcall UnlockAllSecondaryBonusFlags(LegoU32* p_flags, void*)
 {
 	*p_flags = 0xffffffff;
 }
 
-// STUB: LEGORACERS2 0x00410b60
+// FUNCTION: LEGORACERS2 0x00410b60
 static void __fastcall SetSecondarySessionName(
 	void* p_object,
 	void*,
@@ -1645,7 +1647,7 @@ static void __fastcall SetSecondarySessionName(
 	memcpy((LegoU8*) p_object + 8 + p_player * 20, p_name, 20);
 }
 
-// STUB: LEGORACERS2 0x00410b80
+// FUNCTION: LEGORACERS2 0x00410b80
 static void __fastcall SetSecondarySessionCharacter(
 	void* p_object,
 	void*,
@@ -1658,7 +1660,7 @@ static void __fastcall SetSecondarySessionCharacter(
 	*(LegoU32*) ((LegoU8*) p_object + 0x50 + p_player * 4) = p_value;
 }
 
-// STUB: LEGORACERS2 0x00410bc0
+// FUNCTION: LEGORACERS2 0x00410bc0
 static void __fastcall SetSecondarySessionCar(
 	void* p_object,
 	void*,
@@ -1771,7 +1773,7 @@ static void __fastcall RefreshSecondaryProgressUnlocks(void* p_object, void*)
 	g_gameController.m_selection.UnlockDefaults(1, 0);
 }
 
-// STUB: LEGORACERS2 0x00411700
+// FUNCTION: LEGORACERS2 0x00411700
 LegoBool32 __fastcall LoadSecondarySessionData(void* p_object, void*, const void* p_data)
 {
 	const LegoU32* words = (const LegoU32*) p_data;
@@ -1966,7 +1968,7 @@ static void InitializeSecondaryWheelIconSize()
 	g_secondaryCategoryWheelTuning.m_iconSize[1] = 1.0f * 0.167f;
 }
 
-// STUB: LEGORACERS2 0x004121a0
+// FUNCTION: LEGORACERS2 0x004121a0
 static void InitializeSecondaryWheelCenterOffset()
 {
 	g_secondaryCategoryWheelTuning.m_centerOffset[0] = 0.0205f;
@@ -1999,13 +2001,13 @@ static void InitializeSecondaryWheelAngularSpeed()
 	g_secondaryCategoryWheelTuning.m_angularSpeed = g_secondaryCategoryWheelPi * 1.5f;
 }
 
-// STUB: LEGORACERS2 0x004122b0
+// FUNCTION: LEGORACERS2 0x004122b0
 static void InitializeSecondaryWheelShadowOffset()
 {
 	g_secondaryCategoryWheelTuning.m_shadowOffset[0] = 0.015f;
 	g_secondaryCategoryWheelTuning.m_shadowOffset[1] = 0.04f;
 }
-// STUB: LEGORACERS2 0x004122d0
+// FUNCTION: LEGORACERS2 0x004122d0
 void* __fastcall ConstructSecondaryAuxiliary(void* p_object, void*)
 {
 	LegoU32* words = (LegoU32*) p_object;
@@ -2754,13 +2756,13 @@ void __fastcall CompleteSecondaryMenuAction(MenuManager* p_menu, void*, LegoU32 
 	p_menu->m_unk0x204 = 0;
 }
 
-// STUB: LEGORACERS2 0x00422ff0
+// FUNCTION: LEGORACERS2 0x00422ff0
 void __fastcall SetMenuManagerSelectedInput(MenuManager* p_menu, void*, LegoU32 p_input)
 {
 	*(LegoU32*) ((LegoU8*) p_menu + 0x21c) = p_input;
 }
 
-// STUB: LEGORACERS2 0x00423200
+// FUNCTION: LEGORACERS2 0x00423200
 static LegoS32 __fastcall GetSecondaryNestedMenuAction(MenuManager* p_menu, void*)
 {
 	LegoS32 depth = p_menu->m_unk0x198;
@@ -2865,14 +2867,14 @@ void __fastcall InitializeSecondaryMessage(
 	records[1]->InitializeText(secondLine, 9, 0.0f);
 }
 
-// STUB: LEGORACERS2 0x00423e40
+// FUNCTION: LEGORACERS2 0x00423e40
 static void InitializeSecondaryPointerSize()
 {
 	g_secondaryPointerSize[0] = 0.9f;
 	g_secondaryPointerSize[1] = 0.1f;
 }
 
-// STUB: LEGORACERS2 0x00423e70
+// FUNCTION: LEGORACERS2 0x00423e70
 static void InitializeSecondaryPointerOrigin()
 {
 	g_secondaryPointerOrigin[0] = 0.048828125f;
@@ -2906,7 +2908,7 @@ void __fastcall InitializeSecondaryPointer(void* p_object, void*)
 	sprite->SetVisible(words[0]);
 }
 
-// STUB: LEGORACERS2 0x00423fd0
+// FUNCTION: LEGORACERS2 0x00423fd0
 void __fastcall ReleaseSecondaryPointer(void* p_object, void*)
 {
 	LegoU32* words = (LegoU32*) p_object;
@@ -2950,7 +2952,7 @@ void __fastcall UpdateSecondaryPointer(void* p_object, void*, const LegoU8* p_in
 	words[3] = ~previous & words[2];
 }
 
-// STUB: LEGORACERS2 0x00426f00
+// FUNCTION: LEGORACERS2 0x00426f00
 static void InitializeSecondarySaveMessagePosition()
 {
 	g_secondarySaveMessagePosition[0] = 0.5f;
@@ -3310,7 +3312,7 @@ void __fastcall MergeSecondaryModeInput(void*, void*, SecondaryManagerMediaState
 void __fastcall UpdateSecondaryPanels(MenuPanelSet*, void*, LegoU32);
 void __fastcall UpdateSecondaryAuxiliary(void*, void*, LegoU32);
 void __fastcall SetFoyerManagerMenuMode(GameObject*, void*);
-void FUN_0042a860();
+void RequestDeferredWindowDestruction();
 void __fastcall RequestSecondaryPauseLeave(GlobalPauseController*, void*, LegoU32);
 struct SecondaryNetworkDispatch {
 	GameObjectDispatchView m_base;
@@ -3353,7 +3355,7 @@ void SecondaryManager::UpdateMenuMode(LegoU32 p_mode, LegoU32 p_frameParameter)
 		FinishSecondarySessionSelection(g_gameController.m_unk0x8c, NULL);
 		break;
 	case 5:
-		FUN_0042a860();
+		RequestDeferredWindowDestruction();
 		break;
 	case 6:
 		EnterSpecialMode();
@@ -3607,7 +3609,7 @@ static LegoU32 __fastcall ComputeSecondarySaveChecksum(void*, void*, const LegoU
 	return sum;
 }
 
-// STUB: LEGORACERS2 0x004293d0
+// FUNCTION: LEGORACERS2 0x004293d0
 void SecondaryManager::EnterSpecialMode()
 {
 	m_state = 5;
@@ -3643,7 +3645,7 @@ LegoBool32 SecondaryManager::LoadSavedGame()
 	return loaded;
 }
 
-// STUB: LEGORACERS2 0x00429580
+// FUNCTION: LEGORACERS2 0x00429580
 void SecondaryManager::ApplySavedSettings()
 {
 	for (LegoS32 player = 0; player < 2; ++player) {
@@ -3667,7 +3669,7 @@ void SecondaryManager::BeginCharacterSelection(LegoU32 p_player)
 	m_state = 6;
 }
 
-// STUB: LEGORACERS2 0x00429750
+// FUNCTION: LEGORACERS2 0x00429750
 void SecondaryManager::BeginCarSelection(LegoU32 p_player, LegoS32 p_carSet)
 {
 	LegoU32 enableCharacter = 1;
@@ -3678,7 +3680,7 @@ void SecondaryManager::BeginCarSelection(LegoU32 p_player, LegoS32 p_carSet)
 	m_state = 7;
 }
 
-void __fastcall SetSecondaryOverlayMode(GlobalOverlayManager*, void*, LegoU32);
+void __fastcall SetGlobalOverlayRecordListCount(GlobalOverlayManager*, void*, LegoU32);
 
 void __fastcall InitializeSecondaryAuxiliaryModel(void*, void*);
 void __fastcall InitializeSecondaryVoiceResources(void*, void*, LegoS32);
@@ -3695,12 +3697,12 @@ void SecondaryManager::LoadMenuResources(LegoS32 p_carSet)
 	const RendererMainDispatch* rendererDispatch = (const RendererMainDispatch*) g_displayRenderer->m_vtable;
 	rendererDispatch->m_setTextureQuality(g_displayRenderer, NULL, ((LegoU32*) g_gameControllerSettings)[0x21c / 4]);
 	rendererDispatch->m_setDeviceResourceMode(g_displayRenderer, NULL, 0);
-	SetSecondaryOverlayMode(&g_globalOverlayManager, NULL, 2);
+	SetGlobalOverlayRecordListCount(&g_globalOverlayManager, NULL, 2);
 	void* progress = g_gameController.m_unk0xd4;
 	InitializeControllerSelectionProgress(progress, NULL, 1);
 	rendererDispatch = (const RendererMainDispatch*) g_displayRenderer->m_vtable;
 	if (!rendererDispatch->m_setDeviceResourceMode(g_displayRenderer, NULL, 2)) {
-		FUN_0042a860();
+		RequestDeferredWindowDestruction();
 	}
 	UpdateControllerSelectionProgress(progress, NULL, 1);
 	rendererDispatch = (const RendererMainDispatch*) g_displayRenderer->m_vtable;
@@ -3855,7 +3857,7 @@ void SecondaryManager::LoadMenuResources(LegoS32 p_carSet)
 	FinalizeControllerSelectionProgress(g_gameController.m_unk0xd4, NULL);
 	rendererDispatch = (const RendererMainDispatch*) g_displayRenderer->m_vtable;
 	if (!rendererDispatch->m_setDeviceResourceMode(g_displayRenderer, NULL, 2)) {
-		FUN_0042a860();
+		RequestDeferredWindowDestruction();
 	}
 	RefreshSecondaryResolution(this, NULL);
 	rendererDispatch = (const RendererMainDispatch*) g_displayRenderer->m_vtable;
@@ -3916,7 +3918,7 @@ void SecondaryManager::ReleaseMenuResources(LegoU32 p_mode)
 	if (p_mode != 0) {
 		PrepareSecondarySessionPlayers(this, NULL);
 	}
-	SetSecondaryOverlayMode(&g_globalOverlayManager, NULL, 0);
+	SetGlobalOverlayRecordListCount(&g_globalOverlayManager, NULL, 0);
 	AudioService* audio = GetAudioService(TRUE);
 	audio->m_vtable->m_stopCdTrack(audio, NULL);
 	ReleaseSecondaryPointer(m_unk0x7c, NULL);
@@ -4032,7 +4034,7 @@ void __fastcall RefreshSecondaryResolution(SecondaryManager* p_manager, void*)
 	);
 }
 
-// STUB: LEGORACERS2 0x0042dd40
+// FUNCTION: LEGORACERS2 0x0042dd40
 static const LegoFloat* __fastcall GetSecondaryProgressLayoutPosition(const void* p_array, void*, LegoU32 p_index)
 {
 	return (const LegoFloat*) ((const LegoU8*) p_array + p_index * 8);
@@ -4298,7 +4300,7 @@ void __fastcall LoadSecondaryAuxiliaryTextureRecords(void* p_object, void*)
 	}
 }
 
-// STUB: LEGORACERS2 0x00437350
+// FUNCTION: LEGORACERS2 0x00437350
 void __fastcall ReleaseSecondaryAuxiliaryModel(void* p_object, void*)
 {
 	LegoU32* flags = (LegoU32*) p_object;
@@ -4335,7 +4337,7 @@ void __fastcall InitializeSecondaryAuxiliaryModel(void* p_object, void*)
 	}
 }
 
-// STUB: LEGORACERS2 0x00437400
+// FUNCTION: LEGORACERS2 0x00437400
 void __fastcall ReleaseSecondaryModelResources(void* p_object, void*)
 {
 	LegoU32* words = (LegoU32*) p_object;
@@ -4714,7 +4716,7 @@ static ModelPrimitiveTextureRecord* __fastcall CopySecondaryTranslatedPrimitive(
 	return p_destination;
 }
 
-// STUB: LEGORACERS2 0x004a9580
+// FUNCTION: LEGORACERS2 0x004a9580
 static void __fastcall CopySecondaryModelPrimitive(
 	ModelPrimitiveTextureRecord* p_destination,
 	void*,
@@ -4725,13 +4727,13 @@ static void __fastcall CopySecondaryModelPrimitive(
 	CopySecondaryTranslatedPrimitive(p_destination, NULL, p_source, &translation);
 }
 
-// STUB: LEGORACERS2 0x004b3530
-void __fastcall SetSecondaryOverlayMode(GlobalOverlayManager* p_manager, void*, LegoU32 p_mode)
+// FUNCTION: LEGORACERS2 0x004b3530
+void __fastcall SetGlobalOverlayRecordListCount(GlobalOverlayManager* p_manager, void*, LegoU32 p_count)
 {
-	p_manager->m_recordListCount = p_mode;
+	p_manager->m_recordListCount = p_count;
 }
 
-// STUB: LEGORACERS2 0x004bb780
+// FUNCTION: LEGORACERS2 0x004bb780
 void __fastcall RequestSecondaryPauseLeave(GlobalPauseController* p_pause, void*, LegoU32 p_resumeInput)
 {
 	p_pause->m_leaveRequested = 1;
@@ -4786,7 +4788,7 @@ static void __fastcall ReleaseSecondaryRendererLight(DisplayRenderer* p_renderer
 		--p_renderer->m_lightCount;
 	}
 }
-// STUB: LEGORACERS2 0x004c0ec0
+// FUNCTION: LEGORACERS2 0x004c0ec0
 static void __fastcall AddSecondaryRendererTextureReference(DisplayRenderer* p_renderer, void*, LegoS32 p_index)
 {
 	if (p_index != -1) {
@@ -4797,7 +4799,7 @@ static void __fastcall AddSecondaryRendererTextureReference(DisplayRenderer* p_r
 	}
 }
 
-// STUB: LEGORACERS2 0x004c1cd0
+// FUNCTION: LEGORACERS2 0x004c1cd0
 static SecondaryContentArchiveManager* __fastcall ConstructSecondaryContentArchiveManager(
 	SecondaryContentArchiveManager* p_manager,
 	void*
@@ -4807,7 +4809,7 @@ static SecondaryContentArchiveManager* __fastcall ConstructSecondaryContentArchi
 	return p_manager;
 }
 
-// STUB: LEGORACERS2 0x004c1ce0
+// FUNCTION: LEGORACERS2 0x004c1ce0
 static SecondaryContentArchiveManager* __fastcall DestroySecondaryContentArchiveManager(
 	SecondaryContentArchiveManager* p_manager,
 	void*,
@@ -4821,7 +4823,7 @@ static SecondaryContentArchiveManager* __fastcall DestroySecondaryContentArchive
 	return p_manager;
 }
 
-// STUB: LEGORACERS2 0x004c1d00
+// FUNCTION: LEGORACERS2 0x004c1d00
 static void* __fastcall CreateSecondaryLanguageRecord(
 	SecondaryContentArchiveManager*,
 	void*,
@@ -4836,7 +4838,7 @@ static void* __fastcall CreateSecondaryLanguageRecord(
 	return NULL;
 }
 
-// STUB: LEGORACERS2 0x004c1d10
+// FUNCTION: LEGORACERS2 0x004c1d10
 static LegoU32 __fastcall QuerySecondaryLanguageRecord(
 	SecondaryContentArchiveManager*,
 	void*,
@@ -4849,7 +4851,7 @@ static LegoU32 __fastcall QuerySecondaryLanguageRecord(
 	return 0;
 }
 
-// STUB: LEGORACERS2 0x004c1d20
+// FUNCTION: LEGORACERS2 0x004c1d20 FOLDED
 static void __fastcall SecondaryContentArchiveThreeArguments(
 	SecondaryContentArchiveManager*,
 	void*,
@@ -4871,7 +4873,7 @@ SecondaryContentArchiveManager* GetSecondaryContentArchiveManager()
 	return &g_secondaryContentArchive;
 }
 
-// STUB: LEGORACERS2 0x004c1d70
+// FUNCTION: LEGORACERS2 0x004c1d70
 static void OnSecondaryContentArchiveExit()
 {
 	g_secondaryContentArchive.m_vtable = &g_secondaryContentArchiveBaseDispatch;

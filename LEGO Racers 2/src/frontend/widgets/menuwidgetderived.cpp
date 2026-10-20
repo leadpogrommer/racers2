@@ -395,16 +395,24 @@ void MenuChoiceSelector::UpdateBounds()
 	}
 }
 
-// STUB: LEGORACERS2 0x0041c210
+// FUNCTION: LEGORACERS2 0x0041c210
 void InitializeMenuChoiceColorA()
 {
-	g_menuChoiceColorA = 0xffff6a62;
+	LegoU8* color = (LegoU8*) &g_menuChoiceColorA;
+	color[0] = 0x62;
+	color[1] = 0x6a;
+	color[2] = 0xff;
+	color[3] = 0xff;
 }
 
-// STUB: LEGORACERS2 0x0041c240
+// FUNCTION: LEGORACERS2 0x0041c240
 void InitializeMenuChoiceColorB()
 {
-	g_menuChoiceColorB = 0xff626ac8;
+	LegoU8* color = (LegoU8*) &g_menuChoiceColorB;
+	color[0] = 0xc8;
+	color[1] = 0x6a;
+	color[2] = 0x62;
+	color[3] = 0xff;
 }
 
 // STUB: LEGORACERS2 0x00426430

@@ -16,7 +16,9 @@ void __fastcall UpdateSpatialZAxis(SpatialAxisIndex* p_this, void*, void* p_node
 }
 
 // Complete retail tables 0x005375cc and 0x005375d4. Following words are floats.
+// GLOBAL: LEGORACERS2 0x005375cc
 extern const SpatialAxisDispatch g_spatialXAxisDispatch = {InsertSpatialAxis, UpdateSpatialXAxis};
+// GLOBAL: LEGORACERS2 0x005375d4
 extern const SpatialAxisDispatch g_spatialZAxisDispatch = {InsertSpatialAxis, UpdateSpatialZAxis};
 
 static void SwapSpatialAxisValues(SpatialSlotNode* p_first, SpatialSlotNode* p_second, LegoBool32 p_zAxis)

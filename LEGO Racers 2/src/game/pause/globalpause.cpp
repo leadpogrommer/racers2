@@ -18,14 +18,14 @@ LegoFloat ReadSignedClockSeconds()
 	return (LegoS32) elapsed * 0.000001f;
 }
 
-// STUB: LEGORACERS2 0x004bb740
+// FUNCTION: LEGORACERS2 0x004bb740
 void GlobalPauseController::SetObserver(PauseObserver* p_observer)
 {
 	m_observer = p_observer;
 }
 
-// STUB: LEGORACERS2 0x004bb750
-void GlobalPauseController::ClearObserver()
+// FUNCTION: LEGORACERS2 0x004bb750
+void GlobalPauseController::ClearObserver(PauseObserver*)
 {
 	m_observer = NULL;
 }
@@ -84,7 +84,7 @@ void GlobalPauseController::Update()
 	}
 }
 
-// STUB: LEGORACERS2 0x004bb8f0
+// FUNCTION: LEGORACERS2 0x004bb8f0
 void GlobalPauseController::SetDeadline(LegoFloat p_seconds)
 {
 	m_deadline = ReadSignedClockSeconds() + p_seconds;

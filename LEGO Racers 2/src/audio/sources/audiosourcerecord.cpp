@@ -67,7 +67,7 @@ const AudioSourceRecordDispatch g_audioSourceRecordOperationalDispatch = {
 	SetAudioSourceEnabled
 };
 
-// STUB: LEGORACERS2 0x004b0370
+// FUNCTION: LEGORACERS2 0x004b0370
 AudioSourceRecord* __fastcall DeleteBaseAudioSourceRecord(AudioSourceRecord* p_record, void*, LegoU32 p_delete)
 {
 	p_record->m_vtable = &g_audioSourceRecordBaseDispatch;
@@ -77,7 +77,7 @@ AudioSourceRecord* __fastcall DeleteBaseAudioSourceRecord(AudioSourceRecord* p_r
 	return p_record;
 }
 
-// STUB: LEGORACERS2 0x004b0390
+// FUNCTION: LEGORACERS2 0x004b0390
 AudioSourceRecord* __fastcall DeleteAudioSourceRecord(AudioSourceRecord* p_record, void*, LegoU32 p_delete)
 {
 	DisposeAudioSourceRecord(p_record, NULL);
@@ -119,13 +119,13 @@ void __fastcall ReleaseAudioSourcePlayback(AudioSourceRecord* p_record, void*)
 	}
 }
 
-// STUB: LEGORACERS2 0x004b0550
+// FUNCTION: LEGORACERS2 0x004b0550
 LegoU32 __fastcall GetAudioSourceRecordIndex(AudioSourceRecord* p_record, void*)
 {
 	return p_record->m_recordIndex;
 }
 
-// STUB: LEGORACERS2 0x004b0560
+// FUNCTION: LEGORACERS2 0x004b0560
 void __fastcall SetAudioSourceRecordValues0x10(
 	AudioSourceRecord* p_record,
 	void*,
@@ -139,7 +139,7 @@ void __fastcall SetAudioSourceRecordValues0x10(
 	p_record->m_unk0x18 = p_third;
 }
 
-// STUB: LEGORACERS2 0x004b0580
+// FUNCTION: LEGORACERS2 0x004b0580
 void __fastcall SetAudioSourceRecordValues0x04(
 	AudioSourceRecord* p_record,
 	void*,
@@ -153,7 +153,7 @@ void __fastcall SetAudioSourceRecordValues0x04(
 	p_record->m_unk0x0c = p_third;
 }
 
-// STUB: LEGORACERS2 0x004b05a0
+// FUNCTION: LEGORACERS2 0x004b05a0
 void __fastcall SetAudioSourceRecordValues0x1c(
 	AudioSourceRecord* p_record,
 	void*,
@@ -167,39 +167,39 @@ void __fastcall SetAudioSourceRecordValues0x1c(
 	p_record->m_unk0x24 = p_third;
 }
 
-// STUB: LEGORACERS2 0x004b05c0
+// FUNCTION: LEGORACERS2 0x004b05c0
 void __fastcall SetAudioSourceRecordFalloff(AudioSourceRecord* p_record, void*, LegoU32, LegoFloat p_falloff)
 {
 	p_record->m_defaultFalloff = p_falloff;
 }
 
-// STUB: LEGORACERS2 0x004b05d0
+// FUNCTION: LEGORACERS2 0x004b05d0
 void __fastcall SetAudioSourceRecordFlagsLow(AudioSourceRecord* p_record, void*, LegoU32 p_value)
 {
 	p_record->m_unk0xb8 = (p_record->m_unk0xb8 & 0xfffffff0) | p_value;
 }
 
-// STUB: LEGORACERS2 0x004b05f0
+// FUNCTION: LEGORACERS2 0x004b05f0
 void __fastcall SetAudioSourceRecordFlagsHigh(AudioSourceRecord* p_record, void*, LegoU32 p_value)
 {
 	p_record->m_unk0xb8 = (p_record->m_unk0xb8 & 0xf) | p_value;
 }
 
-// STUB: LEGORACERS2 0x004b0610
+// FUNCTION: LEGORACERS2 0x004b0610
 void __fastcall SetAudioSourceRecordValues0x90(AudioSourceRecord* p_record, void*, LegoU32 p_first, LegoU32 p_second)
 {
 	p_record->m_unk0x90[0] = p_first;
 	p_record->m_unk0x90[1] = p_second;
 }
 
-// STUB: LEGORACERS2 0x004b0630
+// FUNCTION: LEGORACERS2 0x004b0630
 void __fastcall SetAudioSourceRecordValues0x98(AudioSourceRecord* p_record, void*, LegoU32 p_first, LegoU32 p_second)
 {
 	p_record->m_unk0x90[2] = p_first;
 	p_record->m_unk0x90[3] = p_second;
 }
 
-// STUB: LEGORACERS2 0x004b0650
+// FUNCTION: LEGORACERS2 0x004b0650
 void __fastcall SetAudioSourceRecordValues0xa0(AudioSourceRecord* p_record, void*, LegoU32 p_first, LegoU32 p_second)
 {
 	p_record->m_unk0x90[4] = p_first;
@@ -244,7 +244,7 @@ void __fastcall SetAudioSourceRecordMaximumGain(AudioSourceRecord* p_record, voi
 	}
 }
 
-// STUB: LEGORACERS2 0x004b0750
+// FUNCTION: LEGORACERS2 0x004b0750
 void __fastcall ResetAudioSourcePlaybackState(AudioSourceRecord* p_record, void*)
 {
 	p_record->m_unk0x34 = 0;
@@ -253,13 +253,13 @@ void __fastcall ResetAudioSourcePlaybackState(AudioSourceRecord* p_record, void*
 	p_record->m_unk0x3c = 1;
 }
 
-// STUB: LEGORACERS2 0x004b0780
+// FUNCTION: LEGORACERS2 0x004b0780
 void __fastcall ClearAudioSourceFlag(AudioSourceRecord* p_record, void*)
 {
 	p_record->m_unk0xb8 &= ~0x10;
 }
 
-// STUB: LEGORACERS2 0x004b0790
+// FUNCTION: LEGORACERS2 0x004b0790
 void __fastcall SetAudioSourceEnabled(AudioSourceRecord* p_record, void*, LegoU32 p_enabled)
 {
 	if (p_enabled != 0) {
@@ -279,7 +279,7 @@ void __fastcall DestroyAudioChannelRecordResources(AudioChannelRecord* p_record,
 	InitializeAudioChannelRecord(p_record, NULL);
 }
 
-// STUB: LEGORACERS2 0x004b0bd0
+// FUNCTION: LEGORACERS2 0x004b0bd0
 void __fastcall ReleaseAudioChannelRecordBuffer(AudioChannelRecord* p_record, void*)
 {
 	if (p_record->m_cachedBuffer != NULL) {

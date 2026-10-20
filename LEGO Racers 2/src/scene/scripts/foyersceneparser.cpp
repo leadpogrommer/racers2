@@ -341,7 +341,7 @@ GameObject* __fastcall ParseFoyerSceneObjectReference(FoyerSceneResource*, void*
 }
 
 // STUB: LEGORACERS2 0x0047cfa0
-LegoFloat __fastcall ParseFoyerSceneNumber(FoyerSceneResource*, void*)
+LegoFloat __fastcall ParseFoyerSceneNumber(FoyerSceneResource*)
 {
 	ReadFoyerSceneParserToken();
 	return (LegoFloat) atof(g_foyerSceneParserToken);
@@ -361,12 +361,12 @@ LegoU32 __fastcall ParseFoyerSceneAssetType(FoyerSceneResource* p_resource, void
 	return GetFoyerSceneTokenId(p_resource, NULL, p_table);
 }
 
-// STUB: LEGORACERS2 0x0047d040
+// FUNCTION: LEGORACERS2 0x0047d040
 void __fastcall ParseFoyerSceneVector3(FoyerSceneResource* p_resource, void*, LegoFloat* p_vector)
 {
-	p_vector[0] = ParseFoyerSceneNumber(p_resource, NULL);
-	p_vector[1] = ParseFoyerSceneNumber(p_resource, NULL);
-	p_vector[2] = ParseFoyerSceneNumber(p_resource, NULL);
+	p_vector[0] = ParseFoyerSceneNumber(p_resource);
+	p_vector[1] = ParseFoyerSceneNumber(p_resource);
+	p_vector[2] = ParseFoyerSceneNumber(p_resource);
 }
 
 // STUB: LEGORACERS2 0x0047d070
@@ -404,8 +404,8 @@ LegoFloat __fastcall FindNextFoyerActionTime(
 	return *(LegoFloat*) &p_resource->m_unk0x9c0;
 }
 
-// STUB: LEGORACERS2 0x0047dce0
+// FUNCTION: LEGORACERS2 0x0047dce0
 void __fastcall ParseFoyerSceneTimeBlock(FoyerSceneResource* p_resource, void*)
 {
-	g_foyerSceneParserTime = ParseFoyerSceneNumber(p_resource, NULL);
+	g_foyerSceneParserTime = ParseFoyerSceneNumber(p_resource);
 }

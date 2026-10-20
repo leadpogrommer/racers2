@@ -23,6 +23,7 @@ public:
 	void RemoveValue(void* p_value, SpatialSlotNode** p_head);
 	LegoBool32 ReleaseNode(SpatialSlotNode** p_node);
 	LegoS32 GetNodeIndex(SpatialSlotNode* p_node);
+	SpatialSlotNode* GetNodeAtIndex(LegoS32 p_index);
 	void* GetNodeValue(LegoS32 p_index);
 	SpatialSlotNode* m_nodes;
 	SpatialSlotNode* m_free;

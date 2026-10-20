@@ -86,7 +86,7 @@ LegoU32 DigitalMusicController::ResetFileAndStreamState()
 	return 1;
 }
 
-// STUB: LEGORACERS2 0x004f19b0
+// FUNCTION: LEGORACERS2 0x004f19b0
 LegoU32 DigitalMusicController::StopAndReset()
 {
 	StopPlaybackIfActive();
@@ -184,7 +184,7 @@ done:
 	return 1;
 }
 
-// STUB: LEGORACERS2 0x004f1bc0
+// FUNCTION: LEGORACERS2 0x004f1bc0
 void DigitalMusicController::StopAndReleasePlaybackBuffer()
 {
 	StopAndReset();
@@ -315,7 +315,7 @@ LegoU32 DigitalMusicController::ReadFileBytes(void* p_destination, LegoU32 p_byt
 	return 1;
 }
 
-// STUB: LEGORACERS2 0x004f20c0
+// FUNCTION: LEGORACERS2 0x004f20c0
 void DigitalMusicController::SkipFileBytes(LegoU32 p_bytes)
 {
 	SetFilePointer(m_file, p_bytes, NULL, FILE_CURRENT);

@@ -366,7 +366,7 @@ void __fastcall UpdateMonoAudioSource(AudioBackendStateView*, void*, AudioSource
 	playbackBuffer->SetVolume(ConvertAudioVolume(volume, 4.0f));
 }
 
-// STUB: LEGORACERS2 0x004f1240
+// FUNCTION: LEGORACERS2 0x004f1240
 static void __cdecl CopyAudioSpatialWorldPosition(const void* p_object, Vector3* p_position)
 {
 	if (p_object != NULL) {

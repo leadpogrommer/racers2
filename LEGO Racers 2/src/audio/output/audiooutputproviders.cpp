@@ -58,7 +58,7 @@ void ThreeDimensionalDirectSoundProvider::Initialize(HWND p_window)
 	m_initializationStatus = TRUE;
 }
 
-// STUB: LEGORACERS2 0x004efab0
+// FUNCTION: LEGORACERS2 0x004efab0
 void ThreeDimensionalDirectSoundProvider::ReleaseDeviceInterfaces()
 {
 	if (m_primaryBuffer != NULL) {

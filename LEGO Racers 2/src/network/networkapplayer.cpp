@@ -108,7 +108,7 @@ NetworkAppLayer::NetworkAppLayer(GameObjectTemplate* p_template)
 	m_state = 1;
 }
 
-// STUB: LEGORACERS2 0x00493680
+// FUNCTION: LEGORACERS2 0x00493680
 static LegoU32 __fastcall GetNetworkAppLayerAllocationSize(GameObject*, void*)
 {
 	return 0x2b0c;
@@ -499,7 +499,7 @@ static LegoU16 __fastcall DequeueNetworkTextCharacter(NetworkTextInputQueue* p_q
 	return character;
 }
 
-// STUB: LEGORACERS2 0x00495010
+// FUNCTION: LEGORACERS2 0x00495010
 static void __fastcall ClearNetworkTextQueue(NetworkTextInputQueue* p_queue, void*)
 {
 	memset(p_queue->m_characters, 0, sizeof(p_queue->m_characters));
@@ -516,7 +516,7 @@ static NetworkChatState* __fastcall InitializeNetworkChat(NetworkChatState* p_ch
 	return p_chat;
 }
 
-// STUB: LEGORACERS2 0x00495060
+// FUNCTION: LEGORACERS2 0x00495060
 static void __fastcall ClearNetworkChatInput(NetworkChatState* p_chat, void*)
 {
 	memset(p_chat->m_input, 0, sizeof(p_chat->m_input));
@@ -524,7 +524,7 @@ static void __fastcall ClearNetworkChatInput(NetworkChatState* p_chat, void*)
 	p_chat->m_changed = 1;
 }
 
-// STUB: LEGORACERS2 0x00495080
+// FUNCTION: LEGORACERS2 0x00495080
 static void __fastcall ClearNetworkChatHistory(NetworkChatState* p_chat, void*)
 {
 	for (LegoS32 index = 0; index < 10; ++index) {
@@ -614,7 +614,7 @@ void __fastcall UpdateNetworkChat(NetworkChatState* p_chat, void*)
 		}
 	}
 }
-// STUB: LEGORACERS2 0x00495360
+// FUNCTION: LEGORACERS2 0x00495360
 static LegoU32* __fastcall AllocateNetworkPayloadKey(NetworkPayloadTracker* p_tracker, void*)
 {
 	for (LegoS32 index = 0; index < 128; ++index) {

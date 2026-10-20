@@ -18,13 +18,13 @@ void __fastcall IncrementMenuModeProgress(void* p_state, void*, LegoU32 p_mode)
 	}
 }
 
-// STUB: LEGORACERS2 0x00411740
+// FUNCTION: LEGORACERS2 0x00411740
 void __fastcall CaptureSecondarySessionData(void* p_state, void*)
 {
 	memcpy((LegoU8*) p_state + 0x1e34, p_state, 0x1e34);
 }
 
-// STUB: LEGORACERS2 0x00411e90
+// FUNCTION: LEGORACERS2 0x00411e90
 void __fastcall SetMenuExitAction(void* p_state, void*, LegoU32 p_action)
 {
 	if ((LegoS32) p_action >= 9 && (LegoS32) p_action <= 12) {
@@ -53,7 +53,7 @@ void __fastcall BeginSecondaryLoad(void* p_object, void*)
 	ResetSecondarySavedGameBuffer();
 }
 
-// STUB: LEGORACERS2 0x004293f0
+// FUNCTION: LEGORACERS2 0x004293f0
 void __fastcall SetSecondarySaveSlot(void* p_object, void*, LegoU32 p_slot)
 {
 	((SecondaryManager*) p_object)->m_unk0x240 = p_slot;

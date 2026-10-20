@@ -152,7 +152,7 @@ void AudioService::Initialize()
 	m_vtable->m_setMusicEnabled(this, NULL, 0);
 }
 
-// STUB: LEGORACERS2 0x004af6c0
+// FUNCTION: LEGORACERS2 0x004af6c0
 void AudioService::GetQualityMode(LegoU32* p_mode)
 {
 	*p_mode = m_qualityMode;
@@ -194,7 +194,7 @@ void AudioService::SetVolumes(LegoFloat p_volumeA, LegoFloat p_volumeB)
 	}
 }
 
-// STUB: LEGORACERS2 0x004af790
+// FUNCTION: LEGORACERS2 0x004af790
 void AudioService::GetVolumes(LegoFloat* p_volumeA, LegoFloat* p_volumeB)
 {
 	*p_volumeA = m_volumeA;
@@ -308,7 +308,7 @@ void AudioService::RemoveListener(LegoU32 p_listenerId)
 	}
 }
 
-// STUB: LEGORACERS2 0x004b0ca0
+// FUNCTION: LEGORACERS2 0x004b0ca0
 void AudioService::SetListenerField0x04(LegoU32 p_listenerId, LegoU32 p_value)
 {
 	AudioDeviceRecord* listener = FindListenerById(p_listenerId);
@@ -317,7 +317,7 @@ void AudioService::SetListenerField0x04(LegoU32 p_listenerId, LegoU32 p_value)
 	}
 }
 
-// STUB: LEGORACERS2 0x004b0cc0
+// FUNCTION: LEGORACERS2 0x004b0cc0
 void AudioService::SetListenerField0x30(LegoU32 p_listenerId, LegoU32 p_value)
 {
 	AudioDeviceRecord* listener = FindListenerById(p_listenerId);

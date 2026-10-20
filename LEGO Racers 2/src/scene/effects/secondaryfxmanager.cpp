@@ -13,7 +13,8 @@ LegoU32 __fastcall SecondaryFxManagerUpdate(GameObject*, void*, LegoU32);
 void __fastcall SecondaryFxManagerDraw(GameObject*, void*);
 void __fastcall InitializeGameControllerWord(LegoU32*, void*);
 
-// Explicit ABI table at retail 0x00533024; checked by check_scene_dispatch.py.
+// Explicit ABI table checked by check_scene_dispatch.py.
+// GLOBAL: LEGORACERS2 0x00533024
 extern const GameObjectDispatchView g_secondaryFxManagerDispatch = {
 	&SecondaryFxManagerDestroy,    &GameObjectBaseApplyChildTransform,
 	&GameObjectBaseNoOp,           &GameObjectBaseNoOp,
@@ -139,7 +140,7 @@ GameObject* __fastcall SecondaryFxManagerDestroy(GameObject* p_object, void*, Le
 	return p_object;
 }
 
-// STUB: LEGORACERS2 0x00478f80
+// FUNCTION: LEGORACERS2 0x00478f80
 SecondaryFxManager::~SecondaryFxManager()
 {
 	m_vtable = &g_secondaryFxManagerDispatch;
