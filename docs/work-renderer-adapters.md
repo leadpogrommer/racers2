@@ -117,7 +117,7 @@ total class size or final storage boundary has been proven, and the constructor
 initializes many other large renderer subsystems. The adapter/mode methods
 read through `this+0x38d7`, including the actual `IDirect3D8*`, selection
 state, inline ten-record catalog, and accepted count described above. The
-shared `DisplayRenderer` prefix in `LEGO Racers 2/include/renderer.h` now also
+shared `DisplayRenderer` prefix in `LEGO Racers 2/include/render/core/renderer.h` now also
 models verified depth/stencil and hardware fields through `+0xc7efb`, with a
 `0xc7efc` prefix-size assertion. This remains shorter than the constructor's
 proven minimum object extent and is not a substitute for full construction.

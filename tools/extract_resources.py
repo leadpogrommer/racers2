@@ -7,9 +7,9 @@ from pathlib import Path
 import struct
 
 from inspect_binary import inspect, pe_headers, rva_offset, u16, u32
+from toolchain import DEFAULT_RESOURCES, ROOT
 
 
-ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_ORIGINAL = ROOT.parent / "LEGO Racers 2" / "LEGO Racers 2.exe"
 ORIGINAL_SHA256 = "6ed248b0ee8e52669ca93f0a2d7eb4c4c2c7ed477550a5f488bfe029270d854d"
 IMAGE_FILE_MACHINE_I386 = 0x014C
@@ -173,7 +173,7 @@ def extract(original, output):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--original", type=Path, default=DEFAULT_ORIGINAL)
-    parser.add_argument("--output", type=Path, default=ROOT / "build-resources" / "retail.res")
+    parser.add_argument("--output", type=Path, default=DEFAULT_RESOURCES)
     args = parser.parse_args()
     try:
         result = extract(args.original, args.output)

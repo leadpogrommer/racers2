@@ -79,7 +79,7 @@ not raw reccmp percentages.
 
 `_strncnt` is emitted twice in the archive (`a_cmp.obj` and `a_map.obj`) with
 the same 43-byte body; I recorded the first member as the source of the
-candidate. The `build-files` link map emits `__onexit`, `__itoa`, and `_xtoa`
+candidate. The `build/workers/files` link map emits `__onexit`, `__itoa`, and `_xtoa`
 under the same names as their archive symbols. The main `build` map also
 confirms the `cvt.obj` conversion-helper symbols. Where a selected routine
 was not pulled into either map, its name is supported directly by its unique

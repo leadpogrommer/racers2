@@ -4,7 +4,7 @@ import argparse
 import struct
 from pathlib import Path
 from check_renderer_resource_dispatch import verify
-from toolchain import ROOT
+from toolchain import DEFAULT_BUILD_DIR, ROOT
 
 TABLES = {
     "base": (0x00531adc, 1, "g_constraintBaseDispatch"),
@@ -14,7 +14,7 @@ TABLES = {
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--build-dir", type=Path, default=ROOT / "build")
+    parser.add_argument("--build-dir", type=Path, default=DEFAULT_BUILD_DIR)
     args = parser.parse_args()
     try:
         verify(ROOT.parent / "LEGO Racers 2" / "LEGO Racers 2.exe",

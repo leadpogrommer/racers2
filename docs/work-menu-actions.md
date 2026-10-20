@@ -26,8 +26,8 @@ PEs. All twelve dispatch verifiers and twelve complete folded aliases pass.
 Tooling tests were unchanged and passed at the preceding reverb checkpoint.
 No game behavior tests, runtime runs or asset probes were performed.
 
-Logs: build/menu-actions-build.log, build/menu-actions-final-compare.log,
-build/reports/menu-actions-datacmp.txt and corresponding CMake paths;
-build/menu-actions-dispatch.log. Unlinked worker annotations may emit missing
+Logs: build/msvc/menu-actions-build.log, build/msvc/menu-actions-final-compare.log,
+build/msvc/reports/menu-actions-datacmp.txt and corresponding CMake paths;
+build/msvc/menu-actions-dispatch.log. Unlinked worker annotations may emit missing
 symbols outside the measured canonical subset. The temporary bootstrap remains
 active; a rendered menu still requires the Foyer and controller startup closures.

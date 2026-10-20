@@ -22,10 +22,10 @@ From this repository, with reccmp installed in the active Python environment:
 
 ```sh
 python tools/setup.py --fetch-toolchain
-python tools/directx8.py --mode wine --output-dir build-dx8-config \
+python tools/directx8.py --mode wine --output-dir build/config/directx8 \
   --d3dx8-library /path/to/DirectX8/Lib/d3dx8.lib \
   --directshow-sdk-root /path/to/DirectX8
-python tools/build.py --directx8-config build-dx8-config/directx8-config.json
+python tools/build.py --directx8-config build/config/directx8/directx8-config.json
 python tools/compare.py
 python tools/compare.py --address 0x0045de00
 python -m unittest discover -s tests
@@ -43,12 +43,24 @@ uses the VC6-compatible SDK DirectShow BaseClasses headers and genuine
 STRMBASE.LIB; see `docs/work-directshow.md`. Both builders must put project
 headers before the external SDK paths so `util/d3dx8.h` is selected.
 
+Game source/header files live in matching subsystem directories under
+`LEGO Racers 2/src` and `LEGO Racers 2/include`; see `docs/repository-layout.md`.
+Use qualified includes such as `"render/core/renderer.h"`. Put new files beside
+their subsystem rather than recreating flat source/header collections.
+
+All generated builds belong under `build/`: Python defaults to `build/msvc`,
+CMake uses `build/cmake`, SDK configuration uses `build/config/directx8`, and
+extracted resources use `build/resources`. Isolated work belongs in
+`build/workers/<worker>`; do not create root-level `build-*` directories.
+New Game recovery is paused at the user's request and preserved under ignored
+`data/paused-new-game/`. Do not resume it during repository cleanup.
+
 The build manifest is `sources.txt`; add new compilation units there. Keep the
 flags in CMake and `tools/build.py` aligned. `bootstrap.cpp` forwards WinMain arguments to the recovered `RunGameInstance`
 entry path; the adapter itself has no retail address.
 The comparison harness links with `/OPT:NOREF,ICF` so that recovered functions
 remain measurable before their original callers exist. Parallel workers can
-use `tools/build.py --source-list <manifest> --build-dir build-<worker>`;
+use `tools/build.py --source-list <manifest> --build-dir build/workers/<worker>`;
 source paths in the manifest remain relative to this repository.
 Use per-function reccmp comparison to validate recovered game functions.
 Do not add behavioral tests for reconstructed game functions unless requested.

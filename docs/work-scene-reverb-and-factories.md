@@ -65,10 +65,10 @@ remain at 84 pointers. Twelve complete folded aliases pass. Data comparison
 reports zero issues across 281 globals, including the named registration
 objects and integer default at 0x54225c.
 
-Logs: `build/reverb-factory-build.log`,
-`build/reverb-factory-final-compare.log`,
-`build/reports/reverb-factory-datacmp.txt` and corresponding CMake paths;
-`build/reverb-factory-dispatch.log` and `build/reverb-factory-tooltests.log`.
+Logs: `build/msvc/reverb-factory-build.log`,
+`build/msvc/reverb-factory-final-compare.log`,
+`build/msvc/reports/reverb-factory-datacmp.txt` and corresponding CMake paths;
+`build/msvc/reverb-factory-dispatch.log` and `build/msvc/reverb-factory-tooltests.log`.
 No game behavior tests, runtime runs or asset probes were added or performed.
 Unlinked worker annotations can produce missing-symbol notices outside the
 canonical measured count.

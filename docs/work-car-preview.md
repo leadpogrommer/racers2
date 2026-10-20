@@ -70,8 +70,8 @@ threshold at 0x535470 is also verified as bytes `0e74da3c` in both builds throug
 their linker maps. All 21 retained tooling tests pass. No game behavior tests,
 asset probes or runtime runs were performed.
 
-Logs: `build/car-preview-build.log`, `build/car-preview-final-compare.log`,
-`build/reports/car-preview-datacmp.txt` and corresponding CMake paths;
-`build/car-preview-dispatch.log`, `build/car-preview-depth-storage.log` and
-`build/car-preview-tooltests.log`. Unlinked worker annotations can produce
+Logs: `build/msvc/car-preview-build.log`, `build/msvc/car-preview-final-compare.log`,
+`build/msvc/reports/car-preview-datacmp.txt` and corresponding CMake paths;
+`build/msvc/car-preview-dispatch.log`, `build/msvc/car-preview-depth-storage.log` and
+`build/msvc/car-preview-tooltests.log`. Unlinked worker annotations can produce
 missing-symbol notices; they are outside the canonical measured count.

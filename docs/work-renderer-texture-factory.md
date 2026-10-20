@@ -1,7 +1,7 @@
 # Renderer texture record creation
 
 This batch adds `DisplayRenderer::CreateTextureRecord` and the record's
-primary-surface lock/unlock callbacks to `src/renderertexturefactory.cpp`.
+primary-surface lock/unlock callbacks to `src/render/resources/renderertexturefactory.cpp`.
 Their raw reccmp results from the isolated VC6/DX8 build are:
 
 | Address | Length | Raw match | Status |

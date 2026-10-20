@@ -70,9 +70,9 @@ All six remain `STUB`; algorithm recovery and successful compilation do not
 establish behavioral equivalence. Shadow generation is split into readable
 helpers, so its instruction comparison also reflects that outlining.
 
-Logs are `build/shadow-config-final-build.log`,
-`build/shadow-config-final-compare.log`,
-`build/reports/shadow-config-final-datacmp.txt` and the corresponding CMake paths.
-All dispatch checks are in `build/shadow-config-final-dispatch.log`.
+Logs are `build/msvc/shadow-config-final-build.log`,
+`build/msvc/shadow-config-final-compare.log`,
+`build/msvc/reports/shadow-config-final-datacmp.txt` and the corresponding CMake paths.
+All dispatch checks are in `build/msvc/shadow-config-final-dispatch.log`.
 Unlinked worker annotations still produce missing-symbol notices; they are not
 counted as canonical functions. No game execution or asset probe was run.

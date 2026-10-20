@@ -4,12 +4,12 @@
 resource tree into a Windows `.res` file for linking. It checks the executable
 SHA-256 against the pinned input before reading it and never writes to the
 executable. By default it writes the generated file under the ignored
-`build-resources/` directory:
+`build/resources/` directory:
 
 ```sh
 python tools/extract_resources.py
 python tools/extract_resources.py --original "/path/to/LEGO Racers 2.exe" \
-  --output build-resources/retail.res
+  --output build/resources/retail.res
 ```
 
 The checked input has SHA-256

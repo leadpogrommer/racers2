@@ -8,7 +8,7 @@ paused at the user's request. A playable race has not been verified.
 Both 465-unit SP5 builds agree on all **2,715 measured scores and statuses**:
 **588 exact functions, 31 reviewed near matches and 2,096 STUB reconstructions**.
 Twenty complete folded aliases, twelve dispatch inventories per build (including
-1,279 scene pointers), and the existing 21 tooling/library tests pass. One
+1,279 scene pointers), and 22 tooling/library tests pass. One
 additional STUB (`BeginMenuManagerMode`, `0x0041dd50`) has a linker symbol but no
 separate reccmp row after folding; it is not counted as implemented.
 

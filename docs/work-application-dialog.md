@@ -40,7 +40,7 @@ initialization at `0x004ac17a`. Its `+0x14` field is the height-to-width ratio,
 computed as a float during renderer initialization; `+0x10` and `+0x38`
 remain unknown. The dialog's eight setting fields are accessed directly at
 the offsets above. Its global pointer is declared in
-[`displayconfig.h`](../LEGO%20Racers%202/include/displayconfig.h); the startup
+[`displayconfig.h`](../LEGO%20Racers%202/include/render/device/displayconfig.h); the startup
 translation unit owns the pointer storage.
 
 The dialog module requires the `ADVAPI32` import library for the registry APIs.

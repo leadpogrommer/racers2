@@ -11,7 +11,7 @@ import os
 from pathlib import Path
 import shutil
 
-from toolchain import DEFAULT_TOOLCHAIN, ROOT
+from toolchain import DEFAULT_DIRECTX8_CONFIG, DEFAULT_TOOLCHAIN
 
 
 WINE_HEADERS = ("basetsd.h", "d3d8.h", "d3d8caps.h", "d3d8types.h", "dinput.h", "dsound.h", "dplay8.h", "dpaddr.h", "dplobby8.h")
@@ -165,7 +165,7 @@ def configure(mode, output_dir, toolchain, sdk_root=None, wine_include=None, win
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--mode", required=True, choices=("wine", "sdk"))
-    parser.add_argument("--output-dir", type=Path, default=ROOT / "build-dx8-config")
+    parser.add_argument("--output-dir", type=Path, default=DEFAULT_DIRECTX8_CONFIG.parent)
     parser.add_argument("--toolchain", type=Path, default=Path(os.environ.get("MSVC6_ROOT", DEFAULT_TOOLCHAIN)))
     parser.add_argument("--sdk-root", type=Path, help="DirectX SDK root; defaults to DXSDK_DIR or DXSDK_ROOT")
     parser.add_argument("--wine-include", type=Path, help="Wine Windows header directory")

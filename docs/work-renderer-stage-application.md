@@ -41,7 +41,7 @@ constants. Matrix multiplication uses a temporary for aliasing and preserves
 the observed accumulation order (products 0, 1, 3, 2).
 
 No complete renderer singleton is constructed by these units, and no runtime
-success is synthesized. Function claims await the integrated build/report.
+success is synthesized. Function claims await the integrated build/msvc/report.
 
 The first integrated comparison measured `UpdateTextureStageFlags`, both
 factor-color getters and `PassThroughStageValidationResult` at 100%; these

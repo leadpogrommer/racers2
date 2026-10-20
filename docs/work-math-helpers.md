@@ -36,7 +36,7 @@ the original engine/library ownership is not established.
 The exact source manifest row for integration is:
 
 ```text
-LEGO Racers 2/src/mathhelpers.cpp
+LEGO Racers 2/src/math/mathhelpers.cpp
 ```
 
 ## Quaternion helpers

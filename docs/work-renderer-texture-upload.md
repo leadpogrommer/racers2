@@ -1,6 +1,6 @@
 # Renderer texture upload recovery
 
-`src/renderertextureupload.cpp` now contains the CPU mip copy, texture
+`src/render/resources/renderertextureupload.cpp` now contains the CPU mip copy, texture
 creation/dimension helpers, and the record upload/update path. All bodies remain
 `STUB` except the exact mip-count helper at `0x004d9030`; raw reccmp results are
 from the isolated worker build with the pinned VC6 and D3DX8 toolchains.

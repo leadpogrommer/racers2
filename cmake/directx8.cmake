@@ -2,8 +2,8 @@
 
 if(NOT DEFINED LR2_DIRECTX8_CONFIG)
   set(_lr2_default_dx8 "$ENV{LR2_DIRECTX8_CONFIG}")
-  if(NOT _lr2_default_dx8 AND EXISTS "${PROJECT_SOURCE_DIR}/build-dx8-config/directx8-config.json")
-    set(_lr2_default_dx8 "${PROJECT_SOURCE_DIR}/build-dx8-config/directx8-config.json")
+  if(NOT _lr2_default_dx8 AND EXISTS "${PROJECT_SOURCE_DIR}/build/config/directx8/directx8-config.json")
+    set(_lr2_default_dx8 "${PROJECT_SOURCE_DIR}/build/config/directx8/directx8-config.json")
   endif()
   set(LR2_DIRECTX8_CONFIG "${_lr2_default_dx8}" CACHE FILEPATH "DirectX 8 configuration JSON")
 endif()

@@ -37,9 +37,9 @@ The scene inventory now covers 501 pointers. All twelve dispatch verifiers and
 twelve complete folded aliases pass in both builds. Data comparison reports zero
 issues across 287 globals; all twenty-one tooling tests pass.
 
-Logs: build/scene-feedback-build.log, build/scene-feedback-final-compare.log,
-build/reports/scene-feedback-datacmp.txt and corresponding CMake paths;
-build/scene-feedback-dispatch.log and build/scene-feedback-tooling-tests.log.
+Logs: build/msvc/scene-feedback-build.log, build/msvc/scene-feedback-final-compare.log,
+build/msvc/reports/scene-feedback-datacmp.txt and corresponding CMake paths;
+build/msvc/scene-feedback-dispatch.log and build/msvc/scene-feedback-tooling-tests.log.
 No game behavior tests, runtime runs or asset probes were added or performed.
 Bootstrap remains active; menu startup still requires the Foyer and controller
 manager closures.

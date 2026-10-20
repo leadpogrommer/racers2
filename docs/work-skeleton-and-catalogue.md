@@ -31,9 +31,9 @@ the complete catalogue. Tooling tests are unchanged and the twenty-one tests
 passed at the preceding scene-feedback checkpoint. No game behavior tests,
 runtime runs or asset probes were added or performed.
 
-Logs: build/skeleton-catalogue-build.log,
-build/skeleton-catalogue-final-compare.log,
-build/reports/skeleton-catalogue-datacmp.txt and corresponding CMake paths;
-build/skeleton-catalogue-dispatch.log. Foyer model/render integration, actual
+Logs: build/msvc/skeleton-catalogue-build.log,
+build/msvc/skeleton-catalogue-final-compare.log,
+build/msvc/reports/skeleton-catalogue-datacmp.txt and corresponding CMake paths;
+build/msvc/skeleton-catalogue-dispatch.log. Foyer model/render integration, actual
 character preview resources and SecondaryManager startup remain staged. The
 bootstrap still does not create a window or render the menu.

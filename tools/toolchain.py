@@ -5,6 +5,9 @@ from pathlib import Path
 from inspect_binary import file_version
 
 ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_BUILD_DIR = ROOT / "build" / "msvc"
+DEFAULT_DIRECTX8_CONFIG = ROOT / "build" / "config" / "directx8" / "directx8-config.json"
+DEFAULT_RESOURCES = ROOT / "build" / "resources" / "retail.res"
 TOOLCHAIN_URL = "https://github.com/archaic-msvc/msvc600_sp5.git"
 TOOLCHAIN_COMMIT = "b0b07e29108e2695eb0274c2a377a7b7d7326150"
 DEFAULT_TOOLCHAIN = ROOT / ".tools" / "msvc6-sp5"

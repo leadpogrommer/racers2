@@ -45,8 +45,8 @@ against raw control flow. No game behavior tests, game runs or asset probes were
 performed. Higher-level Foyer/character and Secondary preview tables, plus the
 actual entry/main loop, still require integration. The menu has not launched.
 
-Logs: build/foyer-model-base-final-build.log,
-build/foyer-model-base-final-compare.log,
-build/reports/foyer-model-base-datacmp.txt and corresponding CMake paths;
-build/foyer-model-base-dispatch.log and
-build/foyer-model-base-tooling-tests.log.
+Logs: build/msvc/foyer-model-base-final-build.log,
+build/msvc/foyer-model-base-final-compare.log,
+build/msvc/reports/foyer-model-base-datacmp.txt and corresponding CMake paths;
+build/msvc/foyer-model-base-dispatch.log and
+build/msvc/foyer-model-base-tooling-tests.log.

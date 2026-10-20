@@ -2,7 +2,7 @@
 
 `GameManager::RenderFrame` is the renderer-facing half of the frame loop at
 `0x004aa8e0` (2,264 bytes through `ret 4`). The body is in
-`src/gamerenderorchestration.cpp` and remains `STUB` while its context-owned
+`src/game/runtime/gamerenderorchestration.cpp` and remains `STUB` while its context-owned
 shadow state and broader frame dependencies are unresolved.
 
 The disassembly refreshes object lifecycle hooks, profiles scene start and
@@ -27,14 +27,14 @@ condition does not use the `Present` return value.
 
 The shadow callback at `0x004b3540` (827 bytes through `ret 4`) receives the
 distinct context at `0x00655228`; it is not the global pause controller. Its
-body is in `src/globaloverlaymanager.cpp`. `globaloverlaymanager.h` models the observed
+body is in `src/frontend/overlay/globaloverlaymanager.cpp`. `globaloverlaymanager.h` models the observed
 16-entry offset array at `+0x24900`, count at `+0x24940`, and list-head table
 at `+0x6acdc`. The list scans stop after 300 and 200 nodes respectively. The
 storage owner and full object size remain unresolved, so the context global is
 still an external dependency.
 
 Frame audio cleanup at `0x004e8830` (87 bytes through `ret`) is implemented in
-`src/gamerenderaudio.cpp`. Its observed 0x20-byte records and source/destination
+`src/game/runtime/gamerenderaudio.cpp`. Its observed 0x20-byte records and source/destination
 arrays map to zero-initialized BSS. The final pointer chain through
 `0x006844d4` remains modeled with opaque pointers because its owner is not
 identified.

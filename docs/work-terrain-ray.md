@@ -1,6 +1,6 @@
 # Terrain ray and candidate helpers
 
-`src/gameobjectterrainray.cpp` contains the candidate-ray path used by the
+`src/game/objects/gameobjectterrainray.cpp` contains the candidate-ray path used by the
 region visibility callback. The owner view is based on concrete accesses in
 the 0x004d3f00 and 0x004d3e60 bodies: level-zero cells at +0x68, grid shift at
 +0xa8, level-entry storage at +0xac, grid dimensions at +0xd0/+0xd4, inverse

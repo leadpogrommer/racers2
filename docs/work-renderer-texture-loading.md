@@ -1,6 +1,6 @@
 # Renderer texture loading closure
 
-This work recovers the renderer's bitmap-side texture-loading path from the retail disassembly (`data/retail-disasm.txt`) and the available Ghidra exports. The new bodies live in `src/renderertextureloading.cpp`; annotations remain `STUB` pending root's full integration and measurements.
+This work recovers the renderer's bitmap-side texture-loading path from the retail disassembly (`data/retail-disasm.txt`) and the available Ghidra exports. The new bodies live in `src/render/resources/renderertextureloading.cpp`; annotations remain `STUB` pending root's full integration and measurements.
 
 The renderer callbacks at `0x004d9cb0` and `0x004d9dc0` write the texture index map, update the selected texture record from image dimensions/format, choose compression using the source image's AIF flag word and the renderer's texture-quality callback, create the primary texture, optionally create the secondary device texture, normalize the bitmap representation, copy the mip chain, and update the GPU texture. The cube callback initializes texture storage only for face index zero, but still prepares and uploads every requested face. A failed primary allocation invokes the record's release dispatch and clears flag bit zero before returning false.
 
@@ -10,7 +10,7 @@ The sidecar path at `0x004da5e0` reads `.BIF` settings (including the `ALL_FILES
 
 The remaining helpers include image-format expansion (`0x004d9b70`), per-level mip generation (`0x004dac90`), nearest palette lookup (`0x004db5c0`), normal-map generation (`0x004db650`), and TGA/AIF writing (`0x004f5a10`). The normal-map channel center is `128.0f`, matching the referenced retail float constant at `0x00530920`; no duplicate `GLOBAL` annotation is attached to local float literals.
 
-The isolated worker manifest adds only this translation unit to the current source list. The worker built and linked successfully with the pinned MSVC 6 SP5 toolchain. No game execution or behavioral tests were run. Raw matching has not yet been measured for the latest semantic corrections; the code intentionally remains `STUB` until the combined build/reccmp pass.
+The isolated worker manifest adds only this translation unit to the current source list. The worker built and linked successfully with the pinned MSVC 6 SP5 toolchain. No game execution or behavioral tests were run. Raw matching has not yet been measured for the latest semantic corrections; the code intentionally remains `STUB` until the combined build/msvc/reccmp pass.
 
 Known review points before promotion: check the precise channel/sample arithmetic and edge behavior in normal-map generation; verify resample source/destination mip selection against the complete `0x004d92a0` implementation; and review TGA writer header/AIF field ordering against all retail branches. Surface-release behavior intentionally follows the retail direct release call even after a failed surface lookup.
 

@@ -40,4 +40,4 @@ target's linked build. SDK license metadata is under
 identifies provenance and does not grant redistribution rights.
 
 The candidate file from the read-only scanner run is ignored at
-`build-d3dx8-identify/candidates.csv`. No SDK code or binaries were executed.
+`build/workers/d3dx8-identify/candidates.csv`. No SDK code or binaries were executed.

@@ -1,6 +1,6 @@
 # Renderer presentation and clear helpers
 
-`src/rendererpresentation.cpp` contains the renderer methods for material
+`src/render/device/rendererpresentation.cpp` contains the renderer methods for material
 color, clearing, and presenting, plus the channel-mask bit counter used by
 texture-format selection. The implementations were checked against the retail
 disassembly at `0x004ad130`, `0x004ae5c0`, `0x004dc9b0`, and `0x004dfb20`.

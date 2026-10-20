@@ -39,8 +39,8 @@ including all five threshold rows. Tooling tests were unchanged and passed in
 the preceding reverb/factory checkpoint. No game behavior tests, game runs or
 asset probes were added or performed.
 
-Logs: `build/foyer-selection-build.log`,
-`build/foyer-selection-final-compare.log`,
-`build/reports/foyer-selection-datacmp.txt` and corresponding CMake paths;
-`build/foyer-selection-dispatch.log`. Unlinked worker annotations can produce
+Logs: `build/msvc/foyer-selection-build.log`,
+`build/msvc/foyer-selection-final-compare.log`,
+`build/msvc/reports/foyer-selection-datacmp.txt` and corresponding CMake paths;
+`build/msvc/foyer-selection-dispatch.log`. Unlinked worker annotations can produce
 missing-symbol notices outside the canonical measured count.

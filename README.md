@@ -1,93 +1,45 @@
 # LEGO Racers 2 decompilation
 
 A matching decompilation of the 2001 Windows game, bootstrapped from
-[isledecomp/racers](https://github.com/isledecomp/racers) and its
-[reccmp](https://github.com/isledecomp/reccmp) workflow. The original game
-installation stays outside this repository.
+[isledecomp/racers](https://github.com/isledecomp/racers) and
+[reccmp](https://github.com/isledecomp/reccmp). The original installation and
+proprietary assets stay outside this repository.
 
-The compiler is **Visual C++ 6.0 SP5**, with **cl 12.00.8804** and the
-**12.00.8966 code generator**. See [compiler evidence](docs/compiler.md) for
-the decoded Rich header, exact binary identity, mixed library stamps, and
-settings that still need investigation.
+The rebuilt menu renders correctly, accepts keyboard input and plays sound,
+confirmed on 2026-10-20. New Game recovery is paused; a playable race has not
+been verified. The working-menu checkpoint is `204d683`. See
+[menu validation](docs/work-menu-startup.md), [current progress](docs/progress.md)
+and [remaining work](docs/runtime-roadmap.md).
 
-Verified reconstructions include character predicates, line classification,
-fixed string buffers, file operations, window geometry, command-line parsing,
-startup helpers, bitmap scanning, terrain lookup, spline helpers, and
-foundational renderer/input operations.
-The current checkpoint has **588 exact function matches**, **31 reviewed
-near matches**, and 2,096 unfinished implementations across 2,715 measured
-functions. See
-[current progress](docs/progress.md) for the measured function list and
-remaining work. The application singleton and its two complete 38-slot
-dispatch tables, all three 25-slot input-device tables, and the five-slot
-input service table are wired. The full DirectInput initializer and joystick
-axis/effect dependencies are reconstructed, pending startup integration.
-Renderer source now covers transforms, viewports, lighting selection, buffer
-pools and uploads, TGA loading, resource lookup, and the full display-initializer
-body. The initializer remains under review at 22.87% raw similarity; the
-reserved renderer storage is now present. Texture upload, animation resources
-and draw-plan builders also have source. The renderer constructor, full dispatch wiring and lookup callbacks now have compiled source. Both complete renderer tables and all six lookup callbacks pass static pointer verification; their large bodies remain under review. Startup integration remains open.
-Bitmap loading and mip preprocessing, texture maintenance, buffer dispatch,
-sprite submission, immediate drawing and animation records now have source;
-large bodies still require semantic review. Device reset/resource restoration, scene startup, GUI rectangle clipping, all eight quad-packet cases and bump-vector generation also have compiled source. Controller records, recorded-input access, timer events and named mutexes have source; the controller manager, system clock, and platform readiness helper now have compiled source. The fixed-step scheduler, game-object registry loops and renderer resource cleanup also have compiled source. Registry allocation, insertion, removal and initialization now have compiled source. Concrete menu-object creation and startup integration remain open.
-Controller defaults, player car setup, bodypart lists, shared menu sprites,
-key-icon/string replacement, ScreenPrinter and HUD/pause/builder textures now
-have linked source. The recording service, pause detector, nested textbox, track/network controls
-and character-preview callbacks now link. Character preview initialization and foyer animation/event callbacks now link.
-Startup movie playback now links against genuine DirectShow base classes.
-Input-binding and text-entry controls now link, along with model cache, reference,
-bounds and skin-reading dependencies. Full model geometry, collision relocation
-and shared shadow loading now link; see [model recovery](docs/work-model-loading.md).
-The complete Secondary preview owner and its camera modes now link; see
-[preview owner recovery](docs/work-secondary-render-owner.md).
-The complete Foyer model base and preview drawing callbacks now link; see
-[Foyer model recovery](docs/work-foyer-model-base.md).
-Physical lifecycle construction, damping/gravity and motion integration now link; see
-[physical construction recovery](docs/work-physical-construction.md).
-Physical parent/world transforms and preview timing now link; see
-[physical transform recovery](docs/work-physical-transforms.md).
-Skeletal parent transforms and the complete shared car catalogue now link; see
-[skeleton and catalogue recovery](docs/work-skeleton-and-catalogue.md).
-Controller feedback sprites/audio and pooled scene effects now link; see
-[scene feedback recovery](docs/work-scene-feedback.md).
-Menu settings actions, display fallback and localized choice setup now link; see
-[menu action recovery](docs/work-menu-actions.md).
-Foyer progress queries and scene-selection gates now link; see
-[selection recovery](docs/work-foyer-selection.md).
-Scene reverb, terrain projection and five named object factories now link; see
-[scene and factory recovery](docs/work-scene-reverb-and-factories.md).
-Car preview, shared model bindings and frontend widget/resource creation now link;
-see [car-preview recovery](docs/work-car-preview.md).
-Menu backdrop transitions and the KillSphere startup lifecycle now link; see
-[backdrop and supervisor recovery](docs/work-menu-background.md).
-Generated shadow geometry and menu display/input configuration now link; see
-[shadow and configuration recovery](docs/work-shadow-and-configuration.md).
-Model draw queues and visibility submission now link; see
-[model drawing](docs/work-model-drawing.md).
-Loading-screen textures, sprites, progress animation and fade-controller lifecycle
-now link; see [loading-screen recovery](docs/work-loading-progress.md).
-Foyer resource loading and remaining frontend closures are still being integrated; see [frontend notes](docs/work-controller-frontend.md).
-The rebuilt menu now renders with the original background textures and upright
-text, responds to keyboard input, and plays sound. The user confirmed these on
-2026-10-20. See [menu startup recovery](docs/work-menu-startup.md) for the fixes
-and validation. New Game reaches an explicit unfinished boundary; its recovery
-is paused. A playable race and whole-game coverage are not established.
-The current Ghidra discovery inventory contains 4,847 function starts,
-including 26 thunks and linked libraries; this is a provisional inventory,
-not a count of game-authored functions. See the
-[inventory notes](docs/research.md#automatic-function-inventory).
-See [initial validation](docs/validation.md) for the checks performed and the
-commands for this supplied workspace.
+The compiler is **Visual C++ 6.0 SP5**: CL **12.00.8804**, with the
+**12.00.8966 code generator**. See [compiler evidence](docs/compiler.md).
+Matching remains secondary to getting the game running. Whole-game coverage
+is not established; the measured subset and library identification are tracked
+in the progress and [library notes](docs/library-identification.md).
 
-[Research tooling](docs/research.md) describes the local Ghidra project and
-reference exports used for parallel decompilation work.
+## Repository layout
 
-[Library identification](docs/library-identification.md) distinguishes confirmed
-MSVC runtime routines from the separate pool allocator whose provenance is
-still unresolved. The required pool, archive-reading path, extracted retail
-resources, and application startup support are included in the build. Renderer
-and main-loop work remains; see the [runtime roadmap](docs/runtime-roadmap.md)
-and [runtime startup notes](docs/work-application-runtime.md).
+Source and header trees share subsystem paths, for example:
+
+```text
+LEGO Racers 2/
+  src/frontend/foyer/foyermanager.cpp
+  include/frontend/foyer/foyermanager.h
+  src/render/core/renderer.cpp
+  include/render/core/renderer.h
+build/
+  msvc/              # Python builder: executable, PDB and reports
+  cmake/             # CMake/NMake build
+  config/directx8/   # Generated SDK configuration and header overlay
+  config/directshow/
+  resources/         # Extracted retail resources
+  workers/           # Isolated worker outputs and manifests
+  archive/           # Preserved generated output from before relocation
+```
+
+See [the source tree](docs/repository-layout.md) for all fourteen subsystems.
+Includes use paths such as `"render/core/renderer.h"`; `sources.txt` remains the
+ordered build manifest. All generated build output stays under ignored `build/`.
 
 ## Setup
 
@@ -120,8 +72,7 @@ files and original game files are not added to Git.
 
 The main priority is a playable rebuild: startup, resource loading, rendering,
 input and the main loop take precedence over polishing instruction differences.
-See the [runtime roadmap](docs/runtime-roadmap.md) for the concrete startup,
-asset-loading and DirectX 8 blockers.
+See the [runtime roadmap](docs/runtime-roadmap.md) for the remaining gameplay dependencies and unfinished boundaries.
 
 ## Build and measure
 
@@ -129,10 +80,10 @@ Renderer sources need a local DirectX 8 configuration before the first build.
 For Linux with Wine, generate it once and pass it to the builder:
 
 ```sh
-python tools/directx8.py --mode wine --output-dir build-dx8-config \
+python tools/directx8.py --mode wine --output-dir build/config/directx8 \
   --d3dx8-library /path/to/DirectX8/Lib/d3dx8.lib \
   --directshow-sdk-root /path/to/DirectX8
-python tools/build.py --directx8-config build-dx8-config/directx8-config.json
+python tools/build.py --directx8-config build/config/directx8/directx8-config.json
 python tools/compare.py
 python tools/compare.py --address 0x0045de00
 ```
@@ -145,7 +96,7 @@ reads the same JSON path from `LR2_DIRECTX8_CONFIG`; see
 [DirectX setup](docs/work-directx8.md) and [DirectShow setup](docs/work-directshow.md).
 
 The builder uses MSVC natively on Windows and Wine on Linux, emits an x86 PE
-and PDB, and writes `build/reccmp-build.yml` using paths for the host running
+and PDB, and writes `build/msvc/reccmp-build.yml` using paths for the host running
 reccmp. Set `WINEPREFIX` to an absolute prefix path if needed; the same setting
 must be used for build and comparison. Game data archives are not needed to
 link; extract and link the retail `.res` to include the original dialog and
@@ -156,27 +107,27 @@ library if it is not in LIB.
 
 To link the retail dialog and icon resources, run
 `python tools/extract_resources.py`; builders pick up the ignored
-`build-resources/retail.res` by default. See
+`build/resources/retail.res` by default. See
 [resource extraction](docs/work-resources.md).
 
-Open `build/reports/LEGORACERS2.html` for per-function assembly diffs. JSON and
+Open `build/msvc/reports/LEGORACERS2.html` for per-function assembly diffs. JSON and
 SVG reports are beside it. The comparison command also checks annotations and
 fails if a `FUNCTION` claim is absent, stubbed, or below the initial 95% raw
 accuracy threshold. `FUNCTION` includes exact matches and reviewed semantically
 identical near matches; their actual scores stay visible. The optional
-`python tools/check_matches.py build/reports/LEGORACERS2.json --require-exact`
+`python tools/check_matches.py build/msvc/reports/LEGORACERS2.json --require-exact`
 check requires 100% raw matches.
 Report coverage is relative to annotated functions; the whole-game function
 total is unknown. CRT symbols are excluded with `--nolib`, and remain available
 for explicit comparisons.
 
-For direct tool use, run from `build/` with the virtual environment active:
+For direct tool use, run from `build/msvc/` with the virtual environment active:
 
 ```sh
 reccmp-reccmp --target LEGORACERS2 --nolib --print-rec-addr
 reccmp-reccmp --target LEGORACERS2 --verbose 0x0045de00 --print-rec-addr
 reccmp-datacmp --target LEGORACERS2 --verbose --print-rec-addr
-reccmp-decomplint --target LEGORACERS2 --warnfail "../LEGO Racers 2"
+reccmp-decomplint --target LEGORACERS2 --warnfail "../../LEGO Racers 2"
 ```
 
 The original exe is SHA-256
@@ -187,10 +138,10 @@ The original exe is SHA-256
 After running the SP5 `VC98\Bin\VCVARS32.BAT`:
 
 ```bat
-cmake -S . -B build -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo
-cmake --build build
-cmake --build build
-python tools/compare.py
+cmake -S . -B build/cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cmake --build build/cmake
+cmake --build build/cmake
+python tools/compare.py --build-dir build/cmake
 ```
 
 The second build handles the legacy NMake behavior described by the sample

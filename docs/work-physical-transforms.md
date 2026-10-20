@@ -40,8 +40,8 @@ were checked against raw control flow. No game behavior tests, game runs or
 asset probes were added or performed. The original entry/main loop and remaining
 Foyer/model/SecondaryManager closures still require integration; no menu launches.
 
-Logs: build/physical-transforms-build.log,
-build/physical-transforms-final-compare.log,
-build/reports/physical-transforms-datacmp.txt and corresponding CMake paths;
-build/physical-transforms-dispatch.log, build/physical-divisor-verification.log,
-and build/physical-transforms-tooling-tests.log.
+Logs: build/msvc/physical-transforms-build.log,
+build/msvc/physical-transforms-final-compare.log,
+build/msvc/reports/physical-transforms-datacmp.txt and corresponding CMake paths;
+build/msvc/physical-transforms-dispatch.log, build/msvc/physical-divisor-verification.log,
+and build/msvc/physical-transforms-tooling-tests.log.

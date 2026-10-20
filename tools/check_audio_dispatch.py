@@ -6,7 +6,7 @@ from pathlib import Path
 import struct
 
 from check_renderer_resource_dispatch import verify
-from toolchain import ROOT
+from toolchain import DEFAULT_BUILD_DIR, ROOT
 
 TABLES = {
     "service": (0x005359f4, 42, "g_audioServiceOperationalDispatch"),
@@ -21,7 +21,7 @@ TABLES = {
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--original", type=Path, default=ROOT.parent / "LEGO Racers 2" / "LEGO Racers 2.exe")
-    parser.add_argument("--build-dir", type=Path, default=ROOT / "build")
+    parser.add_argument("--build-dir", type=Path, default=DEFAULT_BUILD_DIR)
     args = parser.parse_args()
     try:
         verify(args.original, args.build_dir / "LEGO Racers 2.exe", args.build_dir / "legoracers2.map",

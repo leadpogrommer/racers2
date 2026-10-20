@@ -1,7 +1,7 @@
 /.tools/
 /.venv*/
 /.wine/
-/build*/
+/build/
 /data/
 /reports/
 /reccmp-user.yml
@@ -24,5 +24,3 @@ __pycache__/
 .DS_Store
 /.idea/
 /.vscode/
-/build-*.sources
-/build-*-sources.txt

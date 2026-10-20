@@ -20,7 +20,7 @@ trace of the full rebuilt process confirmed access to that per-user path
 before reading the archive metadata.
 It then read all 784,312 bytes of `FILELIST.INF`, read all 43,740 bytes of
 `COMPRESS.INF`, opened `GAMEDATA.GTC` read-only, and exited with code 0. The
-trace is retained in ignored `build/runtime-application-startup.log`.
+trace is retained in ignored `build/msvc/runtime-application-startup.log`.
 
 The table methods are invoked through explicit ABI bridges: they pass the
 receiver in `ECX`, ignore `EDX`, and preserve each target's explicit stack
@@ -41,7 +41,7 @@ display initialization and a visible menu; see the
 
 The extracted `.res` contains the retail dialog resource ID `0x66` and its
 icon resources and is picked up by both builders from ignored
-`build-resources/retail.res`. Extraction verifies the pinned executable hash
+`build/resources/retail.res`. Extraction verifies the pinned executable hash
 and preserves all five entries and 7,022 payload bytes; see
 [resource extraction](work-resources.md). Resource linkage makes the original
 dialog available to a future run but does not claim the dialog path has been

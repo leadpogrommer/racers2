@@ -21,7 +21,7 @@ in `include`. Modern replacement BaseClasses headers were not used.
 Generate the shared Python/CMake configuration with both external SDK inputs:
 
 ```sh
-python tools/directx8.py --mode wine --output-dir build-dx8-config \
+python tools/directx8.py --mode wine --output-dir build/config/directx8 \
   --d3dx8-library .tools/d3dx8-sdk-8.0/lib/d3dx8.lib \
   --directshow-sdk-root .tools/directx8-sdk-mirror
 ```

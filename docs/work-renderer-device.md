@@ -3,7 +3,7 @@
 This pass follows the renderer initializer at `0x004ac130` and implements its
 small depth/stencil-format selector. The evidence is the full retail listing
 in `data/retail-disasm.txt`, the DirectX 8 interfaces in `util/directx8.h`, and
-the current partial renderer layout in `LEGO Racers 2/include/renderer.h`.
+the current partial renderer layout in `LEGO Racers 2/include/render/core/renderer.h`.
 
 ## Initialization order and current boundary
 
@@ -73,7 +73,7 @@ bit-depth comparison is signed. It returns one when a candidate works and
 zero when all six checks fail.
 
 This method is implemented as `DisplayRenderer::SelectDepthStencilFormat` in
-`LEGO Racers 2/src/rendererdevice.cpp` and shares the typed prefix in
+`LEGO Racers 2/src/render/device/rendererdevice.cpp` and shares the typed prefix in
 `renderer.h`. The prefix names only fields supported by the retail accesses;
 its size assertion ends at `0xc7efc` and does not claim the full renderer size.
 It aliases the existing static renderer allocation; it is not constructed

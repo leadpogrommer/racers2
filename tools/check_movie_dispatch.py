@@ -9,7 +9,7 @@ import struct
 
 from check_application_dispatch import map_symbols, read_table
 from setup import ORIGINAL_SHA256
-from toolchain import ROOT
+from toolchain import DEFAULT_BUILD_DIR, ROOT
 
 
 def verify(original, rebuilt, link_map):
@@ -53,7 +53,7 @@ def verify(original, rebuilt, link_map):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--original", type=Path, default=ROOT.parent / "LEGO Racers 2" / "LEGO Racers 2.exe")
-    parser.add_argument("--build-dir", type=Path, default=ROOT / "build")
+    parser.add_argument("--build-dir", type=Path, default=DEFAULT_BUILD_DIR)
     args = parser.parse_args()
     try:
         verify(args.original, args.build_dir / "LEGO Racers 2.exe", args.build_dir / "legoracers2.map")

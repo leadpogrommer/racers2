@@ -33,7 +33,7 @@ Its `dwButtons` member is at record offset `+0xa0`.
 
 `reccmp/input-dispatch.csv` records every original target and rebuilt bridge
 symbol. Run `python tools/check_input_dispatch.py` (or pass
-`--build-dir build-cmake`) to read both PEs and the linker map, verify the
+`--build-dir build/cmake`) to read both PEs and the linker map, verify the
 original SHA-256, and check all 50 targets for these two tables, plus the
 subsequently recovered joystick and service tables. Both builds pass. This
 checks table wiring separately from instruction

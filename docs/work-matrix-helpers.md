@@ -3,7 +3,7 @@
 This note combines the earlier Vector3 and Matrix3 layout/matching evidence with
 the current matrix helper experiment. Disassembly is from /tmp/lr2-disasm.txt;
 Ghidra exports are references checked against instructions and callers. Builds
-used the isolated build-vector-worker manifest, VC6 SP5, and default translation
+used the isolated build/workers/vector-worker manifest, VC6 SP5, and default translation
 unit flags. No behavioral tests or compiler-flag changes were used in the
 current batch.
 

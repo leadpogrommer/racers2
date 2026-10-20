@@ -4,7 +4,7 @@ I reviewed the original code around `0x0045dfd0`, focusing on
 `0x0045e000–0x0045e700` for an independent string or token helper suitable for
 a new `textutil` unit.
 
-`0x0045dfd0` is already recovered and owned by `src/tokenstrings.cpp`. Its
+`0x0045dfd0` is already recovered and owned by `src/io/text/tokenstrings.cpp`. Its
 58-byte body scans to the end of the destination and copies the source
 including its terminator. Callers use it to append filename fragments such as
 `torso.TGA`, `legs.TGA`, `face.TGA`, and `.MD2` to existing strings. Its

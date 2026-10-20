@@ -34,7 +34,7 @@ The application configuration file is a 16-byte record with marker
 while loading it. A full Wine startup trace confirms the per-user config path
 was accessed; save behavior and the settings dialog have not been exercised
 at runtime. The dialog resource and three icon resources are extracted from
-the pinned executable into ignored `build-resources/retail.res` (five
+the pinned executable into ignored `build/resources/retail.res` (five
 resources, 7,022 payload bytes) and linked by both builders when present. See
 [configuration recovery](work-application-config.md),
 [dialog behavior](work-application-dialog.md), and

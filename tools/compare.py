@@ -7,13 +7,12 @@ import subprocess
 import sys
 
 from folded_functions import supplement_report
-
-ROOT = Path(__file__).resolve().parents[1]
+from toolchain import DEFAULT_BUILD_DIR, ROOT
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--build-dir", type=Path, default=ROOT / "build")
+    parser.add_argument("--build-dir", type=Path, default=DEFAULT_BUILD_DIR)
     parser.add_argument("--address", help="Show assembly diff at an original virtual address")
     args = parser.parse_args()
     build_dir = args.build_dir.resolve()

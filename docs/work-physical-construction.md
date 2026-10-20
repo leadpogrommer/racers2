@@ -37,8 +37,8 @@ against raw control flow. No game behavior tests, game runs or asset probes were
 performed. Foyer model construction, preview owner tables and the remaining menu
 startup graph still require integration; the menu has not launched.
 
-Logs: build/physical-construction-final-build.log,
-build/physical-construction-final-compare.log,
-build/reports/physical-construction-datacmp.txt and corresponding CMake paths;
-build/physical-construction-dispatch.log and
-build/physical-construction-tooling-tests.log.
+Logs: build/msvc/physical-construction-final-build.log,
+build/msvc/physical-construction-final-compare.log,
+build/msvc/reports/physical-construction-datacmp.txt and corresponding CMake paths;
+build/msvc/physical-construction-dispatch.log and
+build/msvc/physical-construction-tooling-tests.log.

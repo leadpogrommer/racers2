@@ -127,7 +127,7 @@ reccmp only; no behavioral tests were run.
 The shared source manifest includes:
 
 ```text
-LEGO Racers 2/src/spline.cpp
+LEGO Racers 2/src/math/spline.cpp
 ```
 
 The size CSV records `004d0f60,607`, `004d11c0,461`, `004d1390,588`,

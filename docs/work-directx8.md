@@ -5,7 +5,7 @@
 Wine support is explicit and generated into an ignored build directory:
 
 ```sh
-python tools/directx8.py --mode wine --output-dir build-dx8-config
+python tools/directx8.py --mode wine --output-dir build/config/directx8
 ```
 
 The helper validates all six required Wine headers and four PE/i386 import
@@ -19,7 +19,7 @@ archives, and preserve `/OPT:NOREF`.
 The Python builder consumes the generated configuration directly:
 
 ```sh
-python tools/build.py --directx8-config build-dx8-config/directx8-config.json
+python tools/build.py --directx8-config build/config/directx8/directx8-config.json
 ```
 
 `LR2_DIRECTX8_CONFIG` may also supply that path. The full Python build and
@@ -107,7 +107,7 @@ archives and DLLs are Wine build outputs. This is not a Microsoft SDK drop-in;
 the compatibility macros above are needed with VC6, and builds that use this
 route must retain the Wine notices and comply with the LGPL. No Wine header or
 library has been copied into the repository. The ignored probe artifacts are
-under `build-dx8-probe/`.
+under `build/workers/dx8-probe/`.
 
 The reusable configuration and compatibility header were verified with a
 fresh isolated probe using CL 12.00.8804 and LINK 6.00.8447. It compiled the
@@ -134,7 +134,7 @@ Texture compression/upload also requires the DirectX 8.0 SDK's retail static
 `d3dx8.lib`. Configure this separate local input explicitly when using Wine:
 
 ```sh
-python tools/directx8.py --mode wine --output-dir build-dx8-config \
+python tools/directx8.py --mode wine --output-dir build/config/directx8 \
   --d3dx8-library /path/to/DirectX8/Lib/d3dx8.lib
 ```
 

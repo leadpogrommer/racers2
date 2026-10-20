@@ -22,7 +22,7 @@ report formats. The GitHub Actions commands were exercised locally; no remote
 CI run or publication was performed.
 
 The generated reports are ignored build artifacts:
-`build/reports/LEGORACERS2.{html,json,svg}`. These two matches validate the
+`build/msvc/reports/LEGORACERS2.{html,json,svg}`. These two matches validate the
 workflow; they do not measure whole-game coverage. The CRT startup remains a
 library comparison, and the temporary entry point does not start the game.
 
@@ -105,7 +105,7 @@ application and accessed the per-user
 `C:\users\ilya\Documents\Games\LEGO Racers 2\Saved Games\LR2.cfg` path,
 then read all 784,312 bytes of FILELIST.INF and 43,740 bytes of COMPRESS.INF
 and opened GAMEDATA.GTC read-only. File tracing is retained in ignored
-`build/runtime-application-startup.log`. This exercises application config
+`build/msvc/runtime-application-startup.log`. This exercises application config
 startup, pool allocation and archive metadata initialization. Window creation, rendering and
 gameplay were not exercised by this startup run. A separate asset probe is
 described below. The entry point remains temporary. See
@@ -121,7 +121,7 @@ executed; see
 [DirectX prerequisites](work-directx8.md).
 
 Both builders include the resource file when it exists under
-`build-resources/retail.res`; its five entries (7,022 payload bytes) were
+`build/resources/retail.res`; its five entries (7,022 payload bytes) were
 round-trip checked against the pinned executable and confirmed in both output
 PEs with identical payloads. The complete application dispatch-table binary
 verifier passes 76/76 callback pointers in both PE
@@ -133,7 +133,7 @@ frame. Both builders import the real SHFOLDER and GDI32 APIs. See
 [resource extraction](work-resources.md) and
 [application runtime](work-application-runtime.md).
 
-An ignored `build-asset-probe` executable exercised the real `WinFile` and
+An ignored `build/workers/asset-probe` executable exercised the real `WinFile` and
 `MemoryHeap` path against three installed archive entries and exited with code
 0. It read `HEADS.TXT` (646 bytes, SHA-256
 `0112c0e03babbb4bd14ecc90f6810c0130a3f5d16c100012b52381333de7f47a`),
@@ -574,3 +574,29 @@ at 0x0041dd50 has no separate row. Data comparison covers 477 globals, with only
 the independently verified five string aliases in two variables flagged. No
 checks were suppressed and no game-behavior tests were added. See
 [working menu evidence](work-menu-startup.md#working-menu-checkpoint-2026-10-20).
+
+
+## Repository reorganization (2026-10-20)
+
+Working menu commit `204d683` was saved before moving files. New Game recovery
+was set aside in ignored `data/paused-new-game/` and remains paused.
+
+The 441 project compilation units and 247 headers now live in matching subsystem
+trees. Qualified includes and `sources.txt` preserve the source ordering and build
+flags. Both builders link all 465 units at their new locations: `build/msvc` and
+`build/cmake`. The latter was configured afresh; its old generated tree is archived.
+The regenerated DX8 configurations have valid include/library directories and no
+references to removed root `build-*` directories.
+
+Both reports still agree on all 2,715 scores/statuses, and every score/status agrees
+with the menu checkpoint before the move. All 619 implemented claims, twenty
+complete folded bodies, twelve dispatch inventories per build and all 307 input
+format entries pass. The 22 tooling/library tests pass, including the relocated
+renderer DX8 configuration guard. Data comparison again checks 477 globals and
+flags only the same five equivalent string aliases in two variables. Their bytes
+are independently rechecked. No game-behavior tests or additional runtime probes
+were used for this file/layout change.
+
+The root has no `build-*` entries, the source/header roots have no flat `.cpp`/`.h`
+files, and every manifest entry resolves. See [repository layout](repository-layout.md).
+Local build, comparison and inventory logs use `data/session-tools/reorganization-*`.

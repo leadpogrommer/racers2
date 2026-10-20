@@ -5,8 +5,10 @@ from pathlib import Path
 import sys
 from tempfile import TemporaryDirectory
 import unittest
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
+import build
 from directx8 import configure, DX_LIBRARIES, WINE_HEADERS
 
 
@@ -49,6 +51,20 @@ class DirectXConfigurationTests(unittest.TestCase):
                           wine_include=headers, wine_lib=libraries,
                           d3dx8_library=root / "missing.lib")
             self.assertFalse((root / "config" / "directx8-config.json").exists())
+
+    def test_nested_renderer_source_requires_dx8_before_compilation(self):
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            manifest = root / "sources.txt"
+            manifest.write_text("LEGO Racers 2/src/renderer/renderer.cpp\n", encoding="utf-8")
+            with (
+                patch.object(build, "validate"),
+                patch.object(build.shutil, "which", return_value="wine"),
+                patch.object(build.subprocess, "run") as run,
+            ):
+                with self.assertRaisesRegex(ValueError, "Renderer sources require DX8 setup"):
+                    build.build(root / "output", root / "vc6", source_list=manifest)
+                run.assert_not_called()
 
 
 if __name__ == "__main__":

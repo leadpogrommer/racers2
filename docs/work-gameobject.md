@@ -6,7 +6,7 @@ flags, both inline 24-byte strings, parent/template/child pointers, the
 clears template flag `0x10` outside development mode, then copies the template
 flags and both strings. It forces flag bit 0 on and registers the object with
 `GetGameManager()`. The constructor and the template normalizer are present in
-`src/gameobject.cpp`, currently annotated STUB pending a linkable base dispatch
+`src/game/objects/gameobject.cpp`, currently annotated STUB pending a linkable base dispatch
 table and reccmp review.
 
 The deleting destructor at `0x004534e0` is 30 bytes, and the base destructor at

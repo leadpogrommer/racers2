@@ -57,7 +57,7 @@ On 2026-10-17 the reconstructed executable ran from the supplied installation
 under Wine and exited with code 0. Runtime initialization constructed the
 application and accessed the per-user
 `C:\users\ilya\Documents\Games\LEGO Racers 2\Saved Games\LR2.cfg` path.
-The ignored `build/runtime-application-startup.log` trace records full reads of
+The ignored `build/msvc/runtime-application-startup.log` trace records full reads of
 FILELIST.INF (784,312 bytes) and COMPRESS.INF (43,740 bytes), and the redirected
 read-only open of GAMEDATA.GTC. A separate ignored asset probe exercises
 compressed reads of three shipped files, including a texture spanning three

@@ -9,7 +9,7 @@ import struct
 from check_renderer_resource_dispatch import verify
 from check_application_dispatch import map_symbols
 from folded_functions import code_bytes
-from toolchain import ROOT
+from toolchain import DEFAULT_BUILD_DIR, ROOT
 
 TABLES = {
     'foyer_action_0': (0x0053334c, 4, 'g_foyerSceneActionDispatch0'),
@@ -128,7 +128,7 @@ def verify_constant_callbacks(original, rebuilt, link_map, inventory):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--original", type=Path, default=ROOT.parent / "LEGO Racers 2" / "LEGO Racers 2.exe")
-    parser.add_argument("--build-dir", type=Path, default=ROOT / "build")
+    parser.add_argument("--build-dir", type=Path, default=DEFAULT_BUILD_DIR)
     args = parser.parse_args()
     try:
         verify(args.original, args.build_dir / "LEGO Racers 2.exe", args.build_dir / "legoracers2.map",

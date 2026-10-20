@@ -8,11 +8,12 @@ from pathlib import Path
 import shutil
 import subprocess
 
-from toolchain import DEFAULT_TOOLCHAIN, ROOT, validate
+from toolchain import (
+    DEFAULT_BUILD_DIR, DEFAULT_DIRECTX8_CONFIG, DEFAULT_RESOURCES,
+    DEFAULT_TOOLCHAIN, ROOT, validate,
+)
 from platform_imports import shfolder_library
 
-DEFAULT_DIRECTX8_CONFIG = ROOT / "build-dx8-config" / "directx8-config.json"
-DEFAULT_RESOURCES = ROOT / "build-resources" / "retail.res"
 
 
 def windows_path(path):
@@ -60,7 +61,7 @@ def build(build_dir, toolchain, source_list=None, shfolder_lib=None, directx8_co
 
     source_list = source_list or ROOT / "sources.txt"
     sources = source_list.read_text(encoding="utf-8").splitlines()
-    if not directx8_config and "LEGO Racers 2/src/renderer.cpp" in sources:
+    if not directx8_config and any(Path(source).name == "renderer.cpp" for source in sources):
         raise ValueError("Renderer sources require DX8 setup: run tools/directx8.py --mode wine or --mode sdk")
     objects = []
     for source in sources:
@@ -116,7 +117,7 @@ def build(build_dir, toolchain, source_list=None, shfolder_lib=None, directx8_co
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--build-dir", type=Path, default=ROOT / "build")
+    parser.add_argument("--build-dir", type=Path, default=DEFAULT_BUILD_DIR)
     parser.add_argument("--source-list", type=Path, help="Alternate source manifest for an isolated worker build")
     parser.add_argument("--shfolder-lib", type=Path, help="x86 SDK or Wine SHFOLDER import archive (also SHFOLDER_LIB)")
     parser.add_argument("--directx8-config", type=Path, default=os.environ.get("LR2_DIRECTX8_CONFIG") or

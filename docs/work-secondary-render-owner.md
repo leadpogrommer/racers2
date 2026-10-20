@@ -47,8 +47,8 @@ against raw control flow. No game behavior tests, game runs or asset probes were
 performed. The staged Foyer animation, character/menu/controller initialization
 and actual entry path still need combined integration; the menu has not launched.
 
-Logs: build/secondary-render-owner-final-build.log,
-build/secondary-render-owner-final-compare.log,
-build/reports/secondary-render-owner-datacmp.txt and corresponding CMake paths;
-build/secondary-render-owner-dispatch.log and
-build/secondary-render-owner-tooling-tests.log.
+Logs: build/msvc/secondary-render-owner-final-build.log,
+build/msvc/secondary-render-owner-final-compare.log,
+build/msvc/reports/secondary-render-owner-datacmp.txt and corresponding CMake paths;
+build/msvc/secondary-render-owner-dispatch.log and
+build/msvc/secondary-render-owner-tooling-tests.log.

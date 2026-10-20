@@ -55,10 +55,10 @@ across 267 globals; the fade constant's bytes are separately checked through
 both linker maps. All 21 retained tooling tests pass. No game behavior test,
 asset probe or runtime run was performed.
 
-Logs: `build/backdrop-supervisor-build.log`,
-`build/backdrop-supervisor-final-compare.log`,
-`build/reports/backdrop-supervisor-datacmp.txt` and corresponding CMake paths;
+Logs: `build/msvc/backdrop-supervisor-build.log`,
+`build/msvc/backdrop-supervisor-final-compare.log`,
+`build/msvc/reports/backdrop-supervisor-datacmp.txt` and corresponding CMake paths;
 dispatch, tooling-test and fade-storage checks are in
-`build/backdrop-supervisor-dispatch.log`, `build/backdrop-supervisor-tooltests.log`
-and `build/backdrop-fade-storage.log`. Unlinked worker annotations may still
+`build/msvc/backdrop-supervisor-dispatch.log`, `build/msvc/backdrop-supervisor-tooltests.log`
+and `build/msvc/backdrop-fade-storage.log`. Unlinked worker annotations may still
 produce missing-symbol notices and are outside the canonical measured count.
