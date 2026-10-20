@@ -54,7 +54,7 @@ def verified_aliases(original, rebuilt, link_map, aliases, sizes):
     return result
 
 
-def supplement_report(root, build_dir):
+def supplement_report(root, build_dir, inventory=None):
     original = (root.parent / "LEGO Racers 2" / "LEGO Racers 2.exe").read_bytes()
     rebuilt = (build_dir / "LEGO Racers 2.exe").read_bytes()
     link_map = (build_dir / "legoracers2.map").read_text(encoding="latin-1")
@@ -72,8 +72,14 @@ def supplement_report(root, build_dir):
             raise ValueError(f"Folded inventory conflicts with measured claim: 0x{address:08x}")
         rows[address] = alias
     report["data"] = [rows[address] for address in sorted(rows)]
+    if inventory is not None:
+        inventory.require_addresses(int(row["address"], 16) for row in report["data"]
+                                    if row.get("type", 1) == 1)
+        if report["function_count"] != inventory.total:
+            raise ValueError("Report denominator differs from the original function inventory")
+        report["function_inventory"] = inventory.metadata
     path.write_text(json.dumps(report, separators=(",", ":")))
-    print(f"Verified {len(verified)} complete folded bodies against both PEs and exact linker-map symbols.")
+    print(f"Verified {len(verified)} complete folded bodies against both PEs and exact linker-map symbols.", flush=True)
     # Re-render the same report so its additional measured rows are visible.
     from reccmp.compare.report import deserialize_reccmp_report, report_function_accuracy
     from reccmp.utils import gen_svg, write_html_report
@@ -82,3 +88,4 @@ def supplement_report(root, build_dir):
     implemented, _, accuracy = report_function_accuracy(status)
     gen_svg(str(path.with_suffix(".svg")), status.filename, None,
             implemented, status.function_count, accuracy)
+    return status

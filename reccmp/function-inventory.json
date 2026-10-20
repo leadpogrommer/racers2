@@ -1,0 +1,17 @@
+{
+  "format": 1,
+  "original_sha256": "6ed248b0ee8e52669ca93f0a2d7eb4c4c2c7ed477550a5f488bfe029270d854d",
+  "inventory_sha256": "676f4a8137fc69dbd62551bd5f989741782b8ee24cd24199bd0d1bafc0a9e85e",
+  "function_count": 6612,
+  "thunk_count": 965,
+  "exhaustive": false,
+  "scope": "Unique internal executable function entries, including linked libraries, compiler helpers and thunks; excludes external imports and inlined functions.",
+  "source": "Ghidra analysis after SeedFunctionInventory.java, exported by ExportWorkRanges.java",
+  "source_export_sha256": "aec4a2e69e3afa5f3cdaf062d042424575d468c72f503ee07602c182795dba37",
+  "executable_ranges": [
+    [
+      "00401000",
+      "0052ea08"
+    ]
+  ]
+}

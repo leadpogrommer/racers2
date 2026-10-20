@@ -8,7 +8,7 @@ paused at the user's request. A playable race has not been verified.
 Both 465-unit SP5 builds agree on all **2,715 measured scores and statuses**:
 **588 exact functions, 31 reviewed near matches and 2,096 STUB reconstructions**.
 Twenty complete folded aliases, twelve dispatch inventories per build (including
-1,279 scene pointers), and 22 tooling/library tests pass. One
+1,279 scene pointers), and 29 tooling/library tests pass. One
 additional STUB (`BeginMenuManagerMode`, `0x0041dd50`) has a linker symbol but no
 separate reccmp row after folding; it is not counted as implemented.
 
@@ -17,10 +17,26 @@ equivalent duplicate-string pointer aliases; original/rebuilt bytes and sharing
 were independently checked against the current PE/PDB. Other compared data agrees.
 See [menu startup evidence](work-menu-startup.md).
 
-These counts describe the reconstructed subset, not whole-game coverage. The
-Ghidra inventory has **4,847 provisional starts**, including thunks and libraries.
-Library identification remains in place; comparisons exclude known libraries with
-`--nolib`. Matching is a diagnostic, secondary to the running game.
+`tools/compare.py` now measures function-count coverage against **6,612 original
+binary entries**, including **965 thunks** and **5,647 bodies**. Its final summary,
+after complete folded-body verification, agrees across console, JSON, HTML and SVG:
+
+```text
+Implemented:  9.36%  (619 / 6612)
+Accuracy:     99.83%
+Progress:     9.35%
+```
+
+The old denominator of 2,734 covered annotated functions only. The former Ghidra
+snapshot of 4,847 was also incomplete: seeding verified CRT startup entries,
+their jump targets and reviewed boundaries, then reanalyzing, added 1,765 starts.
+The tracked [inventory](../reccmp/function-inventory.csv) includes linked libraries
+and compiler helpers; external imports and inlined functions are excluded.
+Discovery and boundaries are not proven exhaustive. Library identification remains
+in place; comparisons exclude known libraries with `--nolib` while retaining them
+in the whole-binary denominator. See [inventory evidence](research.md).
+Matching is a diagnostic, secondary to the running game; these percentages do not
+measure runtime completeness.
 
 | Original VA | Function | Instruction accuracy | Status |
 | --- | --- | ---: | --- |

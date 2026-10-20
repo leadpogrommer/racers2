@@ -81,6 +81,6 @@ public class ExportWorkRanges extends GhidraScript {
             decompiler.dispose();
         }
         println("Discovered " + count + " functions; exported " + exported + " worker candidates.");
-        println("Discovery counts and body sizes require review; do not use them as verified progress totals.");
+        println("Discovery is provisional and includes libraries/thunks. Refresh the reporting inventory with tools/function_inventory.py; body sizes still require review.");
     }
 }

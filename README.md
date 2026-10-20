@@ -13,9 +13,10 @@ and [remaining work](docs/runtime-roadmap.md).
 
 The compiler is **Visual C++ 6.0 SP5**: CL **12.00.8804**, with the
 **12.00.8966 code generator**. See [compiler evidence](docs/compiler.md).
-Matching remains secondary to getting the game running. Whole-game coverage
-is not established; the measured subset and library identification are tracked
-in the progress and [library notes](docs/library-identification.md).
+Matching remains secondary to getting the game running. Reports use an original
+binary inventory of **6,612 function entries**, including libraries and thunks;
+discovery is not proven exhaustive. The measured subset and library identification
+are tracked in the progress and [library notes](docs/library-identification.md).
 
 ## Repository layout
 
@@ -117,9 +118,15 @@ accuracy threshold. `FUNCTION` includes exact matches and reviewed semantically
 identical near matches; their actual scores stay visible. The optional
 `python tools/check_matches.py build/msvc/reports/LEGORACERS2.json --require-exact`
 check requires 100% raw matches.
-Report coverage is relative to annotated functions; the whole-game function
-total is unknown. CRT symbols are excluded with `--nolib`, and remain available
-for explicit comparisons.
+The console, JSON, HTML and SVG use the tracked
+[`reccmp/function-inventory.csv`](reccmp/function-inventory.csv) for their total,
+including original functions with no source annotation. The current summary is
+**619 / 6,612 implemented (9.36%)**, **99.83% accuracy**, **9.35% progress**.
+Verified folded bodies contribute before the summary is printed. Known libraries
+are excluded from implemented comparisons with `--nolib`; they remain in the
+whole-binary denominator and can be compared explicitly. This inventory includes
+compiler helpers and thunks, excludes external imports, and may grow as discovery
+improves. See [inventory scope and refresh instructions](docs/research.md).
 
 For direct tool use, run from `build/msvc/` with the virtual environment active:
 

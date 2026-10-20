@@ -170,8 +170,12 @@ perfect matching must not block progress toward a playable game.
 - Compare functions and vtables after layout changes and run `reccmp-datacmp`
   when changing annotated data. A type, calling convention, or class hierarchy
   must be supported by disassembly/callers and matching output.
-- Never report percentages over the annotated subset as whole-game completion.
-  There is no verified whole-game function count yet.
+- Use `tools/compare.py` for coverage: its denominator is the tracked original
+  entry inventory in `reccmp/function-inventory.csv`, not the annotated subset.
+  It includes linked libraries, compiler helpers and thunks, and is provisional
+  rather than a proven exhaustive count of game-authored functions. Refresh it
+  with `tools/function_inventory.py` after reviewing new Ghidra discoveries;
+  see `docs/research.md`. Never equate function-count progress with playability.
 
 ## C++ style
 
