@@ -106,32 +106,34 @@ LegoU32 __fastcall PauseDetectorUpdate(GameObject*, void*, LegoU32)
 		shouldRequestPause = FALSE;
 	}
 
+	SecondaryManager* secondary = (SecondaryManager*) g_gameController.m_secondaryManager;
+	if (secondary->m_state != 9 || shouldRequestPause == FALSE) {
+		return 0;
+	}
+
 	GameObject* selectedObject = NULL;
 	LegoBool32 foundInputObject = FALSE;
-	if (((PauseManagerStateView*) g_gameController.m_secondaryManager)->m_state == 9 && shouldRequestPause != FALSE) {
-		GameControllerSession* session = g_gameControllerSession;
-		LegoS32 index = 0;
-		if ((LegoS32) session->m_unk0x18 > 0) {
-			for (;;) {
-				session = g_gameControllerSession;
-				if (index >= (LegoS32) session->m_unk0x18) {
+	GameControllerSession* session = g_gameControllerSession;
+	LegoS32 index = 0;
+	if ((LegoS32) session->m_unk0x18 > 0) {
+		for (;;) {
+			session = g_gameControllerSession;
+			if (index >= (LegoS32) session->m_unk0x18) {
+				break;
+			}
+			GameObject* object = (GameObject*) session->m_unk0x28[index];
+			if (object != NULL && ((LegoU32*) object)[0x6c / 4] == 1) {
+				void* selectedData = SelectPauseTargetData(object, NULL, 0);
+				if ((((PauseTargetFlagsView*) selectedData)->m_flags & 0x200) != 0) {
+					selectedObject = object;
+					foundInputObject = TRUE;
 					break;
 				}
-				GameObject* object = (GameObject*) session->m_unk0x28[index];
-				if (object != NULL && ((LegoU32*) object)[0x6c / 4] == 1) {
-					void* selectedData = SelectPauseTargetData(object, NULL, 0);
-					if ((((PauseTargetFlagsView*) selectedData)->m_flags & 0x200) != 0) {
-						selectedObject = object;
-						foundInputObject = TRUE;
-						break;
-					}
-				}
-				++index;
 			}
+			++index;
 		}
 	}
 
-	SecondaryManager* secondary = (SecondaryManager*) g_gameController.m_secondaryManager;
 	if (PauseConditionSlotIsSet(secondary->m_unk0x78, NULL) != FALSE) {
 		selectedObject = secondary;
 	}

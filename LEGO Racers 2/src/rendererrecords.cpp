@@ -196,7 +196,7 @@ RendererResourceRef* DisplayRenderer::FindTextureReference(void* p_resource)
 {
 	for (LegoS32 i = 0; i < m_resourceReferenceCount; i++) {
 		RendererResourceRef* reference = &m_resourceReferences[i];
-		if (reference->m_resource == p_resource && reference->m_referenceCount != 0) {
+		if (reference->m_resource == p_resource && reference->m_resourceType != 0) {
 			return reference;
 		}
 	}

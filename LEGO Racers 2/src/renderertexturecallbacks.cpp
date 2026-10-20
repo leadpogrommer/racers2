@@ -27,8 +27,8 @@ struct DisplayRendererTextureLoadDispatch {
 	RendererTexturePathAction m_prepareTexturePath; // 0xdc
 	RendererTextureImageAction m_loadTextureImage;  // 0xe0
 	undefined m_unk0xe4[0x04];
-	RendererPathPolicy m_useHighResolutionTextures; // 0xe8
-	RendererCubeFaceAction m_loadCubeFace;          // 0xec
+	RendererPathPolicy m_supportsCubeTextures; // 0xe8
+	RendererCubeFaceAction m_loadCubeFace;     // 0xec
 };
 
 struct DisplayRendererTextureReleaseDispatch {
@@ -153,8 +153,8 @@ LegoBool32 __fastcall LoadMipSidecar(
 {
 	LegoChar mipPath[136];
 	strcpy(mipPath, p_path);
-	SetMipSuffix(mipPath, ".TGA");
 	LegoChar* const originalSuffix = mipPath + strlen(mipPath) - 4;
+	strcpy(originalSuffix, "_NM");
 	strcat(mipPath, ".MIP");
 
 	if (p_image->LoadTga(mipPath, 0) != FALSE) {
@@ -177,7 +177,7 @@ LegoBool32 __fastcall EnsureMipSidecar(RendererTextureRecord*, void*, const Lego
 {
 	LegoChar mipPath[132];
 	strcpy(mipPath, p_path);
-	strcat(mipPath, ".MIP");
+	SetMipSuffix(mipPath, ".MIP");
 
 	if (p_image->LoadTga(mipPath, 0) != FALSE) {
 		return TRUE;
@@ -207,18 +207,17 @@ LegoBool32 RendererTextureRecord::Load()
 	if (m_resourceType == 9) {
 		const LegoChar* filename = strrchr(m_resourcePath, '\\');
 		filename = filename != NULL ? filename + 1 : m_resourcePath;
-		if (strcmp(filename, "DEFAULT SKY BOX.TGA") == 0) {
-			m_flags0x90 = (m_flags0x90 & 0xfffd) | 2;
-		}
+		m_flags0x90 = (m_flags0x90 & 0xfffd) | (strcmp(filename, "DEFAULT SKY BOX.TGA") == 0 ? 2 : 0);
 	}
 
-	if (m_resourceType == 9 && dispatch->m_useHighResolutionTextures(renderer, NULL) == TRUE) {
+	if (m_resourceType == 9 && dispatch->m_supportsCubeTextures(renderer, NULL) == TRUE) {
 		static const LegoChar* const faces[6] = {"_RT.TGA", "_LF.TGA", "_DN.TGA", "_UP.TGA", "_BK.TGA", "_FR.TGA"};
 		LegoChar facePath[132];
 		strcpy(facePath, m_resourcePath);
+		LegoChar* const faceSuffix = facePath + strlen(m_resourcePath) - 4;
 		LegoS32 faceIndex;
 		for (faceIndex = 0; faceIndex < 6; faceIndex++) {
-			strcpy(facePath + strlen(m_resourcePath), faces[faceIndex]);
+			strcpy(faceSuffix, faces[faceIndex]);
 			if (EnsureMipSidecar(this, NULL, facePath, &image) == FALSE) {
 				image.ReleaseStorage();
 				return FALSE;

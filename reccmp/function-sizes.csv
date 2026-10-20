@@ -1023,6 +1023,8 @@ address,type,size
 00464a60,function,53
 00464bb0,function,109
 00464d30,function,53
+004654e0,function,979
+004658f0,function,2759
 00466470,function,3849
 00467380,function,82
 004673e0,function,34
@@ -1160,6 +1162,7 @@ address,type,size
 0047f4b0,function,376
 0047f630,function,101
 0047f6a0,function,52
+0047f6e0,function,69
 0047f730,function,240
 0047f820,function,236
 0047f910,function,121

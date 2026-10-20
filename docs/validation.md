@@ -560,3 +560,17 @@ within-group sharing. No check was suppressed or weakened. See
 WinMain now forwards to the recovered entry. The CD media tree is extracted from
 the supplied MODE2/2352 disc, with all 94 files checked by size and SHA-256. The
 checkpoint is static validation; menu rendering remains to be verified.
+
+
+## Runtime-confirmed menu checkpoint (2026-10-20)
+
+The user confirmed menu navigation, corrected colors and sound. A passive window
+capture verifies the textured Sound submenu. The menu-only checkpoint is separate
+from paused, unverified New Game recovery. Both SP5 builders link 465 units and
+agree on 2,715 measured rows: 588 exact, 31 reviewed near and 2,096 STUB rows.
+All 619 implemented claims, twenty complete folded aliases, twelve dispatch
+checks per build and the existing 21 tooling/library tests pass. One folded STUB
+at 0x0041dd50 has no separate row. Data comparison covers 477 globals, with only
+the independently verified five string aliases in two variables flagged. No
+checks were suppressed and no game-behavior tests were added. See
+[working menu evidence](work-menu-startup.md#working-menu-checkpoint-2026-10-20).

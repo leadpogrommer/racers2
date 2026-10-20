@@ -71,11 +71,15 @@ static LegoU32 __fastcall GetSecondaryBrickBuilderSize(GameObject*, void*);
 static void __fastcall LoadSecondaryWheelModels(SecondaryCarSelector*, void*);
 static void __fastcall ReleaseSecondaryWheelModels(SecondaryCarSelector*, void*);
 void __fastcall BuildSecondaryCarSelectorGrid(SecondaryCarSelector*, void*);
+static void InitializeSecondaryCarMenuItems();
+static void InitializeSecondaryCarPanelSprites();
 static void InitializeSecondaryBuilderGridDimensions();
 static void InitializeSecondaryBuilderCellDimensions();
 struct SecondaryBuilderTuningStartup {
 	SecondaryBuilderTuningStartup()
 	{
+		InitializeSecondaryCarMenuItems();
+		InitializeSecondaryCarPanelSprites();
 		InitializeSecondaryBuilderGridDimensions();
 		InitializeSecondaryBuilderCellDimensions();
 	}
@@ -114,7 +118,7 @@ extern const SecondaryBrickBuilderDispatch g_secondaryBrickBuilderDispatch = {
 };
 
 // GLOBAL: LEGORACERS2 0x005461b8
-static const SecondarySelectionSpriteDefinition g_carSelectorSpriteDefinitions[26] = {
+static SecondarySelectionSpriteDefinition g_carSelectorSpriteDefinitions[26] = {
 	{"BackBottom",
 	 {0.0f, 0.25f, 1.0f, 1.0f},
 	 {0.100000001f, 0.125f},
@@ -409,7 +413,9 @@ struct SecondaryCarItemCatalogue {
 	SecondaryCarModelItemDefinition m_garage;
 	SecondaryCarTextureItemDefinition m_accept;
 	SecondaryCarTextureItemDefinition m_cancel;
-	SecondarySelectionItemDefinition m_other[9];
+	SecondaryCarModelItemDefinition m_carModel;
+	SecondaryCarTextureItemDefinition m_categoryIcons[5];
+	SecondaryCarTextureItemDefinition m_actions[3];
 };
 DECOMP_SIZE_ASSERT(SecondaryCarTextureItemDefinition, 0x44);
 DECOMP_SIZE_ASSERT(SecondaryCarModelItemDefinition, 0x44);
@@ -418,11 +424,23 @@ DECOMP_STATIC_ASSERT(offsetof(SecondaryCarModelItemDefinition, m_modelPath) == 0
 DECOMP_STATIC_ASSERT(offsetof(SecondaryCarItemCatalogue, m_garage) == 1 * 0x44);
 DECOMP_STATIC_ASSERT(offsetof(SecondaryCarItemCatalogue, m_accept) == 2 * 0x44);
 DECOMP_STATIC_ASSERT(offsetof(SecondaryCarItemCatalogue, m_cancel) == 3 * 0x44);
-DECOMP_STATIC_ASSERT(offsetof(SecondaryCarItemCatalogue, m_other) == 4 * 0x44);
+DECOMP_STATIC_ASSERT(offsetof(SecondaryCarItemCatalogue, m_carModel) == 4 * 0x44);
+DECOMP_STATIC_ASSERT(offsetof(SecondaryCarItemCatalogue, m_categoryIcons) == 5 * 0x44);
+DECOMP_STATIC_ASSERT(offsetof(SecondaryCarItemCatalogue, m_actions) == 10 * 0x44);
 DECOMP_SIZE_ASSERT(SecondaryCarItemCatalogue, 13 * 0x44);
 
+// GLOBAL: LEGORACERS2 0x00545c34
+static const LegoChar* g_carSelectorHeaderPaths[6] = {
+	"Game Data\\Frontend\\Car Builder Bits\\Meshes for headers\\car icon.MD2",
+	"Game Data\\Frontend\\Car Builder Bits\\square brick logo PC.tga",
+	"Game Data\\Frontend\\Car Builder Bits\\sloped brick logo PC.tga",
+	"Game Data\\Frontend\\Car Builder Bits\\weird brick logo PC.tga",
+	"Game Data\\Frontend\\Car Builder Bits\\windows logo PC.tga",
+	"Game Data\\Frontend\\Car Builder Bits\\trim logo PC.tga"
+};
+
 // GLOBAL: LEGORACERS2 0x00545c50
-static const SecondaryCarItemCatalogue g_carSelectorItems = {
+static SecondaryCarItemCatalogue g_carSelectorItems = {
 	{{0x00000000, 0x00000002, 0x00000001},
 	 "Game Data\\Frontend\\Car Builder Bits\\Chassis logo.tga",
 	 {0x00000000,
@@ -482,161 +500,140 @@ static const SecondaryCarItemCatalogue g_carSelectorItems = {
 	  0xffffffff,
 	  0xffffffff,
 	  0xffffffff}},
-	{
-		{{0x00000002,
-		  0x00000003,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000}},
-		{{0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000}},
-		{{0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000}},
-		{{0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000}},
-		{{0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000}},
-		{{0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000}},
-		{{0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000}},
-		{{0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000}},
-		{{0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000,
-		  0x00000000}},
-	}
+	{{0x00000002, 0x00000003, 0x00000000, 0x00000000},
+	 NULL,
+	 {0x00000000,
+	  0x00000000,
+	  0x00000000,
+	  0x00000000,
+	  0x00000000,
+	  0x00000000,
+	  0x00000000,
+	  0x00000000,
+	  0x00000000,
+	  0x00000000,
+	  0x00000000,
+	  0x00000000}},
+	{{{0x00000000, 0x00000000, 0x00000000},
+	  NULL,
+	  {0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000}},
+	 {{0x00000000, 0x00000000, 0x00000000},
+	  NULL,
+	  {0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000}},
+	 {{0x00000000, 0x00000000, 0x00000000},
+	  NULL,
+	  {0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000}},
+	 {{0x00000000, 0x00000000, 0x00000000},
+	  NULL,
+	  {0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000}},
+	 {{0x00000000, 0x00000000, 0x00000000},
+	  NULL,
+	  {0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000}}},
+	{{{0x00000000, 0x00000000, 0x00000000},
+	  NULL,
+	  {0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000}},
+	 {{0x00000000, 0x00000000, 0x00000000},
+	  NULL,
+	  {0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000}},
+	 {{0x00000000, 0x00000000, 0x00000000},
+	  NULL,
+	  {0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000,
+	   0x00000000}}}
 };
 
 extern const LegoS32 g_secondaryWorldCarStarts[5], g_secondaryWorldCarCounts[5];
@@ -784,6 +781,117 @@ static void __fastcall ClearSecondaryBuilderGrid(SecondaryBrickBuilder* p_builde
 static void __fastcall FreeSecondaryBuilderGrid(SecondaryBrickBuilder* p_builder, void*)
 {
 	GetMemoryHeap()->Free(p_builder->m_grid);
+}
+
+// STUB: LEGORACERS2 0x004654e0
+static void InitializeSecondaryCarMenuItems()
+{
+	SecondaryCarModelItemDefinition car = {
+		{2, 3, 0, 0},
+		g_carSelectorHeaderPaths[0],
+		{0, 1, 0xffffffff, 0xffffffff, 0x3fc00000, 0, 0, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff}
+	};
+	g_carSelectorItems.m_carModel = car;
+	static const LegoU32 scales[5] = {0x3f800000, 0x40000000, 0x40000000, 0x3fc00000, 0x40000000};
+	for (LegoU32 category = 0; category < 5; ++category) {
+		SecondaryCarTextureItemDefinition icon = {
+			{2, 4 + category, 1 + category},
+			g_carSelectorHeaderPaths[1 + category],
+			{0,
+			 0,
+			 0,
+			 0xffffffff,
+			 0xffffffff,
+			 scales[category],
+			 0,
+			 0,
+			 0xffffffff,
+			 0xffffffff,
+			 0xffffffff,
+			 0xffffffff,
+			 0xffffffff}
+		};
+		g_carSelectorItems.m_categoryIcons[category] = icon;
+	}
+	SecondaryCarTextureItemDefinition accept = {
+		{2, 9, 999},
+		"Game Data\\Frontend\\Ch Builder Bits\\tick.tga",
+		{0, 0, 0, 0x57, 0xffffffff, 0, 0, 0, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff}
+	};
+	SecondaryCarTextureItemDefinition save = {
+		{10, 0xffffffff, 0},
+		"Game Data\\Frontend\\Ch Builder Bits\\tick.tga",
+		{0, 0, 0, 0x217, 0xffffffff, 0, 0, 0, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff}
+	};
+	SecondaryCarTextureItemDefinition cancel = {
+		{10, 0xffffffff, 1},
+		"Game Data\\Frontend\\Ch Builder Bits\\cross2.tga",
+		{0, 0, 0, 0x218, 0xffffffff, 0, 0, 0, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff}
+	};
+	g_carSelectorItems.m_actions[0] = accept;
+	g_carSelectorItems.m_actions[1] = save;
+	g_carSelectorItems.m_actions[2] = cancel;
+}
+
+static void DefineSecondaryCarPanelSprites(
+	LegoU32 p_first,
+	const LegoChar* const* p_names,
+	LegoFloat p_left,
+	LegoFloat p_top,
+	LegoFloat p_width,
+	LegoFloat p_height,
+	LegoFloat p_borderX,
+	LegoFloat p_borderY
+)
+{
+	static const LegoChar* const paths[9] = {
+		"Game Data\\Frontend\\Ch Builder Bits\\ch top left.tga",
+		"Game Data\\Frontend\\Ch Builder Bits\\ch top mid.tga",
+		"Game Data\\Frontend\\Ch Builder Bits\\ch top right.tga",
+		"Game Data\\Frontend\\Ch Builder Bits\\ch left.tga",
+		"Game Data\\Frontend\\Ch Builder Bits\\ch middle.tga",
+		"Game Data\\Frontend\\Ch Builder Bits\\ch right.tga",
+		"Game Data\\Frontend\\Ch Builder Bits\\ch bottom left.tga",
+		"Game Data\\Frontend\\Ch Builder Bits\\ch bottom mid.tga",
+		"Game Data\\Frontend\\Ch Builder Bits\\ch bottom right.tga"
+	};
+	// Retail keeps the unrounded sums in x87 while subtracting the borders.
+	double right = (double) p_left + p_width;
+	double bottom = (double) p_top + p_height;
+	LegoFloat columns[4] = {p_left, p_left + p_borderX, (LegoFloat) (right - p_borderX), (LegoFloat) right};
+	LegoFloat rows[4] = {p_top, p_top + p_borderY, (LegoFloat) (bottom - p_borderY), (LegoFloat) bottom};
+	for (LegoU32 row = 0; row < 3; ++row) {
+		for (LegoU32 column = 0; column < 3; ++column) {
+			LegoU32 index = row * 3 + column;
+			SecondarySelectionSpriteDefinition definition = {
+				p_names[index],
+				{columns[column], rows[row], columns[column + 1], rows[row + 1]},
+				{0.0f, 0.0f},
+				0xffffffff,
+				paths[index],
+				{0.0f, 1.0f, 1.0f, 0.0f},
+				0,
+				7,
+				0,
+				5
+			};
+			g_carSelectorSpriteDefinitions[p_first + index] = definition;
+		}
+	}
+}
+
+// STUB: LEGORACERS2 0x004658f0
+static void InitializeSecondaryCarPanelSprites()
+{
+	static const LegoChar* const topDownNames[9] =
+		{"TopDown0", "TopDown1", "TopDown2", "TopDown3", "TopDown4", "TopDown5", "TopDown6", "TopDown7", "TopDown8"};
+	static const LegoChar* const threeDNames[9] =
+		{"ThreeD0", "ThreeD1", "ThreeD2", "ThreeD3", "ThreeD4", "ThreeD5", "ThreeD6", "ThreeD7", "ThreeD8"};
+	LegoFloat topDownBorder = 0.585f * 0.05f;
+	DefineSecondaryCarPanelSprites(8, topDownNames, 0.015f, 0.315f, 0.585f, 0.5f, topDownBorder, topDownBorder);
+	LegoFloat threeDBorderX = 0.365f * 0.07f;
+	LegoFloat threeDBorderY = 0.455f * 0.07f;
+	DefineSecondaryCarPanelSprites(17, threeDNames, 0.615f, 0.36f, 0.365f, 0.455f, threeDBorderX, threeDBorderY);
 }
 
 // STUB: LEGORACERS2 0x00467520

@@ -108,7 +108,7 @@ void __fastcall AdvanceGlobalOverlayText(GlobalOverlayRecord* p_record, void*, L
 			return;
 		}
 		p_record->m_animationTime -= p_record->m_elapsed;
-		p_record->m_text[index + 1] = p_record->m_text[index + 2];
+		p_record->m_text[index] = p_record->m_text[index + 1];
 		p_record->m_characterIndex = index + 1;
 
 		for (LegoS32 schedule = 0; schedule < p_record->m_textLength; ++schedule) {
@@ -116,7 +116,7 @@ void __fastcall AdvanceGlobalOverlayText(GlobalOverlayRecord* p_record, void*, L
 				--p_record->m_characterAnimationIndices[schedule];
 			}
 		}
-		p_record->m_text[p_record->m_characterIndex + 1] = 0;
+		p_record->m_text[p_record->m_characterIndex] = 0;
 		if (!(p_record->m_animationTime > p_record->m_elapsed)) {
 			return;
 		}
@@ -137,17 +137,20 @@ LegoFloat __fastcall MeasureGlobalOverlayText(GlobalOverlayRecord* p_record, voi
 
 	LegoU32 characterSchedule = p_record->m_textLength != 0 ? p_record->m_characterAnimationIndices[0] : 0xffffffff;
 	LegoU32 characterIndex = 0;
+	LegoU32 scheduleIndex = 0;
+	LegoU32 textIndex = 0;
 	LegoFloat width = 0.0f;
 	GlobalOverlayGlyphReplacementManagerView* replacements =
 		(GlobalOverlayGlyphReplacementManagerView*) g_globalOverlayManager.m_unk0x2494c;
 
-	while (p_record->m_text[characterIndex] != 0) {
+	while (p_record->m_text[textIndex] != 0) {
 		LegoFloat advance = 0.0f;
-		LegoU16 character = p_record->m_text[characterIndex];
+		LegoU32 matchedLength = 1;
+		LegoU16 character = p_record->m_text[textIndex];
 		if (characterIndex == characterSchedule) {
-			++characterSchedule;
-			if (characterSchedule < (LegoU32) p_record->m_textLength) {
-				characterSchedule = p_record->m_characterAnimationIndices[characterSchedule];
+			++scheduleIndex;
+			if (scheduleIndex < (LegoU32) p_record->m_textLength) {
+				characterSchedule = p_record->m_characterAnimationIndices[scheduleIndex];
 			}
 			else {
 				characterSchedule = 0xffffffff;
@@ -164,14 +167,7 @@ LegoFloat __fastcall MeasureGlobalOverlayText(GlobalOverlayRecord* p_record, voi
 			advance = (font->m_spacing + *(LegoFloat*) ((LegoU8*) font + 0x24)) * font->m_scaleX;
 		}
 		else {
-			BitmapGlyphQuad quad;
-			quad.m_left = 0.0f;
-			quad.m_top = 0.0f;
-			LegoU32 hasAdvance = TRUE;
-			font->GetGlyphMetrics(character, &quad, &advance);
-			if (hasAdvance == 0) {
-				advance = 0.0f;
-			}
+			font->GetTextAdvance(&p_record->m_text[textIndex], &matchedLength, &advance);
 		}
 
 		if (scaleBoth != FALSE) {
@@ -179,6 +175,7 @@ LegoFloat __fastcall MeasureGlobalOverlayText(GlobalOverlayRecord* p_record, voi
 		}
 		width += advance;
 		++characterIndex;
+		textIndex += matchedLength;
 	}
 	return width;
 }

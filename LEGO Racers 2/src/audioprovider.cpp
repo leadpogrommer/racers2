@@ -25,11 +25,26 @@ LegoBool32 InitializeDirectSoundOutput(
 {
 	HRESULT result = DirectSoundCreate8(NULL, p_device, NULL);
 	if (result != DS_OK) {
+		if (p_mono == FALSE) {
+			*p_device = NULL;
+		}
 		return FALSE;
 	}
 
 	IDirectSound8* device = *p_device;
 	result = device->SetCooperativeLevel(p_window, DSSCL_PRIORITY);
+	if (result != DS_OK) {
+		device->Release();
+		return FALSE;
+	}
+
+	DSBUFFERDESC description;
+	ZeroMemory(&description, sizeof(description));
+	description.dwSize = 0x24;
+	description.dwFlags = DSBCAPS_PRIMARYBUFFER;
+
+	IDirectSoundBuffer* primaryBuffer;
+	result = device->CreateSoundBuffer(&description, p_primaryBuffer, NULL);
 	if (result != DS_OK) {
 		device->Release();
 		return FALSE;
@@ -44,19 +59,6 @@ LegoBool32 InitializeDirectSoundOutput(
 	format.wBitsPerSample = 16;
 	format.cbSize = 0;
 
-	DSBUFFERDESC description;
-	ZeroMemory(&description, sizeof(description));
-	description.dwSize = 0x24;
-	description.dwFlags = DSBCAPS_PRIMARYBUFFER;
-	description.lpwfxFormat = &format;
-
-	IDirectSoundBuffer* primaryBuffer;
-	result = device->CreateSoundBuffer(&description, p_primaryBuffer, NULL);
-	if (result != DS_OK) {
-		device->Release();
-		return FALSE;
-	}
-
 	primaryBuffer = *p_primaryBuffer;
 	result = primaryBuffer->SetFormat(&format);
 	if (result != DS_OK) {
@@ -65,7 +67,10 @@ LegoBool32 InitializeDirectSoundOutput(
 		return FALSE;
 	}
 
-	primaryBuffer->Release();
+	if (primaryBuffer->Release() != 0) {
+		device->Release();
+		return FALSE;
+	}
 	*p_primaryBuffer = NULL;
 	*p_initializationStatus = TRUE;
 	return TRUE;

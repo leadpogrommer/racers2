@@ -56,9 +56,9 @@ void DisplayRenderer::CopyBitmapMipToLockedSurface(
 		for (LegoS32 i = 0; i < 256; i++) {
 			const LegoU8* entry = paletteBytes + i * 4;
 			palette[i] =
-				((LegoU32) (entry[0] >> (description.m_redLoss & 0x1f)) << (description.m_redShift & 0x1f)) |
+				((LegoU32) (entry[2] >> (description.m_redLoss & 0x1f)) << (description.m_redShift & 0x1f)) |
 				((LegoU32) (entry[1] >> (description.m_greenLoss & 0x1f)) << (description.m_greenShift & 0x1f)) |
-				((LegoU32) (entry[2] >> (description.m_blueLoss & 0x1f)) << (description.m_blueShift & 0x1f)) |
+				((LegoU32) (entry[0] >> (description.m_blueLoss & 0x1f)) << (description.m_blueShift & 0x1f)) |
 				((LegoU32) (entry[3] >> (description.m_alphaLoss & 0x1f)) << (description.m_alphaShift & 0x1f));
 		}
 	}

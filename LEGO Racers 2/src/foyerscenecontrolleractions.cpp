@@ -45,7 +45,7 @@ void __fastcall SetFoyerMenuSceneActive(GameObject* p_menu, void*, GameObject* p
 		LegoU32 desired = p_enabled == 0 ? 1 : 0;
 		if (bit != desired) {
 			*flags = (*flags & ~8u) | (desired << 3);
-			if (desired != 0) {
+			if (desired == 0) {
 				*flags |= 0x02000000;
 			}
 		}

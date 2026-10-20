@@ -15,7 +15,7 @@ fixed string buffers, file operations, window geometry, command-line parsing,
 startup helpers, bitmap scanning, terrain lookup, spline helpers, and
 foundational renderer/input operations.
 The current checkpoint has **588 exact function matches**, **31 reviewed
-near matches**, and 2,094 unfinished implementations across 2,713 measured
+near matches**, and 2,096 unfinished implementations across 2,715 measured
 functions. See
 [current progress](docs/progress.md) for the measured function list and
 remaining work. The application singleton and its two complete 38-slot
@@ -67,14 +67,12 @@ Model draw queues and visibility submission now link; see
 Loading-screen textures, sprites, progress animation and fade-controller lifecycle
 now link; see [loading-screen recovery](docs/work-loading-progress.md).
 Foyer resource loading and remaining frontend closures are still being integrated; see [frontend notes](docs/work-controller-frontend.md).
-Earlier runtime checks exercised config,
-archive metadata, and selected asset reads. The executable now enters the recovered game loop. The complete startup graph
-links, but a rendered menu or gameplay has not yet been verified.
-The startup integration and remaining limitations are documented in
-[menu startup recovery](docs/work-menu-startup.md). No game or probe was run for this static integration checkpoint;
-future runtime checks are reserved for significant milestones expected to
-reach a rendered menu or gameplay. Whole-game coverage is not established.
-The current Ghidra discovery inventory contains 4,845 function starts,
+The rebuilt menu now renders with the original background textures and upright
+text, responds to keyboard input, and plays sound. The user confirmed these on
+2026-10-20. See [menu startup recovery](docs/work-menu-startup.md) for the fixes
+and validation. New Game reaches an explicit unfinished boundary; its recovery
+is paused. A playable race and whole-game coverage are not established.
+The current Ghidra discovery inventory contains 4,847 function starts,
 including 26 thunks and linked libraries; this is a provisional inventory,
 not a count of game-authored functions. See the
 [inventory notes](docs/research.md#automatic-function-inventory).

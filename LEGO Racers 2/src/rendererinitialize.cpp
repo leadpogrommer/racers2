@@ -448,6 +448,10 @@ LegoBool32 DisplayRenderer::Initialize()
 		defaults->m_slots[slotIndex].m_kind = 0x0f;
 		defaults->m_slots[slotIndex].m_flags = 3;
 	}
+	defaults->m_slots[0].m_value = 0;
+	defaults->m_slots[0].m_mask = 0;
+	defaults->m_slots[0].m_kind = 0;
+	defaults->m_slots[0].m_flags = 0;
 	typedef void(__fastcall * InitializeRendererRecord)(DisplayRenderer*, void*, const void*);
 	InitializeRendererRecord initializeRendererRecord = (InitializeRendererRecord) rendererTable[0x80 / sizeof(void*)];
 	initializeRendererRecord(this, NULL, &packet);

@@ -1,30 +1,26 @@
 # Decompilation progress
 
-The primary milestone is a playable rebuild. Instruction matching is a diagnostic,
-with exact and reviewed semantically identical near matches counted separately.
+The rebuilt menu now renders with its original textures and upright text, responds
+to keyboard input, and plays sound. The user confirmed all three on 2026-10-20.
+New Game reaches an unfinished boundary at `0x00411670`; recovery of that path is
+paused at the user's request. A playable race has not been verified.
 
-Latest Python/SP5/Wine and CMake/NMake verification: 2026-10-20. Both builders
-link **465 units** and agree on all **2,713 measured scores and statuses**:
-**588 exact functions, 31 reviewed near matches and 2,094 STUB reconstructions**.
-Twenty complete folded aliases pass independent byte/map verification. All twelve
-dispatch verifiers pass in both builds, including **1,279 scene pointers**. The
-existing 21 tooling/library tests pass.
+Both 465-unit SP5 builds agree on all **2,715 measured scores and statuses**:
+**588 exact functions, 31 reviewed near matches and 2,096 STUB reconstructions**.
+Twenty complete folded aliases, twelve dispatch inventories per build (including
+1,279 scene pointers), and the existing 21 tooling/library tests pass. One
+additional STUB (`BeginMenuManagerMode`, `0x0041dd50`) has a linker symbol but no
+separate reccmp row after folding; it is not counted as implemented.
 
-Data comparison checks 476 globals. It flags five duplicate-string pointer aliases
-in two variables; original and rebuilt pointees, including NUL terminators and
-sharing within each group, were independently verified byte-for-byte. Other
-compared data agrees. See [startup evidence](work-menu-startup.md).
+Data comparison checks 477 globals. Its two flagged variables contain five
+equivalent duplicate-string pointer aliases; original/rebuilt bytes and sharing
+were independently checked against the current PE/PDB. Other compared data agrees.
+See [menu startup evidence](work-menu-startup.md).
 
-WinMain now enters the recovered game loop. The initial menu graph links, including
-character/car selectors, skeleton animation, skin upload, managers, startup movies
-and renderer/recording CRT initialization. A rendered menu is not yet verified.
-Forty explicit deferred boundaries remain for later race/network actions; automatic
-attract mode reaches one after 45 simulated idle seconds.
-
-These counts cover the reconstructed subset, not whole-game coverage. The current
-Ghidra inventory has **4,845 provisional starts**, including thunks and libraries.
-It is not a verified count of game-authored functions. Library identification remains
-in place; comparison excludes identified libraries with `--nolib`.
+These counts describe the reconstructed subset, not whole-game coverage. The
+Ghidra inventory has **4,847 provisional starts**, including thunks and libraries.
+Library identification remains in place; comparisons exclude known libraries with
+`--nolib`. Matching is a diagnostic, secondary to the running game.
 
 | Original VA | Function | Instruction accuracy | Status |
 | --- | --- | ---: | --- |
@@ -174,7 +170,7 @@ in place; comparison excludes identified libraries with `--nolib`.
 | `0x0040b340` | `InitializeGameControllerWord` | 100.00% | Verified exact |
 | `0x0040b350` | `UnlockAllSecondaryBonusFlags` | 100.00% | Work in progress |
 | `0x0040b390` | `IsSecondaryCarUnlockFlagSet` | 37.50% | Work in progress |
-| `0x0040b4e0` | `PauseDetectorUpdate` | 9.23% | Work in progress |
+| `0x0040b4e0` | `PauseDetectorUpdate` | 28.35% | Work in progress |
 | `0x0040b670` | `InitializeGamePauseObserver` | 66.67% | Work in progress |
 | `0x0040b680` | `ReleaseGamePauseObserver` | 81.82% | Work in progress |
 | `0x0040b6a0` | `UpdateGamePauseObserver` | 58.62% | Work in progress |
@@ -403,8 +399,7 @@ in place; comparison excludes identified libraries with `--nolib`.
 | `0x0041dbf0` | `PushMenuManagerActionState` | 6.90% | Work in progress |
 | `0x0041dcc0` | `PopSecondaryMenuActions` | 59.38% | Work in progress |
 | `0x0041dd30` | `PopMenuManagerAction` | 40.00% | Work in progress |
-| `0x0041dd50` | `BeginMenuManagerMode` | 84.21% | Work in progress |
-| `0x0041dd80` | `ResetSecondaryMenuAction` | 89.66% | Work in progress |
+| `0x0041dd80` | `ResetSecondaryMenuAction` | 82.76% | Work in progress |
 | `0x0041ddb0` | `RestoreMenuManagerAction` | 27.03% | Work in progress |
 | `0x0041de40` | `CanMenuCancel` | 85.71% | Work in progress |
 | `0x0041de70` | `BeginMenuTransition` | 80.00% | Work in progress |
@@ -516,7 +511,7 @@ in place; comparison excludes identified libraries with `--nolib`.
 | `0x00427970` | `ApplySavedAudioQuality` | 76.92% | Work in progress |
 | `0x004279b0` | `SecondaryManager::BeginStartup` | 54.17% | Work in progress |
 | `0x00427a00` | `SecondaryManager::Update` | 58.11% | Work in progress |
-| `0x00427d90` | `EnterSecondaryManagerMode` | 86.96% | Work in progress |
+| `0x00427d90` | `EnterSecondaryManagerMode` | 82.61% | Work in progress |
 | `0x00427df0` | `SecondaryManager::EnterMainMenu` | 87.18% | Work in progress |
 | `0x00427e40` | `SelectSecondaryManagerChoice` | 86.96% | Work in progress |
 | `0x00427eb0` | `SecondaryManager::UpdateMenuMode` | 36.60% | Work in progress |
@@ -651,7 +646,7 @@ in place; comparison excludes identified libraries with `--nolib`.
 | `0x00432e40` | `ConstructControllerHudManager` | 0.00% | Work in progress |
 | `0x00433050` | `PrepareFoyerSceneSelection` | 62.22% | Work in progress |
 | `0x00433090` | `ResetFoyerSceneStateObjects` | 19.51% | Work in progress |
-| `0x004330c0` | `SetFoyerMenuSceneActive` | 54.35% | Work in progress |
+| `0x004330c0` | `SetFoyerMenuSceneActive` | 56.52% | Work in progress |
 | `0x00433130` | `RefreshSecondaryModeWidgets` | 44.44% | Work in progress |
 | `0x00433480` | `IntegrateFoyerLifecycleMotion` | 40.00% | Work in progress |
 | `0x00433490` | `ApplyFoyerLifecycleForces` | 40.00% | Work in progress |
@@ -913,7 +908,7 @@ in place; comparison excludes identified libraries with `--nolib`.
 | `0x0045bb60` | `RegisterControllerFoyerSceneTarget` | 19.05% | Work in progress |
 | `0x0045bb90` | `InitializeControllerTaskManagerSourceRecords` | 25.00% | Work in progress |
 | `0x0045bc10` | `SetControllerTaskActionStatus` | 41.98% | Work in progress |
-| `0x0045bca0` | `SetControllerTaskManagerModeValue` | 54.55% | Work in progress |
+| `0x0045bca0` | `SetControllerTaskManagerModeValue` | 66.67% | Work in progress |
 | `0x0045bcc0` | `SetControllerTaskActionRecord` | 42.11% | Work in progress |
 | `0x0045bcf0` | `UpdateControllerTaskManager` | 10.69% | Work in progress |
 | `0x0045bda0` | `IsControllerTaskSourceCompatible` | 40.00% | Work in progress |
@@ -1047,6 +1042,8 @@ in place; comparison excludes identified libraries with `--nolib`.
 | `0x00464a60` | `ReleaseSecondaryCharacterPreview` | 76.47% | Work in progress |
 | `0x00464bb0` | `ReleaseSecondaryCharacterLighting` | 78.38% | Work in progress |
 | `0x00464d30` | `ReleaseSecondaryCharacterCamera` | 76.47% | Work in progress |
+| `0x004654e0` | `InitializeSecondaryCarMenuItems` | 5.90% | Work in progress |
+| `0x004658f0` | `InitializeSecondaryCarPanelSprites` | 0.42% | Work in progress |
 | `0x00466470` | `InitializeCharacterPartPresets` | 1.47% | Work in progress |
 | `0x00467380` | `CharacterPartPreset::Set` | 100.00% | Verified exact |
 | `0x004673e0` | `CharacterPartPreset::Clear` | 53.85% | Work in progress |
@@ -1117,14 +1114,14 @@ in place; comparison excludes identified libraries with `--nolib`.
 | `0x0047b970` | `InitializeRigelCharacterVisualTemplate` | 84.21% | Work in progress |
 | `0x0047b990` | `LoadRigelFoyerAsset` | 15.79% | Work in progress |
 | `0x0047bac0` | `InitializeRocketRacerCharacterVisualTemplate` | 84.21% | Work in progress |
-| `0x0047bae0` | `LoadRocketRacerFoyerAsset` | 13.86% | Work in progress |
+| `0x0047bae0` | `LoadRocketRacerFoyerAsset` | 15.84% | Work in progress |
 | `0x0047bc10` | `InitializePlayerFoyerTemplate` | 1.87% | Work in progress |
 | `0x0047bdf0` | `LoadPlayerFoyerAsset` | 19.51% | Work in progress |
 | `0x0047be50` | `InitializeIntroCharacterVisualTemplate` | 84.21% | Work in progress |
-| `0x0047be70` | `LoadIntroFoyerAsset` | 13.86% | Work in progress |
+| `0x0047be70` | `LoadIntroFoyerAsset` | 15.84% | Work in progress |
 | `0x0047c040` | `InitializeFoyerAnimationTiming` | 33.33% | Work in progress |
 | `0x0047c060` | `InitializeFoyerSceneEvent` | 57.14% | Work in progress |
-| `0x0047c090` | `InitializeFoyerSceneEventState` | 39.82% | Work in progress |
+| `0x0047c090` | `InitializeFoyerSceneEventState` | 41.63% | Work in progress |
 | `0x0047c1f0` | `ReleaseFoyerSceneEventState` | 31.25% | Work in progress |
 | `0x0047c260` | `SetFoyerSceneEventTarget` | 100.00% | Verified exact |
 | `0x0047c270` | `SetFoyerSceneEventReady` | 100.00% | Verified exact |
@@ -1178,21 +1175,22 @@ in place; comparison excludes identified libraries with `--nolib`.
 | `0x0047f0b0` | `FoyerSceneResourceInitialize` | 34.73% | Work in progress |
 | `0x0047f330` | `FoyerSceneResourceRemove` | 65.06% | Work in progress |
 | `0x0047f420` | `FoyerSceneResourceUpdate` | 18.18% | Work in progress |
-| `0x0047f4b0` | `UpdateFoyerSceneTransition` | 20.49% | Work in progress |
+| `0x0047f4b0` | `UpdateFoyerSceneTransition` | 15.20% | Work in progress |
 | `0x0047f630` | `UpdateFoyerSceneFade` | 45.16% | Work in progress |
 | `0x0047f6a0` | `UpdateFoyerSceneHold` | 83.33% | Work in progress |
+| `0x0047f6e0` | `CompletePendingFoyerSceneActions` | 74.42% | Work in progress |
 | `0x0047f730` | `DispatchDueFoyerSceneActions` | 69.39% | Work in progress |
 | `0x0047f820` | `FindOrCreateFoyerSceneResource` | 30.94% | Work in progress |
 | `0x0047f910` | `ReleaseFoyerSceneResource` | 31.17% | Work in progress |
 | `0x0047f990` | `FindFoyerSceneResource` | 20.00% | Work in progress |
 | `0x0047fa00` | `LoadFoyerScene` | 56.11% | Work in progress |
-| `0x0047fb70` | `CompleteFoyerSceneTransition` | 38.93% | Work in progress |
+| `0x0047fb70` | `CompleteFoyerSceneTransition` | 39.39% | Work in progress |
 | `0x0047fd10` | `ActivateFoyerSceneEvents` | 61.05% | Work in progress |
 | `0x0047fda0` | `ResetFoyerSceneSelection` | 26.09% | Work in progress |
 | `0x0047fe00` | `UpdateFoyerSceneEvents` | 89.80% | Work in progress |
 | `0x0047fe40` | `InvokeFoyerSceneInputAction` | 70.59% | Work in progress |
 | `0x0047fe60` | `UpdateFoyerSceneInputMode` | 38.04% | Work in progress |
-| `0x0047ff90` | `SetFoyerSceneAnimationMode` | 25.60% | Work in progress |
+| `0x0047ff90` | `SetFoyerSceneAnimationMode` | 25.76% | Work in progress |
 | `0x004800f0` | `SetSparkyMenuMode` | 68.18% | Work in progress |
 | `0x00480140` | `ApplyFoyerSceneActionParameters` | 47.46% | Work in progress |
 | `0x004801a0` | `GetFoyerSceneEventObject` | 100.00% | Verified exact |
@@ -1597,7 +1595,7 @@ in place; comparison excludes identified libraries with `--nolib`.
 | `0x004ac100` | `DisplayRenderer::SetUnknownDrawPolicy` | 100.00% | Verified exact |
 | `0x004ac110` | `DisplayRenderer::GetTextureQuality` | 100.00% | Verified exact |
 | `0x004ac120` | `DisplayRenderer::UsesHardwareVertexProcessing` | 100.00% | Verified exact |
-| `0x004ac130` | `DisplayRenderer::Initialize` | 22.87% | Work in progress |
+| `0x004ac130` | `DisplayRenderer::Initialize` | 23.78% | Work in progress |
 | `0x004acd00` | `DisplayRenderer::ConfigureNvidiaWorkaround` | 12.61% | Work in progress |
 | `0x004acfb0` | `DisplayRenderer::CreateVertexBuffers` | 95.33% | Reviewed near match |
 | `0x004ad060` | `DisplayRenderer::Shutdown` | 87.41% | Work in progress |
@@ -1610,7 +1608,7 @@ in place; comparison excludes identified libraries with `--nolib`.
 | `0x004ada60` | `DisplayRenderer::FindBestDisplayMode` | 22.32% | Work in progress |
 | `0x004adba0` | `DisplayRenderer::InitializeDefaultRenderStates` | 60.53% | Work in progress |
 | `0x004adfe0` | `DisplayRenderer::SetCachedRenderState` | 100.00% | Verified exact |
-| `0x004ae010` | `DisplayRenderer::ResetTextureStages` | 30.95% | Work in progress |
+| `0x004ae010` | `DisplayRenderer::ResetTextureStages` | 30.37% | Work in progress |
 | `0x004ae310` | `DisplayRenderer::SetCachedTextureStageState` | 43.48% | Work in progress |
 | `0x004ae360` | `DisplayRenderer::AddViewport` | 55.88% | Work in progress |
 | `0x004ae3d0` | `DisplayRenderer::UpdateViewport` | 100.00% | Verified exact |
@@ -1803,9 +1801,9 @@ in place; comparison excludes identified libraries with `--nolib`.
 | `0x004b3ee0` | `GlobalOverlayRecord::SetClipRectangle` | 100.00% | Verified exact |
 | `0x004b3f10` | `GlobalOverlayRecord::GetTextLength` | 100.00% | Verified exact |
 | `0x004b3f30` | `GlobalOverlayRecord::GetRectangle` | 56.72% | Work in progress |
-| `0x004b3fd0` | `DrawGlobalOverlayText` | 8.00% | Work in progress |
-| `0x004b43d0` | `AdvanceGlobalOverlayText` | 54.69% | Work in progress |
-| `0x004b44e0` | `MeasureGlobalOverlayText` | 10.26% | Work in progress |
+| `0x004b3fd0` | `DrawGlobalOverlayText` | 9.16% | Work in progress |
+| `0x004b43d0` | `AdvanceGlobalOverlayText` | 53.12% | Work in progress |
+| `0x004b44e0` | `MeasureGlobalOverlayText` | 27.62% | Work in progress |
 | `0x004b4690` | `FUN_004b4690` | 100.00% | Verified exact |
 | `0x004b46c0` | `CreateNativeWindow` | 90.72% | Work in progress |
 | `0x004b4750` | `RegisterNativeWindowClass` | 32.00% | Work in progress |
@@ -1852,7 +1850,7 @@ in place; comparison excludes identified libraries with `--nolib`.
 | `0x004b8010` | `InputControllerManager::RebindController` | 53.33% | Work in progress |
 | `0x004b8040` | `InputControllerManager::ConfigureController` | 53.24% | Work in progress |
 | `0x004b8220` | `InputControllerManager::AppendControllerBinding` | 66.67% | Work in progress |
-| `0x004b8250` | `InputControllerManager::GetControllerInputForOwner` | 55.24% | Work in progress |
+| `0x004b8250` | `InputControllerManager::GetControllerInputForOwner` | 55.87% | Work in progress |
 | `0x004b8460` | `InputControllerManager::GetTimingState` | 34.85% | Work in progress |
 | `0x004b8520` | `InputControllerManager::GetElapsedTime` | 45.45% | Work in progress |
 | `0x004b8570` | `InputControllerManager::GetCurrentFrame` | 100.00% | Verified exact |
@@ -1985,11 +1983,11 @@ in place; comparison excludes identified libraries with `--nolib`.
 | `0x004bf7c0` | `DisplayRenderer::UpdateLightPose` | 30.99% | Work in progress |
 | `0x004bf840` | `DisplayRenderer::GetLightRecord` | 100.00% | Verified exact |
 | `0x004bf860` | `DisplayRenderer::GetMaximumDirectionalLightIntensity` | 42.72% | Work in progress |
-| `0x004bf920` | `LoadMipSidecar` | 47.11% | Work in progress |
-| `0x004bfa60` | `EnsureMipSidecar` | 42.22% | Work in progress |
+| `0x004bf920` | `LoadMipSidecar` | 43.20% | Work in progress |
+| `0x004bfa60` | `EnsureMipSidecar` | 48.15% | Work in progress |
 | `0x004bfb50` | `DisplayRenderer::FindOrCreateTextureRecord` | 23.90% | Work in progress |
 | `0x004bfce0` | `RendererTextureRecord::SetResourcePath` | 80.46% | Work in progress |
-| `0x004bfd70` | `RendererTextureRecord::Load` | 29.51% | Work in progress |
+| `0x004bfd70` | `RendererTextureRecord::Load` | 27.27% | Work in progress |
 | `0x004bffb0` | `GetTexturePathHash` | 100.00% | Verified exact |
 | `0x004bffd0` | `RendererTextureRecord::MatchesResource` | 100.00% | Verified exact |
 | `0x004c0050` | `ReleaseRendererTextureResource` | 11.76% | Work in progress |
@@ -2002,12 +2000,12 @@ in place; comparison excludes identified libraries with `--nolib`.
 | `0x004c05e0` | `RendererAuxiliaryResourceRecord::Matches` | 47.93% | Work in progress |
 | `0x004c0670` | `RendererAuxiliaryResourceRecord::SetCallback` | 61.54% | Work in progress |
 | `0x004c06d0` | `DisplayRenderer::GetAuxiliaryResource` | 100.00% | Verified exact |
-| `0x004c0770` | `DisplayRenderer::AcquireAuxiliaryResource` | 35.54% | Work in progress |
+| `0x004c0770` | `DisplayRenderer::AcquireAuxiliaryResource` | 36.24% | Work in progress |
 | `0x004c0910` | `DisplayRenderer::UpdateAnimatedResources` | 84.11% | Work in progress |
 | `0x004c09a0` | `DisplayRenderer::FindOrAllocateTextureResource` | 44.59% | Work in progress |
 | `0x004c0a60` | `DisplayRenderer::AddTextureReference` | 89.66% | Work in progress |
 | `0x004c0ae0` | `DisplayRenderer::FindTextureReferenceById` | 44.44% | Work in progress |
-| `0x004c0b30` | `DisplayRenderer::FindTextureReference` | 51.16% | Work in progress |
+| `0x004c0b30` | `DisplayRenderer::FindTextureReference` | 55.81% | Work in progress |
 | `0x004c0b70` | `DisplayRenderer::CreateTextureResource` | 13.55% | Work in progress |
 | `0x004c0ec0` | `AddSecondaryRendererTextureReference` | 100.00% | Work in progress |
 | `0x004c0ee0` | `DisplayRenderer::ReleaseTextureResourceReference` | 74.69% | Work in progress |
@@ -2048,7 +2046,7 @@ in place; comparison excludes identified libraries with `--nolib`.
 | `0x004c33b0` | `FUN_004c33b0` | 100.00% | Verified exact |
 | `0x004c33f0` | `HandlePrivateAudioMessage` | 46.15% | Work in progress |
 | `0x004c3460` | `FindFirstNonemptyRow` | 100.00% | Verified exact |
-| `0x004c3540` | `BitmapFont::Load` | 20.03% | Work in progress |
+| `0x004c3540` | `BitmapFont::Load` | 19.57% | Work in progress |
 | `0x004c3d70` | `BitmapImage::BitmapImage` | 100.00% | Verified exact |
 | `0x004c3db0` | `BitmapFont::GetGlyphMetrics` | 100.00% | Verified exact |
 | `0x004c3e30` | `BitmapFont::GetTextAdvance` | 41.67% | Work in progress |

@@ -70,7 +70,7 @@ LegoS32 DisplayRenderer::AcquireAuxiliaryResource(RendererAuxiliaryResourceRecor
 	}
 
 	LegoS32 index = 0;
-	while (m_auxiliaryResources[index].m_path[0] != '\0') {
+	while (m_auxiliaryResources[index].m_inUse != 0) {
 		index++;
 		if (index > 0x7c) {
 			return 0;

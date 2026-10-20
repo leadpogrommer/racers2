@@ -27,7 +27,7 @@ void InputControllerManager::GetControllerInputForOwner(
 		atexit(DestroyControllerInputGlobals);
 	}
 
-	LegoU32 frame = m_frequency / m_pollMultiplier;
+	LegoU32 frame = m_unk0x18 / m_pollMultiplier;
 	InputController* controller = FindOrCreateController(p_ownerKey, p_controllerIndex, FALSE, TRUE);
 	*p_output = g_defaultControllerInput;
 	if (controller == NULL) {

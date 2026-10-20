@@ -80,3 +80,79 @@ SHA-256. The ignored tree is `data/media/lego-racers-2-disc`. This workspace map
 it as Wine E: (CD-ROM), with 32-bit game registry values `CDpath=E:\\` and
 `moviespath=E:\\install\\`. Existing D: was preserved. Media and generated outputs
 are not repository content.
+
+## Menu milestone debugging after the static checkpoint
+
+The full startup graph justified a menu launch attempt. With the real installation
+working directory and CD media configuration above, three attempts reached
+progressively later startup work but did not produce a verified rendered menu.
+
+The first fault exposed two renderer-packet errors: slot zero of the synthetic
+startup defaults was left as a sentinel, and overlay drawing wrote its texture
+index into the defaults count rather than the first slot. Text rendering also
+used color as the texture index and misplaced rotation/blend fields. A separate
+DirectSound initialization failure came from supplying a format pointer while
+creating the primary buffer; retail supplies a zeroed primary-buffer descriptor
+and applies the PCM format afterward.
+
+The next failure exposed controller-field mixups in menu resource loading:
+`+0x88` is the HUD owner, `+0x90` is the menu resource table, and `+0x98` is the
+NPC text manager. The corrected callers now use the same receivers as retail.
+The third attempt reached car-selector sprite creation, where a null texture
+path revealed missing CRT initializers for the later sprite and item records.
+Their static PE contents alone do not describe the initialized runtime tables.
+Both original initializers are now restored; the record counts and null-path
+contracts were preserved.
+
+A bounded static review also corrected overlay glyph positioning/typewriter
+indices, Foyer asset names, nested state pointers, transform interfaces,
+animation entry counts and pending-action completion. These changes do not
+establish that the menu renders correctly; the milestone remains open.
+
+Ignored evidence includes `menu-first-launch.log`, `menu-second-launch.log`,
+`menu-third-launch.log`, `menu-firstchance.log`,
+`secondary-resource-receiver-fix.txt`, `stage-plan-crash-audit.txt`,
+`audio-provider-failure-review.md` and `foyer-startup-retail-review.json`.
+WineDbg's first-chance exception mode provides the actual failing registers and
+stack despite its separate legacy-PDB symbol-reader errors. No game-behavior
+tests were added.
+
+## Working menu checkpoint (2026-10-20)
+
+The user confirmed that the menu works, colors are correct, and sound works.
+The captured Sound submenu has the original orange LEGO background, blue panel,
+logo and readable text. Keyboard navigation and confirmation reach New Game.
+This satisfies the rendered-menu milestone; it does not establish a playable race.
+
+Two further failures were resolved from retail instructions. The font atlas now
+copies glyph rows from the bottom occupied row upward while writing destination
+rows forward, and its horizontal byte offset is scaled once. The pause detector
+now skips its entire input scan outside the eligible game state, allowing menu
+controls to receive button edges and preventing a race pause menu during language
+selection. The recording query also uses the actual simulation-frame field.
+
+The white backdrop was missing resources, not an intended color scheme: all
+sixteen background texture IDs were -1. `EnsureMipSidecar` appended `.MIP` to
+`.TGA`, requesting nonexistent `BackOrange1.TGA.MIP`; retail replaces the
+extension and loads `BackOrange1.MIP`. Corrected normal-map and cube suffixes,
+indexed BGR palette conversion, cache availability/reference fields and the
+retail texture-filter reset complete this reviewed batch.
+
+Both 465-unit builders agree on 2,715 measured rows (588 exact, 31 reviewed near,
+2,096 STUB). All 619 implemented claims, twenty complete folded aliases and twelve
+dispatch inventories per build pass. One additional folded STUB at 0x0041dd50
+has no separate comparison row. Data checks cover 477 globals; the same five
+byte-equivalent string aliases remain flagged in two variables and were checked
+against the current PE/PDB. Twenty-one existing tooling/library tests pass.
+No game-behavior tests were added.
+
+New Game reaches the unfinished `StartNewMenuSession` boundary at 0x00411670.
+Its compiled but runtime-unverified reset recovery is paused at the user's request
+and preserved separately in ignored `data/paused-new-game/session-reset.patch`.
+The checkpoint retains the explicit boundary. Menu settings beyond those observed,
+attract/race entry and gameplay remain unverified.
+
+Evidence: `data/session-tools/menu-mip-retry-window.png`,
+`menu-checkpoint-*-{compare,datacmp}.log`, `font-atlas-orientation-review.txt`,
+`menu-input-guard-fix.txt`, `background-resource-watch.log`,
+`texture-path-cache-retail-review.json` and `data-string-alias-review.json`.

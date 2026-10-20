@@ -1,19 +1,21 @@
 # Playable rebuild: current blockers
 
-The real WinMain/message-loop path now links with the startup managers and both
-selectors. Renderer and recording-service CRT construction is connected. Static
-validation passes for both 465-unit builds; a rendered menu is not yet verified.
-See [menu startup recovery](work-menu-startup.md) for the current checkpoint.
+The rebuilt menu renders its original textures and upright text, accepts keyboard
+input, and plays sound; the user confirmed this milestone on 2026-10-20. Both
+465-unit builders pass the current static checks. See
+[menu startup recovery](work-menu-startup.md).
+
+New Game reaches `StartNewMenuSession` (`0x00411670`), an explicit unfinished
+boundary. New Game recovery is paused at the user's request. Its unverified reset
+patch is preserved in ignored `data/paused-new-game/`; it is not part of the
+working menu checkpoint. A playable race remains unverified.
 
 Launch from the installation directory on a non-CD drive: archive constructors
-run before WinMain. The original CD check separately requires a CD-ROM `CDpath`
-containing `language/export.Swe`. The supplied disc has been extracted into ignored
-local media storage for the next milestone launch.
-
-Later race/network actions remain explicitly unfinished. Automatic attract mode
-reaches a deferred race path after 45 simulated idle seconds. Earlier sections
-below record the subsystem recovery history; the current integrated entry replaces
-the earlier temporary-bootstrap limitation.
+run before WinMain. The separate CD check requires a CD-ROM `CDpath` containing
+`language/export.Swe`. Extracted local media and registry setup are documented in
+the startup notes. Automatic attract mode still reaches a deferred race path
+after 45 simulated idle seconds. The sections below record subsystem history;
+the current integrated entry replaces the earlier temporary bootstrap.
 
 ## Application and startup
 

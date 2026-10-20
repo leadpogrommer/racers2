@@ -5,6 +5,7 @@
 #include "gamecontrollersession.h"
 #include "gametemplateinstance.h"
 #include "globaloverlaymanager.h"
+#include "secondaryfxmanager.h"
 #include "secondarymanager.h"
 #include "textboxfade.h"
 
@@ -15,7 +16,8 @@ void __fastcall SetFoyerSceneAnimationMode(FoyerSceneResource*, void*, LegoU32 p
 // STUB: LEGORACERS2 0x0045bca0
 void __fastcall SetControllerTaskManagerModeValue(void* p_manager, void*, LegoU32 p_index, LegoU32 p_value)
 {
-	*(LegoU32*) ((LegoU8*) p_manager + 0x58 + p_index * 0x100 + 0x90) = p_value;
+	LegoU8* state = *(LegoU8**) ((LegoU8*) p_manager + 0x58);
+	*(LegoU32*) (state + p_index * 0x100 + 0x90) = p_value;
 }
 
 // STUB: LEGORACERS2 0x0047e770
@@ -96,7 +98,7 @@ void __fastcall SetFoyerSceneAnimationMode(FoyerSceneResource* p_resource, void*
 	p_resource->m_animationMode = p_modeBits;
 	SetControllerTaskManagerModeValue(taskManager, NULL, recordIndex, p_modeBits);
 	g_foyerAnimationBlend = *(LegoFloat*) &p_modeBits;
-	for (i = 0; i < 8; ++i) {
+	for (i = 0; (LegoS32) i < (LegoS32) p_resource->m_unk0x5b4; ++i) {
 		void* target = *(void**) (inputState + i * 0xa8 + 0xa4);
 		void** vtable = *(void***) target;
 		((void(__fastcall*)(void*, void*, LegoU32)) vtable[0x1c / 4])(target, NULL, p_modeBits);
@@ -112,5 +114,5 @@ void __fastcall SetFoyerSceneAnimationMode(FoyerSceneResource* p_resource, void*
 		GameTemplateInstance* child = (GameTemplateInstance*) p_resource->m_children[i];
 		*(LegoFloat*) &child->m_unk0x94 = p_resource->m_animationValues[i] * *(LegoFloat*) &p_modeBits;
 	}
-	*(LegoU32*) ((LegoU8*) g_gameController.m_menuManager + 0x58 + 0x14) = p_modeBits;
+	((SecondaryFxManager*) g_gameController.m_secondaryFxManager)->m_state->m_speed = *(LegoFloat*) &p_modeBits;
 }

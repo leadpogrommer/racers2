@@ -348,15 +348,17 @@ LegoU32 __fastcall UpdateFoyerSceneTransition(FoyerSceneResourceView* p_view, vo
 	}
 	if (resource->m_unk0x9ec != 0) {
 		LegoU8* controller = (LegoU8*) *(LegoU32*) ((LegoU8*) resource + 0x60);
-		if (*(LegoU32*) ((LegoU8*) controller + 0x64) != 2) {
+		if (*(LegoU32*) ((LegoU8*) resource + 0x64) != 2) {
 			SetFoyerControllerMenuLoop((GameObject*) controller, NULL);
 		}
 		LegoU8* nested = (LegoU8*) *(LegoU32*) (controller + 0x1e8);
-		LegoU8* vtable = (LegoU8*) *(LegoU32*) nested;
+		LegoU8* transform = nested + 0x58;
+		LegoU8* vtable = *(LegoU8**) transform;
+		LegoU8* target = *(LegoU8**) ((LegoU8*) resource + 0x9e4);
 		((void(__fastcall*)(void*, void*, const LegoFloat*)) *
-		 (LegoU32*) (vtable + 0x20))(nested, NULL, (const LegoFloat*) ((LegoU8*) resource + 0x9e4 + 0x58));
+		 (LegoU32*) (vtable + 0x20))(transform, NULL, (const LegoFloat*) (target + 0x58));
 		((void(__fastcall*)(void*, void*, const LegoFloat*)) *
-		 (LegoU32*) (vtable + 0x24))(nested, NULL, (const LegoFloat*) ((LegoU8*) resource + 0x9e4 + 0x64));
+		 (LegoU32*) (vtable + 0x24))(transform, NULL, (const LegoFloat*) (target + 0x64));
 		*(LegoU32*) (nested + 8) |= 2;
 	}
 	ResetSecondaryFxController(
@@ -367,6 +369,18 @@ LegoU32 __fastcall UpdateFoyerSceneTransition(FoyerSceneResourceView* p_view, vo
 	);
 	resource->m_unk0x58 = 1;
 	return 1;
+}
+
+// STUB: LEGORACERS2 0x0047f6e0
+void __fastcall CompletePendingFoyerSceneActions(FoyerSceneResource* p_resource, void*)
+{
+	while ((LegoS32) p_resource->m_unk0x9bc < (LegoS32) p_resource->m_unk0x9b8) {
+		FoyerSceneObjectView* action = (FoyerSceneObjectView*) p_resource->m_objects[p_resource->m_unk0x9bc];
+		if (action->m_type == 5) {
+			((void(__fastcall*)(FoyerSceneObjectView*, void*)) action->m_vtable->m_destroy)(action, NULL);
+		}
+		++p_resource->m_unk0x9bc;
+	}
 }
 
 // STUB: LEGORACERS2 0x0047f820
@@ -443,6 +457,7 @@ FoyerSceneResourceView* __cdecl FindFoyerSceneResource(const LegoChar* p_name)
 // STUB: LEGORACERS2 0x0047fb70
 void __fastcall CompleteFoyerSceneTransition(FoyerSceneResource* p_resource, void*)
 {
+	CompletePendingFoyerSceneActions(p_resource, NULL);
 	LegoU8* controller = (LegoU8*) *(LegoU32*) ((LegoU8*) p_resource + 0x60);
 	LegoU32 mode = *(LegoU32*) (controller + 0x58);
 	LegoU32 taskIndex = *(LegoU32*) ((LegoU8*) p_resource + 0x5c);
@@ -460,7 +475,7 @@ void __fastcall CompleteFoyerSceneTransition(FoyerSceneResource* p_resource, voi
 	SetFoyerSceneAnimationMode(p_resource, NULL, 0x3f800000);
 	if (p_resource->m_unk0x9e8 != 0) {
 		SetFoyerControllerActive((GameObject*) controller, NULL, 0);
-		((void(__fastcall*)(void*, void*, LegoU32)) * (LegoU32*) (*(LegoU32**) controller + 0x74))(controller, NULL, 0);
+		((void(__fastcall*)(void*, void*, LegoU32)) * (LegoU32*) (*(LegoU8**) controller + 0x74))(controller, NULL, 0);
 		SetFoyerSceneControllerState(controller, 0);
 		RestoreFoyerControllerActionState((GameObject*) controller, NULL);
 		if (*(LegoU32*) ((LegoU8*) p_resource + 0xa3c) == 1 || *(LegoU32*) ((LegoU8*) p_resource + 0xa3c) == 3 ||

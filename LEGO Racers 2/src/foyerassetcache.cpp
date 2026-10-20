@@ -312,7 +312,7 @@ void* __fastcall LoadRigelFoyerAsset(FoyerAssetCache* p_cache, void*)
 void* __fastcall LoadRocketRacerFoyerAsset(FoyerAssetCache* p_cache, void*)
 {
 	if (p_cache->m_rocketRacer == NULL) {
-		PrepareCharacterParts("rocket_racer", GetRocketRacerCharacterVisualTemplate(), TRUE, TRUE);
+		PrepareCharacterParts("rocket racer", GetRocketRacerCharacterVisualTemplate(), TRUE, TRUE);
 	}
 	return LoadCharacterVisual(
 		p_cache,
@@ -349,7 +349,7 @@ void* __fastcall LoadPlayerFoyerAsset(FoyerAssetCache* p_cache, void*)
 void* __fastcall LoadIntroFoyerAsset(FoyerAssetCache* p_cache, void*)
 {
 	if (p_cache->m_intro == NULL) {
-		PrepareCharacterParts("sam_sanister", GetIntroCharacterVisualTemplate(), TRUE, TRUE);
+		PrepareCharacterParts("sam sanister", GetIntroCharacterVisualTemplate(), TRUE, TRUE);
 	}
 	return LoadCharacterVisual(p_cache, 0x28, GetIntroCharacterVisualTemplate(), &p_cache->m_introReferences);
 }

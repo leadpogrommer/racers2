@@ -67,7 +67,7 @@ void __fastcall InitializeFoyerSceneEventState(void* p_eventStorage, void*)
 		event->m_loadedAsset = (GameObject*) AcquireFoyerAsset(event->m_assetType);
 	}
 	if (event->m_hasAttachedAsset != 0) {
-		LegoU32* attached = (LegoU32*) ((LegoU8*) event->m_loadedAsset + 0x39c);
+		LegoU32* attached = *(LegoU32**) ((LegoU8*) event->m_loadedAsset + 0x39c);
 		LegoU32 faceTextureGroup = *(LegoU32*) ((LegoU8*) attached + 0x84);
 		event->m_runtimeAsset = attached;
 		for (i = 0; i < 8; ++i) {

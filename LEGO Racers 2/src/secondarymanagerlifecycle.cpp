@@ -2041,7 +2041,7 @@ void __fastcall ReleaseSecondaryObject88(void* p_object, void*)
 	ClearSecondaryManagerAuxiliaryResources(p_object, NULL, 1, 1, 1);
 	LegoU32* active = (LegoU32*) ((LegoU8*) p_object + 0x80);
 	if (*active != 0) {
-		ReleaseSecondaryAuxiliaryModel(g_gameController.m_unk0x88, NULL);
+		ReleaseSecondaryAuxiliaryModel(g_gameController.m_unk0x90, NULL);
 		*active = 0;
 	}
 }
@@ -2126,7 +2126,7 @@ void __fastcall LoadSecondaryAuxiliaryResources(void* p_object, void*)
 	LegoU32* active = (LegoU32*) ((LegoU8*) p_object + 0x80);
 	if (*active == 0) {
 		*active = 1;
-		LoadSecondaryAuxiliaryTextureRecords(g_gameController.m_unk0x88, NULL);
+		LoadSecondaryAuxiliaryTextureRecords(g_gameController.m_unk0x90, NULL);
 	}
 }
 
@@ -2137,7 +2137,7 @@ void __fastcall ReleaseSecondaryAuxiliaryResources(void* p_object, void*)
 	LegoU32* active = (LegoU32*) ((LegoU8*) p_object + 0x80);
 	if (*active != 0) {
 		*active = 0;
-		ReleaseSecondaryAuxiliaryModel(g_gameController.m_unk0x88, NULL);
+		ReleaseSecondaryAuxiliaryModel(g_gameController.m_unk0x90, NULL);
 	}
 }
 
@@ -2176,7 +2176,7 @@ static void __fastcall CreateSecondaryWheelSprites(SecondaryCategoryWheel* p_whe
 		return;
 	}
 	parameters[17] = 1;
-	ControllerEventRecordTable* resources = (ControllerEventRecordTable*) g_gameController.m_unk0x88;
+	ControllerEventRecordTable* resources = (ControllerEventRecordTable*) g_gameController.m_unk0x90;
 	if (p_wheel->m_icons[6] == NULL) {
 		GlobalOverlaySprite* header = g_globalOverlayManager.AllocateSprite(parameters);
 		p_wheel->m_icons[6] = header;
@@ -2452,7 +2452,7 @@ static LegoS32 __fastcall CreateSecondaryWheelIcons(SecondaryCategoryWheel* p_wh
 	}
 	ClearSecondaryManagerAuxiliaryResources(p_wheel, NULL, 0, 1, 0);
 	CreateSecondaryWheelSprites(p_wheel, NULL, 0);
-	ControllerEventRecordTable* resources = (ControllerEventRecordTable*) g_gameController.m_unk0x88;
+	ControllerEventRecordTable* resources = (ControllerEventRecordTable*) g_gameController.m_unk0x90;
 	for (icon = 0; icon < 6; ++icon) {
 		if (p_wheel->m_angles[icon] != -1.0f) {
 			if (p_wheel->m_icons[icon] != NULL) {
@@ -2895,7 +2895,7 @@ void __fastcall InitializeSecondaryPointer(void* p_object, void*)
 	parameters.m_values[4] = parameters.m_values[5] = 0.0f;
 	parameters.m_values[6] = parameters.m_values[7] = 1.0f;
 	parameters.m_words[10] = 0xffffffff;
-	memcpy(&parameters.m_words[11], (LegoU8*) g_gameController.m_unk0x88 + 0x1508, 5 * 4);
+	memcpy(&parameters.m_words[11], (LegoU8*) g_gameController.m_unk0x90 + 0x1508, 5 * 4);
 	for (LegoU32 index = 16; index < 21; ++index) {
 		parameters.m_words[index] = 0;
 	}
@@ -3717,13 +3717,13 @@ void SecondaryManager::LoadMenuResources(LegoS32 p_carSet)
 	LoadControllerSceneResources(&g_gameController, NULL, 1);
 	SetControllerSelectionProgressValue(progress, NULL, 0.05f);
 	UpdateControllerSelectionProgress(progress, NULL, 0);
-	InitializeSecondaryAuxiliaryModel(g_gameController.m_unk0x88, NULL);
+	InitializeSecondaryAuxiliaryModel(g_gameController.m_unk0x90, NULL);
 	SetControllerSelectionProgressValue(progress, NULL, 0.1f);
 	UpdateControllerSelectionProgress(progress, NULL, 0);
 	InitializeSecondaryCharacterResources(g_gameController.m_bodypartManager, NULL);
 	SetControllerSelectionProgressValue(progress, NULL, 0.2f);
 	UpdateControllerSelectionProgress(progress, NULL, 0);
-	InitializeSecondaryVoiceResources(g_gameController.m_unk0x90, NULL, -1);
+	InitializeSecondaryVoiceResources(g_gameController.m_npcTextManager, NULL, -1);
 	SetControllerSelectionProgressValue(progress, NULL, 0.3f);
 	UpdateControllerSelectionProgress(progress, NULL, 0);
 
@@ -3841,7 +3841,7 @@ void SecondaryManager::LoadMenuResources(LegoS32 p_carSet)
 		LoadSecondaryCharacterSelector(m_characterSelection, NULL, g_gameController.m_fontSet->m_fonts[1]);
 		SetControllerSelectionProgressValue(progress, NULL, 0.9f);
 		UpdateControllerSelectionProgress(progress, NULL, 0);
-		LoadSecondaryControllerPreview(g_gameController.m_unk0x88, NULL, 0);
+		LoadSecondaryControllerPreview(g_gameController.m_unk0x90, NULL, 0);
 		SetControllerSelectionProgressValue(progress, NULL, 0.95f);
 		UpdateControllerSelectionProgress(progress, NULL, 0);
 		((MenuBackground*) m_unk0x80)->Load();
@@ -3924,7 +3924,7 @@ void SecondaryManager::ReleaseMenuResources(LegoU32 p_mode)
 		ReleaseLocalizedMenuResources();
 		ReleaseSecondaryAuxiliaryResources(m_unk0x88, NULL);
 		((MenuBackground*) m_unk0x80)->Release();
-		ReleaseSecondaryControllerPreview(g_gameController.m_unk0x88, NULL, 0);
+		ReleaseSecondaryControllerPreview(g_gameController.m_unk0x90, NULL, 0);
 		ReleaseSecondaryCharacterSelector(m_characterSelection, NULL);
 	}
 	ReleaseSecondaryCarSelector(m_carSelection, NULL);
@@ -3942,9 +3942,9 @@ void SecondaryManager::ReleaseMenuResources(LegoU32 p_mode)
 		RemoveAndDestroySecondaryObject(m_resourcePointers[index]);
 		m_resourcePointers[index] = NULL;
 	}
-	ReleaseSecondaryVoiceResources(g_gameController.m_unk0x90, NULL, -1);
+	ReleaseSecondaryVoiceResources(g_gameController.m_npcTextManager, NULL, -1);
 	ReleaseSecondaryCharacterResources(g_gameController.m_bodypartManager, NULL);
-	ReleaseSecondaryModelResources(g_gameController.m_unk0x88, NULL);
+	ReleaseSecondaryModelResources(g_gameController.m_unk0x90, NULL);
 	ReleaseControllerSceneResources(&g_gameController, NULL, 1);
 	audio = GetAudioService(TRUE);
 	audio->m_vtable->m_removeListener(audio, NULL, (LegoU32) m_unk0x110);

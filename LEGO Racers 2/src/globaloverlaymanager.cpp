@@ -65,7 +65,7 @@ void DrawOverlayObject(void* p_record, LegoS32 p_currentType, RendererDefaultRec
 		return;
 	}
 
-	p_defaults->m_unk0x04 = *(const LegoU16*) (record + 0x30);
+	p_defaults->m_slots[0].m_mask = *(const LegoU16*) (record + 0x30);
 	if (*(LegoU32*) (record + 0x4c) != 2) {
 		DrawOverlayRectangle(source, p_defaults);
 		return;

@@ -181,7 +181,8 @@ LegoBool32 BitmapFont::Load(
 		1,
 		width
 	);
-	LegoS32 glyphHeight = (height - bottom) - 1 - glyphTop;
+	LegoS32 glyphBottom = height - bottom - 1;
+	LegoS32 glyphHeight = glyphBottom - glyphTop;
 	LegoS32 packedGlyphHeight = glyphHeight + 3;
 	LegoS32 x = 0;
 	LegoS32 y = 0;
@@ -189,12 +190,12 @@ LegoBool32 BitmapFont::Load(
 	LegoS32 glyphsOnPage = 0;
 	LegoS32 pageIndex = temporaryTextureId;
 	LegoS32 glyphIndex = 0;
-	LegoS32 sourceGlyphX = 0;
+	LegoS32 sourceGlyphOffset = 0;
 	LegoU8* destination = page;
 	BitmapFontPageUploadDispatch* rendererDispatch = (BitmapFontPageUploadDispatch*) g_displayRenderer->m_vtable;
 
 	while (glyphIndex < glyphCount) {
-		LegoU8* glyphStart = image.m_pixels + sourceGlyphX * bytesPerPixel;
+		LegoU8* glyphStart = image.m_pixels + sourceGlyphOffset;
 		LegoS32 left = FindFirstNonemptyRow(image.m_bitsPerPixel, glyphStart, 1, p_glyphWidth - 1, width, height - 1);
 		if (left == -1) {
 			break;
@@ -232,12 +233,12 @@ LegoBool32 BitmapFont::Load(
 
 		LegoS32 copyRows = packedGlyphHeight - 2;
 		LegoS32 copyBytes = (cellWidth - 2) * bytesPerPixel;
-		const LegoU8* sourceRow = image.m_pixels + (glyphTop * width + left + sourceGlyphX) * bytesPerPixel;
+		const LegoU8* sourceRow = glyphStart + (glyphBottom * width + left) * bytesPerPixel;
 		LegoU8* destinationRow = destination + ((y + 1) * dimension + (x + 1)) * bytesPerPixel;
 		for (LegoS32 row = 0; row < copyRows; row++) {
 			memcpy(
 				destinationRow + row * dimension * bytesPerPixel,
-				sourceRow + row * width * bytesPerPixel,
+				sourceRow - row * width * bytesPerPixel,
 				copyBytes
 			);
 		}
@@ -253,7 +254,7 @@ LegoBool32 BitmapFont::Load(
 		x += cellWidth;
 		glyphsOnPage++;
 		glyphIndex++;
-		sourceGlyphX += p_glyphWidth * bytesPerPixel;
+		sourceGlyphOffset += p_glyphWidth * bytesPerPixel;
 	}
 
 	if (glyphsOnPage != 0 || y != 0) {

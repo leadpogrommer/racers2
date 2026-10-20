@@ -50,7 +50,6 @@ void DrawGlyphQuad(
 	}
 
 	RendererGuiRectangle rectangle;
-	LegoU32 rotationBits = 7;
 	rectangle.m_left = p_left;
 	rectangle.m_top = p_top;
 	rectangle.m_right = p_right;
@@ -67,12 +66,12 @@ void DrawGlyphQuad(
 	rectangle.m_textureTop = p_glyph->m_v;
 	rectangle.m_textureRight = p_glyph->m_uEnd;
 	rectangle.m_textureBottom = p_glyph->m_vEnd;
-	memcpy(&rectangle.m_rotation, &rotationBits, sizeof(rotationBits));
-	rectangle.m_blendMode = 0;
+	rectangle.m_rotation = 0.0f;
+	rectangle.m_blendMode = 7;
 	rectangle.m_opaque0x48[0] = 0;
 	rectangle.m_opaque0x48[1] = 0;
 	rectangle.m_opaque0x48[2] = 0;
-	p_defaults->m_slots[0].m_mask = (LegoU16) p_color;
+	p_defaults->m_slots[0].m_mask = (LegoU16) p_glyph->m_texture;
 
 	RendererMainDispatch* dispatch = (RendererMainDispatch*) g_displayRenderer->m_vtable;
 	dispatch->m_drawGuiRectangle(g_displayRenderer, NULL, &rectangle, p_defaults);
@@ -125,7 +124,6 @@ void __fastcall DrawGlobalOverlayText(GlobalOverlayRecord* p_record, void*, Rend
 		LegoU16 character = p_record->m_text[characterIndex];
 		if (character == 0x0a) {
 			y += lineAdvance;
-			x = baseX;
 		}
 		else if (character == 0x0d) {
 			x = baseX;
@@ -135,8 +133,17 @@ void __fastcall DrawGlobalOverlayText(GlobalOverlayRecord* p_record, void*, Rend
 		}
 		else {
 			BitmapGlyphQuad glyph;
-			glyph.m_left = 0.0f;
-			glyph.m_top = 0.0f;
+			glyph.m_left = x;
+			glyph.m_top = y;
+			if ((flags & 0x20) != 0) {
+				LegoFloat waveInput =
+					p_record->m_animationTime * p_record->m_elapsed + (LegoFloat) characterIndex * 4.0f;
+				LegoFloat wave = EvaluateFpuSine(waveInput) * 0.01f;
+				if (scaleGlyphs != FALSE) {
+					wave *= localScaleY;
+				}
+				glyph.m_top += wave;
+			}
 			LegoFloat advance = 0.0f;
 			LegoBool32 hasReplacement = FALSE;
 			if (p_record->m_textLength != 0 && characterIndex == scheduledCharacter) {
@@ -165,19 +172,10 @@ void __fastcall DrawGlobalOverlayText(GlobalOverlayRecord* p_record, void*, Rend
 			if (hasReplacement == FALSE) {
 				font->GetGlyphMetrics(character, &glyph, &advance);
 			}
-			LegoFloat glyphLeft = x;
-			LegoFloat glyphTop = y;
-			LegoFloat glyphRight = x + glyph.m_right;
-			LegoFloat glyphBottom = y + glyph.m_bottom;
-			if ((flags & 0x20) != 0) {
-				LegoFloat waveInput =
-					p_record->m_animationTime * p_record->m_elapsed + (LegoFloat) characterIndex * 4.0f;
-				LegoFloat wave = EvaluateFpuSine(waveInput) * 0.01f;
-				if (scaleGlyphs != FALSE) {
-					wave *= localScaleY;
-				}
-				glyphTop += wave;
-			}
+			LegoFloat glyphLeft = glyph.m_left;
+			LegoFloat glyphTop = glyph.m_top;
+			LegoFloat glyphRight = glyph.m_right;
+			LegoFloat glyphBottom = glyph.m_bottom;
 			if (scaleGlyphs != FALSE) {
 				advance *= localScaleX;
 				glyphRight = glyphLeft + (glyphRight - glyphLeft) * localScaleX;

@@ -32,7 +32,7 @@ void DisplayRenderer::ResetTextureStages()
 		SetCachedTextureStageState(stage, D3DTSS_ADDRESSW, D3DTADDRESS_CLAMP);
 		SetCachedTextureStageState(stage, D3DTSS_MINFILTER, D3DTEXF_LINEAR);
 		SetCachedTextureStageState(stage, D3DTSS_MAGFILTER, D3DTEXF_LINEAR);
-		SetCachedTextureStageState(stage, D3DTSS_MIPFILTER, D3DTEXF_LINEAR);
+		SetCachedTextureStageState(stage, D3DTSS_MIPFILTER, D3DTEXF_ANISOTROPIC);
 		SetCachedTextureStageState(stage, D3DTSS_MIPMAPLODBIAS, 0);
 		SetCachedTextureStageState(stage, D3DTSS_MAXMIPLEVEL, 0);
 		SetCachedTextureStageState(stage, D3DTSS_BORDERCOLOR, 0);

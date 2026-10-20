@@ -64,13 +64,13 @@ The user's top priority is to get the rebuilt game running with the supplied
 installation assets. Prioritize the real startup path, application lifecycle,
 resource/file loading, graphics/input/audio initialization, main loop and
 connections needed to reach gameplay. Track observable milestones such as
-startup, a rendered menu and a playable race. The current temporary bootstrap
-is not a running game; do not describe a placeholder window as gameplay.
-The current bounded runtime milestone constructs the application, accesses its
-per-user display config, reads both archive metadata files, and opens the GTC
-archive. It still does not create a window or render gameplay. Reuse the retail
-dialog/icon resources through `tools/extract_resources.py`; keep generated
-`.res` files in ignored build output. Renderer builds require the tested local
+startup, a rendered menu and a playable race. WinMain now enters the recovered
+game loop and the complete initial menu graph links. Menu rendering, keyboard
+navigation and sound are runtime-confirmed. New Game recovery is paused; a playable
+race has not been verified. Do not describe a placeholder or loading window as a
+rendered menu. See `docs/work-menu-startup.md` for current runtime evidence.
+Reuse the retail dialog/icon resources through `tools/extract_resources.py`; keep
+generated `.res` files in ignored build output. Renderer builds require the tested local
 DirectX 8 configuration from `tools/directx8.py` and the real DX8 interfaces.
 
 Instruction matching is a diagnostic and secondary goal. Do not postpone a
