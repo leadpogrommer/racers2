@@ -14,8 +14,8 @@ Verified reconstructions include character predicates, line classification,
 fixed string buffers, file operations, window geometry, command-line parsing,
 startup helpers, bitmap scanning, terrain lookup, spline helpers, and
 foundational renderer/input operations.
-The current checkpoint has **538 exact function matches**, **twenty-eight reviewed
-near matches**, and 1,303 unfinished implementations across 1,869 measured
+The current checkpoint has **588 exact function matches**, **31 reviewed
+near matches**, and 2,094 unfinished implementations across 2,713 measured
 functions. See
 [current progress](docs/progress.md) for the measured function list and
 remaining work. The application singleton and its two complete 38-slot
@@ -68,12 +68,13 @@ Loading-screen textures, sprites, progress animation and fade-controller lifecyc
 now link; see [loading-screen recovery](docs/work-loading-progress.md).
 Foyer resource loading and remaining frontend closures are still being integrated; see [frontend notes](docs/work-controller-frontend.md).
 Earlier runtime checks exercised config,
-archive metadata, and selected asset reads. The executable still has a
-temporary entry point and does not reach a window, rendered menu, or gameplay.
-No game or probe was run for the current renderer/input implementation batch;
+archive metadata, and selected asset reads. The executable now enters the recovered game loop. The complete startup graph
+links, but a rendered menu or gameplay has not yet been verified.
+The startup integration and remaining limitations are documented in
+[menu startup recovery](docs/work-menu-startup.md). No game or probe was run for this static integration checkpoint;
 future runtime checks are reserved for significant milestones expected to
 reach a rendered menu or gameplay. Whole-game coverage is not established.
-Ghidra currently discovers 4,631 function starts,
+The current Ghidra discovery inventory contains 4,845 function starts,
 including 26 thunks and linked libraries; this is a provisional inventory,
 not a count of game-authored functions. See the
 [inventory notes](docs/research.md#automatic-function-inventory).

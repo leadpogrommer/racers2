@@ -49,4 +49,7 @@ void __fastcall ApplyCarDisplayChoice(
 	LegoU32 p_mode
 );
 
+GameObject* CreateCarDisplayNameObject();
+GameObject* CreateCarDisplayPartForModel(const LegoChar*, LegoU32);
+void DestroyCarDisplayModelObject(GameObject*);
 #endif

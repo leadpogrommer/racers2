@@ -3,6 +3,9 @@
 
 #include "charbuffer128.h"
 #include "gamemanager.h"
+#include "quaternion.h"
+#include "secondaryrenderowner.h"
+#include "vector3.h"
 
 #include <stddef.h>
 
@@ -28,7 +31,9 @@ struct SecondaryManager : GameObject {
 	LegoU32 m_unk0x5c;
 	LegoS32 m_requestedState; // 0x60
 	LegoU32 m_unk0x64;
-	undefined m_unk0x68[0x0c];
+	LegoS32 m_loadedCarSet;     // 0x68
+	void* m_carSelection;       // 0x6c
+	void* m_characterSelection; // 0x70
 	void* m_unk0x74;
 	struct SecondaryManagerMediaState* m_unk0x78;
 	void* m_unk0x7c;
@@ -49,7 +54,7 @@ struct SecondaryManager : GameObject {
 	LegoU32 m_unk0x154[10];          // 0x154
 	void* m_unk0x17c;
 	void* m_secondaryData[0x2e]; // 0x180
-	undefined m_unk0x238[4];
+	LegoU32 m_saveLoadResult;    // 0x238
 	LegoU32 m_unk0x23c;
 	LegoU32 m_unk0x240;
 	LegoU32 m_unk0x244;
@@ -79,6 +84,22 @@ struct SecondaryManager : GameObject {
 	void BeginStartup();
 	void EnumerateDisplayModes();
 	void DetectKeyboardLanguage();
+	void EnterMainMenu();
+	void BeginCharacterSelection(LegoU32 p_player);
+	void BeginCarSelection(LegoU32 p_player, LegoS32 p_carSet);
+	void EnterSpecialMode();
+	void RestoreStartupRendering();
+	LegoBool32 LoadSavedGame();
+	LegoBool32 ValidateSavedGame();
+	void ApplySavedSettings();
+	void PrepareSavedGame();
+	void LoadMenuResources(LegoS32 p_carSet);
+	void UpdateMenuMode(LegoU32 p_mode, LegoU32 p_frameParameter);
+	void UpdateSpecialMode(LegoU32 p_frameParameter);
+	void ReleaseMenuResources(LegoU32 p_mode);
+	void ReturnToController(LegoU32 p_hideMenu);
+	void LoadLocalizedMenuResources();
+	void ReleaseLocalizedMenuResources();
 };
 
 void __fastcall LoadSecondaryManagerAudioResources(SecondaryManager* p_manager, void* p_edx, LegoU32 p_loadMode);

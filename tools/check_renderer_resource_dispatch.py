@@ -14,7 +14,7 @@ from toolchain import ROOT
 
 TABLES = {
     "texture": (0x005358E4, 10, "g_rendererTextureRecordDispatchTable"),
-    "animation": (0x00536394, 5, "g_rendererResourceCacheDispatch"),
+    "animation": (0x00536394, 7, "g_rendererResourceCacheDispatch"),
     "abstract": (0x0053570C, 5, "g_rendererResourceCacheAbstractDispatch"),
     "vertex": (0x00535488, 44, "g_rendererVertexBufferDispatch"),
     "index": (0x00535538, 7, "g_rendererIndexBufferDispatch"),

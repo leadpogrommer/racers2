@@ -89,7 +89,7 @@ LegoU32 ExecuteTextureStageSubrecord(
 }
 } // namespace
 
-// FUNCTION: LEGORACERS2 0x004e1950
+// FUNCTION: LEGORACERS2 0x004e1950 FOLDED
 HRESULT PassThroughStageValidationResult(HRESULT p_result)
 {
 	return p_result;

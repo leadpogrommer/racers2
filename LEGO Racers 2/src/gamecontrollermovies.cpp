@@ -12,9 +12,9 @@ void GameController::PlayStartupMovies()
 {
 	m_unk0x68 = 1;
 	const LegoChar* movies[3] = {
-		"Game Data\\Movies\\LEGO_splash.mpg",
-		"Game Data\\Movies\\ATD_splash.mpg",
-		"Game Data\\Movies\\LR2_splash.mpg"
+		"Game Data\\Movies\\LEGO splash.mpg",
+		"Game Data\\Movies\\ATD splash.mpg",
+		"Game Data\\Movies\\LR2 splash.mpg"
 	};
 	const LegoChar* prefix = "";
 	GetRegistryMediaPath(&prefix, 0);

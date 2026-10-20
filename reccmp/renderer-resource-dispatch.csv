@@ -14,6 +14,8 @@ animation,04,004c00c0,InvokeResourceCacheLoad
 animation,08,004c03c0,InvokeResourceCacheAdvance
 animation,0c,004c0450,InvokeResourceCacheRelease
 animation,10,00403920,ApplicationTruePolicy
+animation,14,004c04a0,SelectResourceCacheAnimationFraction
+animation,18,00403910,InvokeResourceCacheDevelopmentMode
 abstract,00,0051a08f,purecall
 abstract,04,0051a08f,purecall
 abstract,08,0051a08f,purecall

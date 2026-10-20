@@ -1,5 +1,8 @@
+#include "applicationpolicy.h"
+#include "gamecontrollerrendercallbacks.h"
 #include "memoryheap.h"
 #include "renderer.h"
+#include "rendererconstructiondispatch.h"
 #include "rendererrecords.h"
 #include "simulationtiming.h"
 #include "winfile.h"
@@ -23,6 +26,8 @@ struct RendererResourceCacheDispatch {
 	CacheAdvance m_advance;
 	CacheRelease m_release;
 	CacheTrue m_true;
+	void(__fastcall* m_selectAnimationFraction)(RendererResourceCacheEntry*, void*, LegoU32);
+	CacheTrue m_developmentMode;
 };
 
 typedef int(__cdecl* PureCall)();
@@ -30,7 +35,7 @@ typedef int(__cdecl* PureCall)();
 struct RendererResourceCacheAbstractDispatch {
 	PureCall m_callbacks[5];
 };
-DECOMP_SIZE_ASSERT(RendererResourceCacheDispatch, 0x14);
+DECOMP_SIZE_ASSERT(RendererResourceCacheDispatch, 0x1c);
 DECOMP_SIZE_ASSERT(RendererResourceCacheAbstractDispatch, 0x14);
 
 LegoBool32 __fastcall InvokeResourceCacheSetPath(RendererResourceCacheEntry* p_entry, void*, const LegoChar* p_path)
@@ -53,12 +58,19 @@ void __fastcall InvokeResourceCacheRelease(RendererResourceCacheEntry* p_entry, 
 	p_entry->ReleaseAnimationReferences();
 }
 
+LegoU32 __fastcall InvokeResourceCacheDevelopmentMode(RendererResourceCacheEntry*, void*)
+{
+	return IsApplicationDevelopmentMode();
+}
+
 extern const RendererResourceCacheDispatch g_rendererResourceCacheDispatch = {
 	InvokeResourceCacheSetPath,
 	InvokeResourceCacheLoad,
 	InvokeResourceCacheAdvance,
 	InvokeResourceCacheRelease,
 	(CacheTrue) ApplicationTruePolicy,
+	SelectResourceCacheAnimationFraction,
+	InvokeResourceCacheDevelopmentMode,
 };
 
 extern "C" int __cdecl _purecall();
@@ -247,4 +259,17 @@ void RendererResourceCacheEntry::ReleaseAnimationReferences()
 	for (LegoU32 i = 0; (LegoS32) i < (LegoS32) m_frameCount; ++i) {
 		g_displayRenderer->ReleaseTextureResourceReference(m_frameResourceIds[i], 1);
 	}
+}
+
+// STUB: LEGORACERS2 0x004c04a0
+void __fastcall SelectResourceCacheAnimationFraction(RendererResourceCacheEntry* p_resource, void*, LegoU32 p_fraction)
+{
+	LegoS32 index = (LegoS32) (p_resource->m_frameCount * (p_fraction & 0xffff)) >> 16;
+	const RendererMainDispatch* dispatch = (const RendererMainDispatch*) g_displayRenderer->m_vtable;
+	dispatch->m_setTextureIndexMap(
+		g_displayRenderer,
+		NULL,
+		p_resource->m_resourceId,
+		p_resource->m_frameResourceIds[index]
+	);
 }

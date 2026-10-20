@@ -44,8 +44,8 @@ STRMBASE.LIB; see `docs/work-directshow.md`. Both builders must put project
 headers before the external SDK paths so `util/d3dx8.h` is selected.
 
 The build manifest is `sources.txt`; add new compilation units there. Keep the
-flags in CMake and `tools/build.py` aligned. `bootstrap.cpp` is temporary entry
-scaffolding with no retail address; replace it when reconstructing real startup.
+flags in CMake and `tools/build.py` aligned. `bootstrap.cpp` forwards WinMain arguments to the recovered `RunGameInstance`
+entry path; the adapter itself has no retail address.
 The comparison harness links with `/OPT:NOREF,ICF` so that recovered functions
 remain measurable before their original callers exist. Parallel workers can
 use `tools/build.py --source-list <manifest> --build-dir build-<worker>`;

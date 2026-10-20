@@ -1,12 +1,19 @@
 # Playable rebuild: current blockers
 
-Earlier runtime checks constructed the application singleton, loaded its
-per-user display configuration, initialized the mode-3 archive reader and exited
-cleanly under Wine. The executable still uses a temporary `WinMain`; it has not created
-a window, initialized a renderer, shown a menu, or entered gameplay. The next
-milestones are complete renderer initialization, connecting DirectInput, audio
-services, the message loop, and the game managers needed to reach a playable
-race.
+The real WinMain/message-loop path now links with the startup managers and both
+selectors. Renderer and recording-service CRT construction is connected. Static
+validation passes for both 465-unit builds; a rendered menu is not yet verified.
+See [menu startup recovery](work-menu-startup.md) for the current checkpoint.
+
+Launch from the installation directory on a non-CD drive: archive constructors
+run before WinMain. The original CD check separately requires a CD-ROM `CDpath`
+containing `language/export.Swe`. The supplied disc has been extracted into ignored
+local media storage for the next milestone launch.
+
+Later race/network actions remain explicitly unfinished. Automatic attract mode
+reaches a deferred race path after 45 simulated idle seconds. Earlier sections
+below record the subsystem recovery history; the current integrated entry replaces
+the earlier temporary-bootstrap limitation.
 
 ## Application and startup
 

@@ -9,10 +9,14 @@ struct ModelResource;
 class BodypartManager : public GameObject {
 public:
 	BodypartManager(BodypartManagerTemplate* p_template);
+	const CharBuffer128* GetHeadModelPath(LegoS32 p_index, LegoU32 p_species);
 	LegoS32 GetTorsoTexture(LegoS32 p_index, LegoU32 p_species);
 	LegoS32 GetLegTexture(LegoS32 p_index);
 	LegoS32 GetFaceTexture(LegoS32 p_group, LegoS32 p_variant);
 	ModelResource* GetLoadedHeadModel(LegoS32 p_index);
+	LegoS32 FindHeadModel(const LegoChar* p_name, LegoU32* p_species);
+	LegoS32 FindTorsoTexture(const LegoChar* p_name, LegoU32* p_species);
+	LegoS32 FindLegTexture(const LegoChar* p_name);
 
 	CharBuffer128 m_paths[8];         // 0x58
 	LegoS32 m_headModelCount;         // 0x458
@@ -33,6 +37,8 @@ public:
 	LegoS32 m_ramaTorsoTextureCount;  // 0x494
 	void* m_ramaTorsoTextures;        // 0x498
 };
+
+void __cdecl StripBodypartPathAndExtension(LegoChar* p_destination, const LegoChar* p_path);
 
 DECOMP_SIZE_ASSERT(BodypartManager, 0x49c);
 DECOMP_STATIC_ASSERT(offsetof(BodypartManager, m_paths) == 0x58);
@@ -73,5 +79,12 @@ GameObject* __fastcall ConstructBodypartManager(
 );
 LegoU32 __fastcall BodypartManagerGetObjectSize(GameObject* p_object, void* p_unusedEdx);
 void __fastcall BodypartManagerInitialize(GameObject* p_object, void* p_unusedEdx);
+void __fastcall SetBodypartFaceTextureLoaded(
+	BodypartManager* p_manager,
+	void* p_unusedEdx,
+	LegoU32 p_group,
+	LegoU32 p_variant,
+	LegoU32 p_load
+);
 
 #endif // LR2_BODYPARTMANAGER_H

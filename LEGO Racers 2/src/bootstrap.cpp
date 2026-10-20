@@ -1,10 +1,7 @@
-#include "token.h"
+#include "gameentry.h"
 
-#include <windows.h>
-
-// Temporary executable entry point. This is scaffolding, with no retail annotation.
-// Calling the initial functions keeps them in the linked image for reccmp.
-int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR p_commandLine, int)
+// Adapter for the recovered retail entry path at 0x004c3040.
+int WINAPI WinMain(HINSTANCE p_instance, HINSTANCE p_previous, LPSTR p_commandLine, int p_showCommand)
 {
-	return IsTokenCharacter(p_commandLine[0]) + IsHorizontalSpace(p_commandLine[0]);
+	return RunGameInstance(p_instance, p_previous, p_commandLine, p_showCommand);
 }

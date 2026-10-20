@@ -1,0 +1,9 @@
+#ifndef LR2_CHARACTERVISUALBODYLIFECYCLE_H
+#define LR2_CHARACTERVISUALBODYLIFECYCLE_H
+
+#include "foyertemplateinstance.h"
+
+extern const FoyerTemplateInstanceDispatch g_characterVisualBodyDispatch;
+extern const PhysicalLifecycleDispatch g_characterVisualBodyLifecycleDispatch;
+
+#endif

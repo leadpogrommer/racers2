@@ -8,18 +8,21 @@ struct GlobalOverlaySprite;
 struct AudioSourceRecord;
 
 struct TextBoxFormattingState {
-	LegoFloat m_horizontalOrigin; // +0x00
-	undefined m_unk0x04[0x0c];
-	LegoU16 m_normalizedText[0x80]; // +0x10, observed 0x100-byte copy extent
-	undefined m_unk0x110[0x1a0];
-	LegoFloat m_rightOffset; // +0x2b0
-	LegoFloat m_topOffset;   // +0x2b4
-	LegoFloat m_leftOffset;  // +0x2b8
+	LegoFloat m_horizontalOrigin;    // +0x00
+	LegoFloat m_verticalOrigin;      // +0x04
+	LegoFloat m_borderSize[2];       // +0x08
+	LegoU16 m_normalizedText[0x100]; // +0x10, 256 UTF-16 code units
+	LegoFloat m_characterInterval;   // +0x210
+	LegoU16 m_expandedSequence[78];  // +0x214
+	LegoFloat m_rightOffset;         // +0x2b0
+	LegoFloat m_topOffset;           // +0x2b4
+	LegoFloat m_leftOffset;          // +0x2b8
+	LegoFloat m_portraitHeight;      // +0x2bc
 };
 
 DECOMP_STATIC_ASSERT(offsetof(TextBoxFormattingState, m_normalizedText) == 0x10);
 DECOMP_STATIC_ASSERT(offsetof(TextBoxFormattingState, m_rightOffset) == 0x2b0);
-DECOMP_STATIC_ASSERT(sizeof(TextBoxFormattingState) == 0x2bc);
+DECOMP_STATIC_ASSERT(sizeof(TextBoxFormattingState) == 0x2c0);
 extern TextBoxFormattingState g_textBoxFormattingState;
 
 struct TextBoxManager : GameObject {

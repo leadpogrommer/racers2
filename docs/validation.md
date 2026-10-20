@@ -544,3 +544,19 @@ Both data comparisons report zero issues across 298 globals. Twelve dispatch
 verifiers (including 609 scene pointers), eighteen complete folded aliases and
 twenty-one tooling tests pass. No runtime or asset probes were performed. See
 [preview owner evidence](work-secondary-render-owner.md).
+
+
+## Complete startup and selector integration (2026-10-20)
+
+Both SP5 builders link 465 units with no unresolved symbols and agree on all
+2,713 measured scores/statuses: 588 exact functions, 31 reviewed near matches,
+and 2,094 STUB rows. Twelve dispatch verifiers pass in both builds, including
+1,279 scene pointers; twenty complete folded aliases and 21 tooling/library tests
+pass. Data comparison checks 476 globals and flags five equivalent string-pointer
+aliases in two variables; independent PE reads verify identical pointee bytes and
+within-group sharing. No check was suppressed or weakened. See
+[startup integration evidence](work-menu-startup.md).
+
+WinMain now forwards to the recovered entry. The CD media tree is extracted from
+the supplied MODE2/2352 disc, with all 94 files checked by size and SHA-256. The
+checkpoint is static validation; menu rendering remains to be verified.

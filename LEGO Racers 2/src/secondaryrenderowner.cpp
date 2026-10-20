@@ -26,7 +26,7 @@ DECOMP_SIZE_ASSERT(SecondaryRenderOwnerDispatch, 0x6c);
 static GameObject* __fastcall DestroySecondaryRenderOwner(GameObject*, void*, LegoU32);
 static void __fastcall RemoveSecondaryRenderOwner(SecondaryRenderOwner*, void*);
 static void __fastcall InitializeSecondaryRenderOwner(GameObject*, void*);
-static void __fastcall ReleaseSecondaryRenderOwner(GameObject*, void*);
+void __fastcall ReleaseSecondaryRenderOwner(GameObject*, void*);
 static void __fastcall ApplySecondaryRenderOwnerTransform(GameObject*, void*, LegoU32, LegoU32);
 static LegoU32 __fastcall UpdateSecondaryRenderOwner(GameObject*, void*);
 static LegoU32 __fastcall GetSecondaryRenderOwnerSize(GameObject*, void*);
@@ -271,8 +271,8 @@ static void __fastcall InitializeSecondaryRenderOwner(GameObject* p_object, void
 		UpdateGameObjectRenderGeometry(owner, NULL);
 	}
 }
-// FUNCTION: LEGORACERS2 0x004ba270
-static void __fastcall ReleaseSecondaryRenderOwner(GameObject* p_object, void*)
+// The shared base-remove bridge at retail 0x004ba270.
+void __fastcall ReleaseSecondaryRenderOwner(GameObject* p_object, void*)
 {
 	p_object->Remove();
 }

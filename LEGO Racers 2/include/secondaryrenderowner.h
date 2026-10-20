@@ -60,4 +60,5 @@ DECOMP_STATIC_ASSERT(offsetof(SecondaryRenderOwner, m_planePointPointer) == 0x26
 DECOMP_STATIC_ASSERT(offsetof(SecondaryRenderOwner, m_worldPlanePointPointer) == 0x300);
 DECOMP_STATIC_ASSERT(offsetof(SecondaryRenderOwner, m_offset) == 0x330);
 GameObject* __fastcall ConstructSecondaryRenderOwner(GameObject*, void*, const SecondaryRenderOwnerTemplate*);
+void __fastcall ReleaseSecondaryRenderOwner(GameObject*, void*);
 #endif

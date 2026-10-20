@@ -632,6 +632,12 @@ void GameObject::DrawChild()
 	}
 }
 
+// FUNCTION: LEGORACERS2 0x004ba270
+void __fastcall GameObjectBaseRemove(GameObject* p_object, void*)
+{
+	p_object->Remove();
+}
+
 // STUB: LEGORACERS2 0x004ba370
 LegoFloat __fastcall GetGameObjectViewDepth(void* p_camera, void*, const Vector3* p_point)
 {
@@ -780,9 +786,4 @@ void __fastcall GameObjectBaseUpdateRegion(GameObject* p_object, void*, LegoU32 
 void __fastcall GameObjectBaseInitialize(GameObject* p_object, void*)
 {
 	p_object->Initialize();
-}
-
-void __fastcall GameObjectBaseRemove(GameObject* p_object, void*)
-{
-	p_object->Remove();
 }

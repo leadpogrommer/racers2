@@ -631,7 +631,7 @@ static GameObject* __fastcall CarDisplayNameTargetDestroy(void* p_target, void*,
 }
 
 // STUB: LEGORACERS2 0x00403fd0
-static GameObject* CreateCarDisplayNameObject()
+GameObject* CreateCarDisplayNameObject()
 {
 	CarDisplayPartTemplate templateData;
 	memset(&templateData, 0, sizeof(templateData));
@@ -1250,4 +1250,21 @@ static void __fastcall NormalizeCarDisplayIndexedRecords(GameObject* p_object, v
 		LegoFloat* value = (LegoFloat*) &owner->m_records[i * 5];
 		*value = (*value * scale - offset) * *value;
 	}
+}
+
+// Shared construction path used by the brick builder's 36 part objects.
+GameObject* CreateCarDisplayPartForModel(const LegoChar* p_modelPath, LegoU32 p_flags)
+{
+	CarDisplayPartTemplate data;
+	memset(&data, 0, sizeof(data));
+	data.m_flags = p_flags;
+	data.m_first = CharBuffer24("NoName");
+	data.m_second = CharBuffer24("");
+	data.m_transform.m_rotation[3] = 1.0f;
+	memcpy(data.m_modelPath, p_modelPath, sizeof(data.m_modelPath));
+	return CreateCarDisplayPartObject(&data);
+}
+void DestroyCarDisplayModelObject(GameObject* p_object)
+{
+	DeleteCarDisplayObject(p_object);
 }

@@ -363,11 +363,16 @@ const ControllerRecordingServiceDispatchView g_controllerRecordingServiceDispatc
 	ServiceSetRequestedInputValue
 };
 
+// STUB: LEGORACERS2 0x004b1400
+static void InitializeStaticControllerRecordingService()
+{
+	InitializeControllerRecordingServiceStorage();
+}
+
 // STUB: LEGORACERS2 0x004b1410
 void InitializeControllerRecordingServiceStorage()
 {
 	ControllerRecordingService* service = g_controllerRecordingService;
-	service->m_vtable = &g_controllerRecordingServiceDispatch;
 	LegoU8* bytes = (LegoU8*) service;
 	*(LegoU32*) (bytes + 0x3c) = 0xffffffff;
 	*(LegoU32*) (bytes + 0x04) = 0;
@@ -392,14 +397,7 @@ void InitializeControllerRecordingServiceStorage()
 	*(LegoU32*) (bytes + 0x74) = 0;
 	*(LegoU32*) (bytes + 0x78) = 0;
 	*(LegoU32*) (bytes + 0x7c) = 0;
-	*(LegoU16*) (bytes + 0x80) = 0x10;
-	*(LegoU16*) (bytes + 0x82) = 0;
-	*(LegoU32*) (bytes + 0x84) = 0;
-	*(LegoU32*) (bytes + 0x88) = 0;
-	*(LegoU32*) (bytes + 0x90) = 0;
-	*(LegoU32*) (bytes + 0x94) = 0;
 	*(LegoU16*) (bytes + 0x98) = 0x10;
-	*(LegoU16*) (bytes + 0x9a) = 0;
 	*(LegoU32*) (bytes + 0x9c) = 0;
 	*(LegoU32*) (bytes + 0xa0) = 0;
 	*(LegoU32*) (bytes + 0xb0) = 0;
@@ -412,7 +410,13 @@ void InitializeControllerRecordingServiceStorage()
 	*(LegoU32*) (bytes + 0xcc) = 0;
 	*(LegoU32*) (bytes + 0xd4) = 0;
 	*(LegoU32*) (bytes + 0xd8) = 0;
+	service->m_vtable = &g_controllerRecordingServiceDispatch;
 }
+
+struct StaticControllerRecordingServiceInitialization {
+	StaticControllerRecordingServiceInitialization() { InitializeStaticControllerRecordingService(); }
+};
+static StaticControllerRecordingServiceInitialization g_staticControllerRecordingServiceInitialization;
 
 // FUNCTION: LEGORACERS2 0x004b14e0
 void ControllerRecordingService::SetUnknownWord0x2c(LegoU32 p_value)
