@@ -6,8 +6,6 @@
 // GLOBAL: LEGORACERS2 0x00655228
 LegoU32 g_globalOverlayManagerStorage[sizeof(GlobalOverlayManager) / sizeof(LegoU32)];
 
-GlobalOverlayManager& g_globalOverlayManager = *(GlobalOverlayManager*) g_globalOverlayManagerStorage;
-
 DECOMP_STATIC_ASSERT(sizeof(g_globalOverlayManagerStorage) == sizeof(GlobalOverlayManager));
 
 static void DestroyGlobalOverlayManager();

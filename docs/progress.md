@@ -5,7 +5,7 @@ promoted **213 STUBs** (195 exact, 18 reviewed near matches) and recovered one
 additional exact helper. No game runs were performed for these batches.
 
 Both 465-unit SP5 builds agree on all **2,721 measured scores and statuses**:
-**784 exact functions, 49 reviewed near matches and 1,888 STUB reconstructions**.
+**832 exact functions, 49 reviewed near matches and 1,840 STUB reconstructions**.
 All 619 previously implemented functions retain their raw accuracy or improve.
 Twenty-eight complete folded aliases, twelve dispatch inventories per build
 (including 1,321 scene pointers), 307 input-format records and 29 tooling/library
@@ -15,9 +15,9 @@ tests pass. Source STUBs without a separate matched report row remain unimplemen
 and **5,647 bodies**, for console, JSON, HTML and SVG coverage:
 
 ```text
-Implemented:  12.60%  (833 / 6612)
-Accuracy:     99.80%
-Progress:     12.57%
+Implemented:  13.32%  (881 / 6612)
+Accuracy:     99.81%
+Progress:     13.30%
 ```
 
 The inventory includes linked libraries and compiler helpers; external imports
@@ -25,8 +25,8 @@ and inlined functions are excluded. Discovery is not proven exhaustive. Known
 libraries stay excluded from implemented comparisons with `--nolib` while remaining
 in the whole-binary denominator. See [inventory evidence](research.md).
 
-Datacmp checks 497 globals and flags 18 variables in both builds: sixteen newly
-mapped callback tables have ABI-bridge/folded-pointer identity differences covered
+Datacmp checks 508 globals and flags 27 variables: twenty-five mapped
+callback tables (nine more were labelled for constructor/destructor matches) have ABI-bridge/folded-pointer identity differences covered
 by the complete passing slot inventories; two existing variables contain five
 verified duplicate-string aliases. These are documented comparison limits, not
 byte-perfect data equality. See [matching validation and pause notes](work-small-core-matches.md)
@@ -47,7 +47,7 @@ measure runtime completeness.
 | `0x004020c0` | `ClearSecondaryBuilderGrid` | 24.00% | Work in progress |
 | `0x004020f0` | `FreeSecondaryBuilderGrid` | 53.33% | Work in progress |
 | `0x00403380` | `LoadDefaultPlayerCar` | 63.83% | Work in progress |
-| `0x004034e0` | `ConstructSecondaryCarCollisionStore` | 92.31% | Work in progress |
+| `0x004034e0` | `ConstructSecondaryCarCollisionStore` | 100.00% | Verified exact |
 | `0x00403510` | `ReleaseSecondaryCarCollisionStore` | 53.33% | Work in progress |
 | `0x004035d0` | `LoadSecondaryCarCollisionStore` | 52.69% | Work in progress |
 | `0x004037b0` | `AssignCarDisplayModelResource` | 100.00% | Verified exact |
@@ -78,20 +78,20 @@ measure runtime completeness.
 | `0x00404450` | `ParseSecondaryBrickLine` | 39.35% | Work in progress |
 | `0x004047a0` | `IsCollisionSweepPositionClear` | 100.00% | Verified exact |
 | `0x004047b0` | `AppendSecondaryBrickResource` | 74.19% | Work in progress |
-| `0x00404830` | `GetSecondaryBrickPath` | 90.00% | Work in progress |
+| `0x00404830` | `GetSecondaryBrickPath` | 100.00% | Verified exact |
 | `0x00404870` | `FindSecondaryBrickPath` | 100.00% | Verified exact |
-| `0x004048e0` | `IsSecondaryBrickLoaded` | 93.75% | Work in progress |
-| `0x00404920` | `GetSecondaryBrickScale` | 93.75% | Work in progress |
-| `0x00404960` | `GetSecondaryBrickOrientation` | 93.75% | Work in progress |
-| `0x004049a0` | `GetSecondaryBrickOffset` | 93.75% | Work in progress |
-| `0x004049e0` | `GetSecondaryBrickWorldMask` | 93.75% | Work in progress |
+| `0x004048e0` | `IsSecondaryBrickLoaded` | 100.00% | Verified exact |
+| `0x00404920` | `GetSecondaryBrickScale` | 100.00% | Verified exact |
+| `0x00404960` | `GetSecondaryBrickOrientation` | 100.00% | Verified exact |
+| `0x004049a0` | `GetSecondaryBrickOffset` | 100.00% | Verified exact |
+| `0x004049e0` | `GetSecondaryBrickWorldMask` | 100.00% | Verified exact |
 | `0x00404a40` | `LoadSecondaryBrickModels` | 23.49% | Work in progress |
 | `0x00404e00` | `ReleaseSecondaryBrickModels` | 60.24% | Work in progress |
 | `0x00404e70` | `LoadSecondaryBrickMask` | 6.96% | Work in progress |
 | `0x00404f90` | `LoadSecondaryBuilderWorldMasks` | 90.20% | Work in progress |
 | `0x00404fd0` | `FindCarDisplayModelResource` | 100.00% | Verified exact |
 | `0x00404ff0` | `RotateSecondaryBrickModel` | 35.18% | Work in progress |
-| `0x00405330` | `AlignSecondaryBrickModel` | 12.47% | Work in progress |
+| `0x00405330` | `AlignSecondaryBrickModel` | 12.74% | Work in progress |
 | `0x00405820` | `CalculateSecondaryBrickBounds` | 44.62% | Work in progress |
 | `0x004059a0` | `ContainsSeatPositionTag` | 100.00% | Verified exact |
 | `0x00405a00` | `GetSecondaryPinVertexCount` | 60.66% | Work in progress |
@@ -111,12 +111,12 @@ measure runtime completeness.
 | `0x00406b20` | `ControllerStartupScene::~ControllerStartupScene` | 50.00% | Work in progress |
 | `0x00406b30` | `UpdateControllerStartupScene` | 41.03% | Work in progress |
 | `0x00406b80` | `CountDownControllerAttractMode` | 85.71% | Work in progress |
-| `0x00406bb0` | `UpdateControllerAttractNotice` | 22.07% | Work in progress |
+| `0x00406bb0` | `UpdateControllerAttractNotice` | 23.45% | Work in progress |
 | `0x00406cd0` | `IsMenuPlayerAvailable` | 100.00% | Verified exact |
 | `0x00406ce0` | `AdvanceControllerAttractMode` | 34.29% | Work in progress |
-| `0x00406d60` | `DisableSecondaryInactivityTimer` | 86.96% | Work in progress |
-| `0x00406d90` | `EnableSecondaryInactivityTimer` | 78.26% | Work in progress |
-| `0x00406dc0` | `ResetSecondaryInactivityTimer` | 40.00% | Work in progress |
+| `0x00406d60` | `DisableSecondaryInactivityTimer` | 100.00% | Verified exact |
+| `0x00406d90` | `EnableSecondaryInactivityTimer` | 83.33% | Work in progress |
+| `0x00406dc0` | `ResetSecondaryInactivityTimer` | 100.00% | Verified exact |
 | `0x00406ee0` | `InitializeGameControllerTemplate` | 57.63% | Work in progress |
 | `0x00406f50` | `ConstructGameController` | 27.27% | Work in progress |
 | `0x00406f60` | `RegisterGameControllerExit` | 100.00% | Verified exact |
@@ -128,10 +128,10 @@ measure runtime completeness.
 | `0x004071d0` | `DeleteGameController` | 100.00% | Verified exact |
 | `0x004071f0` | `GameControllerPairGroups::Initialize` | 22.64% | Work in progress |
 | `0x00407240` | `GameController::~GameController` | 100.00% | Verified exact |
-| `0x00407250` | `GameController::Initialize` | 30.22% | Work in progress |
+| `0x00407250` | `GameController::Initialize` | 30.36% | Work in progress |
 | `0x00407f00` | `PauseDetector::PauseDetector` | 61.54% | Work in progress |
 | `0x00407f30` | `BodypartManagerGetObjectSize` | 100.00% | Verified exact |
-| `0x00407f40` | `GameController::Remove` | 21.75% | Work in progress |
+| `0x00407f40` | `GameController::Remove` | 21.80% | Work in progress |
 | `0x004082a0` | `GameController::Update` | 46.39% | Work in progress |
 | `0x004086a0` | `GameControllerTimedEvents::Clear` | 56.00% | Work in progress |
 | `0x00408710` | `PrepareControllerSelection` | 66.34% | Work in progress |
@@ -164,7 +164,7 @@ measure runtime completeness.
 | `0x0040a970` | `InitializeGameControllerDefaults` | 51.96% | Work in progress |
 | `0x0040abc0` | `ResetGameControllerSession` | 95.83% | Reviewed near match |
 | `0x0040ac30` | `InitializeGameControllerPlayers` | 29.20% | Work in progress |
-| `0x0040ad30` | `GameControllerSettings::SetPlayerName` | 86.49% | Work in progress |
+| `0x0040ad30` | `GameControllerSettings::SetPlayerName` | 100.00% | Verified exact |
 | `0x0040ad60` | `ConfigureControllerInputBindings` | 34.96% | Work in progress |
 | `0x0040aef0` | `GameControllerName::Initialize` | 100.00% | Verified exact |
 | `0x0040af10` | `GameControllerName::SetNarrowText` | 100.00% | Verified exact |
@@ -173,9 +173,9 @@ measure runtime completeness.
 | `0x0040afe0` | `GetControllerWorldScore` | 100.00% | Verified exact |
 | `0x0040b000` | `GameControllerSelection::Initialize` | 9.09% | Work in progress |
 | `0x0040b020` | `UnlockAllSecondaryWorlds` | 100.00% | Verified exact |
-| `0x0040b040` | `UnlockAllSecondaryRewards` | 92.59% | Work in progress |
+| `0x0040b040` | `UnlockAllSecondaryRewards` | 100.00% | Verified exact |
 | `0x0040b0a0` | `GameControllerSelection::UnlockWorld` | 50.00% | Work in progress |
-| `0x0040b0d0` | `GameControllerSelection::UnlockTrack` | 94.74% | Work in progress |
+| `0x0040b0d0` | `GameControllerSelection::UnlockTrack` | 100.00% | Verified exact |
 | `0x0040b0f0` | `GameControllerSelection::IsTrackUnlocked` | 96.00% | Reviewed near match |
 | `0x0040b120` | `SetFoyerModeUnlocked` | 15.38% | Work in progress |
 | `0x0040b140` | `IsFoyerModeUnlocked` | 12.50% | Work in progress |
@@ -260,7 +260,7 @@ measure runtime completeness.
 | `0x00412360` | `ReleaseSecondaryObject88` | 77.42% | Work in progress |
 | `0x00412390` | `LoadSecondaryAuxiliaryResources` | 62.50% | Work in progress |
 | `0x004123b0` | `ReleaseSecondaryAuxiliaryResources` | 77.42% | Work in progress |
-| `0x004123e0` | `CreateSecondaryWheelSprites` | 27.65% | Work in progress |
+| `0x004123e0` | `CreateSecondaryWheelSprites` | 26.47% | Work in progress |
 | `0x004126e0` | `ClearSecondaryManagerAuxiliaryResources` | 3.17% | Work in progress |
 | `0x00412770` | `UpdateSecondaryAuxiliary` | 43.07% | Work in progress |
 | `0x00412ca0` | `ProjectSecondaryWheelIcon` | 75.14% | Work in progress |
@@ -278,7 +278,7 @@ measure runtime completeness.
 | `0x00415760` | `MenuInputBindingWidget::MenuInputBindingWidget` | 59.74% | Work in progress |
 | `0x004157f0` | `MenuInputBindingWidget::SetFontAndCreateSelectors` | 36.21% | Work in progress |
 | `0x004158b0` | `MenuInputBindingWidget::DestroySelectors` | 35.29% | Work in progress |
-| `0x00415930` | `MenuInputBindingWidget::Initialize` | 19.54% | Work in progress |
+| `0x00415930` | `MenuInputBindingWidget::Initialize` | 22.99% | Work in progress |
 | `0x00415a60` | `MenuInputBindingWidget::Reset` | 87.80% | Work in progress |
 | `0x00415ae0` | `MenuInputBindingWidget::HandleInput` | 29.18% | Work in progress |
 | `0x00416090` | `MenuInputBindingWidget::SetClipRectangle` | 82.81% | Work in progress |
@@ -290,7 +290,7 @@ measure runtime completeness.
 | `0x00416aa0` | `HasDuplicateMenuInputBinding` | 57.89% | Work in progress |
 | `0x00416b20` | `MenuTrackSelector::MenuTrackSelector` | 82.61% | Work in progress |
 | `0x00416b80` | `SetMenuWidgetFont` | 100.00% | Verified exact |
-| `0x00416b90` | `MenuTrackSelector::Initialize` | 40.85% | Work in progress |
+| `0x00416b90` | `MenuTrackSelector::Initialize` | 47.18% | Work in progress |
 | `0x00416da0` | `MenuTrackSelector::Reset` | 100.00% | Verified exact |
 | `0x00416df0` | `MenuTrackSelector::HandleInput` | 46.25% | Work in progress |
 | `0x00416fe0` | `MenuTrackSelector::SetActive` | 100.00% | Verified exact |
@@ -310,7 +310,7 @@ measure runtime completeness.
 | `0x00417d40` | `MenuPanel::Initialize` | 25.00% | Work in progress |
 | `0x00417e30` | `MenuPanel::Release` | 100.00% | Verified exact |
 | `0x00417e40` | `MenuPanel::Activate` | 27.51% | Work in progress |
-| `0x00417fd0` | `MenuPanel::AllocateSprites` | 42.23% | Work in progress |
+| `0x00417fd0` | `MenuPanel::AllocateSprites` | 47.01% | Work in progress |
 | `0x004181c0` | `MenuPanel::ReleaseSprites` | 100.00% | Verified exact |
 | `0x00418230` | `MenuPanel::BeginClosing` | 100.00% | Verified exact |
 | `0x00418260` | `MenuPanel::Deactivate` | 100.00% | Verified exact |
@@ -332,7 +332,7 @@ measure runtime completeness.
 | `0x00419730` | `MenuWidgetBase::RestoreBaseDispatch` | 100.00% | Verified exact |
 | `0x00419740` | `MenuWidgetBase::BeginState` | 100.00% | Verified exact |
 | `0x00419760` | `MenuWidgetBase::ResetState` | 100.00% | Verified exact |
-| `0x00419780` | `MenuWidgetBase::CreateChildSprites` | 39.18% | Work in progress |
+| `0x00419780` | `MenuWidgetBase::CreateChildSprites` | 40.21% | Work in progress |
 | `0x00419910` | `MenuWidgetBase::ReleaseChildSprites` | 100.00% | Verified exact |
 | `0x00419940` | `MenuWidgetBase::GetNavigationDirection` | 21.79% | Work in progress |
 | `0x00419a00` | `MenuWidgetBase::SetChildClipRectangle` | 100.00% | Verified exact |
@@ -340,7 +340,7 @@ measure runtime completeness.
 | `0x00419b80` | `InitializeMenuWidgetAnimationTuning` | 63.16% | Work in progress |
 | `0x00419bf0` | `InitializeMenuWidgetChoiceTuning` | 100.00% | Verified exact |
 | `0x00419c60` | `InitializeMenuWidgetLabelPositionTuning` | 100.00% | Verified exact |
-| `0x00419c80` | `MenuVolumeSlider::MenuVolumeSlider` | 93.75% | Work in progress |
+| `0x00419c80` | `MenuVolumeSlider::MenuVolumeSlider` | 100.00% | Verified exact |
 | `0x00419cb0` | `InitializeMenuVolumeControl` | 30.03% | Work in progress |
 | `0x00419fa0` | `MenuVolumeSlider::Destroy` | 100.00% | Verified exact |
 | `0x00419ff0` | `MenuVolumeSlider::HandleInput` | 61.84% | Work in progress |
@@ -349,7 +349,7 @@ measure runtime completeness.
 | `0x0041a170` | `MenuVolumeSlider::UpdateBounds` | 52.26% | Work in progress |
 | `0x0041a2d0` | `InitializeMenuRangeMarkerSize` | 100.00% | Verified exact |
 | `0x0041a2f0` | `MenuRangeSlider::MenuRangeSlider` | 76.00% | Work in progress |
-| `0x0041a340` | `InitializeMenuRangeControl` | 29.89% | Work in progress |
+| `0x0041a340` | `InitializeMenuRangeControl` | 30.32% | Work in progress |
 | `0x0041a760` | `MenuRangeSlider::Reset` | 100.00% | Verified exact |
 | `0x0041a7c0` | `MenuRangeSlider::UpdateMarker` | 64.71% | Work in progress |
 | `0x0041a810` | `MenuRangeSlider::HandleInput` | 50.14% | Work in progress |
@@ -365,7 +365,7 @@ measure runtime completeness.
 | `0x0041afd0` | `MenuToggle::SetClipRectangle` | 100.00% | Verified exact |
 | `0x0041b000` | `MenuToggle::UpdateBounds` | 80.49% | Work in progress |
 | `0x0041b080` | `MenuChoiceSelector::MenuChoiceSelector` | 94.44% | Work in progress |
-| `0x0041b0d0` | `InitializeMenuChoiceSelectorFromMode` | 18.54% | Work in progress |
+| `0x0041b0d0` | `InitializeMenuChoiceSelectorFromMode` | 19.21% | Work in progress |
 | `0x0041b510` | `MenuChoiceSelector::Destroy` | 100.00% | Verified exact |
 | `0x0041b550` | `MenuChoiceSelector::HandleInput` | 47.62% | Work in progress |
 | `0x0041b6f0` | `UpdateMenuChoiceSelectorHover` | 100.00% | Verified exact |
@@ -378,7 +378,7 @@ measure runtime completeness.
 | `0x0041bab0` | `MenuIntegerSelector::SetClipRectangle` | 100.00% | Verified exact |
 | `0x0041bae0` | `MenuIntegerSelector::UpdateBounds` | 77.14% | Work in progress |
 | `0x0041bbc0` | `MenuLabelSelector::SelectLabel` | 57.97% | Work in progress |
-| `0x0041bc20` | `MenuLabelSelector::Initialize` | 35.38% | Work in progress |
+| `0x0041bc20` | `MenuLabelSelector::Initialize` | 36.15% | Work in progress |
 | `0x0041be00` | `MenuLabelSelector::Reset` | 100.00% | Verified exact |
 | `0x0041be30` | `MenuLabelSelector::HandleInput` | 77.42% | Work in progress |
 | `0x0041bec0` | `MenuLabelSelector::SetClipRectangle` | 100.00% | Verified exact |
@@ -397,7 +397,7 @@ measure runtime completeness.
 | `0x0041c3f0` | `MenuManagerAllocationSizeBridge` | 100.00% | Verified exact |
 | `0x0041c400` | `MenuManagerDestroyBridge` | 100.00% | Verified exact |
 | `0x0041c420` | `MenuManager::~MenuManager` | 100.00% | Verified exact |
-| `0x0041c430` | `MenuManager::Initialize` | 43.24% | Work in progress |
+| `0x0041c430` | `MenuManager::Initialize` | 48.65% | Work in progress |
 | `0x0041c4d0` | `MenuManager::Remove` | 100.00% | Verified exact |
 | `0x0041c500` | `LoadMenuManagerResources` | 12.68% | Work in progress |
 | `0x0041c680` | `ReleaseMenuManagerResources` | 69.57% | Work in progress |
@@ -465,7 +465,7 @@ measure runtime completeness.
 | `0x00423e40` | `InitializeSecondaryPointerSize` | 100.00% | Verified exact |
 | `0x00423e70` | `InitializeSecondaryPointerOrigin` | 100.00% | Verified exact |
 | `0x00423ea0` | `InitializeMenuPointerOffsets` | 100.00% | Verified exact |
-| `0x00423ec0` | `InitializeSecondaryPointer` | 34.65% | Work in progress |
+| `0x00423ec0` | `InitializeSecondaryPointer` | 36.22% | Work in progress |
 | `0x00423fd0` | `ReleaseSecondaryPointer` | 100.00% | Verified exact |
 | `0x00423ff0` | `UpdateSecondaryPointer` | 67.15% | Work in progress |
 | `0x00424130` | `MenuNavigationState::GetPointerPosition` | 34.78% | Work in progress |
@@ -479,7 +479,7 @@ measure runtime completeness.
 | `0x00424360` | `InitializeMenuTextEntryKeySpacing` | 100.00% | Verified exact |
 | `0x00424390` | `InitializeMenuTextEntrySpriteSpacing` | 100.00% | Verified exact |
 | `0x004243b0` | `MenuTextEntry::MenuTextEntry` | 68.75% | Work in progress |
-| `0x00424430` | `MenuTextEntry::Initialize` | 22.83% | Work in progress |
+| `0x00424430` | `MenuTextEntry::Initialize` | 23.52% | Work in progress |
 | `0x00424b10` | `MenuTextEntry::Reset` | 100.00% | Verified exact |
 | `0x00424bb0` | `MenuTextEntry::AppendCharacter` | 86.11% | Work in progress |
 | `0x00424c40` | `MenuTextEntry::RemoveLastCharacter` | 100.00% | Verified exact |
@@ -494,22 +494,22 @@ measure runtime completeness.
 | `0x00425850` | `InitializeNetworkStatusFirstLabelOffset` | 100.00% | Verified exact |
 | `0x00425880` | `InitializeNetworkStatusSecondLabelOffset` | 100.00% | Verified exact |
 | `0x004258b0` | `InitializeNetworkStatusHeadingOffset` | 100.00% | Verified exact |
-| `0x004258d0` | `MenuNetworkStatusWidget::MenuNetworkStatusWidget` | 93.33% | Work in progress |
-| `0x00425900` | `MenuNetworkStatusWidget::Initialize` | 17.33% | Work in progress |
+| `0x004258d0` | `MenuNetworkStatusWidget::MenuNetworkStatusWidget` | 100.00% | Verified exact |
+| `0x00425900` | `MenuNetworkStatusWidget::Initialize` | 18.08% | Work in progress |
 | `0x00425d70` | `MenuNetworkStatusWidget::Reset` | 100.00% | Verified exact |
 | `0x00425dc0` | `MenuNetworkStatusWidget::HandleInput` | 6.53% | Work in progress |
 | `0x00426130` | `MenuNetworkStatusWidget::UpdateProviderBounds` | 33.33% | Work in progress |
 | `0x00426330` | `MenuNetworkStatusWidget::UpdateBounds` | 23.26% | Work in progress |
-| `0x00426430` | `MenuTextGroup::MenuTextGroup` | 92.86% | Work in progress |
+| `0x00426430` | `MenuTextGroup::MenuTextGroup` | 100.00% | Verified exact |
 | `0x00426460` | `InitializeMenuSessionTrackGroup` | 29.21% | Work in progress |
 | `0x00426660` | `MenuTextGroup::Destroy` | 100.00% | Verified exact |
 | `0x00426690` | `MenuTextGroup::SetClipRectangle` | 100.00% | Verified exact |
 | `0x004266d0` | `MenuTextGroup::UpdateBounds` | 53.66% | Work in progress |
 | `0x004267c0` | `MenuBackground::MenuBackground` | 100.00% | Verified exact |
-| `0x004267e0` | `MenuBackground::Initialize` | 77.78% | Work in progress |
+| `0x004267e0` | `MenuBackground::Initialize` | 100.00% | Verified exact |
 | `0x00426800` | `MenuBackground::~MenuBackground` | 72.73% | Work in progress |
 | `0x00426820` | `MenuBackground::Update` | 20.39% | Work in progress |
-| `0x00426a30` | `MenuBackground::Load` | 54.01% | Work in progress |
+| `0x00426a30` | `MenuBackground::Load` | 56.93% | Work in progress |
 | `0x00426b60` | `MenuBackground::Release` | 88.00% | Work in progress |
 | `0x00426bb0` | `MenuBackground::SetMode` | 100.00% | Verified exact |
 | `0x00426bd0` | `MenuBackground::Hide` | 100.00% | Verified exact |
@@ -558,11 +558,11 @@ measure runtime completeness.
 | `0x00429730` | `SecondaryManager::BeginCharacterSelection` | 94.74% | Work in progress |
 | `0x00429750` | `SecondaryManager::BeginCarSelection` | 97.56% | Reviewed near match |
 | `0x00429790` | `SetSecondaryManagerMoviePath` | 82.93% | Work in progress |
-| `0x004297d0` | `SecondaryManager::LoadMenuResources` | 29.01% | Work in progress |
+| `0x004297d0` | `SecondaryManager::LoadMenuResources` | 29.18% | Work in progress |
 | `0x0042a2e0` | `InitializeSecondaryDirectionalLight` | 62.22% | Work in progress |
 | `0x0042a330` | `DestroySecondaryDirectionalLight` | 85.71% | Work in progress |
 | `0x0042a360` | `InitializeSecondaryAmbientLight` | 80.00% | Work in progress |
-| `0x0042a380` | `SecondaryManager::ReleaseMenuResources` | 52.26% | Work in progress |
+| `0x0042a380` | `SecondaryManager::ReleaseMenuResources` | 52.96% | Work in progress |
 | `0x0042a550` | `SecondaryManager::LoadLocalizedMenuResources` | 74.68% | Work in progress |
 | `0x0042a660` | `SecondaryManager::ReleaseLocalizedMenuResources` | 83.72% | Work in progress |
 | `0x0042a6b0` | `ApplyMenuLanguage` | 40.00% | Work in progress |
@@ -573,11 +573,11 @@ measure runtime completeness.
 | `0x0042a870` | `SecondaryManager::EnumerateDisplayModes` | 37.43% | Work in progress |
 | `0x0042aac0` | `RefreshSecondaryResolution` | 25.81% | Work in progress |
 | `0x0042ab00` | `SecondaryManager::DetectKeyboardLanguage` | 48.54% | Work in progress |
-| `0x0042ac90` | `SecondaryManager::PrepareSplash` | 37.58% | Work in progress |
+| `0x0042ac90` | `SecondaryManager::PrepareSplash` | 39.39% | Work in progress |
 | `0x0042af30` | `IsRunningFromOpticalMedia` | 100.00% | Verified exact |
 | `0x0042af70` | `SecondaryManagerMediaState::InitializeBindings` | 44.80% | Work in progress |
-| `0x0042b1e0` | `SecondaryManagerMediaState::EnableSlot` | 92.31% | Work in progress |
-| `0x0042b200` | `SecondaryManagerMediaState::IsSlotEnabled` | 94.74% | Work in progress |
+| `0x0042b1e0` | `SecondaryManagerMediaState::EnableSlot` | 100.00% | Verified exact |
+| `0x0042b200` | `SecondaryManagerMediaState::IsSlotEnabled` | 100.00% | Verified exact |
 | `0x0042b220` | `SecondaryManagerMediaState::Refresh` | 50.49% | Work in progress |
 | `0x0042b2b0` | `SecondaryManagerMediaState::GetSlot` | 100.00% | Verified exact |
 | `0x0042b2c0` | `SecondaryManagerMediaState::HasActiveSlot` | 77.42% | Work in progress |
@@ -667,7 +667,7 @@ measure runtime completeness.
 | `0x00433130` | `RefreshSecondaryModeWidgets` | 44.44% | Work in progress |
 | `0x00433480` | `IntegrateFoyerLifecycleMotion` | 40.00% | Work in progress |
 | `0x00433490` | `ApplyFoyerLifecycleForces` | 40.00% | Work in progress |
-| `0x004334c0` | `GlobalOverlayGlyphReplacementManagerView::Initialize` | 39.20% | Work in progress |
+| `0x004334c0` | `GlobalOverlayGlyphReplacementManagerView::Initialize` | 40.00% | Work in progress |
 | `0x00433640` | `GlobalOverlayGlyphReplacementManagerView::Release` | 76.47% | Work in progress |
 | `0x00433680` | `GlobalOverlayGlyphReplacementManagerView::LoadIconTextures` | 100.00% | Verified exact |
 | `0x00433700` | `GlobalOverlayGlyphReplacementManagerView::ReleaseIconTextures` | 100.00% | Verified exact |
@@ -683,7 +683,7 @@ measure runtime completeness.
 | `0x004339a0` | `FinalizeControllerSelectionProgress` | 91.67% | Work in progress |
 | `0x004339e0` | `UpdateControllerSelectionProgress` | 67.83% | Work in progress |
 | `0x00433aa0` | `AdvanceControllerLoadingEqualizer` | 55.81% | Work in progress |
-| `0x00433c50` | `CreateControllerLoadingSprites` | 15.31% | Work in progress |
+| `0x00433c50` | `CreateControllerLoadingSprites` | 18.18% | Work in progress |
 | `0x00433fc0` | `UpdateControllerLoadingSprites` | 66.67% | Work in progress |
 | `0x00434060` | `UpdateControllerLoadingEqualizerBar` | 36.36% | Work in progress |
 | `0x00434150` | `ReadSignedClockSeconds` | 47.06% | Work in progress |
@@ -695,7 +695,7 @@ measure runtime completeness.
 | `0x00434e70` | `GetSecondaryPortraitAtlasMask` | 78.95% | Work in progress |
 | `0x00434ed0` | `LoadSecondaryNpcPortraits` | 4.89% | Work in progress |
 | `0x00435870` | `ReleaseSecondaryNpcPortraits` | 26.26% | Work in progress |
-| `0x00435970` | `FormatSecondaryPortraitTexturePath` | 92.86% | Work in progress |
+| `0x00435970` | `FormatSecondaryPortraitTexturePath` | 100.00% | Verified exact |
 | `0x004359a0` | `GetNpcTextPlayerPortrait` | 59.02% | Work in progress |
 | `0x00435a30` | `LoadSecondaryPortraitTexture` | 30.22% | Work in progress |
 | `0x00435b40` | `LoadSecondaryControllerPreview` | 57.45% | Work in progress |
@@ -725,10 +725,10 @@ measure runtime completeness.
 | `0x00437a30` | `NestedTextBoxManagerInitialize` | 76.92% | Work in progress |
 | `0x00437a50` | `NestedTextBoxManagerRemove` | 18.60% | Work in progress |
 | `0x00437ac0` | `NestedTextBoxManagerUpdate` | 30.29% | Work in progress |
-| `0x00437dc0` | `InitializeNestedNpcTextBox` | 23.49% | Work in progress |
+| `0x00437dc0` | `InitializeNestedNpcTextBox` | 25.06% | Work in progress |
 | `0x00438540` | `ClearTextBoxManagerResources` | 38.81% | Work in progress |
 | `0x004385c0` | `WrapNpcTextLines` | 32.06% | Work in progress |
-| `0x00438940` | `NormalizeNpcTextChunk` | 30.96% | Work in progress |
+| `0x00438940` | `NormalizeNpcTextChunk` | 30.25% | Work in progress |
 | `0x00438ac0` | `ExpandNpcTextInputBinding` | 33.04% | Work in progress |
 | `0x00438b50` | `SetNestedTextBoxFade` | 8.00% | Work in progress |
 | `0x00438be0` | `HasActiveTextBoxPauseTarget` | 49.35% | Work in progress |
@@ -769,7 +769,7 @@ measure runtime completeness.
 | `0x0043b8a0` | `DestroyGameObjectModelBinding` | 95.65% | Reviewed near match |
 | `0x0043bcb0` | `GetFoyerSceneRandomUnit` | 31.58% | Work in progress |
 | `0x0043c140` | `SetSecondaryBonusObjectState` | 90.32% | Work in progress |
-| `0x0043c190` | `RestoreSecondaryBonusObject` | 85.71% | Work in progress |
+| `0x0043c190` | `RestoreSecondaryBonusObject` | 100.00% | Verified exact |
 | `0x0043c330` | `GetFoyerObjectSelection` | 68.75% | Work in progress |
 | `0x0043ce00` | `ConstructReverbAreaObject` | 56.00% | Work in progress |
 | `0x0043ce60` | `DestroyReverbArea` | 42.86% | Work in progress |
@@ -787,7 +787,7 @@ measure runtime completeness.
 | `0x0043d750` | `ReverbManager::Reset` | 95.00% | Reviewed near match |
 | `0x0043d7b0` | `ReverbManager::Configure` | 89.47% | Work in progress |
 | `0x0043d830` | `ReverbManager::CameraHasNoVolume` | 100.00% | Verified exact |
-| `0x0043d870` | `ReverbManager::HasCameraMoved` | 77.19% | Work in progress |
+| `0x0043d870` | `ReverbManager::HasCameraMoved` | 80.70% | Work in progress |
 | `0x0043d8d0` | `ReverbManager::Update` | 28.22% | Work in progress |
 | `0x0043dad0` | `ReverbManager::SelectCameraVolume` | 70.18% | Work in progress |
 | `0x0043db30` | `ReverbManager::ResetCameraVolume` | 70.77% | Work in progress |
@@ -863,7 +863,7 @@ measure runtime completeness.
 | `0x0044f820` | `SynchronizeCharacterBody` | 29.37% | Work in progress |
 | `0x0044f920` | `SynchronizeCharacterHead` | 58.33% | Work in progress |
 | `0x0044f960` | `EnterCharacterDrivingMode` | 42.59% | Work in progress |
-| `0x0044fac0` | `UpdateCharacterDrivingAnimation` | 71.37% | Work in progress |
+| `0x0044fac0` | `UpdateCharacterDrivingAnimation` | 72.90% | Work in progress |
 | `0x0044fec0` | `EnterCharacterIdleMode` | 46.46% | Work in progress |
 | `0x00450070` | `UpdateCharacterIdleAnimation` | 34.18% | Work in progress |
 | `0x00450300` | `StartCharacterIdleAnimation` | 52.80% | Work in progress |
@@ -886,7 +886,7 @@ measure runtime completeness.
 | `0x004513f0` | `ReleaseCharacterVisualResources` | 87.50% | Work in progress |
 | `0x00451440` | `UpdateCharacterVisualPreviewAnimation` | 60.87% | Work in progress |
 | `0x00451540` | `BeginCharacterShieldEffect` | 78.87% | Work in progress |
-| `0x00451600` | `DestroyCarDisplayBaseTransform` | 91.67% | Work in progress |
+| `0x00451600` | `DestroyCarDisplayBaseTransform` | 100.00% | Verified exact |
 | `0x00451640` | `HandleCharacterBodyImpact` | 29.13% | Work in progress |
 | `0x00451800` | `UpdateCharacterBodyFeedback` | 68.18% | Work in progress |
 | `0x004518d0` | `UpdateCharacterBodyMotion` | 38.46% | Work in progress |
@@ -936,7 +936,7 @@ measure runtime completeness.
 | `0x0045c160` | `RefreshControllerTaskRecord` | 6.35% | Work in progress |
 | `0x0045c1d0` | `ClassifyControllerTaskTargetDistance` | 25.00% | Work in progress |
 | `0x0045c210` | `GetControllerTaskActionStatus` | 100.00% | Verified exact |
-| `0x0045c330` | `InitializeControllerTaskSource` | 66.67% | Work in progress |
+| `0x0045c330` | `InitializeControllerTaskSource` | 100.00% | Verified exact |
 | `0x0045c340` | `DestroyControllerTaskSource` | 40.00% | Work in progress |
 | `0x0045c360` | `GetControllerTaskSourceCount` | 15.38% | Work in progress |
 | `0x0045c370` | `GetControllerTaskSceneChild` | 57.14% | Work in progress |
@@ -995,7 +995,7 @@ measure runtime completeness.
 | `0x0045f610` | `RegisterGameControllerCallbacks` | 67.57% | Work in progress |
 | `0x0045f6c0` | `UnregisterGameControllerCallbacks` | 86.21% | Work in progress |
 | `0x0045f770` | `ScreenPrinter::ScreenPrinter` | 61.54% | Work in progress |
-| `0x0045f7a0` | `ScreenPrinter::Initialize` | 34.00% | Work in progress |
+| `0x0045f7a0` | `ScreenPrinter::Initialize` | 36.00% | Work in progress |
 | `0x0045f870` | `ScreenPrinter::Remove` | 100.00% | Verified exact |
 | `0x0045f8a0` | `ScreenPrinter::Update` | 82.93% | Work in progress |
 | `0x0045f8d0` | `ScreenPrinter::ApplyFont` | 87.18% | Work in progress |
@@ -1019,12 +1019,12 @@ measure runtime completeness.
 | `0x00460190` | `InitializeSecondaryVoiceResources` | 36.36% | Work in progress |
 | `0x004603e0` | `ReleaseSecondaryVoiceResources` | 62.41% | Work in progress |
 | `0x00460680` | `ConstructFoyerSkeletonRecord` | 100.00% | Verified exact |
-| `0x00460690` | `InitializeSecondarySpriteSet` | 20.00% | Work in progress |
+| `0x00460690` | `InitializeSecondarySpriteSet` | 20.91% | Work in progress |
 | `0x004608a0` | `ShowSecondarySpriteSet` | 100.00% | Verified exact |
 | `0x004608d0` | `HideSecondarySpriteSet` | 100.00% | Verified exact |
 | `0x00460900` | `ReleaseSecondarySpriteSet` | 38.96% | Work in progress |
 | `0x00460970` | `FindSecondarySprite` | 100.00% | Verified exact |
-| `0x004609e0` | `ConstructSecondarySelectionGrid` | 87.27% | Work in progress |
+| `0x004609e0` | `ConstructSecondarySelectionGrid` | 83.64% | Work in progress |
 | `0x00460a50` | `DestroySecondarySelectionGrid` | 40.00% | Work in progress |
 | `0x00460a60` | `InitializeSecondarySelectionGrid` | 78.43% | Work in progress |
 | `0x00460b10` | `DefineSecondarySelectionCategory` | 86.21% | Work in progress |
@@ -1042,15 +1042,15 @@ measure runtime completeness.
 | `0x004624c0` | `InitializeSelectionGridModels` | 19.05% | Work in progress |
 | `0x00462680` | `InitializeSelectionGridCarDisplays` | 70.97% | Work in progress |
 | `0x00463390` | `MeasureSelectionGridModel` | 25.09% | Work in progress |
-| `0x004635c0` | `InitializeSelectionGridNavigationArrows` | 35.92% | Work in progress |
+| `0x004635c0` | `InitializeSelectionGridNavigationArrows` | 36.89% | Work in progress |
 | `0x004637a0` | `ReleaseSelectionGridNavigationArrows` | 100.00% | Verified exact |
 | `0x00463870` | `ConstructSecondarySelectionLabel` | 100.00% | Verified exact |
-| `0x00463880` | `LoadSecondarySelectionLabel` | 25.40% | Work in progress |
+| `0x00463880` | `LoadSecondarySelectionLabel` | 28.57% | Work in progress |
 | `0x00463900` | `ReleaseSecondarySelectionLabel` | 100.00% | Verified exact |
 | `0x004639a0` | `SetSecondarySelectionLabelFont` | 100.00% | Verified exact |
-| `0x00463ec0` | `ConstructSecondaryCharacterSelection` | 88.00% | Work in progress |
+| `0x00463ec0` | `ConstructSecondaryCharacterSelection` | 84.00% | Work in progress |
 | `0x00463f20` | `ReleaseSecondaryObject70` | 70.59% | Work in progress |
-| `0x00463f40` | `LoadSecondaryCharacterSelector` | 48.93% | Work in progress |
+| `0x00463f40` | `LoadSecondaryCharacterSelector` | 50.15% | Work in progress |
 | `0x00464240` | `UpdateSecondaryCharacterSelection` | 0.95% | Work in progress |
 | `0x004644d0` | `BeginSecondaryCharacterSelection` | 1.38% | Work in progress |
 | `0x00464700` | `FinishSecondaryCharacterSelection` | 58.82% | Work in progress |
@@ -1069,11 +1069,11 @@ measure runtime completeness.
 | `0x00467520` | `InitializeSecondaryBuilderGridDimensions` | 100.00% | Verified exact |
 | `0x00467550` | `InitializeSecondaryBuilderCellDimensions` | 100.00% | Verified exact |
 | `0x00467760` | `InitializeCharacterSelectionPositionOffset` | 100.00% | Verified exact |
-| `0x00467af0` | `ConstructSecondaryCarSelection` | 66.67% | Work in progress |
+| `0x00467af0` | `ConstructSecondaryCarSelection` | 63.49% | Work in progress |
 | `0x00467b80` | `ReleaseSecondaryObject6c` | 70.59% | Work in progress |
-| `0x00467ba0` | `LoadSecondaryCarSelector` | 41.78% | Work in progress |
+| `0x00467ba0` | `LoadSecondaryCarSelector` | 42.47% | Work in progress |
 | `0x00467da0` | `GetSecondaryBrickBuilderSize` | 100.00% | Verified exact |
-| `0x00467db0` | `DestroySecondaryBrickBuilder` | 91.67% | Work in progress |
+| `0x00467db0` | `DestroySecondaryBrickBuilder` | 100.00% | Verified exact |
 | `0x00467de0` | `LoadSecondaryWheelModels` | 73.85% | Work in progress |
 | `0x00467e50` | `ReleaseSecondaryWheelModels` | 50.00% | Work in progress |
 | `0x00467ff0` | `BeginSecondaryCarSelection` | 0.79% | Work in progress |
@@ -1219,7 +1219,7 @@ measure runtime completeness.
 | `0x00480300` | `FindFoyerActionAtOrAfter` | 100.00% | Verified exact |
 | `0x00480340` | `StartFoyerControllerRunLoop` | 37.50% | Work in progress |
 | `0x00480400` | `InitializeFoyerSceneAction0` | 7.41% | Work in progress |
-| `0x00480430` | `UpdateFoyerSceneInputAction` | 90.91% | Work in progress |
+| `0x00480430` | `UpdateFoyerSceneInputAction` | 100.00% | Verified exact |
 | `0x00480480` | `InitializeFoyerSceneAction1` | 16.13% | Work in progress |
 | `0x00480540` | `UpdateFoyerSceneTaskSourceAction` | 22.86% | Work in progress |
 | `0x004805d0` | `PrepareFoyerSceneTaskSourceAction` | 35.90% | Work in progress |
@@ -1239,7 +1239,7 @@ measure runtime completeness.
 | `0x00480ae0` | `InitializeFoyerSceneAction5` | 6.45% | Work in progress |
 | `0x00480b20` | `UpdateFoyerScenePositionAction` | 58.06% | Work in progress |
 | `0x00480b50` | `InitializeFoyerSceneAction6` | 6.45% | Work in progress |
-| `0x00480b90` | `UpdateFoyerSceneAttachmentAction` | 90.91% | Work in progress |
+| `0x00480b90` | `UpdateFoyerSceneAttachmentAction` | 100.00% | Verified exact |
 | `0x00480ba0` | `InitializeFoyerSceneAction7` | 12.77% | Work in progress |
 | `0x00480bf0` | `UpdateFoyerSceneTargetOffsetAction` | 93.33% | Work in progress |
 | `0x00480c10` | `InitializeFoyerSceneAction8` | 11.76% | Work in progress |
@@ -1325,7 +1325,7 @@ measure runtime completeness.
 | `0x0049a390` | `GetMoviePlayer` | 84.62% | Work in progress |
 | `0x0049a3d0` | `MoviePlayerStaticDestructor` | 100.00% | Verified exact |
 | `0x0049a3e0` | `MoviePlayerPlay` | 41.38% | Work in progress |
-| `0x0049a610` | `Application::Application` | 90.91% | Work in progress |
+| `0x0049a610` | `Application::Application` | 100.00% | Verified exact |
 | `0x0049a640` | `AcceptFoyerSceneTargetPosition` | 100.00% | Verified exact |
 | `0x0049a6a0` | `Application::GetUnknownFlag` | 100.00% | Verified exact |
 | `0x0049a760` | `GetApplication` | 57.14% | Work in progress |
@@ -1400,7 +1400,7 @@ measure runtime completeness.
 | `0x004a3ca0` | `ShutdownGameManager` | 100.00% | Verified exact |
 | `0x004a3cd0` | `ConstructCarDisplayModelObject` | 23.03% | Work in progress |
 | `0x004a3db0` | `DestructCarDisplayModelObject` | 50.00% | Work in progress |
-| `0x004a3de0` | `CarDisplayModelInitialize` | 94.12% | Work in progress |
+| `0x004a3de0` | `CarDisplayModelInitialize` | 100.00% | Verified exact |
 | `0x004a3ed0` | `GetMemoryHeap` | 56.00% | Work in progress |
 | `0x004a3f20` | `DestroyMemoryHeapAtExit` | 100.00% | Verified exact |
 | `0x004a3f30` | `MemoryHeap::EnterOperation` | 85.71% | Work in progress |
@@ -1470,7 +1470,7 @@ measure runtime completeness.
 | `0x004a5f80` | `InitializeMaximumAngularSpeedSquared` | 100.00% | Verified exact |
 | `0x004a5fb0` | `InitializeMaximumLinearSpeedSquared` | 33.33% | Work in progress |
 | `0x004a6020` | `SetPhysicalLifecycleStep` | 66.67% | Work in progress |
-| `0x004a6070` | `ConstructPhysicalLifecycleState` | 90.71% | Work in progress |
+| `0x004a6070` | `ConstructPhysicalLifecycleState` | 91.80% | Work in progress |
 | `0x004a6190` | `ResetGameObjectInitializationValue` | 63.16% | Work in progress |
 | `0x004a61b0` | `AdvancePhysicalLifecycleParentValue` | 100.00% | Verified exact |
 | `0x004a61d0` | `ResetPhysicalLifecycleState` | 38.52% | Work in progress |
@@ -1550,7 +1550,7 @@ measure runtime completeness.
 | `0x004aa730` | `IsPointWithinGameObjectView` | 37.84% | Work in progress |
 | `0x004aa790` | `GameObject::DrawChild` | 46.15% | Work in progress |
 | `0x004aa7b0` | `GameManager::UpdateComponents` | 21.52% | Work in progress |
-| `0x004aa8e0` | `GameManager::RenderFrame` | 19.76% | Work in progress |
+| `0x004aa8e0` | `GameManager::RenderFrame` | 20.13% | Work in progress |
 | `0x004ab1c0` | `CountActiveGameCameras` | 27.69% | Work in progress |
 | `0x004ab220` | `FindActiveGameCamera` | 41.10% | Work in progress |
 | `0x004ab2a0` | `ReportFatalError` | 85.25% | Work in progress |
@@ -1596,7 +1596,7 @@ measure runtime completeness.
 | `0x004abdd0` | `DisplayRenderer::RejectUnknownDrawRequest` | 100.00% | Verified exact |
 | `0x004abde0` | `RendererVertexBuffer::RendererVertexBuffer` | 66.67% | Work in progress |
 | `0x004abe30` | `RendererIndexBuffer::RendererIndexBuffer` | 100.00% | Verified exact |
-| `0x004abe50` | `RendererTextureRecord::RendererTextureRecord` | 90.00% | Work in progress |
+| `0x004abe50` | `RendererTextureRecord::RendererTextureRecord` | 100.00% | Verified exact |
 | `0x004abe80` | `RendererTextureRecord::GetFlag0x90` | 100.00% | Verified exact |
 | `0x004abe90` | `RendererZeroPair::RendererZeroPair` | 100.00% | Verified exact |
 | `0x004abea0` | `RendererArrayMarker::RendererArrayMarker` | 100.00% | Verified exact |
@@ -1676,12 +1676,12 @@ measure runtime completeness.
 | `0x004b0220` | `FindAudioSource` | 26.19% | Work in progress |
 | `0x004b0290` | `ValidateAudioSource` | 70.27% | Work in progress |
 | `0x004b02d0` | `InitializeAudioSources` | 68.97% | Work in progress |
-| `0x004b0320` | `FindAvailableAudioSourceRecord` | 90.91% | Work in progress |
+| `0x004b0320` | `FindAvailableAudioSourceRecord` | 100.00% | Verified exact |
 | `0x004b0340` | `ConstructAudioSourceRecord` | 51.61% | Work in progress |
 | `0x004b0370` | `DeleteBaseAudioSourceRecord` | 100.00% | Verified exact |
 | `0x004b0390` | `DeleteAudioSourceRecord` | 95.65% | Reviewed near match |
 | `0x004b03b0` | `InitializeAudioSourceRecordFields` | 15.25% | Work in progress |
-| `0x004b04c0` | `DisposeAudioSourceRecord` | 93.33% | Work in progress |
+| `0x004b04c0` | `DisposeAudioSourceRecord` | 100.00% | Verified exact |
 | `0x004b04e0` | `ReleaseAudioSourceRecordResources` | 66.67% | Work in progress |
 | `0x004b0500` | `ReleaseAudioSourcePlayback` | 56.52% | Work in progress |
 | `0x004b0550` | `GetAudioSourceRecordIndex` | 100.00% | Verified exact |
@@ -1695,7 +1695,7 @@ measure runtime completeness.
 | `0x004b0630` | `SetAudioSourceRecordValues0x98` | 100.00% | Verified exact |
 | `0x004b0650` | `SetAudioSourceRecordValues0xa0` | 100.00% | Verified exact |
 | `0x004b0670` | `SetAudioSourceRecordGains` | 50.00% | Work in progress |
-| `0x004b0700` | `SetAudioSourceRecordMaximumGain` | 55.56% | Work in progress |
+| `0x004b0700` | `SetAudioSourceRecordMaximumGain` | 61.11% | Work in progress |
 | `0x004b0750` | `ResetAudioSourcePlaybackState` | 100.00% | Verified exact |
 | `0x004b0780` | `ClearAudioSourceFlag` | 100.00% | Verified exact |
 | `0x004b0790` | `SetAudioSourceEnabled` | 100.00% | Verified exact |
@@ -1707,7 +1707,7 @@ measure runtime completeness.
 | `0x004b0ad0` | `LoadAudioChannelFile` | 64.62% | Work in progress |
 | `0x004b0bd0` | `ReleaseAudioChannelRecordBuffer` | 100.00% | Verified exact |
 | `0x004b0c20` | `AudioService::AddListener` | 38.30% | Work in progress |
-| `0x004b0c60` | `AudioService::RemoveListener` | 94.12% | Work in progress |
+| `0x004b0c60` | `AudioService::RemoveListener` | 100.00% | Verified exact |
 | `0x004b0ca0` | `AudioService::SetListenerField0x04` | 100.00% | Verified exact |
 | `0x004b0cc0` | `AudioService::SetListenerField0x30` | 100.00% | Verified exact |
 | `0x004b0ce0` | `AudioService::SetListenerGains` | 48.78% | Work in progress |
@@ -1774,9 +1774,9 @@ measure runtime completeness.
 | `0x004b2d30` | `InitializeGlobalOverlayManagerAndRegisterExit` | 100.00% | Verified exact |
 | `0x004b2d40` | `InitializeGlobalOverlayManager` | 45.07% | Work in progress |
 | `0x004b2da0` | `RegisterGlobalOverlayManagerExit` | 100.00% | Verified exact |
-| `0x004b2db0` | `DestroyGlobalOverlayManager` | 11.76% | Work in progress |
+| `0x004b2db0` | `DestroyGlobalOverlayManager` | 26.67% | Work in progress |
 | `0x004b2de0` | `GlobalOverlaySprite::Initialize` | 100.00% | Verified exact |
-| `0x004b2e00` | `GlobalOverlaySprite::Release` | 87.50% | Work in progress |
+| `0x004b2e00` | `GlobalOverlaySprite::Release` | 100.00% | Verified exact |
 | `0x004b2e20` | `GlobalOverlaySprite::SetVisible` | 100.00% | Verified exact |
 | `0x004b2e40` | `GlobalOverlaySprite::SetPosition` | 61.05% | Work in progress |
 | `0x004b2f00` | `GlobalOverlaySprite::Translate` | 71.43% | Work in progress |
@@ -1788,7 +1788,7 @@ measure runtime completeness.
 | `0x004b3040` | `GlobalOverlaySprite::SetColor` | 100.00% | Verified exact |
 | `0x004b3050` | `GlobalOverlaySprite::SetAlpha` | 100.00% | Verified exact |
 | `0x004b3060` | `GlobalOverlaySprite::SetType` | 100.00% | Verified exact |
-| `0x004b3070` | `GlobalOverlaySprite::SetList` | 92.86% | Work in progress |
+| `0x004b3070` | `GlobalOverlaySprite::SetList` | 100.00% | Verified exact |
 | `0x004b3090` | `GlobalOverlaySprite::SetClipRectangle` | 100.00% | Verified exact |
 | `0x004b30c0` | `GlobalOverlayManager::GlobalOverlayManager` | 12.86% | Work in progress |
 | `0x004b3330` | `GlobalOverlayManagerDestroy` | 83.33% | Work in progress |
@@ -1802,18 +1802,18 @@ measure runtime completeness.
 | `0x004b3880` | `GlobalOverlayManager::SetLocalizedStrings` | 100.00% | Verified exact |
 | `0x004b38b0` | `GlobalOverlayManager::SetGlyphReplacementManager` | 100.00% | Verified exact |
 | `0x004b38c0` | `GlobalOverlayRecord::InitializeFromParameters` | 42.11% | Work in progress |
-| `0x004b3920` | `GlobalOverlayRecord::Release` | 90.00% | Work in progress |
+| `0x004b3920` | `GlobalOverlayRecord::Release` | 100.00% | Verified exact |
 | `0x004b3950` | `SetSelectionGridTextVisible` | 100.00% | Verified exact |
-| `0x004b3980` | `GlobalOverlayRecord::InitializeText` | 43.97% | Work in progress |
+| `0x004b3980` | `GlobalOverlayRecord::InitializeText` | 41.74% | Work in progress |
 | `0x004b3b10` | `GlobalOverlayRecord::InitializeTextByIndex` | 71.64% | Work in progress |
 | `0x004b3b70` | `GlobalOverlayRecord::InitializeNarrowText` | 100.00% | Verified exact |
-| `0x004b3bb0` | `GlobalOverlayRecord::AppendText` | 41.86% | Work in progress |
+| `0x004b3bb0` | `GlobalOverlayRecord::AppendText` | 42.11% | Work in progress |
 | `0x004b3d00` | `GlobalOverlayRecord::AppendNarrowText` | 100.00% | Verified exact |
 | `0x004b3d40` | `GlobalOverlayRecord::SetPosition` | 92.75% | Work in progress |
 | `0x004b3dc0` | `GlobalOverlayRecord::Translate` | 75.00% | Work in progress |
 | `0x004b3df0` | `GlobalOverlayRecord::SetColor` | 100.00% | Verified exact |
 | `0x004b3e00` | `GlobalOverlayRecord::SetAlpha` | 100.00% | Verified exact |
-| `0x004b3e10` | `GlobalOverlayRecord::SetList` | 92.86% | Work in progress |
+| `0x004b3e10` | `GlobalOverlayRecord::SetList` | 100.00% | Verified exact |
 | `0x004b3e40` | `GlobalOverlayRecord::SetFont` | 100.00% | Verified exact |
 | `0x004b3e50` | `GlobalOverlayRecord::SetScale` | 71.11% | Work in progress |
 | `0x004b3ea0` | `GlobalOverlayRecord::GetEffectiveScale` | 100.00% | Verified exact |
@@ -1821,9 +1821,9 @@ measure runtime completeness.
 | `0x004b3ee0` | `GlobalOverlayRecord::SetClipRectangle` | 100.00% | Verified exact |
 | `0x004b3f10` | `GlobalOverlayRecord::GetTextLength` | 100.00% | Verified exact |
 | `0x004b3f30` | `GlobalOverlayRecord::GetRectangle` | 56.72% | Work in progress |
-| `0x004b3fd0` | `DrawGlobalOverlayText` | 9.16% | Work in progress |
+| `0x004b3fd0` | `DrawGlobalOverlayText` | 8.07% | Work in progress |
 | `0x004b43d0` | `AdvanceGlobalOverlayText` | 53.12% | Work in progress |
-| `0x004b44e0` | `MeasureGlobalOverlayText` | 27.62% | Work in progress |
+| `0x004b44e0` | `MeasureGlobalOverlayText` | 27.73% | Work in progress |
 | `0x004b4690` | `FUN_004b4690` | 100.00% | Verified exact |
 | `0x004b46c0` | `CreateNativeWindow` | 90.72% | Work in progress |
 | `0x004b4750` | `RegisterNativeWindowClass` | 32.00% | Work in progress |
@@ -1903,7 +1903,7 @@ measure runtime completeness.
 | `0x004b9e40` | `ConstructSecondaryRenderOwner` | 36.20% | Work in progress |
 | `0x004ba100` | `GetSecondaryRenderOwnerSize` | 100.00% | Verified exact |
 | `0x004ba110` | `GetSecondaryRenderOwnerCategory` | 100.00% | Verified exact |
-| `0x004ba120` | `GetSecondaryRenderFollowMode` | 85.71% | Work in progress |
+| `0x004ba120` | `GetSecondaryRenderFollowMode` | 100.00% | Verified exact |
 | `0x004ba130` | `GetSecondaryRenderZero` | 100.00% | Verified exact |
 | `0x004ba140` | `DestroySecondaryRenderOwner` | 95.65% | Reviewed near match |
 | `0x004ba160` | `RemoveSecondaryRenderOwner` | 66.67% | Work in progress |
@@ -1951,8 +1951,8 @@ measure runtime completeness.
 | `0x004bcea0` | `DestructFoyerModelRenderObject` | 46.15% | Work in progress |
 | `0x004bced0` | `InitializeFoyerModelRenderObject` | 83.33% | Work in progress |
 | `0x004bcef0` | `CarDisplayModelRemove` | 71.43% | Work in progress |
-| `0x004bcf10` | `IntegrateFoyerModelRenderMotion` | 80.00% | Work in progress |
-| `0x004bcf20` | `ApplyFoyerModelRenderForces` | 80.00% | Work in progress |
+| `0x004bcf10` | `IntegrateFoyerModelRenderMotion` | 100.00% | Verified exact |
+| `0x004bcf20` | `ApplyFoyerModelRenderForces` | 100.00% | Verified exact |
 | `0x004bcf30` | `UpdateFoyerModelRenderRegion` | 27.27% | Work in progress |
 | `0x004bcf60` | `DrawFoyerModelRenderObject` | 55.17% | Work in progress |
 | `0x004bd0d0` | `GameObjectFactoryRegistry::Register` | 76.60% | Work in progress |
@@ -2069,7 +2069,7 @@ measure runtime completeness.
 | `0x004c3540` | `BitmapFont::Load` | 19.57% | Work in progress |
 | `0x004c3d70` | `BitmapImage::BitmapImage` | 100.00% | Verified exact |
 | `0x004c3db0` | `BitmapFont::GetGlyphMetrics` | 100.00% | Verified exact |
-| `0x004c3e30` | `BitmapFont::GetTextAdvance` | 41.67% | Work in progress |
+| `0x004c3e30` | `BitmapFont::GetTextAdvance` | 91.53% | Work in progress |
 | `0x004c3ed0` | `BitmapFont::CopyFrom` | 63.33% | Work in progress |
 | `0x004c3f40` | `Terrain::GetCellVertices` | 63.61% | Work in progress |
 | `0x004c4140` | `Terrain::GetMinimumBounds` | 100.00% | Verified exact |
@@ -2317,7 +2317,7 @@ measure runtime completeness.
 | `0x004e5e70` | `InitializeAndLinkTextureStageRecord` | 15.38% | Work in progress |
 | `0x004e5ea0` | `LinkTextureStageRecord` | 100.00% | Verified exact |
 | `0x004e5eb0` | `AddTextureStageSubrecords` | 42.86% | Work in progress |
-| `0x004e5f30` | `ApplyTextureStagePlanForManager` | 94.55% | Work in progress |
+| `0x004e5f30` | `ApplyTextureStagePlanForManager` | 100.00% | Verified exact |
 | `0x004e5f90` | `ApplyRendererTextureStagePlan` | 41.52% | Work in progress |
 | `0x004e6360` | `RendererTextureStageManager::CopySubrecordGroupCacheEntry` | 100.00% | Verified exact |
 | `0x004e6380` | `DisplayRenderer::SupportsDotProduct3` | 22.22% | Work in progress |
@@ -2340,9 +2340,9 @@ measure runtime completeness.
 | `0x004e7b90` | `AllocateAlignedMemory` | 100.00% | Verified exact |
 | `0x004e7bb0` | `DecompressGtcBlock` | 9.78% | Work in progress |
 | `0x004e7de0` | `GetCarDisplayIndexedRecord` | 100.00% | Verified exact |
-| `0x004e7e20` | `ConstructCarDisplayIndexedRecordOwner` | 50.63% | Work in progress |
+| `0x004e7e20` | `ConstructCarDisplayIndexedRecordOwner` | 53.16% | Work in progress |
 | `0x004e7e80` | `GetCarDisplayIndexedRecordOwnerSize` | 100.00% | Verified exact |
-| `0x004e7e90` | `CarDisplayIndexedRecordOwnerDestroy` | 92.31% | Work in progress |
+| `0x004e7e90` | `CarDisplayIndexedRecordOwnerDestroy` | 100.00% | Verified exact |
 | `0x004e7ec0` | `NormalizeCarDisplayIndexedRecords` | 58.33% | Work in progress |
 | `0x004e7f10` | `ModelSkin::ModelSkin` | 65.05% | Work in progress |
 | `0x004e8030` | `ModelSkin::ReleaseStorage` | 42.11% | Work in progress |
@@ -2470,7 +2470,7 @@ measure runtime completeness.
 | `0x004ef5a0` | `GetDigitalMusicGain` | 100.00% | Verified exact |
 | `0x004ef630` | `CheckAudioMediaResult` | 15.74% | Work in progress |
 | `0x004ef930` | `ThreeDimensionalDirectSoundProvider::ThreeDimensionalDirectSoundProvider` | 72.22% | Work in progress |
-| `0x004ef9b0` | `DeleteBaseAudioProvider` | 91.67% | Work in progress |
+| `0x004ef9b0` | `DeleteBaseAudioProvider` | 100.00% | Verified exact |
 | `0x004ef9d0` | `ThreeDimensionalDirectSoundProvider::Initialize` | 92.31% | Work in progress |
 | `0x004efab0` | `ThreeDimensionalDirectSoundProvider::ReleaseDeviceInterfaces` | 100.00% | Verified exact |
 | `0x004efb20` | `CreateThreeDimensionalSourceBuffer` | 3.23% | Work in progress |
@@ -2509,7 +2509,7 @@ measure runtime completeness.
 | `0x004f19d0` | `DigitalMusicController::UpdatePlaybackBuffer` | 59.71% | Work in progress |
 | `0x004f1bc0` | `DigitalMusicController::StopAndReleasePlaybackBuffer` | 100.00% | Verified exact |
 | `0x004f1c00` | `RestoreDigitalMusicOutput` | 32.95% | Work in progress |
-| `0x004f1d40` | `SetDigitalMusicBufferGain` | 88.24% | Work in progress |
+| `0x004f1d40` | `SetDigitalMusicBufferGain` | 100.00% | Verified exact |
 | `0x004f1d70` | `DigitalMusicController::DecodeAdpcmBlock` | 13.11% | Work in progress |
 | `0x004f1fa0` | `DigitalMusicController::CopyDecodedSamples` | 33.13% | Work in progress |
 | `0x004f2070` | `DigitalMusicController::ReadFileBytes` | 75.36% | Work in progress |
@@ -2519,7 +2519,7 @@ measure runtime completeness.
 | `0x004f2270` | `CommentaryAudioStream::UpdateBuffer` | 39.82% | Work in progress |
 | `0x004f2450` | `CommentaryAudioStream::Play` | 23.88% | Work in progress |
 | `0x004f24e0` | `CommentaryAudioStream::Stop` | 67.39% | Work in progress |
-| `0x004f2560` | `CommentaryAudioStream::SetGain` | 86.67% | Work in progress |
+| `0x004f2560` | `CommentaryAudioStream::SetGain` | 100.00% | Work in progress |
 | `0x004f2590` | `CommentaryAudioStream::IsReading` | 100.00% | Verified exact |
 | `0x004f25a0` | `BeginAudioRead` | 78.16% | Work in progress |
 | `0x004f2610` | `WaitForAudioRead` | 100.00% | Verified exact |
@@ -2542,7 +2542,7 @@ measure runtime completeness.
 | `0x004f37d0` | `ControllerRecordingService::GetProviderKeyValue` | 100.00% | Verified exact |
 | `0x004f37f0` | `ControllerRecordingService::RemoveProviderKey` | 100.00% | Verified exact |
 | `0x004f3820` | `ControllerRecordingObjectMap::Initialize` | 19.63% | Work in progress |
-| `0x004f3930` | `ControllerRecordingObjectMap::Shutdown` | 91.30% | Work in progress |
+| `0x004f3930` | `ControllerRecordingObjectMap::Shutdown` | 100.00% | Verified exact |
 | `0x004f3980` | `ControllerRecordingObjectMap::CreatePacket` | 43.08% | Work in progress |
 | `0x004f3a30` | `ControllerRecordingObjectMap::AllocatePacket` | 33.77% | Work in progress |
 | `0x004f3a90` | `ControllerRecordingObjectMap::ClearMatchingId` | 69.33% | Work in progress |
@@ -2567,8 +2567,8 @@ measure runtime completeness.
 | `0x004f46a0` | `ControllerRecordingService::HasInputFrame` | 18.42% | Work in progress |
 | `0x004f4710` | `ControllerRecordingService::RequestInputFrame` | 59.81% | Work in progress |
 | `0x004f47c0` | `ControllerRecordingService::PollRequestedInput` | 53.33% | Work in progress |
-| `0x004f4870` | `ControllerRecordingProviderAssociations::Initialize` | 88.89% | Work in progress |
-| `0x004f4890` | `ControllerRecordingProviderAssociations::AllocateAssociation` | 91.67% | Work in progress |
+| `0x004f4870` | `ControllerRecordingProviderAssociations::Initialize` | 100.00% | Verified exact |
+| `0x004f4890` | `ControllerRecordingProviderAssociations::AllocateAssociation` | 100.00% | Verified exact |
 | `0x004f48c0` | `ControllerRecordingProviderAssociations::PruneStaleAssociations` | 47.76% | Work in progress |
 | `0x004f4a40` | `InitializeMultimediaTimerService` | 53.01% | Work in progress |
 | `0x004f4ad0` | `ShutdownMultimediaTimerService` | 100.00% | Verified exact |
@@ -2588,7 +2588,7 @@ measure runtime completeness.
 | `0x004f4df0` | `DetachCollisionProxyFromService` | 100.00% | Verified exact |
 | `0x004f4e00` | `AttachCollisionProxyFromService` | 100.00% | Verified exact |
 | `0x004f4e10` | `FreeCollisionResourceData` | 69.23% | Work in progress |
-| `0x004f4e40` | `CollisionServicePrepareQuery` | 94.12% | Work in progress |
+| `0x004f4e40` | `CollisionServicePrepareQuery` | 100.00% | Verified exact |
 | `0x004f4e70` | `CollisionServiceQuerySphere` | 94.74% | Work in progress |
 | `0x004f4e90` | `CollisionServiceQuerySegment` | 94.74% | Work in progress |
 | `0x004f4eb0` | `CollisionServiceSweep` | 22.46% | Work in progress |
@@ -2609,7 +2609,7 @@ measure runtime completeness.
 | `0x004f54a0` | `BitmapImage::LoadTga` | 17.27% | Work in progress |
 | `0x004f59c0` | `BitmapImage::ReleaseStorage` | 95.24% | Reviewed near match |
 | `0x004f5a10` | `WriteBitmapTgaFile` | 30.77% | Work in progress |
-| `0x004f5d60` | `GetFoyerMeshUpdateService` | 100.00% | Work in progress |
+| `0x004f5d60` | `GetFoyerMeshUpdateService` | 100.00% | Verified exact |
 | `0x004f5da0` | `DestroyFoyerMeshUpdateService` | 100.00% | Verified exact |
 | `0x004f5dc0` | `OnFoyerMeshUpdateServiceExit` | 100.00% | Verified exact |
 | `0x004f5dd0` | `UpdateFoyerMeshAndUpload` | 4.46% | Work in progress |
@@ -2735,7 +2735,7 @@ measure runtime completeness.
 | `0x005083e0` | `SpatialAxisIndex::InsertSecond` | 4.82% | Work in progress |
 | `0x005084c0` | `SpatialGridCell::Insert` | 100.00% | Verified exact |
 | `0x005084e0` | `SpatialGridCell::Remove` | 100.00% | Verified exact |
-| `0x00508500` | `StaticSpatialGrid::GetCell` | 94.12% | Work in progress |
+| `0x00508500` | `StaticSpatialGrid::GetCell` | 100.00% | Verified exact |
 | `0x00508520` | `CollectGridCollisionCandidates` | 20.31% | Work in progress |
 | `0x00508690` | `StaticSpatialGrid::StaticSpatialGrid` | 69.42% | Work in progress |
 | `0x00508740` | `StaticSpatialGrid::Insert` | 28.26% | Work in progress |
@@ -2750,7 +2750,7 @@ measure runtime completeness.
 | `0x00508e10` | `ReleaseTriangleCandidates` | 60.00% | Work in progress |
 | `0x00508ee0` | `CollisionCompoundTriangles::RebuildBounds` | 17.88% | Work in progress |
 | `0x00509600` | `AppendSphereSphereContact` | 19.18% | Work in progress |
-| `0x00509760` | `IntersectRayWithCollisionSphere` | 60.53% | Work in progress |
+| `0x00509760` | `IntersectRayWithCollisionSphere` | 61.18% | Work in progress |
 | `0x00509a40` | `TransformCollisionSphereRecord` | 89.47% | Work in progress |
 | `0x0050a110` | `CollisionTriangleCandidates::AddRange` | 5.78% | Work in progress |
 | `0x0050a710` | `CollisionTriangleCandidates::Insert` | 19.54% | Work in progress |

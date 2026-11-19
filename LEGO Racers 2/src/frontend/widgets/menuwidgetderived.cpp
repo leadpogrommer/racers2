@@ -82,6 +82,7 @@ static void __fastcall MenuTextGroupSetClipBridge(
 	const LegoFloat* p_bottomRight
 );
 
+// GLOBAL: LEGORACERS2 0x00530220
 const MenuWidgetDispatch g_menuVolumeSliderDispatch = {
 	&MenuVolumeUpdateBoundsBridge,
 	&MenuVolumeSetFontBridge,
@@ -100,6 +101,7 @@ const MenuWidgetDispatch g_menuChoiceSelectorDispatch = {
 	&MenuChoiceSetClipBridge
 };
 
+// GLOBAL: LEGORACERS2 0x00530498
 const MenuWidgetDispatch g_menuTextGroupDispatch = {
 	&MenuTextGroupUpdateBoundsBridge,
 	&MenuVolumeSetFontBridge,
@@ -142,7 +144,7 @@ void InitializeMenuWidgetLabelPositionTuning()
 	g_menuWidgetLabelPositionTuning[1] = 0.127f;
 }
 
-// STUB: LEGORACERS2 0x00419c80
+// FUNCTION: LEGORACERS2 0x00419c80
 MenuVolumeSlider::MenuVolumeSlider() : MenuWidgetBase(-1)
 {
 	m_vtable = &g_menuVolumeSliderDispatch;
@@ -415,7 +417,7 @@ void InitializeMenuChoiceColorB()
 	color[3] = 0xff;
 }
 
-// STUB: LEGORACERS2 0x00426430
+// FUNCTION: LEGORACERS2 0x00426430
 MenuTextGroup::MenuTextGroup() : MenuWidgetBase(-1)
 {
 	m_vtable = &g_menuTextGroupDispatch;

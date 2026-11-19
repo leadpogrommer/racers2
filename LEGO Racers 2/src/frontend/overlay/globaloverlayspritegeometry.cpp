@@ -113,7 +113,7 @@ void GlobalOverlaySprite::SetType(LegoU32 p_type)
 	m_type = p_type;
 }
 
-// STUB: LEGORACERS2 0x004b3070
+// FUNCTION: LEGORACERS2 0x004b3070
 void GlobalOverlaySprite::SetList(LegoS32 p_listId)
 {
 	g_globalOverlayManager.MoveSprite(this, m_listId, p_listId);

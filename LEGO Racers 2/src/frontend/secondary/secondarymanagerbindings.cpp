@@ -79,8 +79,8 @@ void SecondaryManagerMediaState::InitializeBindings()
 	}
 }
 
-// STUB: LEGORACERS2 0x0042b1e0
+// FUNCTION: LEGORACERS2 0x0042b1e0
 void SecondaryManagerMediaState::EnableSlot(LegoU32 p_index)
 {
-	m_enabledSlots |= 1u << (p_index & 31);
+	m_enabledSlots |= 1u << p_index;
 }

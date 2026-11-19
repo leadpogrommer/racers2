@@ -271,10 +271,10 @@ void __fastcall AttachCollisionProxyFromService(CollisionServiceObject*, void*, 
 	}
 }
 
-// STUB: LEGORACERS2 0x004f4e40
-LegoU32 __fastcall CollisionServicePrepareQuery(void*, void*, LegoU32* p_result)
+// FUNCTION: LEGORACERS2 0x004f4e40
+LegoU32 __fastcall CollisionServicePrepareQuery(void*, void* p_edx, LegoU32* p_result)
 {
-	PrepareCollisionSpatialQueries(g_collisionSpatialIndex, NULL);
+	PrepareCollisionSpatialQueries(g_collisionSpatialIndex, p_edx);
 	*p_result = (LegoU32) g_collisionServiceState;
 	return g_collisionServiceState->m_currentLinkCount;
 }

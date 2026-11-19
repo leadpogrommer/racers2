@@ -139,7 +139,10 @@ DECOMP_STATIC_ASSERT(offsetof(GlobalOverlayManager, m_recordListCount) == 0x2494
 DECOMP_STATIC_ASSERT(offsetof(GlobalOverlayManager, m_unk0x24944) == 0x24944);
 DECOMP_STATIC_ASSERT(offsetof(GlobalOverlayManager, m_unk0x2494c) == 0x2494c);
 
-extern GlobalOverlayManager& g_globalOverlayManager;
+// Retail constructs the manager in place in static storage at 0x00655228 and
+// addresses that storage directly; a reference global would add a pointer load.
+extern LegoU32 g_globalOverlayManagerStorage[];
+#define g_globalOverlayManager (*(GlobalOverlayManager*) g_globalOverlayManagerStorage)
 void InitializeGlobalOverlayManagerAndRegisterExit();
 void InitializeGlobalOverlayManager();
 void RegisterGlobalOverlayManagerExit();

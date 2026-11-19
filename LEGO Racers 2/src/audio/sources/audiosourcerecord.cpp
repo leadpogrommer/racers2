@@ -87,11 +87,11 @@ AudioSourceRecord* __fastcall DeleteAudioSourceRecord(AudioSourceRecord* p_recor
 	return p_record;
 }
 
-// STUB: LEGORACERS2 0x004b04c0
-void __fastcall DisposeAudioSourceRecord(AudioSourceRecord* p_record, void*)
+// FUNCTION: LEGORACERS2 0x004b04c0
+void __fastcall DisposeAudioSourceRecord(AudioSourceRecord* p_record, void* p_edx)
 {
 	p_record->m_vtable = &g_audioSourceRecordOperationalDispatch;
-	ReleaseAudioSourceRecordResources(p_record, NULL);
+	ReleaseAudioSourceRecordResources(p_record, p_edx);
 	p_record->m_vtable = &g_audioSourceRecordBaseDispatch;
 }
 

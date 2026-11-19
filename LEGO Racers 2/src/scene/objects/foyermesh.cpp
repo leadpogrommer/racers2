@@ -178,7 +178,7 @@ void __fastcall UploadFoyerMeshVertices(FoyerMeshAttachment* p_mesh, void*)
 	UploadFoyerMeshPrimitives(p_mesh, FALSE);
 }
 
-// STUB: LEGORACERS2 0x004f5d60
+// FUNCTION: LEGORACERS2 0x004f5d60
 FoyerMeshUpdateService* GetFoyerMeshUpdateService()
 {
 	if ((g_foyerMeshUpdateServiceInitialized & 1) == 0) {

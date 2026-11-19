@@ -180,14 +180,21 @@ static LegoS32 __fastcall AdvanceControllerAttractMode(ControllerStartupScene* p
 	p_scene->m_demoIndex = next % 5;
 	return next / 5;
 }
-// STUB: LEGORACERS2 0x00406d60
+// Retail reads this 45-second timeout from read-only data at 0x0052f4bc.
+extern const LegoFloat g_secondaryInactivitySeconds;
+
+// FUNCTION: LEGORACERS2 0x00406d60
 void __fastcall DisableSecondaryInactivityTimer(void* p_object, void*)
 {
 	ControllerStartupScene* scene = (ControllerStartupScene*) p_object;
-	scene->m_countdown = 45.0f;
+	scene->m_countdown = g_secondaryInactivitySeconds;
 	if (scene->m_notice != NULL) {
 		scene->m_notice->Release();
 		scene->m_notice = NULL;
 	}
 	scene->m_state = 0;
 }
+
+// Defined after its users so the compiler reads it from memory, as retail does.
+// GLOBAL: LEGORACERS2 0x0052f4bc
+extern const LegoFloat g_secondaryInactivitySeconds = 45.0f;

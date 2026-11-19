@@ -93,6 +93,7 @@ struct SecondaryBrickBuilderDispatch {
 	GameObjectDispatchView m_base;
 	GameObjectDispatchView::Value m_getSize;
 };
+// GLOBAL: LEGORACERS2 0x00532930
 extern const SecondaryBrickBuilderDispatch g_secondaryBrickBuilderDispatch = {
 	{&DestroySecondaryBrickBuilder,
 	 &GameObjectBaseApplyChildTransform,
@@ -971,7 +972,7 @@ static LegoU32 __fastcall GetSecondaryBrickBuilderSize(GameObject*, void*)
 	return 0x550;
 }
 
-// STUB: LEGORACERS2 0x00467db0
+// FUNCTION: LEGORACERS2 0x00467db0
 static GameObject* __fastcall DestroySecondaryBrickBuilder(GameObject* p_object, void*, LegoU32 p_flags)
 {
 	p_object->m_vtable = (const GameObjectDispatchView*) &g_secondaryBrickBuilderDispatch;

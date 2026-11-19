@@ -120,6 +120,7 @@ void SetMipSuffix(LegoChar* p_path, const LegoChar* p_replacement)
 } // namespace
 
 // Retail explicit dispatch table: 0x005358e4 (not a native C++ vftable).
+// GLOBAL: LEGORACERS2 0x005358e4
 extern const RendererTextureRecordDispatchTable g_rendererTextureRecordDispatchTable = {
 	AcceptTextureRecordMessage,
 	LoadTextureRecord,
@@ -133,7 +134,7 @@ extern const RendererTextureRecordDispatchTable g_rendererTextureRecordDispatchT
 	TextureRecordUploadImage
 };
 
-// STUB: LEGORACERS2 0x004abe50
+// FUNCTION: LEGORACERS2 0x004abe50
 RendererTextureRecord::RendererTextureRecord()
 {
 	m_flags0x06 &= 0xc000;

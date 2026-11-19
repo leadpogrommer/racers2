@@ -714,7 +714,7 @@ static LegoU8 g_secondaryContentArchiveInitialized;
 
 static void OnSecondaryContentArchiveExit();
 
-// STUB: LEGORACERS2 0x004034e0
+// FUNCTION: LEGORACERS2 0x004034e0
 static SecondaryCarCollisionStore* __fastcall ConstructSecondaryCarCollisionStore(
 	SecondaryCarCollisionStore* p_store,
 	void*,
@@ -962,7 +962,7 @@ static void __fastcall AppendSecondaryBrickResource(
 	++p_pool->m_entryCount;
 }
 
-// STUB: LEGORACERS2 0x00404830
+// FUNCTION: LEGORACERS2 0x00404830
 const LegoChar* __fastcall GetSecondaryBrickPath(
 	SecondaryCarResourcePool* p_pool,
 	void*,
@@ -988,7 +988,7 @@ static LegoS32 __fastcall FindSecondaryBrickPath(SecondaryCarResourcePool* p_poo
 	return -1;
 }
 
-// STUB: LEGORACERS2 0x004048e0
+// FUNCTION: LEGORACERS2 0x004048e0
 static LegoU32 __fastcall IsSecondaryBrickLoaded(SecondaryCarResourcePool* p_pool, void*, LegoS32 p_index)
 {
 	if (p_index >= p_pool->m_entryCount) {
@@ -997,7 +997,7 @@ static LegoU32 __fastcall IsSecondaryBrickLoaded(SecondaryCarResourcePool* p_poo
 	return p_pool->m_entries[p_index].m_loaded;
 }
 
-// STUB: LEGORACERS2 0x00404920
+// FUNCTION: LEGORACERS2 0x00404920
 LegoFloat __fastcall GetSecondaryBrickScale(SecondaryCarResourcePool* p_pool, void*, LegoS32 p_index)
 {
 	if (p_index >= p_pool->m_entryCount) {
@@ -1006,7 +1006,7 @@ LegoFloat __fastcall GetSecondaryBrickScale(SecondaryCarResourcePool* p_pool, vo
 	return p_pool->m_entries[p_index].m_scale;
 }
 
-// STUB: LEGORACERS2 0x00404960
+// FUNCTION: LEGORACERS2 0x00404960
 LegoS32 __fastcall GetSecondaryBrickOrientation(SecondaryCarResourcePool* p_pool, void*, LegoS32 p_index)
 {
 	if (p_index >= p_pool->m_entryCount) {
@@ -1015,7 +1015,7 @@ LegoS32 __fastcall GetSecondaryBrickOrientation(SecondaryCarResourcePool* p_pool
 	return p_pool->m_entries[p_index].m_orientation;
 }
 
-// STUB: LEGORACERS2 0x004049a0
+// FUNCTION: LEGORACERS2 0x004049a0
 LegoFloat __fastcall GetSecondaryBrickOffset(SecondaryCarResourcePool* p_pool, void*, LegoS32 p_index)
 {
 	if (p_index >= p_pool->m_entryCount) {
@@ -1024,7 +1024,7 @@ LegoFloat __fastcall GetSecondaryBrickOffset(SecondaryCarResourcePool* p_pool, v
 	return p_pool->m_entries[p_index].m_offset;
 }
 
-// STUB: LEGORACERS2 0x004049e0
+// FUNCTION: LEGORACERS2 0x004049e0
 LegoU32 __fastcall GetSecondaryBrickWorldMask(SecondaryCarResourcePool* p_pool, void*, LegoS32 p_index)
 {
 	if (p_index >= p_pool->m_entryCount) {
@@ -1573,10 +1573,13 @@ static LegoBool32 __fastcall FindSecondaryPinAnchor(
 	return FALSE;
 }
 
-// STUB: LEGORACERS2 0x00406dc0
+// Retail reads this 45-second timeout from read-only data at 0x0052f4bc.
+extern const LegoFloat g_secondaryInactivitySeconds;
+
+// FUNCTION: LEGORACERS2 0x00406dc0
 void __fastcall ResetSecondaryInactivityTimer(void* p_timer, void*)
 {
-	*(LegoFloat*) ((LegoU8*) p_timer + 0x60) = 45.0f;
+	*(LegoFloat*) ((LegoU8*) p_timer + 0x60) = g_secondaryInactivitySeconds;
 }
 
 // FUNCTION: LEGORACERS2 0x0040b020
@@ -1589,11 +1592,11 @@ static void __fastcall UnlockAllSecondaryWorlds(GameControllerSelection* p_selec
 	}
 }
 
-// STUB: LEGORACERS2 0x0040b040
+// FUNCTION: LEGORACERS2 0x0040b040
 static void __fastcall UnlockAllSecondaryRewards(GameControllerSelection* p_selection, void*)
 {
-	for (LegoU32 world = 0; world < 5; ++world) {
-		for (LegoU32 reward = 0; reward < 2; ++reward) {
+	for (LegoS32 world = 0; world < 5; ++world) {
+		for (LegoS32 reward = 0; reward < 2; ++reward) {
 			if (!p_selection->HasReward(world, reward)) {
 				p_selection->UnlockReward(world, reward, 0);
 			}
@@ -4188,7 +4191,7 @@ static void __fastcall ReleaseSecondaryNpcPortraits(void* p_object, void*, LegoS
 	}
 }
 
-// STUB: LEGORACERS2 0x00435970
+// FUNCTION: LEGORACERS2 0x00435970
 static void __stdcall FormatSecondaryPortraitTexturePath(LegoChar* p_destination, LegoS32 p_index)
 {
 	sprintf(p_destination, "Game Data\\HUD\\Text box faces\\Player faces %d.tga", (p_index - 100) / 4 + 1);
@@ -4381,10 +4384,10 @@ static void __fastcall SetSecondaryBonusObjectState(GameObject* p_object, void*,
 	}
 }
 
-// STUB: LEGORACERS2 0x0043c190
-void __fastcall RestoreSecondaryBonusObject(GameObject* p_object, void*)
+// FUNCTION: LEGORACERS2 0x0043c190
+void __fastcall RestoreSecondaryBonusObject(GameObject* p_object, void* p_edx)
 {
-	SetSecondaryBonusObjectState(p_object, NULL, 0);
+	SetSecondaryBonusObjectState(p_object, p_edx, 0);
 }
 
 // STUB: LEGORACERS2 0x004600a0

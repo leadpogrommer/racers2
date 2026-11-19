@@ -54,12 +54,12 @@ MenuBackground::MenuBackground()
 	memset(m_sprites, 0, sizeof(m_sprites));
 }
 
-// STUB: LEGORACERS2 0x004267e0
+// FUNCTION: LEGORACERS2 0x004267e0
 void MenuBackground::Initialize()
 {
 	m_mode = 0;
 	m_transition = 0;
-	m_current = m_requested = m_previous = -1;
+	m_previous = m_requested = m_current = -1;
 	m_loaded = 0;
 }
 

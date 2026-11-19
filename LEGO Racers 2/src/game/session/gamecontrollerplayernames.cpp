@@ -15,7 +15,7 @@ void InitializeLocalizedPlayerNames()
 	g_gameControllerSettings->SetPlayerName(name.SetWideText(text), 1);
 }
 
-// STUB: LEGORACERS2 0x0040ad30
+// FUNCTION: LEGORACERS2 0x0040ad30
 void GameControllerSettings::SetPlayerName(const GameControllerName* p_name, LegoS32 p_index)
 {
 	m_names[p_index] = *p_name;

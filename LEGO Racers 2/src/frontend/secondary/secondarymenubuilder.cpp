@@ -144,11 +144,14 @@ static void InitializeMenuActionChoice(
 	);
 }
 
+// Retail reads this 45-second timeout from read-only data at 0x0052f4bc.
+extern const LegoFloat g_secondaryInactivitySeconds;
+
 // STUB: LEGORACERS2 0x00406d90
 void __fastcall EnableSecondaryInactivityTimer(void* p_object, void*)
 {
 	LegoU8* timer = (LegoU8*) p_object;
-	*(LegoFloat*) (timer + 0x60) = 45.0f;
+	*(LegoFloat*) (timer + 0x60) = g_secondaryInactivitySeconds;
 	*(LegoU32*) (timer + 0x58) = 1;
 	GlobalOverlayRecord** record = (GlobalOverlayRecord**) (timer + 0x64);
 	if (*record != NULL) {

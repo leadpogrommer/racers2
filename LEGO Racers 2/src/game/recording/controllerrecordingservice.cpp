@@ -1602,7 +1602,7 @@ void ControllerRecordingObjectMap::Initialize(LegoS32 p_capacity, LegoS32 p_firs
 	}
 }
 
-// STUB: LEGORACERS2 0x004f3930
+// FUNCTION: LEGORACERS2 0x004f3930
 void ControllerRecordingObjectMap::Shutdown()
 {
 	while (m_lock == 1) {
@@ -1610,7 +1610,8 @@ void ControllerRecordingObjectMap::Shutdown()
 	m_lock = 1;
 	FreeHeapMemory(m_entries);
 	m_entries = NULL;
-	GetMemoryHeap()->Free(m_allocation);
+	MemoryHeap* heap = GetMemoryHeap();
+	heap->Free(m_allocation);
 	m_allocation = NULL;
 	m_lock = 0;
 }
@@ -2253,19 +2254,19 @@ LegoBool32 ControllerRecordingService::PollRequestedInput(LegoU32)
 	return FALSE;
 }
 
-// STUB: LEGORACERS2 0x004f4870
+// FUNCTION: LEGORACERS2 0x004f4870
 void ControllerRecordingProviderAssociations::Initialize()
 {
-	for (LegoU32 index = 0; index < 64; ++index) {
+	for (LegoS32 index = 0; index < 64; ++index) {
 		m_providerKeys[index] = 0;
 		m_active[index] = 0;
 	}
 }
 
-// STUB: LEGORACERS2 0x004f4890
+// FUNCTION: LEGORACERS2 0x004f4890
 LegoU32* ControllerRecordingProviderAssociations::AllocateAssociation()
 {
-	for (LegoU32 index = 0; index < 64; ++index) {
+	for (LegoS32 index = 0; index < 64; ++index) {
 		if (m_active[index] == 0) {
 			m_active[index] = 1;
 			return &m_providerKeys[index];

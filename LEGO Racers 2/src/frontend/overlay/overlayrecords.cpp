@@ -61,7 +61,7 @@ void GlobalOverlayRecord::InitializeFromParameters(const LegoU32* p_parameters, 
 	SetPosition(&m_positionX, m_animationFlags);
 }
 
-// STUB: LEGORACERS2 0x004b3920
+// FUNCTION: LEGORACERS2 0x004b3920
 void GlobalOverlayRecord::Release()
 {
 	m_flags = 0;

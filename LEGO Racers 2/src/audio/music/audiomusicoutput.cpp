@@ -52,7 +52,7 @@ void __fastcall RestoreDigitalMusicOutput(
 	notification->Release();
 }
 
-// STUB: LEGORACERS2 0x004f1d40
+// FUNCTION: LEGORACERS2 0x004f1d40
 void __fastcall SetDigitalMusicBufferGain(DigitalMusicController* p_music, void*, LegoFloat p_gain)
 {
 	if (p_music->m_playbackBuffer != NULL) {

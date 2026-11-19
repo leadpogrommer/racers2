@@ -145,6 +145,7 @@ INT_PTR InvokeApplicationSettingsDialog()
 // Retail tables 0x00534994 and 0x00534a2c. The wiring verifier checks every
 // original target and every emitted pointer, including genuine folded aliases.
 // ABI bridges are measured separately from the original method bodies.
+// GLOBAL: LEGORACERS2 0x00534994
 const ApplicationDispatch g_applicationPrimaryDispatch = {
 	reinterpret_cast<ApplicationDispatch::Action>(InvokeApplicationLoadConfig),               // 0x00
 	reinterpret_cast<ApplicationDispatch::Action>(InvokeApplicationSaveConfig),               // 0x04
@@ -237,7 +238,7 @@ static LegoU32 g_applicationStorage[sizeof(Application) / sizeof(LegoU32)];
 
 static void ResetApplicationAtExit();
 
-// STUB: LEGORACERS2 0x0049a610
+// FUNCTION: LEGORACERS2 0x0049a610
 Application::Application()
 {
 	m_display.m_width = 640;

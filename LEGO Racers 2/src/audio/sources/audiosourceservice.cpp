@@ -187,10 +187,10 @@ LegoU32 __fastcall ValidateAudioSource(AudioService* p_service, void*, LegoU32 p
 	return FALSE;
 }
 
-// STUB: LEGORACERS2 0x004b0320
+// FUNCTION: LEGORACERS2 0x004b0320
 AudioSourceRecord* __fastcall FindAvailableAudioSourceRecord(AudioService* p_service, void*)
 {
-	for (LegoU32 i = 0; i < 512; ++i) {
+	for (LegoS32 i = 0; i < 512; ++i) {
 		AudioSourceRecord* source = &p_service->m_sources[i];
 		if (source->m_unk0x2c == 0) {
 			return source;

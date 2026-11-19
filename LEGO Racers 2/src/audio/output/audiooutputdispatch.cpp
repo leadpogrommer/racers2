@@ -204,7 +204,7 @@ static LegoBool32 __fastcall ResetProviderPlaybackPosition(AudioBackendStateView
 	return ResetAudioPlaybackPosition(p_buffer);
 }
 
-// STUB: LEGORACERS2 0x004ef9b0
+// FUNCTION: LEGORACERS2 0x004ef9b0
 static AudioBackendStateView* __fastcall DeleteBaseAudioProvider(
 	AudioBackendStateView* p_provider,
 	void*,
@@ -220,6 +220,7 @@ static AudioBackendStateView* __fastcall DeleteBaseAudioProvider(
 
 // Retail table 0x00536f8c; every slot is checked by tools/check_audio_dispatch.py.
 // ABI bridges and original method bodies are measured separately.
+// GLOBAL: LEGORACERS2 0x00536f8c
 const AudioBackendStateDispatch g_audioBackendBaseDispatch = {
 	DeleteBaseAudioProvider,
 	(AudioBackendStateDispatch::Initialize) _purecall,

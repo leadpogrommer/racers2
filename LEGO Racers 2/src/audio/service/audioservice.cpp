@@ -295,7 +295,7 @@ void AudioService::AddListener(const LegoU32* p_listenerData, LegoU32 p_listener
 	}
 }
 
-// STUB: LEGORACERS2 0x004b0c60
+// FUNCTION: LEGORACERS2 0x004b0c60
 void AudioService::RemoveListener(LegoU32 p_listenerId)
 {
 	AudioDeviceRecord* listener = FindListenerById(p_listenerId);

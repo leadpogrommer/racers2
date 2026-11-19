@@ -12,6 +12,7 @@ address,type,size
 0052fa0c,float,4
 0052fb14,float,4
 0052fb5c,float,4
+005303a4,float,4
 005304bc,float,4
 00530658,float,4
 00530698,float,4

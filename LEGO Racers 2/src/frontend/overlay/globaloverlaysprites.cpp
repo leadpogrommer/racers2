@@ -9,7 +9,7 @@ void GlobalOverlaySprite::Initialize(const LegoU32* p_parameters)
 	m_flags = 3;
 }
 
-// STUB: LEGORACERS2 0x004b2e00
+// FUNCTION: LEGORACERS2 0x004b2e00
 void GlobalOverlaySprite::Release()
 {
 	m_flags = 0;

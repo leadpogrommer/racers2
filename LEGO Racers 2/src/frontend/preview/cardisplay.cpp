@@ -251,6 +251,7 @@ const CarDisplayIndexedRecordOwnerDispatch g_carDisplayIndexedRecordOwnerDispatc
 
 extern const CarDisplayIndexedRecordOwnerBaseDispatch g_carDisplayIndexedRecordOwnerBaseDispatch;
 // Retail ABI function-pointer table: 0x00536d64 (verified in scene-dispatch.csv).
+// GLOBAL: LEGORACERS2 0x00536d64
 const CarDisplayIndexedRecordOwnerBaseDispatch g_carDisplayIndexedRecordOwnerBaseDispatch = {
 	{CAR_DISPLAY_CALLBACK(&CarDisplayIndexedRecordOwnerDestroy),
 	 CAR_DISPLAY_CALLBACK(&GameObjectBaseApplyChildTransform),
@@ -325,6 +326,7 @@ const CarDisplayTransformFunctionTable g_carDisplayTransformDispatch = {
 };
 
 // Retail ABI function-pointer table: 0x00531c3c (verified in scene-dispatch.csv).
+// GLOBAL: LEGORACERS2 0x00531c3c
 const CarDisplayTransformFunctionTable g_carDisplayBaseTransformDispatch = {
 	{CAR_DISPLAY_CALLBACK(&GameObjectBaseZeroOneArgument),
 	 CAR_DISPLAY_CALLBACK(&GameObjectBaseZero),
@@ -870,7 +872,7 @@ void DeleteCarDisplayObject(GameObject* p_object)
 
 } // namespace
 
-// STUB: LEGORACERS2 0x00451600
+// FUNCTION: LEGORACERS2 0x00451600
 void* __fastcall DestroyCarDisplayBaseTransform(void* p_target, void*, LegoU32 p_flags)
 {
 	((CarDisplayTransformTarget*) p_target)->m_dispatch =
@@ -1144,10 +1146,10 @@ static void __fastcall DestructCarDisplayModelObject(GameObject* p_object, void*
 	p_object->~GameObject();
 }
 
-// STUB: LEGORACERS2 0x004a3de0
-static void __fastcall CarDisplayModelInitialize(GameObject* p_object, void*)
+// FUNCTION: LEGORACERS2 0x004a3de0
+static void __fastcall CarDisplayModelInitialize(GameObject* p_object, void* p_edx)
 {
-	InitializeGameObjectModelBinding((GameObjectModelBinding*) p_object->m_unk0x48, NULL);
+	InitializeGameObjectModelBinding((GameObjectModelBinding*) p_object->m_unk0x48, p_edx);
 	p_object->Initialize();
 }
 
@@ -1228,7 +1230,7 @@ static LegoU32 __fastcall GetCarDisplayIndexedRecordOwnerSize(GameObject*, void*
 	return sizeof(CarDisplayIndexedRecordOwner);
 }
 
-// STUB: LEGORACERS2 0x004e7e90
+// FUNCTION: LEGORACERS2 0x004e7e90
 static GameObject* __fastcall CarDisplayIndexedRecordOwnerDestroy(GameObject* p_object, void*, LegoU32 p_flags)
 {
 	p_object->m_vtable = (const GameObjectDispatchView*) &g_carDisplayIndexedRecordOwnerBaseDispatch;

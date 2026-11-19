@@ -270,11 +270,11 @@ void __fastcall InitializeFoyerSceneAction0(void* p_action, void*, const LegoU32
 	words[4] = p_words[2];
 }
 
-// STUB: LEGORACERS2 0x00480430
-void __fastcall UpdateFoyerSceneInputAction(void* p_action, void*)
+// FUNCTION: LEGORACERS2 0x00480430
+void __fastcall UpdateFoyerSceneInputAction(void* p_action, void* p_edx)
 {
 	LegoU32* words = (LegoU32*) p_action;
-	InvokeFoyerSceneInputAction((void*) words[3], NULL, words[4]);
+	InvokeFoyerSceneInputAction((void*) words[3], p_edx, words[4]);
 }
 
 // STUB: LEGORACERS2 0x00480480
@@ -575,11 +575,11 @@ void __fastcall InitializeFoyerSceneAction6(void* p_action, void*, const LegoU32
 	words[5] = p_words[3];
 }
 
-// STUB: LEGORACERS2 0x00480b90
-void __fastcall UpdateFoyerSceneAttachmentAction(void* p_action, void*)
+// FUNCTION: LEGORACERS2 0x00480b90
+void __fastcall UpdateFoyerSceneAttachmentAction(void* p_action, void* p_edx)
 {
 	LegoU32* words = (LegoU32*) p_action;
-	ClearFoyerSceneEventAttachment((void*) words[4], NULL, (const void*) words[5]);
+	ClearFoyerSceneEventAttachment((void*) words[4], p_edx, (const void*) words[5]);
 }
 
 // STUB: LEGORACERS2 0x00480ba0

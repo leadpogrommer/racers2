@@ -183,16 +183,16 @@ void __fastcall InitializeFoyerModelRenderObject(GameObject* p_object, void*)
 	p_object->GameObject::Initialize();
 }
 
-// STUB: LEGORACERS2 0x004bcf10
-LegoU32 __fastcall IntegrateFoyerModelRenderMotion(GameObject* p_object, void*)
+// FUNCTION: LEGORACERS2 0x004bcf10
+LegoU32 __fastcall IntegrateFoyerModelRenderMotion(GameObject* p_object, void* p_edx)
 {
-	return IntegratePhysicalLifecycleMotion((PhysicalLifecycleState*) ((LegoU8*) p_object + 0x58), NULL);
+	return IntegratePhysicalLifecycleMotion((PhysicalLifecycleState*) ((LegoU8*) p_object + 0x58), p_edx);
 }
 
-// STUB: LEGORACERS2 0x004bcf20
-LegoU32 __fastcall ApplyFoyerModelRenderForces(GameObject* p_object, void*)
+// FUNCTION: LEGORACERS2 0x004bcf20
+LegoU32 __fastcall ApplyFoyerModelRenderForces(GameObject* p_object, void* p_edx)
 {
-	return ApplyPhysicalLifecycleDampingAndGravity((PhysicalLifecycleState*) ((LegoU8*) p_object + 0x58), NULL);
+	return ApplyPhysicalLifecycleDampingAndGravity((PhysicalLifecycleState*) ((LegoU8*) p_object + 0x58), p_edx);
 }
 
 struct FoyerModelRenderDrawState {

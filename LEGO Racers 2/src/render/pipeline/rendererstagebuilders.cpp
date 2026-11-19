@@ -94,18 +94,21 @@ void __fastcall AddTextureStageSubrecords(
 	}
 }
 
-// STUB: LEGORACERS2 0x004e5f30
+extern LegoU32 g_rendererStorage[];
+
+// FUNCTION: LEGORACERS2 0x004e5f30
 LegoU32 __fastcall ApplyTextureStagePlanForManager(
 	RendererTextureStageManager* p_manager,
-	void*,
+	void* p_edx,
 	RendererSubrecordGroup* p_group,
 	RendererStagePlanRequest* p_request,
 	LegoU32 p_mode
 )
 {
-	DisplayRenderer* renderer =
-		(DisplayRenderer*) ((BYTE*) p_manager - offsetof(DisplayRenderer, m_textureStageManager));
-	const LegoU32 result = ApplyRendererTextureStagePlan(renderer, NULL, p_group, p_request, p_mode);
+	// The manager is embedded in the single static renderer; retail passes that
+	// storage directly rather than deriving it from p_manager.
+	const LegoU32 result =
+		ApplyRendererTextureStagePlan((DisplayRenderer*) g_rendererStorage, p_edx, p_group, p_request, p_mode);
 	if (result == 0) {
 		p_manager->m_unk0x3480 = p_manager->m_unk0x3488;
 		p_manager->m_unk0x3484 = p_manager->m_unk0x348c;

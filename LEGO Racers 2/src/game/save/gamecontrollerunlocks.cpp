@@ -12,10 +12,10 @@ void GameControllerSelection::UnlockWorld(LegoU32 p_world)
 	m_values[i + 2] = p_world;
 }
 
-// STUB: LEGORACERS2 0x0040b0d0
+// FUNCTION: LEGORACERS2 0x0040b0d0
 void GameControllerSelection::UnlockTrack(LegoU32 p_world, LegoU32 p_track)
 {
-	m_values[0] |= 1u << ((p_world * 5 + 4 + p_track) & 31);
+	m_values[0] |= 1u << (p_world * 5 + 4 + p_track);
 }
 
 // FUNCTION: LEGORACERS2 0x0040b0f0

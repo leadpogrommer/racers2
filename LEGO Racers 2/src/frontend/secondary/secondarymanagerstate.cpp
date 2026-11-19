@@ -4,10 +4,10 @@
 
 void DecodeSecondaryManagerMediaSlot(SecondaryManagerMediaSlot* p_slot, const LegoU8* p_state);
 
-// STUB: LEGORACERS2 0x0042b200
+// FUNCTION: LEGORACERS2 0x0042b200
 LegoBool32 SecondaryManagerMediaState::IsSlotEnabled(LegoU32 p_index)
 {
-	return (m_enabledSlots & (1u << (p_index & 0x1f))) != 0;
+	return (m_enabledSlots & (1u << p_index)) != 0;
 }
 
 // STUB: LEGORACERS2 0x0042b220

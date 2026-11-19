@@ -43,10 +43,10 @@ void SpatialGridCell::Remove(void* p_value, SpatialSlotAllocator* p_allocator)
 	p_allocator->RemoveValue(p_value, &m_head);
 }
 
-// STUB: LEGORACERS2 0x00508500
+// FUNCTION: LEGORACERS2 0x00508500
 SpatialGridCell* StaticSpatialGrid::GetCell(LegoS32 p_x, LegoS32 p_z)
 {
-	return &m_cells[((LegoU32) p_z << (m_shift & 31)) + p_x];
+	return &m_cells[((LegoU32) p_z << m_shift) + p_x];
 }
 
 // STUB: LEGORACERS2 0x00508690

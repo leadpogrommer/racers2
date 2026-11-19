@@ -74,6 +74,7 @@ static void __fastcall RecomputeControllerTaskAction(LegoU8* p_payload, void*)
 }
 
 // Retail dispatch table at 0x00532488.
+// GLOBAL: LEGORACERS2 0x00532488
 extern const ControllerTaskSourceDispatch g_controllerTaskSourceDispatch = {
 	&DestroyControllerTaskSource,
 	&GameObjectBaseNoOp,
@@ -461,7 +462,7 @@ LegoU32 __fastcall GetControllerTaskActionStatus(void* p_manager, void*, LegoU32
 	return *(LegoU32*) (state + p_index * 0x100 + 4);
 }
 
-// STUB: LEGORACERS2 0x0045c330
+// FUNCTION: LEGORACERS2 0x0045c330
 static void* __fastcall InitializeControllerTaskSource(void* p_source, void*)
 {
 	*(const ControllerTaskSourceDispatch**) p_source = &g_controllerTaskSourceDispatch;

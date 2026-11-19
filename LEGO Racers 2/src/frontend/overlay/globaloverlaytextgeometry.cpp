@@ -22,7 +22,7 @@ void GlobalOverlayRecord::SetAlpha(LegoU8 p_alpha)
 	((LegoU8*) &m_color)[3] = p_alpha;
 }
 
-// STUB: LEGORACERS2 0x004b3e10
+// FUNCTION: LEGORACERS2 0x004b3e10
 void GlobalOverlayRecord::SetList(LegoS32 p_listId)
 {
 	g_globalOverlayManager.MoveRecord(this, m_listId, p_listId);

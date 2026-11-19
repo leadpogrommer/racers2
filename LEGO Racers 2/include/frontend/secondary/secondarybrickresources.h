@@ -19,8 +19,8 @@ struct SecondaryCarModel {
 struct SecondaryBrickResource {
 	LegoU32 m_loaded;
 	CharBuffer128 m_path;
-	LegoS32 m_category;
-	LegoS32 m_nameId;
+	LegoS32 m_nameId;   // 0x84
+	LegoS32 m_category; // 0x88: retail AppendSecondaryBrickResource and GetSecondaryBrickPath use +0x88
 	SecondaryCarModel m_models[4];
 	LegoFloat m_scale;
 	LegoS32 m_orientation;

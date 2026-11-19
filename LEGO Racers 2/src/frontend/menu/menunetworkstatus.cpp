@@ -46,6 +46,7 @@ static LegoU32 __fastcall MenuNetworkStatusHandleInputBridge(
 	LegoU32* p_result,
 	const LegoU32* p_input
 );
+// GLOBAL: LEGORACERS2 0x00530460
 const MenuWidgetDispatch g_menuNetworkStatusDispatch = {
 	&MenuNetworkStatusUpdateBoundsBridge,
 	&MenuNetworkStatusSetFontBridge,
@@ -87,7 +88,7 @@ void InitializeNetworkStatusHeadingOffset()
 	g_networkStatusHeadingOffsetY = 0.0f;
 }
 
-// STUB: LEGORACERS2 0x004258d0
+// FUNCTION: LEGORACERS2 0x004258d0
 MenuNetworkStatusWidget::MenuNetworkStatusWidget() : MenuWidgetBase(-1)
 {
 	m_vtable = &g_menuNetworkStatusDispatch;

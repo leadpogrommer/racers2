@@ -208,11 +208,13 @@ static LegoU32 __fastcall GetSecondaryRenderOwnerCategory(GameObject*, void*)
 {
 	return 3;
 }
-// STUB: LEGORACERS2 0x004ba120
-static LegoU32 __fastcall GetSecondaryRenderFollowMode(GameObject* p_object, void*)
+// FUNCTION: LEGORACERS2 0x004ba120
+static LegoU32 __fastcall GetSecondaryRenderFollowMode(GameObject* p_object, void* p_edx)
 {
+	// Retail tail-calls the target's slot 0x40 with EDX untouched (a thiscall
+	// virtual call), so forward the unused fastcall register instead of zeroing it.
 	SecondaryRenderOwner* owner = (SecondaryRenderOwner*) p_object;
-	return owner->m_target->m_vtable->m_value0x40(owner->m_target, NULL);
+	return owner->m_target->m_vtable->m_value0x40(owner->m_target, p_edx);
 }
 // FUNCTION: LEGORACERS2 0x004ba130
 static LegoFloat __fastcall GetSecondaryRenderZero(GameObject*, void*)
